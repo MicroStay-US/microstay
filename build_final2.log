@@ -1,0 +1,141 @@
+
+> microstay-platform@0.1.0 build
+> next build
+
+   Creating an optimized production build ...
+ ⚠ Compiled with warnings
+
+./node_modules/@supabase/realtime-js/dist/main/RealtimeClient.js
+Critical dependency: the request of a dependency is an expression
+
+Import trace for requested module:
+./node_modules/@supabase/realtime-js/dist/main/RealtimeClient.js
+./node_modules/@supabase/realtime-js/dist/main/index.js
+./node_modules/@supabase/supabase-js/dist/main/index.js
+./app/admin/login/page.tsx
+
+./node_modules/@supabase/realtime-js/dist/main/RealtimeClient.js
+Critical dependency: the request of a dependency is an expression
+
+Import trace for requested module:
+./node_modules/@supabase/realtime-js/dist/main/RealtimeClient.js
+./node_modules/@supabase/realtime-js/dist/main/index.js
+./node_modules/@supabase/supabase-js/dist/main/index.js
+./app/api/admin/auth/challenge/route.ts
+
+   Skipping linting
+   Checking validity of types ...
+   Collecting page data ...
+   Generating static pages (0/76) ...
+   Generating static pages (19/76) 
+[api/auth/profile] unexpected error: Dynamic server usage: Page couldn't be rendered statically because it used `headers`. See more info here: https://nextjs.org/docs/messages/dynamic-server-error
+   Generating static pages (38/76) 
+ ⚠ Entire page /partner-signup deopted into client-side rendering. https://nextjs.org/docs/messages/deopted-into-client-rendering /partner-signup
+   Generating static pages (57/76) 
+ ✓ Generating static pages (76/76) 
+   Finalizing page optimization ...
+   Collecting build traces ...
+
+Route (app)                                    Size     First Load JS
+┌ ○ /                                          7.09 kB         276 kB
+├ ○ /_not-found                                1.03 kB         192 kB
+├ ○ /admin/dashboard                           172 kB          432 kB
+├ ○ /admin/login                               7.07 kB         248 kB
+├ λ /admin/properties/[id]                     6.79 kB         248 kB
+├ ○ /admin/reset-password                      5.06 kB         246 kB
+├ λ /api/admin/applications                    0 B                0 B
+├ λ /api/admin/auth/challenge                  0 B                0 B
+├ λ /api/admin/auth/forgot-password            0 B                0 B
+├ λ /api/admin/auth/login                      0 B                0 B
+├ λ /api/admin/auth/reset-password             0 B                0 B
+├ λ /api/admin/auth/send-otp                   0 B                0 B
+├ λ /api/admin/auth/verify-otp                 0 B                0 B
+├ λ /api/admin/bookings                        0 B                0 B
+├ λ /api/admin/clean-ghosts                    0 B                0 B
+├ λ /api/admin/geocode-properties              0 B                0 B
+├ λ /api/admin/guests                          0 B                0 B
+├ λ /api/admin/guests/bookings                 0 B                0 B
+├ λ /api/admin/mfa/challenge                   0 B                0 B
+├ λ /api/admin/mfa/setup                       0 B                0 B
+├ λ /api/admin/mfa/verify                      0 B                0 B
+├ λ /api/admin/properties                      0 B                0 B
+├ λ /api/admin/properties/[id]                 0 B                0 B
+├ λ /api/admin/vendors                         0 B                0 B
+├ λ /api/admin/vendors/[id]/approve            0 B                0 B
+├ ○ /api/agreements/current                    0 B                0 B
+├ λ /api/agreements/sign                       0 B                0 B
+├ λ /api/auth/profile                          0 B                0 B
+├ λ /api/auth/profile-role                     0 B                0 B
+├ λ /api/booking/[id]                          0 B                0 B
+├ λ /api/booking/create                        0 B                0 B
+├ λ /api/cron/bill-month                       0 B                0 B
+├ λ /api/cron/commissions                      0 B                0 B
+├ λ /api/cron/invoices                         0 B                0 B
+├ λ /api/notify/booking                        0 B                0 B
+├ λ /api/notify/guest-confirmation             0 B                0 B
+├ λ /api/nuke                                  0 B                0 B
+├ λ /api/utils/my-ip                           0 B                0 B
+├ λ /api/vendor/approve                        0 B                0 B
+├ λ /api/vendor/billing/create-payment-intent  0 B                0 B
+├ λ /api/vendor/billing/portal                 0 B                0 B
+├ λ /api/vendor/billing/webhook                0 B                0 B
+├ λ /api/vendor/bookings                       0 B                0 B
+├ λ /api/vendor/init                           0 B                0 B
+├ λ /api/vendor/onboarding                     0 B                0 B
+├ λ /api/vendor/reject                         0 B                0 B
+├ λ /api/vendor/signup                         0 B                0 B
+├ λ /api/vendor/signup/upload-license          0 B                0 B
+├ λ /api/vendor/status                         0 B                0 B
+├ λ /api/vendors/check-email                   0 B                0 B
+├ λ /api/vendors/complete-signup               0 B                0 B
+├ λ /api/vendors/me                            0 B                0 B
+├ λ /api/vendors/property-info                 0 B                0 B
+├ λ /api/vendors/register                      0 B                0 B
+├ λ /api/vendors/resend-verification           0 B                0 B
+├ λ /api/vendors/verify-email                  0 B                0 B
+├ λ /book/[id]                                 7.18 kB         248 kB
+├ ○ /booking-confirmation                      5.67 kB         204 kB
+├ ○ /check-booking                             6.29 kB         247 kB
+├ ○ /login                                     6.11 kB         253 kB
+├ λ /motel/[id]                                11.4 kB         262 kB
+├ ○ /partner                                   5.23 kB         203 kB
+├ ○ /partner-signup                            9.87 kB         243 kB
+├ ○ /partner-signup/waiting                    4.31 kB         202 kB
+├ ○ /privacy                                   347 B           193 kB
+├ ○ /reset-password                            6.63 kB         247 kB
+├ ○ /robots.txt                                0 B                0 B
+├ ○ /search                                    12.8 kB         254 kB
+├ ○ /set-password                              6.24 kB         247 kB
+├ ○ /sitemap.xml                               0 B                0 B
+├ ○ /terms                                     349 B           193 kB
+├ ○ /vendor/agreement                          5.43 kB         246 kB
+├ ○ /vendor/analytics                          4.6 kB          238 kB
+├ ○ /vendor/billing                            4.22 kB         249 kB
+├ ○ /vendor/blocked-dates                      4.78 kB         246 kB
+├ ○ /vendor/bookings                           8.41 kB         255 kB
+├ ○ /vendor/calendar                           10.8 kB         280 kB
+├ ○ /vendor/dashboard                          7.11 kB         241 kB
+├ ○ /vendor/fees                               5.88 kB         247 kB
+├ ○ /vendor/financials                         4.06 kB         249 kB
+├ ○ /vendor/login                              6.97 kB         248 kB
+├ ○ /vendor/login/reset-password               6.15 kB         247 kB
+├ ○ /vendor/messages                           5.74 kB         239 kB
+├ ○ /vendor/onboarding                         7.55 kB         241 kB
+├ ○ /vendor/photos                             5.9 kB          239 kB
+├ ○ /vendor/properties                         8.9 kB          278 kB
+├ ○ /vendor/reviews                            5.87 kB         239 kB
+├ ○ /vendor/slots                              13.6 kB         292 kB
+└ ○ /vendor/team                               10.1 kB         260 kB
++ First Load JS shared by all                  191 kB
+  ├ chunks/52774a7f-c7461c8d8fb1f3a3.js        38.3 kB
+  ├ chunks/6215-fab50e3eeceba97b.js            97.4 kB
+  ├ chunks/fd9d1056-9fbd01b3deef6a26.js        51.2 kB
+  ├ chunks/main-app-5ad926ada53c91a0.js        1.22 kB
+  └ chunks/webpack-50a2df6924e0ce1d.js         2.47 kB
+
+
+ƒ Middleware                                   131 kB
+
+λ  (Server)  server-side renders at runtime (uses getInitialProps or getServerSideProps)
+○  (Static)  automatically rendered as static HTML (uses no initial props)
+

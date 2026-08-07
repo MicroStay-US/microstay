@@ -1,0 +1,29 @@
+{
+  "name": "MicroStay",
+  "short_name": "MicroStay",
+  "description": "Find and book nearby motels for flexible hourly stays. Pay at front desk, no prepayment needed.",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#FFF1EC",
+  "theme_color": "#FF5E1A",
+  "icons": [
+    {
+      "src": "/icon-192.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "any"
+    },
+    {
+      "src": "/icon-512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any"
+    },
+    {
+      "src": "/icon-maskable.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "maskable"
+    }
+  ]
+}

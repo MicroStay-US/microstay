@@ -1,0 +1,8 @@
+[0719/202708.561:ERROR:electron\shell\common\node_util.cc:166] Failed to initialize Node.js. {
+   "args": [ "C:\\Program Files\\Microsoft VS Code\\Code.exe", "" ],
+   "exec_args": [ "-e", "var p = process;p.on('message',function(m){if(m.c==='e'){p.exit(0);}else if(m.c==='rs'){try{var r=require.resolve(m.a);p.send({c:'r',s:true,r:r});}catch(err){p.send({c:'r',s:false});}}});" ],
+   "location": ", at node:internal/buffer:1104",
+   "message": "Uncaught RangeError: Failed to allocate memory",
+   "source_line": "  return new FastBuffer(createUnsafeArrayBuffer(size));"
+}
+

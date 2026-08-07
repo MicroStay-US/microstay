@@ -1,0 +1,280 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --foreground-rgb: 0, 0, 0;
+  --background-start-rgb: 248, 250, 252;
+  --background-end-rgb: 248, 250, 252;
+
+  /* ── MicroStay Brand Tokens ─────────────────────────── */
+  --ms-orange: #FF5E1A;
+  --ms-orange-hover: #FF8A6E;
+  --ms-orange-light: #FFF1EC;
+  --ms-orange-border: #F0997B;
+  --ms-teal: #0F9B8E;
+  --ms-teal-hover: #1D9E75;
+  --ms-teal-light: #F0FAFA;
+  --ms-teal-border: #5DCAA5;
+  --ms-text: #2E1A16;
+  --ms-text-muted: #8A5A50;
+  --ms-surface: #ffffff;
+  --ms-bg: #FFF1EC;
+
+  /* ── Admin Dark Theme Tokens ────────────────────────── */
+  --ms-admin-bg: #1A1A2E;
+  --ms-admin-surface: #12122A;
+  --ms-admin-border: #2A2A4A;
+  --ms-admin-text: #C8C8E0;
+  --ms-admin-muted: #5A5A7A;
+}
+
+@layer base {
+  :root {
+    --background: 210 40% 98%;
+    --foreground: 222.2 84% 4.9%;
+    --card: 0 0% 100%;
+    --card-foreground: 222.2 84% 4.9%;
+    --popover: 0 0% 100%;
+    --popover-foreground: 222.2 84% 4.9%;
+    --primary: 222.2 47.4% 11.2%;
+    --primary-foreground: 210 40% 98%;
+    --secondary: 210 40% 96%;
+    --secondary-foreground: 222.2 47.4% 11.2%;
+    --muted: 210 40% 96%;
+    --muted-foreground: 215.4 16.3% 46.9%;
+    --accent: 210 40% 96%;
+    --accent-foreground: 222.2 47.4% 11.2%;
+    --destructive: 0 84.2% 60.2%;
+    --destructive-foreground: 210 40% 98%;
+    --border: 214.3 31.8% 91.4%;
+    --input: 214.3 31.8% 91.4%;
+    --ring: 222.2 84% 4.9%;
+    --chart-1: 24 95% 53%;
+    --chart-2: 142 71% 45%;
+    --chart-3: 217 91% 60%;
+    --chart-4: 262 83% 58%;
+    --chart-5: 38 92% 50%;
+    --radius: 0.75rem;
+  }
+  .dark {
+    --background: 222 47% 6%;
+    --foreground: 210 40% 98%;
+    --card: 222 47% 8%;
+    --card-foreground: 210 40% 98%;
+    --popover: 222 47% 8%;
+    --popover-foreground: 210 40% 98%;
+    --primary: 210 40% 98%;
+    --primary-foreground: 222.2 47.4% 11.2%;
+    --secondary: 217 33% 14%;
+    --secondary-foreground: 210 40% 98%;
+    --muted: 217 33% 14%;
+    --muted-foreground: 215 20.2% 55%;
+    --accent: 217 33% 14%;
+    --accent-foreground: 210 40% 98%;
+    --destructive: 0 62.8% 45%;
+    --destructive-foreground: 210 40% 98%;
+    --border: 217 33% 14%;
+    --input: 217 33% 14%;
+    --ring: 212.7 26.8% 83.9%;
+    --chart-1: 24 95% 53%;
+    --chart-2: 142 71% 45%;
+    --chart-3: 217 91% 60%;
+    --chart-4: 262 83% 58%;
+    --chart-5: 38 92% 50%;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+  body {
+    @apply bg-white text-gray-900;
+  }
+}
+
+/* Admin luxury light theme */
+.admin-root {
+  background-color: #f8fafc;
+  font-family: var(--font-inter), system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+}
+
+/* ── Dark mode: auto-upgrade common surface patterns ── */
+.dark .admin-root {
+  background-color: #07101f;
+}
+
+/* Cards */
+.dark .bg-white {
+  background-color: #0d1b35;
+}
+
+/* Borders */
+.dark .border-zinc-200,
+.dark .border-gray-200 {
+  border-color: rgba(255,255,255,0.08);
+}
+
+/* Primary text */
+.dark .text-zinc-900,
+.dark .text-gray-900,
+.dark .text-\[\#1e293b\] {
+  color: rgba(255,255,255,0.92);
+}
+
+/* Secondary text */
+.dark .text-zinc-500,
+.dark .text-gray-500,
+.dark .text-zinc-600,
+.dark .text-gray-600 {
+  color: rgba(255,255,255,0.45);
+}
+
+/* Table rows */
+.dark tbody tr {
+  border-color: rgba(255,255,255,0.06);
+}
+
+.dark .hover\:bg-zinc-50\/80:hover,
+.dark .hover\:bg-gray-50:hover {
+  background-color: rgba(255,255,255,0.04);
+}
+
+/* Scrollbar dark */
+.dark ::-webkit-scrollbar-thumb {
+  background: rgba(255,255,255,0.12);
+}
+.dark ::-webkit-scrollbar-thumb:hover {
+  background: rgba(201,169,110,0.4);
+}
+
+/* Admin luxury mono font for refs, timers, amounts */
+.admin-root .font-mono {
+  font-family: var(--font-mono), ui-monospace, SFMono-Regular, Menlo, monospace;
+}
+
+/* Smooth scrollbar */
+::-webkit-scrollbar {
+  width: 5px;
+  height: 5px;
+}
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+::-webkit-scrollbar-thumb {
+  background: #DDD1C3;
+  border-radius: 3px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: #C8B8A8;
+}
+.admin-root ::-webkit-scrollbar-thumb {
+  background: #DDD1C3;
+}
+.admin-root ::-webkit-scrollbar-thumb:hover {
+  background: #C8B8A8;
+}
+
+/* Glassmorphism card */
+.glass-card {
+  background: rgba(255, 255, 255, 0.7);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  box-shadow: 0 4px 24px rgba(0, 0, 0, 0.06);
+}
+.dark .glass-card {
+  background: rgba(17, 24, 39, 0.7);
+  border: 1px solid rgba(255, 255, 255, 0.06);
+  box-shadow: 0 4px 24px rgba(0, 0, 0, 0.3);
+}
+
+/* Legacy classes kept for compatibility */
+.glossy-card {
+  background: linear-gradient(135deg, rgba(255, 255, 255, 0.95) 0%, rgba(255, 255, 255, 0.98) 100%);
+  backdrop-filter: blur(10px);
+  box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.1);
+  border: 1px solid rgba(255, 255, 255, 0.18);
+}
+
+.glossy-white {
+  background: linear-gradient(135deg, #ffffff 0%, #f8f9fa 100%);
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05);
+}
+
+.shine-effect {
+  position: relative;
+  overflow: hidden;
+}
+
+.shine-effect::before {
+  content: '';
+  position: absolute;
+  top: -50%;
+  left: -50%;
+  width: 200%;
+  height: 200%;
+  background: linear-gradient(
+    45deg,
+    transparent 30%,
+    rgba(255, 255, 255, 0.3) 50%,
+    transparent 70%
+  );
+  animation: shine 3s infinite;
+}
+
+@keyframes shine {
+  0% {
+    transform: translateX(-100%) translateY(-100%) rotate(45deg);
+  }
+  100% {
+    transform: translateX(100%) translateY(100%) rotate(45deg);
+  }
+}
+
+/* Fade-in animation for tab content */
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(8px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.animate-fade-in {
+  animation: fadeInUp 0.25s ease-out;
+}
+
+
+
+
+
+.rdp {
+    --rdp-cell-size:52px;
+}
+
+.rdp-months{
+    display:flex;
+}
+
+.rdp-caption{
+    font-size:22px;
+    font-weight:700;
+}
+
+.rdp-day{
+    border-radius:9999px;
+}
+
+.rdp-day_selected{
+    background:#2e2f3e;
+    color:white;
+}
+
+.rdp-day_today{
+    color:#f59e0b;
+}

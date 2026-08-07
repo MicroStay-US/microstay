@@ -1,0 +1,125 @@
+
+> microstay-platform@0.1.0 build
+> next build
+
+  ▲ Next.js 14.2.35
+  - Environments: .env.local
+  - Experiments (use with caution):
+    · instrumentationHook
+
+   Creating an optimized production build ...
+ ✓ Compiled successfully
+   Skipping linting
+   Checking validity of types ...
+   Collecting page data ...
+   Generating static pages (0/76) ...
+[api/auth/profile] unexpected error: Dynamic server usage: Route /api/auth/profile couldn't be rendered statically because it used `request.headers`. See more info here: https://nextjs.org/docs/messages/dynamic-server-error
+   Generating static pages (19/76) 
+   Generating static pages (38/76) 
+   Generating static pages (57/76) 
+ ✓ Generating static pages (76/76)
+   Finalizing page optimization ...
+   Collecting build traces ...
+
+Route (app)                                    Size     First Load JS
+┌ ○ /                                          7.04 kB         277 kB
+├ ○ /_not-found                                1.03 kB         195 kB
+├ ○ /admin/dashboard                           167 kB          428 kB
+├ ○ /admin/login                               6.91 kB         249 kB
+├ ƒ /admin/properties/[id]                     6.7 kB          249 kB
+├ ○ /admin/reset-password                      4.94 kB         247 kB
+├ ƒ /api/admin/applications                    0 B                0 B
+├ ƒ /api/admin/auth/challenge                  0 B                0 B
+├ ƒ /api/admin/auth/forgot-password            0 B                0 B
+├ ƒ /api/admin/auth/login                      0 B                0 B
+├ ƒ /api/admin/auth/reset-password             0 B                0 B
+├ ƒ /api/admin/auth/send-otp                   0 B                0 B
+├ ƒ /api/admin/auth/verify-otp                 0 B                0 B
+├ ƒ /api/admin/bookings                        0 B                0 B
+├ ƒ /api/admin/clean-ghosts                    0 B                0 B
+├ ƒ /api/admin/geocode-properties              0 B                0 B
+├ ƒ /api/admin/guests                          0 B                0 B
+├ ƒ /api/admin/guests/bookings                 0 B                0 B
+├ ƒ /api/admin/mfa/challenge                   0 B                0 B
+├ ƒ /api/admin/mfa/setup                       0 B                0 B
+├ ƒ /api/admin/mfa/verify                      0 B                0 B
+├ ƒ /api/admin/properties                      0 B                0 B
+├ ƒ /api/admin/properties/[id]                 0 B                0 B
+├ ƒ /api/admin/vendors                         0 B                0 B
+├ ƒ /api/admin/vendors/[id]/approve            0 B                0 B
+├ ○ /api/agreements/current                    0 B                0 B
+├ ƒ /api/agreements/sign                       0 B                0 B
+├ ƒ /api/auth/profile                          0 B                0 B
+├ ƒ /api/auth/profile-role                     0 B                0 B
+├ ƒ /api/booking/[id]                          0 B                0 B
+├ ƒ /api/booking/create                        0 B                0 B
+├ ƒ /api/cron/bill-month                       0 B                0 B
+├ ƒ /api/cron/commissions                      0 B                0 B
+├ ƒ /api/cron/invoices                         0 B                0 B
+├ ƒ /api/notify/booking                        0 B                0 B
+├ ƒ /api/notify/guest-confirmation             0 B                0 B
+├ ƒ /api/nuke                                  0 B                0 B
+├ ƒ /api/utils/my-ip                           0 B                0 B
+├ ƒ /api/vendor/approve                        0 B                0 B
+├ ƒ /api/vendor/billing/create-payment-intent  0 B                0 B
+├ ƒ /api/vendor/billing/portal                 0 B                0 B
+├ ƒ /api/vendor/billing/webhook                0 B                0 B
+├ ƒ /api/vendor/bookings                       0 B                0 B
+├ ƒ /api/vendor/init                           0 B                0 B
+├ ƒ /api/vendor/onboarding                     0 B                0 B
+├ ƒ /api/vendor/reject                         0 B                0 B
+├ ƒ /api/vendor/signup                         0 B                0 B
+├ ƒ /api/vendor/signup/upload-license          0 B                0 B
+├ ƒ /api/vendor/status                         0 B                0 B
+├ ƒ /api/vendors/check-email                   0 B                0 B
+├ ƒ /api/vendors/complete-signup               0 B                0 B
+├ ƒ /api/vendors/me                            0 B                0 B
+├ ƒ /api/vendors/property-info                 0 B                0 B
+├ ƒ /api/vendors/register                      0 B                0 B
+├ ƒ /api/vendors/resend-verification           0 B                0 B
+├ ƒ /api/vendors/verify-email                  0 B                0 B
+├ ƒ /book/[id]                                 7.02 kB         249 kB
+├ ○ /booking-confirmation                      5.09 kB         206 kB
+├ ○ /check-booking                             6.09 kB         248 kB
+├ ○ /login                                     6 kB            254 kB
+├ ƒ /motel/[id]                                8.09 kB         263 kB
+├ ○ /partner                                   4.68 kB         206 kB
+├ ○ /partner-signup                            9.77 kB         245 kB
+├ ○ /partner-signup/waiting                    3.77 kB         205 kB
+├ ○ /privacy                                   349 B           197 kB
+├ ○ /reset-password                            6.47 kB         249 kB
+├ ○ /robots.txt                                0 B                0 B
+├ ○ /search                                    12.8 kB         255 kB
+├ ○ /set-password                              6.08 kB         248 kB
+├ ○ /sitemap.xml                               0 B                0 B
+├ ○ /terms                                     349 B           197 kB
+├ ○ /vendor/agreement                          5.24 kB         248 kB
+├ ○ /vendor/analytics                          4.48 kB         240 kB
+├ ○ /vendor/billing                            4.07 kB         250 kB
+├ ○ /vendor/blocked-dates                      4.6 kB          247 kB
+├ ○ /vendor/bookings                           8.17 kB         256 kB
+├ ○ /vendor/calendar                           7.48 kB         280 kB
+├ ○ /vendor/dashboard                          6.89 kB         242 kB
+├ ○ /vendor/fees                               5.75 kB         248 kB
+├ ○ /vendor/financials                         3.9 kB          250 kB
+├ ○ /vendor/login                              6.83 kB         249 kB
+├ ○ /vendor/login/reset-password               6.01 kB         248 kB
+├ ○ /vendor/messages                           5.58 kB         241 kB
+├ ○ /vendor/onboarding                         7.41 kB         243 kB
+├ ○ /vendor/photos                             5.71 kB         241 kB
+├ ○ /vendor/properties                         8.76 kB         279 kB
+├ ○ /vendor/reviews                            5.69 kB         241 kB
+├ ○ /vendor/slots                              13.3 kB         293 kB
+└ ○ /vendor/team                               6.91 kB         262 kB
++ First Load JS shared by all                  194 kB
+  ├ chunks/52774a7f-28f450f9ea179dd2.js        36.8 kB
+  ├ chunks/9387-dce3cb368c1fea6c.js            100 kB
+  ├ chunks/fd9d1056-07ea47b1fed910e7.js        53.8 kB
+  └ other shared chunks (total)                3.65 kB
+
+
+ƒ Middleware                                   79.6 kB
+
+○  (Static)   prerendered as static content
+ƒ  (Dynamic)  server-rendered on demand
+
