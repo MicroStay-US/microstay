@@ -32,7 +32,7 @@ export default function PrivacyPolicyPage() {
         <h3>Information You Provide</h3>
         <ul>
           <li><strong>Account registration:</strong> name, email address, phone number, and password.</li>
-          <li><strong>Bookings:</strong> check-in/check-out times, number of guests, payment information (processed via Stripe — we do not store raw card numbers).</li>
+          <li><strong>Bookings:</strong> guest name, contact information, check-in/check-out time, booking reference, selected property, selected room/time window, and booking status. MicroStay does not collect or store guest card payment information for pay-at-property bookings</li>
           <li><strong>Vendor applications:</strong> business name, address, owner details, tax information, and supporting documents.</li>
           <li><strong>Communications:</strong> messages you send through our platform or to our support team.</li>
         </ul>

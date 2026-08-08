@@ -53,7 +53,7 @@ export default function TermsOfServicePage() {
         <ul>
           <li>All bookings are subject to property availability and vendor confirmation.</li>
           <li>Prices are displayed in US Dollars and include applicable platform fees.</li>
-          <li>Payment is processed at the time of booking via our payment processor (Stripe).</li>
+          <li>Guests pay the property directly at check-in or as otherwise instructed by the property. MicroStay does not collect guest payments, does not hold guest funds, and does not process refunds. Vendors are responsible for collecting guest payment, honoring confirmed bookings, and applying their own cancellation/no-show policies.</li>
           <li>
             <strong>Cancellations:</strong> Cancellation and refund policies vary by property. The
             policy applicable to your booking is displayed before checkout. MicroStay is not responsible
