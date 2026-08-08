@@ -338,10 +338,10 @@ const handleSearch = (e: React.FormEvent) => {
                   <div className="flex flex-col md:flex-row gap-4 md:gap-10 items-center w-full md:w-auto">
                   {searchType === 'city' && (
                     <div className="flex flex-col md:flex-row items-center gap-5 w-full md:w-auto">
-                        <div className="flex items-center w-full md:w-auto">
-                        <label className="text-xs font-bold text-gray-600 uppercase tracking-wider mr-2 md:mr-0">State</label>
+                        <div className="flex items-center w-full border rounded-md md:w-auto">
+                        <label className="text-xs font-bold text-white  uppercase tracking-wider mr-2 md:mr-0 bg-ms-orange p-3 rounded-md w-25">State </label>
                         <Select value={state} onValueChange={setState}>
-                          <SelectTrigger className="h-10 w-full md:w-32 font-medium text-gray-900">
+                          <SelectTrigger className="h-10 w-full md:w-32 font-medium text-gray-900 border-transparent">
                             <SelectValue placeholder="Select state" />
                           </SelectTrigger>
                           <SelectContent className="max-h-60">
@@ -353,10 +353,10 @@ const handleSearch = (e: React.FormEvent) => {
                         </Select></div>
 
                       
-                        <div className="flex items-center  w-full md:w-auto">
-                          <label className="text-xs font-bold text-gray-600 uppercase tracking-wider mr-2 md:mr-0">City </label>
+                        <div className="flex items-center  w-full md:w-auto border rounded-md">
+                          <label className="text-xs font-bold text-white  uppercase tracking-wider mr-2 md:mr-0 bg-ms-orange p-3 rounded-md w-25">City </label>
                         <Select value={city} onValueChange={setCity} disabled={!state || citiesForState.length === 0}>
-                          <SelectTrigger className="h-10 w-full md:w-32 font-medium text-gray-900">
+                          <SelectTrigger className="h-10 w-full md:w-32 font-medium text-gray-900 border-transparent">
                             <SelectValue placeholder={state ? "Select city" : "Select state first"} />
                           </SelectTrigger>
                           <SelectContent className="max-h-60">
@@ -380,9 +380,9 @@ const handleSearch = (e: React.FormEvent) => {
                   {searchType === 'nearby' && (
                     <>
                       <div className="flex flex-row items-center h-12 w-full md:w-80 gap-2 border md:border-t md:border-r md:border-b rounded-lg border-black/40 dark:border-white/20">
-                    <label className="text-xs font-bold text-gray-600 uppercase tracking-wider bg-blue-500/70 dark:bg-blue-900 rounded-md p-2 flex items-center h-full">
-                      <MapPin className="h-5 w-5 md:w-10 text-black mr-1" />
-                      <p className="text-black hidden md:block">Where?</p>
+                    <label className="text-xs font-bold text-gray-600 uppercase tracking-wider bg-ms-orange dark:bg-ms-orange rounded-md p-2 flex items-center h-full">
+                      <MapPin className="h-5 w-5 md:w-10 text-ms-orange-light" />
+                      <p className="text-ms-orange-light hidden md:block">Where</p>
                       </label>
                       
                   <div ref={locationRef} className="relative w-full md:w-72">
@@ -391,7 +391,7 @@ const handleSearch = (e: React.FormEvent) => {
                       onClick={() => setLocationOpen((prev) => !prev)}
                       className="w-full h-12 rounded-lg flex justify-start items-center text-left px-2"
                     >
-                      <span className="truncate w-full">{selectedLocation || `${city} ${state}` || <p className="text-ms-orange">Nearby</p>}</span>
+                      <span className="truncate w-full">{selectedLocation || `${city} ${state}` }</span>
                     </button>
 
                     {locationOpen && (
@@ -408,13 +408,13 @@ const handleSearch = (e: React.FormEvent) => {
                               className="w-full text-left px-4 py-3 hover:bg-gray-100 font-semibold text-ms-orange"
                               onClick={() => {
                                 // Pure GPS nearby — clear any picked city
-                                setSelectedLocation('Nearby');
+                                setSelectedLocation(`${city} ${state}`);
                                 setCity('');
                                 setState('');
                                 setLocationOpen(false);
                               }}
                             >
-                            {selectedLocation || `${city}   ${state}` || <p className="text-ms-orange">Nearby</p>}
+                            {selectedLocation || `${city}  ${state}` }
 
                             </button>
                         <div className="max-h-64 overflow-y-auto">
@@ -446,9 +446,9 @@ const handleSearch = (e: React.FormEvent) => {
                     </>
                   )}</div>
                     <div className="flex flex-row items-center h-12 w-full md:w-72 gap-2 border md:border-t md:border-r md:border-b rounded-lg border-black/40 dark:border-white/20 mt-4 md:mt-0">
-                    <label className="text-xs font-bold bg-blue-500/70 border dark:bg-ms-orange rounded-md p-2 text-gray-600 uppercase tracking-wider flex items-center h-full">
-                      <CalendarDays className="h-5 w-5 md:w-10 text-black mr-1" />
-                      <p className="text-black hidden md:block">When</p>
+                    <label className="text-xs font-bold bg-ms-orange  dark:bg-ms-orange rounded-md p-2  uppercase tracking-wider flex items-center h-full">
+                      <CalendarDays className="h-5 w-5 md:w-10 text-ms-orange-light mr-1" />
+                      <p className="text-ms-orange-light hidden md:block">When</p>
                     </label>
                     {/* <Input
                       type="date"
