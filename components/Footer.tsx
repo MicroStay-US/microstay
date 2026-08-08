@@ -29,7 +29,7 @@ export default function Footer() {
           </div>
 
           {/* Guests */}
-          <div className="md:col-span-3 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-10 md:ml-5 mt-8 md:mt-0">
+          <div className="md:col-span-3 grid grid-cols-2 sm:grid-cols-2 md:grid-cols-3 gap-10 md:ml-5 mt-8 md:mt-0">
             <div>
             <h4 className="text-xs font-black uppercase tracking-widest text-black/50 dark:text-white/40 mb-4">For Guests</h4>
             <ul className="space-y-2.5">

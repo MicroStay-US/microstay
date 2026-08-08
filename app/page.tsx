@@ -338,7 +338,8 @@ const handleSearch = (e: React.FormEvent) => {
                   <div className="flex flex-col md:flex-row gap-4 md:gap-10 items-center w-full md:w-auto">
                   {searchType === 'city' && (
                     <div className="flex flex-col md:flex-row items-center gap-5 w-full md:w-auto">
-                        <div className="flex items-center w-full md:w-auto"><label className="text-xs font-bold text-gray-600 uppercase tracking-wider mr-2 md:mr-0">State</label>
+                        <div className="flex items-center w-full md:w-auto">
+                        <label className="text-xs font-bold text-gray-600 uppercase tracking-wider mr-2 md:mr-0">State</label>
                         <Select value={state} onValueChange={setState}>
                           <SelectTrigger className="h-10 w-full md:w-32 font-medium text-gray-900">
                             <SelectValue placeholder="Select state" />
@@ -352,7 +353,8 @@ const handleSearch = (e: React.FormEvent) => {
                         </Select></div>
 
                       
-                        <label className="text-xs font-bold text-gray-600 uppercase tracking-wider mt-4 md:mt-0">City</label>
+                        <div className="flex items-center  w-full md:w-auto">
+                          <label className="text-xs font-bold text-gray-600 uppercase tracking-wider mr-2 md:mr-0">City </label>
                         <Select value={city} onValueChange={setCity} disabled={!state || citiesForState.length === 0}>
                           <SelectTrigger className="h-10 w-full md:w-32 font-medium text-gray-900">
                             <SelectValue placeholder={state ? "Select city" : "Select state first"} />
@@ -363,6 +365,7 @@ const handleSearch = (e: React.FormEvent) => {
                             ))}
                           </SelectContent>
                         </Select>
+                        </div>
                       
                     </div>
                   )}
