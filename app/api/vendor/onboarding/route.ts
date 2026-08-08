@@ -82,9 +82,9 @@ export async function POST(req: NextRequest) {
     if (zip && !isValidZip(zip)) {
       return NextResponse.json({ error: 'Invalid ZIP code' }, { status: 400 });
     }
-    if (state && !isValidState(state)) {
-      return NextResponse.json({ error: 'State must be a 2-letter abbreviation' }, { status: 400 });
-    }
+    // if (state && !isValidState(state)) {
+    //   return NextResponse.json({ error: 'State must be a 2-letter abbreviation' }, { status: 400 });
+    // }
 
     // Caller must be the owner of the vendor record they're trying to update.
     if (vendorId !== authedVendor.id) {

@@ -44,9 +44,9 @@ export async function POST(req: Request) {
     if (!isValidZip(zip)) {
       return NextResponse.json({ error: 'Invalid ZIP code' }, { status: 400 });
     }
-    if (!isValidState(state)) {
-      return NextResponse.json({ error: 'State must be a 2-letter abbreviation' }, { status: 400 });
-    }
+    // if (!isValidState(state)) {
+    //   return NextResponse.json({ error: 'State must be a 2-letter abbreviation' }, { status: 400 });
+    // }
     if (sanitizeString(motelName, 200).length < 2) {
       return NextResponse.json({ error: 'Motel name too short' }, { status: 400 });
     }
