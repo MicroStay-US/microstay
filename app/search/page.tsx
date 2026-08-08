@@ -505,38 +505,37 @@ console.log("Count =", data?.length);
   };
 
   return (
-    <div className="min-h-screen bg-gray-50/50 dark:bg-black/40 flex flex-col font-sans">
+    <div className="min-h-screen bg-gray-50/50  dark:bg-black/40 flex flex-col font-sans">
       
       {/* 1. Sticky Unified Search Header (Brevistay Style) */}
       <div className="dark:bg-slate-900 dark:border-b dark:border-slate-950 sticky top-0 z-40 shadow-lg shadow-ms-orange-light dark:shSearchadow-black">
         <div className="max-w-7xl mx-auto px-4 py-3">
-          <form onSubmit={handleTopSearch} className="flex flex-col md:flex-row items-center gap-2 md:gap-4 bg-white/10 p-2 rounded-xl border border-white/20 backdrop-blur-md dark:bg-slate-950/20">
+          <form onSubmit={handleTopSearch} className="flex flex-col  md:flex-row items-center gap-2 md:gap-4 bg-white/10 p-2 rounded-xl border border-white/20 backdrop-blur-md dark:bg-slate-950/20">
             
             <div className="flex-1 w-full relative ">
-              <label className="absolute -top-2.5 left-3 text-[10px] font-bold text-ms-orange uppercase tracking-wider dark:bg-slate-900 px-1">Where?</label>
+              <label className="absolute  left-3 text-[10px] font-bold text-ms-orange uppercase tracking-wider dark:bg-slate-900 px-1">Where?</label><br></br>
               <Input 
                 type="text" 
                 value={city} 
                 onChange={(e) => setCity(e.target.value)}
                 placeholder="City, Property, API" 
-                className="w-full  h-12 pt-4 border-none shadow-inner rounded-lg text-gray-900 font-bold focus-visible:ring-2 focus-visible:ring-ms-orange"
+                className="w-full  h-10 pt-4 border-none shadow-inner rounded-lg text-gray-900 font-bold focus-visible:ring-2 focus-visible:ring-ms-orange"
               />
             </div>
             
             <div className="flex-1 w-full relative">
-              <label className="absolute -top-2.5 left-3 text-[10px] font-bold text-ms-orange uppercase tracking-wider dark:bg-slate-900 px-1">When?</label>
+              <label className="absolute  left-3 text-[10px] font-bold text-ms-orange uppercase tracking-wider dark:bg-slate-900 px-1">When?</label><br></br>
               <Input 
                 type="date" 
                 value={date} 
                 onChange={(e) => setDate(e.target.value)}
                 min={new Date(new Date().getTime() - new Date().getTimezoneOffset() * 60000).toISOString().split('T')[0]}
-                className="w-full  h-12 pt-4 border-none shadow-inner rounded-lg text-gray-900 font-bold focus-visible:ring-2 focus-visible:ring-ms-orange"
+                className="w-full  h-10 pt-4 border-none shadow-inner rounded-lg text-gray-900 font-bold focus-visible:ring-2 focus-visible:ring-ms-orange"
                 required
               />
             </div>
 
-
-            <Button type="submit" className="w-full md:w-auto h-12 px-8 bg-ms-orange hover:bg-ms-orange-hover text-white font-black hover:scale-[1.02] transition-transform rounded-lg shadow-md active:scale-95">
+            <Button type="submit" className="w-full relative top-3 md:w-auto h-10 px-8 bg-ms-orange hover:bg-ms-orange-hover text-white font-black hover:scale-[1.02] transition-transform rounded-lg shadow-md active:scale-95">
               <SearchIcon className="w-5 h-5 mr-2" /> Search
             </Button>
           </form>
