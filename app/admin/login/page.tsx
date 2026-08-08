@@ -239,7 +239,7 @@ export default function AdminLoginPage() {
               <h2 className="text-xl font-bold">Check your email</h2>
               <p className="text-gray-500 text-sm">
                 A password reset link has been sent to<br />
-                <span className="font-mono font-medium text-gray-700">adminmotel@gmail.com</span>
+                <span className="font-mono font-medium text-gray-700">team@microstay.us</span>
               </p>
               <button
                 onClick={() => setResetSent(false)}
