@@ -641,19 +641,19 @@ const handleSearch = (e: React.FormEvent) => {
 
       {/* ── How It Works ── */}
       <section className="py-20 px-4 dark:bg-ms-orange" id="how-it-works">
-        <div className="max-w-7xl mx-auto dark:bg-slate-950 py-2.5 rounded-lg ">
+        <div className="max-w-7xl mx-auto  py-2.5 rounded-lg ">
           <div className="text-center mb-14 mt-10">
             <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-3">How It Works</h2>
             <p className="text-gray-500 text-lg font-medium">Book a room under 2 minutes</p>
           </div>
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8 relative px-4 md:px-0">
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-8 relative px-4 md:px-0 ">
 
             {[
               { step: '01', icon: Search, title: 'Search', desc: 'Enter your city or tap "Nearby" to find available motels for your date.' },
               { step: '02', icon: CalendarDays, title: 'Book', desc: 'Pick your time window, choose a room, and confirm with your name and phone.' },
               { step: '03', icon: LogIn, title: 'Check In', desc: 'Show your confirmation code at the front desk — no app or account needed.' },
             ].map(({ step, icon: Icon, title, desc }) => (
-              <div key={step} className="relative z-10 flex flex-col items-center text-center group mb-10 mx-auto max-w-xs bg-ms-orange-light pt-5 rounded-lg">
+              <div key={step} className="relative z-10 flex flex-col items-center text-center group mb-10 mx-auto max-w-xs bg-ms-orange-light pt-5 rounded-lg dark:bg-transparent/90">
                 <div className="w-20 h-20 rounded-2xl dark:bg-gradient-to-br dark:from-ms-orange dark:border-transparent dark:shadow-md dark:group-hover:shadow-ms-orange dark:to-ms-orange border-2 border-ms-orange-border flex items-center justify-center mb-5 group-hover:border-ms-orange-border group-hover:shadow-lg group-hover:shadow-ms-orange-light transition-all ">
                   <Icon className="w-8 h-8 text-ms-orange dark:text-white" />
                 </div>
