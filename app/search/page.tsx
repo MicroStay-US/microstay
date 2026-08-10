@@ -519,7 +519,7 @@ console.log("Count =", data?.length);
                 value={city}
                 onChange={(e) => setCity(e.target.value)}
                 placeholder="City" 
-                className="w-full h-10   shadow-inner rounded-lg text-gray-900 font-bold bg-teal-100/30 border focus-visible:ring-2 focus-visible:ring-ms-orange"
+                className="w-full h-10   shadow-inner rounded-lg text-gray-900 font-bold bg-teal-100/30 dark:bg-teal-700/20 border focus-visible:ring-2 focus-visible:ring-ms-orange"
               />
             </div>
             
@@ -530,7 +530,7 @@ console.log("Count =", data?.length);
                 value={date} 
                 onChange={(e) => setDate(e.target.value)}
                 min={new Date(new Date().getTime() - new Date().getTimezoneOffset() * 60000).toISOString().split('T')[0]}
-                className="w-full  h-10  border bg-teal-100/30 shadow-inner rounded-lg text-gray-900 font-bold focus-visible:ring-2 focus-visible:ring-ms-orange"
+                className="w-full  h-10  border bg-teal-100/30 shadow-inner rounded-lg text-gray-900 font-bold focus-visible:ring-2 focus-visible:ring-ms-orange dark:bg-teal-700/20"
                 required
               />
             </div>
@@ -729,12 +729,12 @@ console.log("Count =", data?.length);
             {properties.length === 0 ? (
               <Card className="border-gray-200 bg-white shadow-sm overflow-hidden">
                 <CardContent className="p-16 text-center">
-                  <div className="w-24 h-24 bg-gray-50 rounded-full flex items-center justify-center mx-auto mb-6">
+                  <div className="w-24 h-24 bg-gray-50 dark:bg-transparent rounded-full flex items-center justify-center mx-auto mb-6">
                     <SearchIcon className="w-10 h-10 text-gray-300" />
                   </div>
                   <h3 className="text-2xl font-black text-gray-900 mb-2">No properties found</h3>
                   <p className="text-gray-500 font-medium mb-8 max-w-md mx-auto">We couldn't find any Hourly Hotels matching your exact criteria in this location for the selected date.</p>
-                  <Button onClick={() => router.push('/')} className="bg-ms-orange hover:bg-ms-orange-hover text-white shadow-md font-bold px-8 h-12">
+                  <Button onClick={() => router.push('/search')} className="bg-ms-orange hover:bg-ms-orange-hover text-white shadow-md font-bold px-8 h-12">
                     Clear Filters & Search Again
                   </Button>
                 </CardContent>
