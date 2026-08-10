@@ -135,7 +135,7 @@ const netProfit = totalNetEarnings;
                 <th className="px-6 py-4 text-xs font-bold text-gray-500 uppercase tracking-wider">Guest & Status</th>
                 <th className="px-6 py-4 text-xs font-bold text-gray-500 uppercase tracking-wider text-right">Gross Collected</th>
                 <th className="px-6 py-4 text-xs font-bold text-gray-500 uppercase tracking-wider text-right">MicroStay 12%</th>
-                {/* <th className="px-6 py-4 text-xs font-bold text-gray-500 uppercase tracking-wider text-right">MicroStay $5</th> */}
+
                 {/* <th className="px-6 py-4 text-xs font-bold text-gray-500 uppercase tracking-wider text-right">Penalties</th> */}
                 <th className="px-6 py-4 text-xs font-bold text-ms-teal uppercase tracking-wider text-right bg-ms-teal-light/30">Your Net Earnings</th>
               </tr>

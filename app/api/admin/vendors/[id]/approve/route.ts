@@ -120,7 +120,7 @@ export async function PATCH(
                     Questions? Contact us at <a href="mailto:info@microstay.us">info@microstay.us</a>
                   </p>
                   <hr style="border:none;border-top:1px solid #F0997B;margin:24px 0"/>
-                  <p style="color:#8A5A50;font-size:12px;margin:0">Microstay Holdings LLC · EIN 41-4740422</p>
+                  <p style="color:#8A5A50;font-size:12px;margin:0">MICROSTAY HOLDINGS LLC d/b/a MicroStay.us · EIN 41-4740422</p>
                 </div>
               </div>
             `,
@@ -170,7 +170,7 @@ export async function PATCH(
                   <a href="mailto:info@microstay.us">info@microstay.us</a>.
                 </p>
                 <hr style="border:none;border-top:1px solid #F0997B;margin:24px 0"/>
-                <p style="color:#8A5A50;font-size:12px;margin:0">Microstay Holdings LLC · EIN 41-4740422</p>
+                <p style="color:#8A5A50;font-size:12px;margin:0">MICROSTAY HOLDINGS LLC d/b/a MicroStay.us · EIN 41-4740422</p>
               </div>
             </div>
           `,

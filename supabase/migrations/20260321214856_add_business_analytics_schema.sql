@@ -25,7 +25,7 @@
     - Public users cannot access financial tables
 
   4. Notes
-    - Platform charges $5 flat + 8% of gross booking revenue
+    - Platform charges 12% of gross booking revenue
     - Monthly invoices generated for vendor payments
 */
 

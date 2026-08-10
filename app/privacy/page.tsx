@@ -23,7 +23,7 @@ export default function PrivacyPolicyPage() {
       <div className="max-w-3xl mx-auto px-4 py-12 prose prose-gray prose-headings:text-gray-900 prose-a:text-orange-600">
 
         <p className="text-gray-600 text-lg">
-          MicroStay, Inc. ("MicroStay," "we," "us," or "our") is committed to protecting your privacy.
+          MICROSTAY HOLDINGS LLC d/b/a MicroStay.us ("MicroStay," "we," "us," or "our") is committed to protecting your privacy.
           This Privacy Policy explains how we collect, use, disclose, and safeguard your information
           when you use our website at <strong>microstay.us</strong> and our related services.
         </p>
@@ -47,7 +47,8 @@ export default function PrivacyPolicyPage() {
         <h2>2. How We Use Your Information</h2>
         <p>We use your information to:</p>
         <ul>
-          <li>Process and confirm bookings and payments.</li>
+          <li><strong>For Customers:</strong> Process and confirm booking information (customers pay the motel directly).</li>
+          <li><strong>For Vendors:</strong> Process platform commission payments through Stripe.</li>
           <li>Create and manage your account.</li>
           <li>Communicate booking confirmations, receipts, and support responses.</li>
           <li>Send marketing communications (only with your consent, and you may opt out at any time).</li>
@@ -120,7 +121,7 @@ export default function PrivacyPolicyPage() {
         <h2>10. Contact Us</h2>
         <p>
           Questions about this policy? Reach us at:<br />
-          <strong>MicroStay, Inc.</strong><br />
+          <strong>MICROSTAY HOLDINGS LLC d/b/a MicroStay.us</strong><br />
           {/* Email: <a href="mailto:privacy@microstay.us">privacy@microstay.us</a><br /> */}
           Support: <a href="mailto:support@microstay.us">support@microstay.us</a>
         </p>

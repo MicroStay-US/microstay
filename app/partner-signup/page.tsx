@@ -458,7 +458,7 @@ function PropertyInfoForm({
   accountEmail,
 }: {
   // onNext: () => void;
-  onNext: (businessName: string) => void;
+  onNext: (form: PropertyForm) => void;
   onBack: () => void;
   token: string;
   accountEmail: string;
@@ -559,7 +559,7 @@ function PropertyInfoForm({
         return;
       }
       // onNext();
-      onNext(form.legal_business_name);
+      onNext(form);
     } catch {
       setError('Network error. Please try again.');
     } finally {
@@ -701,6 +701,7 @@ function AgreementViewer({
   scrollCompleted,
   documentViewedAt,
   onDocumentViewed,
+  propertyForm,
 }: {
   onNext: () => void;
   onBack: () => void;
@@ -708,6 +709,7 @@ function AgreementViewer({
   scrollCompleted: boolean;
   documentViewedAt: string | null;
   onDocumentViewed: (ts: string) => void;
+  propertyForm: any;
 }) {
   const scrollRef = useRef<HTMLDivElement>(null);
   const [agreementText, setAgreementText] = useState('');
@@ -759,39 +761,92 @@ function AgreementViewer({
       return <div className="text-gray-400 text-sm py-8 text-center"><Loader2 className="w-5 h-5 animate-spin mx-auto mb-2" />Loading agreement...</div>;
     }
     const lines = agreementText.split('\n');
-    let sectionIdx = -1;
+    let isMicrostaySection = false;
+
     return lines.map((line, i) => {
-      const isSectionHeading =
-        line.startsWith('━') ||
-        (line.length > 2 && lines[i + 1]?.startsWith('━'));
+      let trimmed = line.trim();
+      const isMainTitle = trimmed === 'MICROSTAY PARTNER AGREEMENT';
+      const matchIdx = AGREEMENT_SECTIONS.indexOf(trimmed);
+      const isSectionTitle = matchIdx !== -1;
 
-      // Check if this line is a section divider header
-      const isSectionTitle = i > 0 && lines[i - 1]?.startsWith('━') && !line.startsWith('━');
-      const isNextSectionTitle = lines[i + 1]?.startsWith('━');
-
-      if (line.startsWith('━')) {
-        return <div key={i} className="border-t border-gray-200 my-3" />;
+      if (trimmed === 'MICROSTAY') {
+        isMicrostaySection = true;
       }
 
-      if (isNextSectionTitle) {
-        sectionIdx++;
-        const si = sectionIdx;
+      let injectedNode: React.ReactNode = null;
+
+      if (propertyForm && trimmed.includes('______')) {
+        let label = '';
+        let value = '';
+
+        if (trimmed.startsWith('Property Name:')) {
+          label = 'Property Name';
+          value = propertyForm.dba_name || '______';
+        } else if (trimmed.startsWith('Legal Business Name:')) {
+          label = 'Legal Business Name';
+          value = propertyForm.legal_business_name || '______';
+        } else if (trimmed.startsWith('Property Address:')) {
+          label = 'Property Address';
+          value = [propertyForm.property_address, propertyForm.city, propertyForm.state, propertyForm.zip].filter(Boolean).join(', ') || '______';
+        } else if (trimmed.startsWith('Authorized Representative:')) {
+          label = 'Authorized Representative';
+          value = isMicrostaySection ? 'Sam Patel' : (propertyForm.contact_name || '______');
+        } else if (trimmed.startsWith('Title:')) {
+          label = 'Title';
+          value = isMicrostaySection ? 'Founder & CEO' : 'Owner / Authorized Representative';
+        } else if (trimmed.startsWith('Email:')) {
+          label = 'Email';
+          value = propertyForm.contact_email || '______';
+        } else if (trimmed.startsWith('Phone:')) {
+          label = 'Phone';
+          value = propertyForm.contact_phone || '______';
+        } else if (trimmed.startsWith('Signature:')) {
+          label = 'Signature';
+          value = isMicrostaySection ? '[Pending Admin Signature]' : propertyForm.legal_business_name;
+        } else if (trimmed.startsWith('Date:')) {
+          label = 'Date';
+          value = new Date().toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' });
+        }
+
+        if (label) {
+          injectedNode = (
+            <p key={i} className="text-sm text-gray-700 leading-relaxed mb-1">
+              {label}: <span className="text-ms-orange-hover font-medium">{value}</span>
+            </p>
+          );
+        }
+      }
+
+      if (injectedNode) return injectedNode;
+
+      if (isMainTitle) {
         return (
           <div
             key={i}
-            ref={el => { sectionRefs.current[si] = el; }}
-            className="text-sm font-bold text-gray-900 mt-4 mb-1 tracking-wide uppercase text-ms-orange dark:text-ms-orange"
+            className="text-lg font-bold text-ms-orange mt-6 mb-2 tracking-wide"
           >
-            {line}
+            {trimmed}
           </div>
         );
       }
 
-      if (!line.trim()) return <div key={i} className="h-2" />;
+      if (isSectionTitle) {
+        return (
+          <div
+            key={i}
+            ref={el => { sectionRefs.current[matchIdx] = el; }}
+            className="text-sm font-bold text-ms-orange mt-6 mb-2 tracking-wide uppercase"
+          >
+            {trimmed}
+          </div>
+        );
+      }
+
+      if (!trimmed) return <div key={i} className="h-2" />;
 
       return (
         <p key={i} className="text-sm text-gray-700 leading-relaxed mb-1">
-          {line}
+          {trimmed}
         </p>
       );
     });
@@ -1216,6 +1271,7 @@ function VendorSignupStepper() {
   const [signatureId, setSignatureId] = useState('');
   const [signedPdfUrl, setSignedPdfUrl] = useState('');
   const [businessName, setBusinessName] = useState('');
+  const [propertyForm, setPropertyForm] = useState<any>(null);
 
   // On mount: detect if user is coming back from email verification
   useEffect(() => {
@@ -1293,8 +1349,9 @@ function VendorSignupStepper() {
                 accountEmail={accountEmail}
                 onBack={() => setStep(1)}
                 // onNext={() => setStep(3)}
-                onNext={(name) => {
-                    setBusinessName(name);
+                onNext={(form) => {
+                    setBusinessName(form.legal_business_name);
+                    setPropertyForm(form);
                     setStep(3);
                   }}
               />
@@ -1309,6 +1366,7 @@ function VendorSignupStepper() {
                 onScrollComplete={() => setScrollCompleted(true)}
                 documentViewedAt={documentViewedAt}
                 onDocumentViewed={setDocumentViewedAt}
+                propertyForm={propertyForm}
               />
             )}
 
@@ -1337,7 +1395,7 @@ function VendorSignupStepper() {
           </div>
 
           <p className="text-center text-xs text-gray-400 mt-6">
-            Microstay Holdings LLC · EIN 41-4740422 · Wyoming LLC ·{' '}
+            MICROSTAY HOLDINGS LLC d/b/a MicroStay.us · EIN 41-4740422 · Wyoming LLC ·{' '}
             <a href="mailto:info@microstay.us" className="hover:text-ms-orange">
               info@microstay.us
             </a>

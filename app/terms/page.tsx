@@ -52,8 +52,9 @@ export default function TermsOfServicePage() {
         <h2>4. Bookings and Payments</h2>
         <ul>
           <li>All bookings are subject to property availability and vendor confirmation.</li>
-          <li>Prices are displayed in US Dollars and include applicable platform fees.</li>
-          <li>Guests pay the property directly at check-in or as otherwise instructed by the property. MicroStay does not collect guest payments, does not hold guest funds, and does not process refunds. Vendors are responsible for collecting guest payment, honoring confirmed bookings, and applying their own cancellation/no-show policies.</li>
+          <li>Prices are displayed in US Dollars.</li>
+          <li><strong>Customer Payments:</strong> Customers do not pay MicroStay a booking, service, or platform fee. Customers pay the property directly at check-in. MicroStay does not collect guest payments, does not hold guest funds, and does not process refunds.</li>
+          <li><strong>Vendor Commission:</strong> Vendors pay a 12% commission to MicroStay for each completed booking. Vendors are responsible for collecting guest payment, honoring confirmed bookings, and applying their own cancellation/no-show policies.</li>
           <li>
             <strong>Cancellations:</strong> Cancellation and refund policies vary by property. The
             policy applicable to your booking is displayed before checkout. MicroStay is not responsible
@@ -83,7 +84,7 @@ export default function TermsOfServicePage() {
         <ul>
           <li>Vendors must ensure their listings are accurate, complete, and up to date.</li>
           <li>Vendors must honor confirmed bookings.</li>
-          <li>MicroStay charges a platform fee per completed booking as detailed in the Partner Agreement.</li>
+          <li>MicroStay charges a 12% commission per completed booking as detailed in the Partner Agreement.</li>
           <li>Vendors may not circumvent the platform to arrange direct payments with guests for stays
               found through MicroStay.</li>
         </ul>
@@ -91,7 +92,7 @@ export default function TermsOfServicePage() {
         <h2>7. Intellectual Property</h2>
         <p>
           The MicroStay name, logo, and all platform content (excluding user-generated content) are owned
-          by MicroStay, Inc. and protected by U.S. and international copyright and trademark laws. You may
+          by MICROSTAY HOLDINGS LLC d/b/a MicroStay.us and protected by U.S. and international copyright and trademark laws. You may
           not reproduce, distribute, or create derivative works without our prior written consent.
         </p>
 
@@ -137,7 +138,7 @@ export default function TermsOfServicePage() {
         <h2>13. Contact</h2>
         <p>
           Questions about these Terms?<br />
-          <strong>MicroStay, Inc.</strong><br />
+          <strong>MICROSTAY HOLDINGS LLC d/b/a MicroStay.us</strong><br />
           {/* Email: <a href="mailto:legal@microstay.us">legal@microstay.us</a><br /> */}
           Support: <a href="mailto:support@microstay.us">support@microstay.us</a>
         </p>

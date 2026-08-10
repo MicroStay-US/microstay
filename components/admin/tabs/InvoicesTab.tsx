@@ -202,7 +202,7 @@ export function InvoicesTab() {
       ['Vendor', inve.vendor?.business_name || 'Unknown'],
       ['Vendor Email', inve.vendor?.email || ''],
       ['Commission (12%)', `$${Number(inve.total_commission).toFixed(2)}`],
-      // ['Platform Fees ($5)', `$${Number(inve.total_platform_fees).toFixed(2)}`],
+
       ['Total Due', `$${Number(inve.total_due).toFixed(2)}`],
       ['Status', inve.status],
       ['Generated', new Date(inve.created_at).toLocaleDateString()],
@@ -401,7 +401,7 @@ export function InvoicesTab() {
                   <th className="px-6 py-4 text-[10px] font-black text-zinc-500 uppercase tracking-widest">Vendor</th>
                   <th className="px-6 py-4 text-[10px] font-black text-zinc-500 uppercase tracking-widest text-right">Motel Gross</th>
                   <th className="px-6 py-4 text-[10px] font-black text-zinc-500 uppercase tracking-widest text-right">Commission (12%)</th>
-                  {/* <th className="px-6 py-4 text-[10px] font-black text-zinc-500 uppercase tracking-widest text-right">Flat Fees ($5)</th> */}
+
                   <th className="px-6 py-4 text-[10px] font-black text-zinc-500 uppercase tracking-widest text-right">Total Due</th>
                   <th className="px-6 py-4 text-[10px] font-black text-zinc-500 uppercase tracking-widest text-center">Status</th>
                   <th className="px-6 py-4 text-[10px] font-black text-zinc-500 uppercase tracking-widest text-center">Paid ≤ 7th?</th>

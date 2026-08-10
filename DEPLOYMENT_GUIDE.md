@@ -191,7 +191,7 @@ To test the system, create 4 dummy motels:
 - **Support**: support@microstay.us
 
 ### Vendor (Super Partner)
-- **Email**: vendor@microstay.us (for support)
+- **Email**: support@microstay.us (for support)
 - **Access**: Full vendor dashboard, manage motels, team, bookings
 - **Capabilities**:
   - Add/edit/delete motels
@@ -202,7 +202,7 @@ To test the system, create 4 dummy motels:
   - View revenue analytics
 
 ### Vendor Team Member
-- **Email**: vendor@microstay.us (for support)
+- **Email**: support@microstay.us (for support)
 - **Access**: Limited based on permissions
 - **Capabilities** (if granted):
   - Manage time slots and rates
@@ -234,8 +234,8 @@ For each booking:
 
 ### Example Calculation
 - Customer pays: $60.00
-- Platform fee:  ($60.00 × 0.12) =  $7.2
-- Vendor receives: $60.00 - 7.2 = $52.7
+- Platform fee:  ($60.00 × 0.12) = $7.20
+- Vendor receives: $60.00 - $7.20 = $52.80
 
 This calculation happens automatically in the database for every booking.
 
@@ -262,12 +262,12 @@ These are already configured in your Netlify deployment.
 - **Issues**: Booking problems, cancellations, general inquiries
 
 ### For Vendors/Partners
-- **Email**: vendor@microstay.us
+- **Email**: support@microstay.us
 - **Response Time**: Within 12 hours for critical issues
 - **Issues**: Account help, property management, team management
 
 ### For Technical Issues
-- **Email**: vendor@microstay.us
+- **Email**: support@microstay.us
 - **Issues**: Platform bugs, system errors, technical problems
 
 ---
@@ -319,4 +319,4 @@ These are already configured in your Netlify deployment.
 
 ## Need Help?
 
-Contact the technical team at vendor@microstay.us for any deployment or configuration assistance.
+Contact the technical team at support@microstay.us for any deployment or configuration assistance.

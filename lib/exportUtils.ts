@@ -55,7 +55,7 @@ export function exportInvoicesToCSV(invoices: any[]) {
     'Period': inv.invoice_period || '-',
     'Motel Gross': inv.total_gross != null ? `$${Number(inv.total_gross).toFixed(2)}` : '-',
     'Commission (12%%)': inv.total_commission != null ? `$${Number(inv.total_commission).toFixed(2)}` : '-',
-    // 'Platform Fees ($5)': inv.total_platform_fees != null ? `$${Number(inv.total_platform_fees).toFixed(2)}` : '-',
+
     'Total Due': inv.total_due != null ? `$${Number(inv.total_due).toFixed(2)}` : '-',
     'Status': inv.status || '-',
   }));

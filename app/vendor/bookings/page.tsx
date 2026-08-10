@@ -85,7 +85,7 @@ export default function VendorBookingsPage() {
     if (!booking) return;
 
     if (actionType === 'checked_in') {
-      // Fee is always $5 flat — set at booking time, no recalculation on check-in
+      // Fee is 12% of gross — set at booking time, no recalculation on check-in
       await supabase.from('vd_bookings').update({
         status: actionType,
         checked_in_at: new Date().toISOString(),
@@ -101,7 +101,7 @@ export default function VendorBookingsPage() {
       await supabase.from('vd_bookings').update({
         status: actionType,
         owner_cancelled_at: new Date().toISOString(),
-        penalty_fee: 5.0,
+        penalty_fee: Number((booking.gross_amount * 0.12).toFixed(2)),
         cancel_reason: 'Cancelled from Bookings Table',
         action_taken_by: user?.id,
       }).eq('id', bookingId);

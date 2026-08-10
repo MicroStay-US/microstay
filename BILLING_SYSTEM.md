@@ -20,7 +20,6 @@ The MicroStay platform uses a **monthly billing system** where vendors collect f
    - Covers all checked-in bookings from the previous month
 
 3. **Platform Fee Structure**
-   - **Fixed Fee**: $5.00 per booking
    - **Percentage Fee**: 12% of gross booking amount
    - **Formula**:  (Gross Amount × 0.12)
 
@@ -39,12 +38,11 @@ Customer books room for: $60.00
 Vendor collects: $60.00
 
 Platform fee calculation:
-- Fixed fee: $5.00
 - Percentage fee: $60.00 × 0.12 = $7.20
 - Total platform fee:  $7.20
 
 Vendor keeps: $60.00 (collected from customer)
-Vendor owes: $9.80 (paid monthly to platform)
+Vendor owes: $7.20 (paid monthly to platform)
 ```
 
 ---
@@ -298,7 +296,7 @@ SELECT mark_invoice_paid(
 - Monitor billing tab regularly
 - Pay invoices before 7th to avoid property suspension
 - Keep payment receipts for records
-- Contact vendor@microstay.us for billing questions
+- Contact support@microstay.us for billing questions
 
 ### For Admins:
 - Generate invoices on 1st of each month
@@ -340,9 +338,9 @@ SELECT mark_invoice_paid(
 
 ## Support Contacts
 
-- **Vendor Billing Questions**: vendor@microstay.us
+- **Vendor Billing Questions**: support@microstay.us
 - **Admin Support**: admin@microstay.us
-- **Technical Issues**: vendor@microstay.us
+- **Technical Issues**: support@microstay.us
 
 ---
 

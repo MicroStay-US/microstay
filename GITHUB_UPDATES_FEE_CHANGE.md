@@ -1,6 +1,6 @@
 # GitHub Update Instructions - Fee Structure Changes
 
-All references to "15% platform fee" and "keep 85%" have been removed and replaced with the correct fee structure: **$5 flat + 8% of gross booking revenue**.
+All references to "15% platform fee" and "keep 85%" have been removed and replaced with the correct fee structure: **12% of gross booking revenue**.
 
 ## Files Modified
 

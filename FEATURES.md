@@ -9,7 +9,7 @@ MicroStay is a comprehensive platform for hourly motel bookings with advanced pa
 
 ### Contact Information
 - **Customer Support**: support@microstay.us
-- **Partner/Vendor Support**: vendor@microstay.us
+- **Partner/Vendor Support**: support@microstay.us
 
 ### Implementation
 - Footer component with contact information on all pages
@@ -185,7 +185,7 @@ All tables have comprehensive RLS policies:
 - Manage properties and bookings
 - Create and manage team members (up to 3)
 - View analytics and revenue
-- Contact vendor@microstay.us
+- Contact support@microstay.us
 
 ### Vendor Team Member
 - Limited access based on granted permissions
@@ -194,7 +194,7 @@ All tables have comprehensive RLS policies:
 - Can cancel bookings (if permitted)
 - Cannot add/remove team members
 - Cannot view full analytics
-- Contact vendor@microstay.us
+- Contact support@microstay.us
 
 ### Admin
 - Only admin@microstay.us and manager@microstay.us
@@ -245,7 +245,7 @@ All tables have comprehensive RLS policies:
 - **Response Time**: Within 24 hours
 
 ### For Partners/Vendors
-- **Email**: vendor@microstay.us
+- **Email**: support@microstay.us
 - **Purpose**: Account help, property management, team issues
 - **Response Time**: Within 12 hours for critical issues
 
@@ -312,8 +312,8 @@ All tables have comprehensive RLS policies:
 
 ### Contact Information
 - **Customer Support**: support@microstay.us
-- **Partner/Vendor Support**: vendor@microstay.us
-- **Technical Issues**: vendor@microstay.us
+- **Partner/Vendor Support**: support@microstay.us
+- **Technical Issues**: support@microstay.us
 
 ### Documentation
 - All features documented in this file

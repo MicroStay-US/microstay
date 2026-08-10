@@ -45,7 +45,9 @@ export default function VendorAnalyticsPage() {
     const netRevenue = checkedIn.reduce((s, b) => s + Number(b.vendor_net || 0), 0);
     const checkInRate = actioned > 0 ? (checkedIn.length / actioned) * 100 : 0;
     const cancelRate = actioned > 0 ? (ownerCancels.length / actioned) * 100 : 0;
-
+    console.log('details of all',all);
+    console.log('details of grossRevenue',grossRevenue);
+    console.log('details of totalFees',totalFees);
     setStats({
       grossRevenue, totalFees, penalties, netRevenue, checkInRate, cancelRate,
       totalBookings: all.length, checkedInCount: checkedIn.length, noShowCount: noShows.length, cancelCount: ownerCancels.length,
