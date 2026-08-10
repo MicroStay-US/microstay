@@ -120,7 +120,7 @@ function ResetPasswordForm() {
           <div className="relative">
             <Input
               type={showPw ? 'text' : 'password'}
-              placeholder="New password (min. 8 characters)"
+              placeholder="New password (min. 12 characters)"
               value={password}
               onChange={e => setPassword(e.target.value)}
               className="pr-10 h-11"

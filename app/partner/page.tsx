@@ -13,8 +13,8 @@ export default function PartnerPage() {
       <div className="max-w-6xl mx-auto">
         <div className="text-center mb-12">
           <h1 className="text-4xl font-bold mb-4">Partner with <strong className='text-ms-orange'>MicroStay</strong></h1>
-          <p className="text-xl text-gray-600 mb-6">
-            Join America's fastest-growing hourly motel booking platform
+          <p className="text-md text-gray-600 mb-6">
+            Join a growing hourly motel booking platform
           </p>
           <p className="text-lg text-gray-500 max-w-2xl mx-auto">
             List your motel on MicroStay and reach thousands of customers looking for

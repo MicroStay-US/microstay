@@ -31,8 +31,8 @@ export default function AboutUs() {
       <div className="border-y dark:border-slate-800 dark:bg-slate-900/50">
         <div className="mx-auto grid max-w-7xl grid-cols-2 gap-6 px-6 py-10 md:grid-cols-4">
           <div>
-            <h3 className="text-3xl font-bold text-orange-500">1000+</h3>
-            <p className="mt-2 dark:text-slate-400">Partner Properties</p>
+            <h3 className="text-3xl font-bold text-orange-500">Growing</h3>
+            <p className="mt-2 dark:text-slate-400">Partner Network</p>
           </div>
 
           <div>
