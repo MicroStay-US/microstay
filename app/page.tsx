@@ -292,7 +292,7 @@ const handleSearch = (e: React.FormEvent) => {
   router.push(`/search?${params.toString()}`);
 };
   return (
-    <div className="min-h-screen bg-orange-300 dark:bg-black">
+    <div className="min-h-screen bg-orange-300/40 dark:bg-black">
       <section
         className="relative py-32 px-4 bg-cover bg-center"
         style={{
@@ -380,7 +380,7 @@ const handleSearch = (e: React.FormEvent) => {
                   {searchType === 'nearby' && (
                     <>
                       <div className="flex flex-row items-center h-12 w-full md:w-80 gap-2 border md:border-t md:border-r md:border-b rounded-lg border-black/40 dark:border-white/20">
-                    <label className="text-xs font-bold text-gray-600 uppercase tracking-wider bg-ms-orange dark:bg-ms-orange rounded-md p-2 flex items-center h-full">
+                    <label className="text-xs font-bold text-gray-600 uppercase tracking-wider bg-ms-orange dark:bg-ms-orange rounded-md p-2  flex items-center h-full border-ms-orange">
                       <MapPin className="h-5 w-5 md:w-10 text-ms-orange-light" />
                       <p className="text-ms-orange-light hidden md:block">Where</p>
                       </label>

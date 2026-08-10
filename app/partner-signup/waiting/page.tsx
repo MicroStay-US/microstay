@@ -20,7 +20,7 @@ export default function WaitingPage() {
         </div>
 
         <Card className="border-none shadow-xl rounded-2xl overflow-hidden bg-white ring-1 ring-gray-100">
-          <CardContent className="p-8 space-y-6">
+          <CardContent className="p-6 sm:p-8 space-y-6">
             <div className="bg-amber-50 border border-amber-200 rounded-xl p-4 flex gap-4 items-start">
               <Clock className="w-6 h-6 text-amber-600 shrink-0 mt-0.5" />
               <div>

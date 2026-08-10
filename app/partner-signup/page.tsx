@@ -80,15 +80,15 @@ const STEP_LABELS = [
 
 function StepIndicator({ current }: { current: Step }) {
   return (
-    <div className="flex flex-row items-center justify-center gap-0 mb-8  pb-2">
+    <div className="flex flex-row items-center justify-start sm:justify-center gap-0 mb-8 pb-2 overflow-x-auto h-20 w-full no-scrollbar px-2 sm:px-0">
       {STEP_LABELS.map((s, i) => {
         const stepNum = (i + 1) as Step;
         const done = stepNum < current;
         const active = stepNum === current;
         const Icon = s.icon;
         return (
-          <div key={i} className="flex items-center">
-            <div className="flex flex-col items-center min-w-[72px]">
+          <div key={i} className="flex items-center shrink-0">
+            <div className="flex flex-col items-center min-w-[64px] sm:min-w-[72px]">
               <div
                 className={`w-9 h-9 rounded-full flex items-center justify-center transition-all duration-300 ${
                   done
@@ -114,7 +114,7 @@ function StepIndicator({ current }: { current: Step }) {
             </div>
             {i < STEP_LABELS.length - 1 && (
               <div
-                className={`h-0.5 w-14 mx-1 mb-5 transition-all duration-300 ${
+                className={`h-0.5 w-6 sm:w-14 mx-1 mb-5 transition-all duration-300 ${
                   done ? 'bg-green-400' : 'bg-gray-200'
                 }`}
               />
@@ -310,7 +310,7 @@ function AccountCreationForm({
             onChange={e => setForm(p => ({ ...p, email: e.target.value }))}
             onBlur={validateEmail}
             placeholder="you@yourbusiness.com"
-            className="pl-9 w-full dark:border-black"
+            className="pl-9 w-full bg-gradient-to-r from-teal-200/40 via-black/10 to-purple-200 border-none dark:bg-gradient-to-r dark:from-teal-800/40 "
             error={emailError}
             autoComplete="email"
           />
@@ -329,7 +329,7 @@ function AccountCreationForm({
             value={form.password}
             onChange={e => setForm(p => ({ ...p, password: e.target.value }))}
             placeholder="Create a strong password"
-            className="border border-gray-300 rounded-lg px-3 py-2 pl-9 pr-10 text-sm w-full focus:outline-none focus:ring-2 focus:ring-ms-orange dark:bg-transparent dark:border-black"
+            className="border border-gray-300 rounded-lg px-3 py-2 pl-9 pr-10 text-sm w-full focus:outline-none focus:ring-2 focus:ring-ms-orange dark:bg-transparent  bg-gradient-to-r from-teal-200/40 via-black/10 to-purple-200 border-none dark:bg-gradient-to-r dark:from-teal-800/40 "
             autoComplete="new-password"
           />
           <button
@@ -350,7 +350,7 @@ function AccountCreationForm({
             value={form.confirmPassword}
             onChange={e => setForm(p => ({ ...p, confirmPassword: e.target.value }))}
             placeholder="Re-enter your password"
-            className="border border-gray-300 rounded-lg px-3 py-2 pl-9 text-sm w-full focus:outline-none focus:ring-2 focus:ring-ms-orange dark:bg-transparent dark:border-black"
+            className="border border-gray-300 rounded-lg px-3 py-2 pl-9 text-sm w-full focus:outline-none focus:ring-2 focus:ring-ms-orange dark:bg-transparent  bg-gradient-to-r from-teal-200/40 via-black/10 to-purple-200 border-none dark:bg-gradient-to-r dark:from-teal-800/40"
             autoComplete="new-password"
           />
         </div>
@@ -582,22 +582,22 @@ function PropertyInfoForm({
       <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 ">
         <div className="sm:col-span-2 ">
           <Field required label="Legal Business Name" >
-            <TextInput required value={form.legal_business_name} onChange={set('legal_business_name')} placeholder="ABC Motel LLC" className="w-full dark:border-black" />
+            <TextInput required value={form.legal_business_name} onChange={set('legal_business_name')} placeholder="ABC Motel LLC" className="w-full  bg-gradient-to-r from-teal-200/40 via-black/10 to-purple-200 border-none dark:bg-gradient-to-r dark:from-teal-800/40" />
           </Field>
         </div>
         <Field required label="DBA / Trade Name">
-          <TextInput required value={form.dba_name} onChange={set('dba_name')} placeholder="The Grand Motel" className="w-full dark:border-black" />
+          <TextInput required value={form.dba_name} onChange={set('dba_name')} placeholder="The Grand Motel" className="w-full  bg-gradient-to-r from-teal-200/40 via-black/10 to-purple-200 border-none dark:bg-gradient-to-r dark:from-teal-800/40 " />
         </Field>
         <Field required label="Contact Name" >
           {/* <TextInput required value={form.contact_name} onChange={set('contact_name')} placeholder="Jane Smith" className="w-full" /> */}
-            <TextInput required value={form.contact_name} readOnly className="w-full bg-gray-100 dark:border-black dark:text-white" />
+            <TextInput required value={form.contact_name} readOnly className="w-full bg-gray-100  dark:text-white bg-gradient-to-r from-teal-200/40 via-black/10 to-purple-200 border-none dark:bg-gradient-to-r dark:from-teal-800/40" />
 
         </Field>
         <Field required label="Contact Phone">
-          <TextInput required type="tel" value={form.contact_phone} onChange={set('contact_phone')} placeholder="(555) 000-0000" className="w-full dark:border-black" />
+          <TextInput required type="tel" value={form.contact_phone} onChange={set('contact_phone')} placeholder="(555) 000-0000" className="w-full  bg-gradient-to-r from-teal-200/40 via-black/10 to-purple-200border-none dark:bg-gradient-to-r border-none dark:from-teal-800/40" />
         </Field>
         <Field required label="Contact Email" >
-          <TextInput required value={form.contact_email} className='dark:border-black' readOnly />
+          <TextInput required value={form.contact_email} className=' bg-gradient-to-r from-teal-200/40 via-black/10 to-purple-200 border-none dark:bg-gradient-to-r dark:from-teal-800/40' readOnly />
           {/* <TextInput required type="email" value={form.contact_email} onChange={set('contact_email')} placeholder="manager@motel.com" className="w-full" /> */}
         </Field>
       </div>
@@ -607,17 +607,17 @@ function PropertyInfoForm({
         <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
           <div className="sm:col-span-2">
             <Field required label="Property Address" >
-              <TextInput required value={form.property_address} onChange={set('property_address')} placeholder="123 Main St" className="w-full dark:border-black" />
+              <TextInput required value={form.property_address} onChange={set('property_address')} placeholder="123 Main St" className="w-full  bg-gradient-to-r from-teal-200/40 via-black/10 to-purple-200border-none dark:bg-gradient-to-r border-none dark:from-teal-800/40" />
             </Field>
           </div>
           <Field required label="City" >
-            <TextInput required value={form.city} onChange={set('city')} placeholder="Las Vegas" className="w-full dark:border-black" />
+            <TextInput required value={form.city} onChange={set('city')} placeholder="Las Vegas" className="w-full  bg-gradient-to-r from-teal-200/40 via-black/10 to-purple-200 border-none dark:bg-gradient-to-r dark:from-teal-800/40" />
           </Field>
           <Field required label="State" >
             <select
               value={form.state}
               onChange={set('state')}
-              className="border border-gray-300 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-ms-orange w-full dark:bg-slate-900 dark:border-transparent"
+              className="border border-gray-300 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-ms-orange w-full dark:bg-slate-900 dark:border-transparent bg-gradient-to-r from-teal-200/40 via-black/10 to-purple-200 border-none dark:bg-gradient-to-r dark:from-teal-800/40"
             >
               <option value="">Select state</option>
               {['Alabama','Alaska','Arizona','Arkansas','California','Colorado','Connecticut','Delaware','Florida','Georgia','Hawaii','Idaho','Illinois','Indiana','Iowa','Kansas','Kentucky','Louisiana','Maine','Maryland','Massachusetts','Michigan','Minnesota','Mississippi','Missouri','Montana','Nebraska','Nevada','New Hampshire','New Jersey','New Mexico','New York','North Carolina','North Dakota','Ohio','Oklahoma','Oregon','Pennsylvania','Rhode Island','South Carolina','South Dakota','Tennessee','Texas','Utah','Vermont','Virginia','Washington','West Virginia','Wisconsin','Wyoming'].map(s => (
@@ -627,7 +627,7 @@ function PropertyInfoForm({
           </Field>
           
           <Field required label="ZIP Code" >
-            <TextInput required value={form.zip} onChange={set('zip')} placeholder="89101" maxLength={10} className="w-full dark:border-black" />
+            <TextInput required value={form.zip} onChange={set('zip')} placeholder="89101" maxLength={10} className="w-full  bg-gradient-to-r from-teal-200/40 via-black/10 to-purple-200 border-none dark:bg-gradient-to-r dark:from-teal-800/40" />
           </Field>
         </div>
       </div>
@@ -639,7 +639,7 @@ function PropertyInfoForm({
             <Field required label="Business License" >
               <div className="flex flex-col gap-2">
                 <label className={`flex items-center justify-center gap-2 border-2 border-dashed rounded-lg px-4 py-5 cursor-pointer transition
-                  ${licenseFile ? 'border-ms-orange-border bg-ms-orange-light dark:bg-black' : 'border-gray-300 hover:border-ms-orange-border hover:bg-ms-orange-light dark:bg-transparent/40'}`}>
+                  ${licenseFile ? 'border-ms-orange-border bg-ms-orange-light dark:bg-black border-none dark:bg-gradient-to-r dark:from-teal-600/40' : 'border-gray-300 hover:border-ms-orange-border hover:bg-ms-orange-light dark:bg-transparent/40 bg-gradient-to-r from-teal-200/40 via-black/10 to-purple-200 border-none dark:bg-gradient-to-r dark:from-teal-800/40'}`}>
                   <input
                     type="file"
                     accept=".pdf,.jpg,.jpeg,.png,.webp"
@@ -657,7 +657,7 @@ function PropertyInfoForm({
             </Field>
           </div>
           <Field required label="Federal EIN">
-            <TextInput required value={form.federal_ein} onChange={set('federal_ein')} placeholder="XX-XXXXXXX" className="w-full dark:border-black" />
+            <TextInput required value={form.federal_ein} onChange={set('federal_ein')} placeholder="XX-XXXXXXX" className="w-full  bg-gradient-to-r from-teal-200/40 via-black/10 to-purple-200 border-none dark:bg-gradient-to-r dark:from-teal-800/40 " />
           </Field>
         </div>
       </div>
@@ -666,7 +666,7 @@ function PropertyInfoForm({
         <h3 className="text-sm font-semibold text-gray-700 border-b pb-1 mb-3">Capacity</h3>
         <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
           <Field required label="Rooms Available" >
-            <TextInput required type="number" min="1" value={form.rooms_available} onChange={set('rooms_available')} placeholder="12" className="w-full dark:border-black" />
+            <TextInput required type="number" min="1" value={form.rooms_available} onChange={set('rooms_available')} placeholder="12" className="w-full  bg-gradient-to-r from-teal-200/40 via-black/10 to-purple-200 border-none dark:bg-gradient-to-r dark:from-teal-800/40" />
           </Field>
         </div>
       </div>
@@ -991,7 +991,7 @@ function SignatureCapture({
         <label className="text-sm font-medium text-gray-700">
           Type Your Full Legal Name <span className="text-red-500">*</span>
         </label>
-        <input type="text"  value={typedName} readOnly  className="border border-gray-300 rounded-lg px-4 py-3 text-sm w-full bg-gray-100 dark:bg-transparent dark:border-black"/>
+        <input type="text"  value={typedName} readOnly  className="border border-gray-300 rounded-lg px-4 py-3 text-sm w-full bg-gray-100 dark:bg-transparent  bg-gradient-to-r from-teal-200/40 via-black/10 to-purple-200 border-none dark:bg-gradient-to-r dark:from-teal-800/40"/>
         {/* <input
           type="text"
           value={typedName}
@@ -1137,7 +1137,7 @@ function SignupConfirmation({
       </div>
 
       {signatureId && (
-        <div className="bg-gray-50 border border-gray-200 dark:bg-transparent dark:border-black rounded-xl px-6 py-4 text-left w-full max-w-md">
+        <div className="bg-gray-50 border border-gray-200 dark:bg-transparent  rounded-xl px-6 py-4 text-left w-full max-w-md">
           <p className="text-xs text-gray-500 uppercase tracking-wide font-medium mb-1">
             Reference Number
           </p>
@@ -1258,7 +1258,7 @@ function VendorSignupStepper() {
   }, [searchParams]);
 
   return (
-    <div className="min-h-screen dark:bg-black/90 flex flex-col  items-center justify-center max-h-full">
+    <div className="min-h-screen dark:bg-black/90 flex flex-col  items-center justify-center max-h-full bg-orange-300/40">
       {/* Header */}
       {/* <header className="border-b border-gray-200 bg-white/80 backdrop-blur-sm sticky top-0 z-10">
         <div className="max-w-2xl mx-auto px-4 py-4 flex items-center justify-between">
@@ -1269,8 +1269,8 @@ function VendorSignupStepper() {
         </div>
       </header> */}
 
-      <section className=" flex px-4 py-8  ">
-        <div className="w-full max-w-2xl ">
+      <section className="flex px-4 py-8 w-full justify-center">
+        <div className="w-full max-w-2xl">
           <StepIndicator current={step} />
 
           <div className="bg-white rounded-2xl border border-gray-200 shadow-sm p-6 sm:p-8">

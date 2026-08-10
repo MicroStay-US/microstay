@@ -505,21 +505,21 @@ console.log("Count =", data?.length);
   };
 
   return (
-    <div className="min-h-screen bg-gray-50/50  dark:bg-black/40 flex flex-col font-sans">
+    <div className="min-h-screen bg-orange-300/40  dark:bg-black/40 flex flex-col font-sans">
       
       {/* 1. Sticky Unified Search Header (Brevistay Style) */}
-      <div className="dark:bg-slate-900 dark:border-b dark:border-slate-950 sticky top-0 z-40 shadow-lg shadow-ms-orange-light dark:shSearchadow-black">
+      <div className="dark:bg-slate-900 dark:border-b dark:border-slate-950 sticky top-0 z-40 shadow-lg shadow-orange-400/40 dark:shadow-black">
         <div className="max-w-7xl mx-auto px-4 py-3">
-          <form onSubmit={handleTopSearch} className="flex flex-col  md:flex-row items-center gap-2 md:gap-4 bg-white/10 p-2 rounded-xl border border-white/20 backdrop-blur-md dark:bg-slate-950/20">
+          <form onSubmit={handleTopSearch} className="flex flex-col  md:flex-row items-center gap-2 md:gap-4 bg-white p-2 rounded-xl border border-white/20 backdrop-blur-md dark:bg-slate-950/20">
             
             <div className="flex-1 w-full relative ">
               <label className="absolute  left-3 text-[10px] font-bold text-ms-orange uppercase tracking-wider dark:bg-slate-900 px-1">Where?</label><br></br>
               <Input 
                 type="text" 
-                value={city} 
+                value={city}
                 onChange={(e) => setCity(e.target.value)}
-                placeholder="City, Property, API" 
-                className="w-full  h-10 pt-4 border-none shadow-inner rounded-lg text-gray-900 font-bold focus-visible:ring-2 focus-visible:ring-ms-orange"
+                placeholder="City" 
+                className="w-full h-10   shadow-inner rounded-lg text-gray-900 font-bold bg-teal-100/30 border focus-visible:ring-2 focus-visible:ring-ms-orange"
               />
             </div>
             
@@ -530,7 +530,7 @@ console.log("Count =", data?.length);
                 value={date} 
                 onChange={(e) => setDate(e.target.value)}
                 min={new Date(new Date().getTime() - new Date().getTimezoneOffset() * 60000).toISOString().split('T')[0]}
-                className="w-full  h-10 pt-4 border-none shadow-inner rounded-lg text-gray-900 font-bold focus-visible:ring-2 focus-visible:ring-ms-orange"
+                className="w-full  h-10  border bg-teal-100/30 shadow-inner rounded-lg text-gray-900 font-bold focus-visible:ring-2 focus-visible:ring-ms-orange"
                 required
               />
             </div>
@@ -767,10 +767,10 @@ console.log("Count =", data?.length);
                       onClick={() => router.push(`/motel/${property.id}?date=${date}`)}
                     >
                       {/* Left: Image Gallery (Horizontal split) */}
-                      <div className="flex w-full sm:w-[320px] lg:w-[380px] h-[240px] flex-shrink-0">
+                      <div className="flex w-full mt-10 ml-2  sm:w-[320px] lg:w-[380px] h-[240px] flex-shrink-0">
                         {/* Main Huge Image */}
                         <div 
-                          className="flex-1 h-full bg-cover bg-center relative"
+                          className="flex-1 h-full bg-cover bg-center rounded-md relative"
                           style={{ backgroundImage: `url(${photos[0]})` }}
                         >
                           <div className="absolute top-3 left-3 bg-white/95 dark:bg-black/60 backdrop-blur font-black text-[10px] uppercase tracking-widest text-ms-orange px-2.5 py-1.5 rounded-md shadow-lg flex items-center gap-1.5">
