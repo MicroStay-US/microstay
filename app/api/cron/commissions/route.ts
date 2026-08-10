@@ -35,7 +35,7 @@ export async function GET(req: Request) {
     for (const booking of overdueBookings) {
       const grossAmount = Number(booking.gross_amount);
 
-      // Standard penalty: $5 flat + 8% (same as platform commission)
+      
       // Uses the shared calculateFees() so all fee logic stays in one place.
       const { totalFee } = calculateFees(grossAmount);
 

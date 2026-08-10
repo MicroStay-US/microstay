@@ -33,12 +33,12 @@ import {
  */
 
 const statusConfig: Record<string, { label: string; cls: string }> = {
-  pending:    { label: 'Due',        cls: 'bg-amber-100 text-amber-800 border-amber-200 dark:border-transparent dark:bg-amber-800/40  dark:text-white' },
-  unpaid:     { label: 'Due',        cls: 'bg-amber-100 text-amber-800 border-amber-200 dark:border-transparent dark:bg-amber-800/40  dark:text-white' },
+  pending: { label: 'Due', cls: 'bg-amber-100 text-amber-800 border-amber-200 dark:border-transparent dark:bg-amber-800/40  dark:text-white' },
+  unpaid: { label: 'Due', cls: 'bg-amber-100 text-amber-800 border-amber-200 dark:border-transparent dark:bg-amber-800/40  dark:text-white' },
   processing: { label: 'Processing', cls: 'bg-blue-100 text-blue-800 border-blue-200 dark:border-transparent dark:bg-blue-800/40  dark:text-white' },
-  paid:       { label: 'Paid',       cls: 'bg-emerald-100 text-emerald-800 border-emerald-200 dark:border-transparent dark:bg-emerald-800/40  dark:text-white' },
-  failed:     { label: 'Failed',     cls: 'bg-rose-100 text-rose-800 border-rose-200 dark:border-transparent dark:bg-rose-800/40  dark:text-white' },
-  overdue:    { label: 'Overdue',    cls: 'bg-rose-100 text-rose-800 border-rose-200 dark:border-transparent dark:bg-rose-800/40  dark:text-white' },
+  paid: { label: 'Paid', cls: 'bg-emerald-100 text-emerald-800 border-emerald-200 dark:border-transparent dark:bg-emerald-800/40  dark:text-white' },
+  failed: { label: 'Failed', cls: 'bg-rose-100 text-rose-800 border-rose-200 dark:border-transparent dark:bg-rose-800/40  dark:text-white' },
+  overdue: { label: 'Overdue', cls: 'bg-rose-100 text-rose-800 border-rose-200 dark:border-transparent dark:bg-rose-800/40  dark:text-white' },
 };
 
 type Invoice = {
@@ -68,7 +68,33 @@ export default function VendorBillingPage() {
   const [unbilledLoading, setUnbilledLoading] = useState(true);
   const [payEarlyLoading, setPayEarlyLoading] = useState(false);
   const [payEarlyError, setPayEarlyError] = useState('');
+  const sendReminder = async (invoiceId: string) => {
+    try {
+      const response = await fetch("/api/vendor/billing/reminder", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({ invoiceId }),
+      });
 
+      const result = await response.json();
+
+      if (!response.ok) {
+        throw new Error(result.error || "Failed to send reminder");
+      }
+
+      alert(
+        `Reminder sent successfully.\nPenalty: ${result.penalty_percent}%`
+      );
+
+      await loadInvoices();
+
+    } catch (error: any) {
+      console.error("Reminder error:", error);
+      alert(error.message || "Failed to send reminder");
+    }
+  };
   const loadInvoices = useCallback(async () => {
     if (!vendor) return;
     setLoading(true);
@@ -79,7 +105,7 @@ export default function VendorBillingPage() {
       .order('issued_date', { ascending: false });
     setInvoices((data as Invoice[]) || []);
     setLoading(false);
-    console.log("Vendor Data",data);
+    console.log("Vendor Data", data);
   }, [vendor]);
 
   const loadUnbilled = useCallback(async () => {
@@ -126,7 +152,7 @@ export default function VendorBillingPage() {
       const res = await fetch('/api/vendor/billing/pay-early', { method: 'POST' });
       const json = await res.json();
       if (!res.ok) throw new Error(json.error || 'Failed to process early payment');
-      
+
       if (json.invoice_url) {
         window.open(json.invoice_url, '_blank');
         loadInvoices();
@@ -205,7 +231,7 @@ export default function VendorBillingPage() {
             )}
           </CardContent>
         </Card>
-        
+
         <Card className="border-blue-200 bg-blue-50 dark:bg-blue-900/40 dark:border-blue-800">
           <CardContent className="p-5 flex items-center gap-4">
             <div className="bg-blue-500 dark:bg-blue-400 rounded-xl p-3">
@@ -246,7 +272,7 @@ export default function VendorBillingPage() {
 
             return (
               <Card key={inv.id} className="border-gray-200 shadow-sm overflow-hidden">
-                <CardHeader className="bg-gray-50 border-b border-gray-100 p-5 pb-4 flex flex-row items-center justify-between">
+                <CardHeader className="bg-gray-50 dark:bg-green-600/40 border-b dark:border-transparent border-gray-100 p-5 pb-4 flex flex-row items-center justify-between">
                   <div>
                     <p className="font-black text-gray-900">Invoice · {inv.invoice_period}</p>
                     <p className="text-xs text-gray-500 font-medium mt-0.5">
@@ -325,6 +351,17 @@ export default function VendorBillingPage() {
                       Download PDF
                     </a>
                   )}
+                  {!isPaid && (
+                    <button
+                      type="button"
+                      onClick={() => sendReminder(inv.id)}
+                      className="inline-flex items-center gap-1.5 text-xs font-bold text-ms-orange hover:underline"
+                    >
+                      <Clock className="w-3.5 h-3.5" />
+                      Send Reminder
+                    </button>
+                  )}
+
                 </CardContent>
               </Card>
             );
