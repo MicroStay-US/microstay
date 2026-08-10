@@ -310,7 +310,7 @@ function AccountCreationForm({
             onChange={e => setForm(p => ({ ...p, email: e.target.value }))}
             onBlur={validateEmail}
             placeholder="you@yourbusiness.com"
-            className="pl-9 w-full bg-gradient-to-r from-teal-200/40 via-black/10 to-purple-200 border-none dark:bg-gradient-to-r dark:from-teal-800/40 "
+            className="pl-9 w-full bg-gradient-to-r from-teal-200/40 via-black/10 to-purple-200 border-none dark:bg-gradient-to-r dark:from-teal-800/40 dark:to-transparent/40"
             error={emailError}
             autoComplete="email"
           />
@@ -329,7 +329,7 @@ function AccountCreationForm({
             value={form.password}
             onChange={e => setForm(p => ({ ...p, password: e.target.value }))}
             placeholder="Create a strong password"
-            className="border border-gray-300 rounded-lg px-3 py-2 pl-9 pr-10 text-sm w-full focus:outline-none focus:ring-2 focus:ring-ms-orange dark:bg-transparent  bg-gradient-to-r from-teal-200/40 via-black/10 to-purple-200 border-none dark:bg-gradient-to-r dark:from-teal-800/40 "
+            className="border border-gray-300 rounded-lg px-3 py-2 pl-9 pr-10 text-sm w-full focus:outline-none focus:ring-2 focus:ring-ms-orange dark:bg-transparent  bg-gradient-to-r from-teal-200/40 via-black/10 to-purple-200 border-none dark:bg-gradient-to-r dark:from-teal-800/40 dark:to-transparent/40 "
             autoComplete="new-password"
           />
           <button
@@ -350,7 +350,7 @@ function AccountCreationForm({
             value={form.confirmPassword}
             onChange={e => setForm(p => ({ ...p, confirmPassword: e.target.value }))}
             placeholder="Re-enter your password"
-            className="border border-gray-300 rounded-lg px-3 py-2 pl-9 text-sm w-full focus:outline-none focus:ring-2 focus:ring-ms-orange dark:bg-transparent  bg-gradient-to-r from-teal-200/40 via-black/10 to-purple-200 border-none dark:bg-gradient-to-r dark:from-teal-800/40"
+            className="border border-gray-300 rounded-lg px-3 py-2 pl-9 text-sm w-full focus:outline-none focus:ring-2 focus:ring-ms-orange dark:bg-transparent  bg-gradient-to-r from-teal-200/40 via-black/10 to-purple-200 border-none dark:bg-gradient-to-r dark:from-teal-800/40 dark:to-transparent/40"
             autoComplete="new-password"
           />
         </div>
@@ -582,22 +582,22 @@ function PropertyInfoForm({
       <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 ">
         <div className="sm:col-span-2 ">
           <Field required label="Legal Business Name" >
-            <TextInput required value={form.legal_business_name} onChange={set('legal_business_name')} placeholder="ABC Motel LLC" className="w-full  bg-gradient-to-r from-teal-200/40 via-black/10 to-purple-200 border-none dark:bg-gradient-to-r dark:from-teal-800/40" />
+            <TextInput required value={form.legal_business_name} onChange={set('legal_business_name')} placeholder="ABC Motel LLC" className="w-full  bg-gradient-to-r from-teal-200/40 via-black/10 to-purple-200 border-none dark:bg-gradient-to-r dark:from-teal-800/40 dark:to-transparent/40" />
           </Field>
         </div>
         <Field required label="DBA / Trade Name">
-          <TextInput required value={form.dba_name} onChange={set('dba_name')} placeholder="The Grand Motel" className="w-full  bg-gradient-to-r from-teal-200/40 via-black/10 to-purple-200 border-none dark:bg-gradient-to-r dark:from-teal-800/40 " />
+          <TextInput required value={form.dba_name} onChange={set('dba_name')} placeholder="The Grand Motel" className="w-full  bg-gradient-to-r from-teal-200/40 via-black/10 to-purple-200 border-none dark:bg-gradient-to-r dark:from-teal-800/40 dark:to-transparent/40 " />
         </Field>
         <Field required label="Contact Name" >
           {/* <TextInput required value={form.contact_name} onChange={set('contact_name')} placeholder="Jane Smith" className="w-full" /> */}
-            <TextInput required value={form.contact_name} readOnly className="w-full bg-gray-100  dark:text-white bg-gradient-to-r from-teal-200/40 via-black/10 to-purple-200 border-none dark:bg-gradient-to-r dark:from-teal-800/40" />
+            <TextInput required value={form.contact_name} readOnly className="w-full bg-gray-100  dark:text-white bg-gradient-to-r from-teal-200/40 via-black/10 to-purple-200 border-none dark:bg-gradient-to-r dark:from-teal-800/40 dark:to-transparent/40" />
 
         </Field>
         <Field required label="Contact Phone">
-          <TextInput required type="tel" value={form.contact_phone} onChange={set('contact_phone')} placeholder="(555) 000-0000" className="w-full  bg-gradient-to-r from-teal-200/40 via-black/10 to-purple-200border-none dark:bg-gradient-to-r border-none dark:from-teal-800/40" />
+          <TextInput required type="tel" value={form.contact_phone} onChange={set('contact_phone')} placeholder="(555) 000-0000" className="w-full  bg-gradient-to-r from-teal-200/40 via-black/10 to-purple-200border-none dark:bg-gradient-to-r border-none dark:from-teal-800/40 dark:to-transparent/40" />
         </Field>
         <Field required label="Contact Email" >
-          <TextInput required value={form.contact_email} className=' bg-gradient-to-r from-teal-200/40 via-black/10 to-purple-200 border-none dark:bg-gradient-to-r dark:from-teal-800/40' readOnly />
+          <TextInput required value={form.contact_email} className=' bg-gradient-to-r from-teal-200/40 via-black/10 to-purple-200 border-none dark:bg-gradient-to-r dark:from-teal-800/40 dark:to-transparent/40' readOnly />
           {/* <TextInput required type="email" value={form.contact_email} onChange={set('contact_email')} placeholder="manager@motel.com" className="w-full" /> */}
         </Field>
       </div>
@@ -607,17 +607,17 @@ function PropertyInfoForm({
         <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
           <div className="sm:col-span-2">
             <Field required label="Property Address" >
-              <TextInput required value={form.property_address} onChange={set('property_address')} placeholder="123 Main St" className="w-full  bg-gradient-to-r from-teal-200/40 via-black/10 to-purple-200border-none dark:bg-gradient-to-r border-none dark:from-teal-800/40" />
+              <TextInput required value={form.property_address} onChange={set('property_address')} placeholder="123 Main St" className="w-full  bg-gradient-to-r from-teal-200/40 via-black/10 to-purple-200border-none dark:bg-gradient-to-r border-none dark:from-teal-800/40 dark:to-transparent/40" />
             </Field>
           </div>
           <Field required label="City" >
-            <TextInput required value={form.city} onChange={set('city')} placeholder="Las Vegas" className="w-full  bg-gradient-to-r from-teal-200/40 via-black/10 to-purple-200 border-none dark:bg-gradient-to-r dark:from-teal-800/40" />
+            <TextInput required value={form.city} onChange={set('city')} placeholder="Las Vegas" className="w-full  bg-gradient-to-r from-teal-200/40 via-black/10 to-purple-200 border-none dark:bg-gradient-to-r dark:from-teal-800/40 dark:to-transparent/40" />
           </Field>
           <Field required label="State" >
             <select
               value={form.state}
               onChange={set('state')}
-              className="border border-gray-300 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-ms-orange w-full dark:bg-slate-900 dark:border-transparent bg-gradient-to-r from-teal-200/40 via-black/10 to-purple-200 border-none dark:bg-gradient-to-r dark:from-teal-800/40"
+              className="border border-gray-300 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-ms-orange w-full dark:bg-slate-900 dark:border-transparent bg-gradient-to-r from-teal-200/40 via-black/10 to-purple-200 border-none dark:bg-gradient-to-r dark:from-teal-800/40 dark:to-transparent/40"
             >
               <option value="">Select state</option>
               {['Alabama','Alaska','Arizona','Arkansas','California','Colorado','Connecticut','Delaware','Florida','Georgia','Hawaii','Idaho','Illinois','Indiana','Iowa','Kansas','Kentucky','Louisiana','Maine','Maryland','Massachusetts','Michigan','Minnesota','Mississippi','Missouri','Montana','Nebraska','Nevada','New Hampshire','New Jersey','New Mexico','New York','North Carolina','North Dakota','Ohio','Oklahoma','Oregon','Pennsylvania','Rhode Island','South Carolina','South Dakota','Tennessee','Texas','Utah','Vermont','Virginia','Washington','West Virginia','Wisconsin','Wyoming'].map(s => (
@@ -627,7 +627,7 @@ function PropertyInfoForm({
           </Field>
           
           <Field required label="ZIP Code" >
-            <TextInput required value={form.zip} onChange={set('zip')} placeholder="89101" maxLength={10} className="w-full  bg-gradient-to-r from-teal-200/40 via-black/10 to-purple-200 border-none dark:bg-gradient-to-r dark:from-teal-800/40" />
+            <TextInput required value={form.zip} onChange={set('zip')} placeholder="89101" maxLength={10} className="w-full  bg-gradient-to-r from-teal-200/40 via-black/10 to-purple-200 border-none dark:bg-gradient-to-r dark:from-teal-800/40 dark:to-transparent/40" />
           </Field>
         </div>
       </div>
@@ -639,7 +639,7 @@ function PropertyInfoForm({
             <Field required label="Business License" >
               <div className="flex flex-col gap-2">
                 <label className={`flex items-center justify-center gap-2 border-2 border-dashed rounded-lg px-4 py-5 cursor-pointer transition
-                  ${licenseFile ? 'border-ms-orange-border bg-ms-orange-light dark:bg-black border-none dark:bg-gradient-to-r dark:from-teal-600/40' : 'border-gray-300 hover:border-ms-orange-border hover:bg-ms-orange-light dark:bg-transparent/40 bg-gradient-to-r from-teal-200/40 via-black/10 to-purple-200 border-none dark:bg-gradient-to-r dark:from-teal-800/40'}`}>
+                  ${licenseFile ? 'border-ms-orange-border bg-ms-orange-light dark:bg-black border-none dark:bg-gradient-to-r dark:from-teal-600/40' : 'border-gray-300 hover:border-ms-orange-border hover:bg-ms-orange-light dark:bg-transparent/40 bg-gradient-to-r from-teal-200/40 via-black/10 to-purple-200 border-none dark:bg-gradient-to-r dark:from-teal-800/40 dark:to-transparent/40'}`}>
                   <input
                     type="file"
                     accept=".pdf,.jpg,.jpeg,.png,.webp"
@@ -657,7 +657,7 @@ function PropertyInfoForm({
             </Field>
           </div>
           <Field required label="Federal EIN">
-            <TextInput required value={form.federal_ein} onChange={set('federal_ein')} placeholder="XX-XXXXXXX" className="w-full  bg-gradient-to-r from-teal-200/40 via-black/10 to-purple-200 border-none dark:bg-gradient-to-r dark:from-teal-800/40 " />
+            <TextInput required value={form.federal_ein} onChange={set('federal_ein')} placeholder="XX-XXXXXXX" className="w-full  bg-gradient-to-r from-teal-200/40 via-black/10 to-purple-200 border-none dark:bg-gradient-to-r dark:from-teal-800/40 dark:to-transparent/40 " />
           </Field>
         </div>
       </div>
@@ -666,7 +666,7 @@ function PropertyInfoForm({
         <h3 className="text-sm font-semibold text-gray-700 border-b pb-1 mb-3">Capacity</h3>
         <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
           <Field required label="Rooms Available" >
-            <TextInput required type="number" min="1" value={form.rooms_available} onChange={set('rooms_available')} placeholder="12" className="w-full  bg-gradient-to-r from-teal-200/40 via-black/10 to-purple-200 border-none dark:bg-gradient-to-r dark:from-teal-800/40" />
+            <TextInput required type="number" min="1" value={form.rooms_available} onChange={set('rooms_available')} placeholder="12" className="w-full  bg-gradient-to-r from-teal-200/40 via-black/10 to-purple-200 border-none dark:bg-gradient-to-r dark:from-teal-800/40 dark:to-transparent/40" />
           </Field>
         </div>
       </div>
@@ -991,7 +991,7 @@ function SignatureCapture({
         <label className="text-sm font-medium text-gray-700">
           Type Your Full Legal Name <span className="text-red-500">*</span>
         </label>
-        <input type="text"  value={typedName} readOnly  className="border border-gray-300 rounded-lg px-4 py-3 text-sm w-full bg-gray-100 dark:bg-transparent  bg-gradient-to-r from-teal-200/40 via-black/10 to-purple-200 border-none dark:bg-gradient-to-r dark:from-teal-800/40"/>
+        <input type="text"  value={typedName} readOnly  className="border border-gray-300 rounded-lg px-4 py-3 text-sm w-full bg-gray-100 dark:bg-transparent  bg-gradient-to-r from-teal-200/40 via-black/10 to-purple-200 border-none dark:bg-gradient-to-r dark:from-teal-800/40 dark:to-transparent/40"/>
         {/* <input
           type="text"
           value={typedName}
