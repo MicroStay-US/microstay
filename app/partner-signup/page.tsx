@@ -173,7 +173,7 @@ function TextInput(props: React.InputHTMLAttributes<HTMLInputElement> & { error?
 function ErrorBanner({ message }: { message: string }) {
   if (!message) return null;
   return (
-    <div className="flex items-start gap-2 bg-red-50 border border-red-200 rounded-lg px-4 py-3 text-sm text-red-700">
+    <div className="flex items-start gap-2 bg-red-50 dark:bg-black/30 dark:border-transparent border border-red-200 rounded-lg px-4 py-3 text-sm text-red-700 ">
       <AlertCircle className="w-4 h-4 mt-0.5 shrink-0" />
       <span>{message}</span>
     </div>
