@@ -9,7 +9,7 @@ export default function PartnerPage() {
   const router = useRouter();
 
   return (
-    <div className="min-h-screen  py-12 px-4">
+    <div className="min-h-screen bg-orange-300/40 dark:bg-transparent py-12 px-4">
       <div className="max-w-6xl mx-auto">
         <div className="text-center mb-12">
           <h1 className="text-4xl font-bold mb-4">Partner with <strong className='text-ms-orange'>MicroStay</strong></h1>

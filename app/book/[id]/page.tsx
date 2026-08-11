@@ -176,7 +176,7 @@ function BookingContent() {
 
   if (loading) {
     return (
-      <div className="min-h-screen bg-gray-50 dark:bg-black py-12 px-4 shadow-inner">
+      <div className="min-h-screen bg-orange-300/40 dark:bg-black py-12 px-4 shadow-inner">
         <div className="max-w-3xl mx-auto text-center font-bold text-gray-500 dark:text-white">Loading checkout...</div>
       </div>
     );
@@ -184,7 +184,7 @@ function BookingContent() {
 
   if (!timeSlot || !propertyDetails) {
     return (
-      <div className="min-h-screen bg-gray-50 py-12 px-4 shadow-inner">
+      <div className="min-h-screen bg-orange-300/40 py-12 px-4 shadow-inner">
         <div className="max-w-3xl mx-auto text-center">
           <p className="text-xl mb-6 font-bold text-gray-800">Booking details not found</p>
           <Button onClick={() => router.push('/search')} className="bg-orange-600 hover:bg-orange-700 text-white shadow-md font-bold">Back to Motels</Button>
@@ -194,7 +194,7 @@ function BookingContent() {
   }
 
   return (
-    <div className="min-h-screen bg-gray-50 dark:bg-black/60 py-12 px-4 shadow-inner">
+    <div className="min-h-screen bg-orange-300/40 dark:bg-black/60 py-12 px-4 shadow-inner">
       <div className="max-w-4xl mx-auto">
         
         <h1 className="text-3xl font-black mb-6 text-gray-900 tracking-tight">Complete Your Reservation</h1>
@@ -203,16 +203,16 @@ function BookingContent() {
           
           <div className="space-y-6">
             <Card className="border-gray-200 shadow-xl overflow-hidden pt-0">
-              <div className="bg-gray-900 p-6 flex items-center gap-4 text-white">
+              <div className="dark:bg-gray-900 bg-orange-400/40 p-6 flex items-center gap-4 text-white">
                  <div className="bg-orange-500 w-12 h-12 flex items-center justify-center rounded-xl shadow-inner">
                    <Clock className="w-6 h-6 text-white" />
                  </div>
                  <div>
-                   <p className="text-sm font-bold text-gray-400 uppercase tracking-wider mb-0.5">Time Window</p>
-                   <p className="text-xl font-black tracking-tight">{formatHour(timeSlot.start_hour)} - {formatHour(timeSlot.end_hour)}</p>
+                   <p className="text-sm font-bold text-black dark:text-white uppercase tracking-wider mb-0.5">Time Window</p>
+                   <p className="text-xl font-black text-ms-orange tracking-tight">{formatHour(timeSlot.start_hour)} - {formatHour(timeSlot.end_hour)}</p>
                  </div>
               </div>
-              <CardContent className="p-8 space-y-6 bg-white">
+              <CardContent className="p-8 space-y-6 bg-orange-600/40 dark:bg-transparent">
                 <div className="flex items-start gap-3 pb-6 border-b dark:border-black border-gray-100">
                   <MapPin className="h-5 w-5 text-gray-400 mt-0.5" />
                   <div>
@@ -248,7 +248,7 @@ function BookingContent() {
               </CardContent>
             </Card>
 
-             <Card className="bg-orange-50 border-orange-200 dark:border-transparent dark:bg-black/50 shadow-sm">
+             <Card className="bg-orange-500/50 border-orange-200 dark:border-transparent dark:bg-black/50 shadow-sm">
               <CardContent className="p-6 flex items-start gap-4">
                  <Zap className="w-6 h-6 text-orange-600 dark:fill-orange-600 flex-shrink-0" />
                  <div>
@@ -261,10 +261,10 @@ function BookingContent() {
 
           <div>
             <Card className="border-gray-200 dark:border-transparent shadow-xl overflow-hidden">
-              <CardHeader className="bg-white border-b border-gray-100 dark:border-black p-8 pb-6">
+              <CardHeader className="bg-orange-400/40 dark:bg-gray-900 border-b border-gray-100 dark:border-black p-8 pb-6 border-transparent">
                 <CardTitle className="text-xl font-bold text-gray-900">Guest Information</CardTitle>
               </CardHeader>
-              <CardContent className="p-8 pt-6 bg-white">
+              <CardContent className="p-8 pt-6 bg-orange-600/40 dark:bg-transparent">
                 <form onSubmit={handleBooking} className="space-y-6">
                   {error && (
                     <Alert variant="destructive" className="bg-rose-50 dark:bg-rose-700/40 dark:text-white dark:border-transparent border-rose-200 text-rose-800">

@@ -228,8 +228,8 @@ export default function AdminLoginPage() {
     return (
       <>
         <Navbar />
-        <div className="min-h-screen bg-gradient-to-br from-gray-900 via-gray-800 to-black flex items-center justify-center py-12 px-4">
-          <Card className="w-full max-w-sm border-orange-200 shadow-2xl text-center">
+        <div className="min-h-screen bg-orange-200/40 dark:bg-transparent flex items-center justify-center py-12 px-4">
+          <Card className="w-full max-w-sm border-orange-200 dark:border-transparent shadow-2xl text-center">
             <CardContent className="pt-10 pb-8 space-y-4">
               <div className="flex justify-center">
                 <div className="bg-orange-100 p-4 rounded-full dark:bg-ms-orange">
@@ -262,7 +262,7 @@ export default function AdminLoginPage() {
     return (
       <>
         <Navbar />
-        <div className="min-h-screen bg-gradient-to-br from-gray-900 via-gray-800 to-black flex items-center justify-center py-12 px-4">
+        <div className="min-h-screen bg-orange-300/40 flex items-center justify-center py-12 px-4">
           <Card className="w-full max-w-sm border-orange-200 shadow-2xl">
             <CardHeader className="text-center space-y-1">
               <div className="flex justify-center mb-4">
@@ -340,8 +340,8 @@ export default function AdminLoginPage() {
   return (
     <>
       <Navbar />
-      <div className="min-h-screen bg-gradient-to-br from-gray-400 via-gray-200 to-black/30 dark:bg-gradient-to-br dark:from-gray-900 dark:via-gray-800 dark:to-black flex items-center justify-center py-12 px-4">
-        <Card className="w-full max-w-sm border-orange-200 shadow-2xl">
+      <div className="min-h-screen bg-orange-300/40 dark:bg-gradient-to-br dark:from-gray-900 dark:via-gray-800 dark:to-black flex items-center justify-center py-12 px-4">
+        <Card className="w-full max-w-sm border-orange-200 dark:border-transparent shadow-2xl">
           <CardHeader className="text-center space-y-1">
             <div className="flex justify-center mb-4">
               <div className="bg-gradient-to-br from-orange-500 to-orange-600 p-4 rounded-full shadow-lg">

@@ -10,19 +10,19 @@ export default function PrivacyPolicyPage() {
   const lastUpdated = 'April 8, 2026';
 
   return (
-    <div className="min-h-screen bg-white">
+    <div className="min-h-screen bg-orange-300/40 dark:bg-black  text-foreground transition-colors duration-300">
       {/* Header */}
-      <div className="bg-gradient-to-r from-ms-text to-ms-orange py-16 px-4">
-        <div className="max-w-3xl mx-auto text-center text-white">
+      <div className="bg-orange-300 dark:bg-gradient-to-tl dark:from-black dark:to-ms-orange dark:via-black py-16 px-4">
+        <div className="max-w-3xl mx-auto text-center text-ms-orange dark:text-white">
           <h1 className="text-4xl font-bold mb-3">Privacy Policy</h1>
-          <p className="text-white/80">Last updated: {lastUpdated}</p>
+          <p className="text-orange-900 dark:text-white/40">Last updated: {lastUpdated}</p>
         </div>
       </div>
 
       {/* Content */}
-      <div className="max-w-3xl mx-auto px-4 py-12 prose prose-gray prose-headings:text-gray-900 prose-a:text-orange-600">
+      <div className="max-w-3xl mx-auto px-4 py-12 text-gray-700 dark:text-gray-300 space-y-6 [&>h2]:text-2xl [&>h2]:font-bold [&>h2]:text-ms-text dark:[&>h2]:text-white [&>h2]:mt-10 [&>h2]:mb-4 [&>h3]:text-xl [&>h3]:font-semibold [&>h3]:text-ms-text dark:[&>h3]:text-gray-100 [&>h3]:mt-6 [&>h3]:mb-3 [&>p]:leading-relaxed [&>ul]:list-disc [&>ul]:pl-6 [&>ul]:space-y-2 [&_a]:text-ms-orange hover:[&_a]:text-ms-orange-hover [&_strong]:font-semibold [&_strong]:text-gray-900 dark:[&_strong]:text-white">
 
-        <p className="text-gray-600 text-lg">
+        <p className="text-gray-700 dark:text-gray-300 text-lg leading-relaxed mb-8">
           MICROSTAY HOLDINGS LLC d/b/a MicroStay.us ("MicroStay," "we," "us," or "our") is committed to protecting your privacy.
           This Privacy Policy explains how we collect, use, disclose, and safeguard your information
           when you use our website at <strong>microstay.us</strong> and our related services.
@@ -126,9 +126,9 @@ export default function PrivacyPolicyPage() {
           Support: <a href="mailto:support@microstay.us">support@microstay.us</a>
         </p>
 
-        <div className="mt-12 pt-8 border-t border-gray-200 text-center">
-          <Link href="/" className="text-orange-600 hover:text-orange-700 font-medium">
-            ← Back to MicroStay
+        <div className="mt-12 pt-8 border-t flex justify-between border-gray-200 dark:border-gray-800 text-start">
+          <Link href="/" className="text-ms-orange hover:text-ms-orange-hover transition-colors font-medium ">
+            &larr; Back to MicroStay
           </Link>
         </div>
       </div>
