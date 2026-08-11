@@ -1238,8 +1238,8 @@ function SignupConfirmation({
 
       <p className="text-sm text-gray-500">
         Questions? Contact us at{' '}
-        <a href="mailto:info@microstay.us" className="text-ms-orange hover:underline">
-          info@microstay.us
+        <a href="mailto:support@microstay.us" className="text-ms-orange hover:underline">
+          support@microstay.us
         </a>
       </p>
     </div>
