@@ -139,7 +139,7 @@ export default function CheckBookingPage() {
   const statusInfo = booking ? (statusConfig[booking.status] || { label: booking.status, color: 'text-gray-700 bg-gray-50 border-gray-200', icon: null }) : null;
 
   return (
-    <div className="min-h-screen flex flex-col   items-center justify-center py-12 px-4 bg-orange-400/30  dark:bg-gradient-to-b dark:from-black dark:via-slate-900 dark:to-black">
+    <div className="min-h-screen flex flex-col   items-center justify-center py-12 px-4 bg-orange-300/40  dark:bg-gradient-to-b dark:from-black dark:via-slate-900 dark:to-black">
       <div className=" flex  flex-col max-w-2xl mx-auto ">
         <div className="text-center mb-10  ">
           <h1 className="text-3xl font-black text-gray-900 tracking-tight">Check Your Booking</h1>

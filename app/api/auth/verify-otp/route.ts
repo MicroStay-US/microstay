@@ -2,8 +2,6 @@ import { NextRequest, NextResponse } from 'next/server';
 import { createClient } from '@supabase/supabase-js';
 import crypto from 'crypto';
 
-const ADMIN_EMAIL = 'team@microstay.us';
-
 function hashCode(code: string): string {
   return crypto.createHash('sha256').update(code).digest('hex');
 }
@@ -14,7 +12,11 @@ export async function POST(req: NextRequest) {
   const serviceKey = process.env.SUPABASE_SERVICE_ROLE_KEY!;
 
   const body = await req.json().catch(() => ({}));
-  const { code, password } = body ?? {};
+  const { code, password, email } = body ?? {};
+
+  if (!email) {
+    return NextResponse.json({ error: 'Email required.' }, { status: 400 });
+  }
 
   if (!code || typeof code !== 'string' || !/^\d{6}$/.test(code)) {
     return NextResponse.json({ error: 'Invalid code format.' }, { status: 400 });
@@ -28,12 +30,12 @@ export async function POST(req: NextRequest) {
   const codeHash = hashCode(code);
   const now = new Date().toISOString();
 
-  // Look for a valid, unused, non-expired code
+  // Look for a valid, non-expired code for this email
   const { data: otpRow, error: lookupErr } = await svc
-    .from('admin_otp_codes')
-    .select('id, expires_at, used')
+    .from('user_otp_codes')
+    .select('id, expires_at')
+    .eq('email', email.toLowerCase())
     .eq('code_hash', codeHash)
-    .eq('used', false)
     .gt('expires_at', now)
     .maybeSingle();
 
@@ -41,23 +43,24 @@ export async function POST(req: NextRequest) {
     return NextResponse.json({ error: 'Invalid or expired code.' }, { status: 401 });
   }
 
-  // Sign in as admin using the provided password
+  // Sign in as user using the provided credentials
   const client = createClient(supabaseUrl, anonKey);
   const { data, error: signInErr } = await client.auth.signInWithPassword({
-    email: ADMIN_EMAIL,
-    password: password,
+    email,
+    password,
   });
 
   if (signInErr || !data.session) {
-    console.error('Admin sign-in error:', signInErr?.message);
-    // Do NOT mark code as used — let them retry after fixing the issue
+    console.error('User sign-in error:', signInErr?.message);
+    // Do NOT delete the code — let them retry after fixing the issue if needed (though password should be correct)
     return NextResponse.json({ error: 'Authentication failed. Invalid password.' }, { status: 401 });
   }
 
-  // Sign-in succeeded — now mark code as used (prevent replay)
-  await svc.from('admin_otp_codes').update({ used: true }).eq('id', otpRow.id);
+  // Sign-in succeeded — now delete the code (prevent replay)
+  await svc.from('user_otp_codes').delete().eq('id', otpRow.id);
 
   return NextResponse.json({
+    user: data.session.user,
     access_token: data.session.access_token,
     refresh_token: data.session.refresh_token,
   });

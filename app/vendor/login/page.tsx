@@ -1,13 +1,13 @@
 'use client';
 
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useRef } from 'react';
 import { useRouter } from 'next/navigation';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
 import { Alert, AlertDescription } from '@/components/ui/alert';
-import { Building2, Eye, EyeOff } from 'lucide-react';
+import { Building2, Eye, EyeOff, Loader2, SmartphoneNfc, ChevronLeft } from 'lucide-react';
 import { supabase } from '@/lib/supabase';
 import { useAuth } from '@/contexts/AuthContext';
 import { sendLoginNotification } from '@/lib/login-notification';
@@ -27,6 +27,19 @@ export default function VendorLoginPage() {
   const [forgotSuccess, setForgotSuccess] = useState('');
   const [forgotError, setForgotError] = useState('');
 
+  // OTP State
+  const [step, setStep] = useState<'password' | 'otp'>('password');
+  const [otpCode, setOtpCode] = useState('');
+  const [otpLoading, setOtpLoading] = useState(false);
+  const [otpError, setOtpError] = useState('');
+  const inputRefs = useRef<(HTMLInputElement | null)[]>([]);
+
+  useEffect(() => {
+    if (step === 'otp') {
+      setTimeout(() => inputRefs.current[0]?.focus(), 100);
+    }
+  }, [step]);
+
   useEffect(() => {
     if (!authLoading && user && profile) {
       if (profile.role === 'vendor') {
@@ -45,47 +58,110 @@ export default function VendorLoginPage() {
     setError('');
 
     try {
-      const { data, error: signInError } = await supabase.auth.signInWithPassword({
-        email,
-        password,
+      const res = await fetch('/api/vendor/auth/send-otp', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ email, password }),
       });
-
-      if (signInError) {
-        // Intercept failed logins to check if they are actually in the application queue
-        const statusRes = await fetch('/api/vendor/status', {
-          method: 'POST',
-          headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify({ email })
+      const result = await res.json();
+      if (!res.ok || result.error) {
+        throw new Error(result.error || 'Login failed.');
+      }
+      if (result.bypassed) {
+        // Vendor hasn't completed onboarding — bypass OTP entirely
+        const { error: sessionErr } = await supabase.auth.setSession({
+          access_token: result.access_token,
+          refresh_token: result.refresh_token,
         });
-        const { status } = await statusRes.json();
 
-        if (status === 'pending') {
-          throw new Error('Your application is currently under review. Please wait 24-48 hours.');
-        } else if (status === 'rejected') {
-          throw new Error('Your application was not approved. Please contact support@microstay.us');
-        } else {
-          throw signInError;
-        }
+        if (sessionErr) throw new Error('Session setup failed.');
+
+        const maxAge = 3600;
+        document.cookie = `sb-access-token=${result.access_token}; path=/; max-age=${maxAge}; SameSite=Lax; Secure`;
+
+        // The useEffect will catch the auth state change and route to dashboard
+        window.location.reload();
+        return;
       }
 
-      if (!data.user || !data.session) {
-        throw new Error('Login failed');
+      setStep('otp');
+      if (result.dev_code) {
+        setOtpCode(result.dev_code);
+        // Print it to browser console just in case
+        console.log('DEV MODE OTP CODE:', result.dev_code);
       }
-
-      // Set cookie for middleware, then full-page navigate.
-      // Role enforcement is handled by the vendor layout (uses profileLoaded).
-      const maxAge = data.session.expires_in ?? 3600;
-      document.cookie = `sb-access-token=${data.session.access_token}; path=/; max-age=${maxAge}; SameSite=Lax; Secure`;
-
-      sendLoginNotification(data.user.id, email);
-      // Use router.push (soft nav) so AuthProvider's onAuthStateChange(SIGNED_IN)
-      // fires with the live in-memory session — avoids full-page reload race condition.
-      router.push('/vendor/dashboard');
     } catch (err: any) {
-      setError(err.message);
-      await supabase.auth.signOut();
+      setError(err.message || 'Login failed.');
     } finally {
       setLoading(false);
+    }
+  };
+
+  const handleOtpSubmit = async (e: React.FormEvent) => {
+    e.preventDefault();
+    const code = otpCode.replace(/\s/g, '');
+    if (code.length !== 6) return;
+
+    setOtpLoading(true);
+    setOtpError('');
+
+    try {
+      const res = await fetch('/api/vendor/auth/verify-otp', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ email, password, code }),
+      });
+      const result = await res.json();
+
+      if (!res.ok || result.error) {
+        throw new Error(result.error || 'Invalid code');
+      }
+
+      const { error: sessionErr } = await supabase.auth.setSession({
+        access_token: result.access_token,
+        refresh_token: result.refresh_token,
+      });
+
+      if (sessionErr) throw new Error('Session setup failed.');
+
+      const maxAge = 3600;
+      document.cookie = `sb-access-token=${result.access_token}; path=/; max-age=${maxAge}; SameSite=Lax; Secure`;
+
+      // Send login notification and wait for it
+      await sendLoginNotification(result.user?.id || 'unknown', email);
+      router.push('/vendor/dashboard');
+    } catch (err: any) {
+      setOtpError(err.message || 'Verification failed.');
+      setOtpCode('');
+      setTimeout(() => inputRefs.current[0]?.focus(), 50);
+    } finally {
+      setOtpLoading(false);
+    }
+  };
+
+  const handleDigitChange = (index: number, value: string) => {
+    const val = value.replace(/[^0-9]/g, '').slice(-1);
+    const digits = otpCode.padEnd(6, ' ').split('');
+    digits[index] = val || ' ';
+    const next = digits.join('').slice(0, 6);
+    setOtpCode(next);
+    if (val && index < 5) {
+      inputRefs.current[index + 1]?.focus();
+    }
+  };
+
+  const handleDigitKeyDown = (index: number, e: React.KeyboardEvent) => {
+    const isEmpty = !otpCode[index] || otpCode[index] === ' ';
+    if (e.key === 'Backspace' && isEmpty && index > 0) {
+      inputRefs.current[index - 1]?.focus();
+    }
+  };
+
+  const handlePaste = (e: React.ClipboardEvent) => {
+    const pasted = e.clipboardData.getData('text').replace(/\D/g, '').slice(0, 6);
+    if (pasted.length === 6) {
+      setOtpCode(pasted);
+      inputRefs.current[5]?.focus();
     }
   };
 
@@ -139,14 +215,67 @@ export default function VendorLoginPage() {
             </div>
           </div>
           <CardTitle className="text-3xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-ms-orange to-ms-text">
-            Vendor Portal
+            {step === 'otp' ? 'Check your email' : 'Vendor Portal'}
           </CardTitle>
           <CardDescription className="text-ms-text-muted font-medium">
-            Manage your MicroStay properties, bookings, and revenue
+            {step === 'otp' 
+              ? 'Enter the 6-digit OTP code sent to your email.'
+              : 'Manage your MicroStay properties, bookings, and revenue'
+            }
           </CardDescription>
         </CardHeader>
         <CardContent>
-          {showForgotPassword ? (
+          {step === 'otp' ? (
+            <form onSubmit={handleOtpSubmit} className="space-y-5">
+              {otpError && (
+                <Alert variant="destructive">
+                  <AlertDescription>{otpError}</AlertDescription>
+                </Alert>
+              )}
+
+              {/* 6-box digit input */}
+              <div className="flex justify-center gap-2" onPaste={handlePaste}>
+                {otpCode.padEnd(6, ' ').split('').map((digit, i) => (
+                  <input
+                    key={i}
+                    ref={el => { inputRefs.current[i] = el; }}
+                    type="text"
+                    inputMode="numeric"
+                    maxLength={1}
+                    value={digit === ' ' ? '' : digit}
+                    onChange={e => handleDigitChange(i, e.target.value)}
+                    onKeyDown={e => handleDigitKeyDown(i, e)}
+                    className="w-12 h-14 text-center text-xl font-bold border-2 rounded-xl focus:outline-none focus:border-ms-orange focus:ring-2 focus:ring-ms-orange/20 transition-colors bg-white dark:bg-gray-800 dark:text-white"
+                    style={{ borderColor: digit && digit !== ' ' ? '#FF5E1A' : '' }}
+                  />
+                ))}
+              </div>
+
+              <Button
+                type="submit"
+                disabled={otpLoading || otpCode.replace(/\s/g, '').length !== 6}
+                className="w-full bg-gradient-to-r from-ms-orange to-ms-orange-hover hover:from-ms-orange-hover hover:to-ms-orange h-12 font-bold text-lg text-white shadow-lg"
+              >
+                {otpLoading
+                  ? <><Loader2 className="h-5 w-5 animate-spin mr-2" /> Verifying…</>
+                  : 'Verify Code'
+                }
+              </Button>
+
+              <button
+                type="button"
+                onClick={() => {
+                  setStep('password');
+                  setOtpCode('');
+                  setOtpError('');
+                }}
+                className="w-full flex items-center justify-center gap-1.5 text-sm text-ms-text-muted hover:text-ms-orange transition-colors"
+              >
+                <ChevronLeft className="h-4 w-4" />
+                Back to login
+              </button>
+            </form>
+          ) : showForgotPassword ? (
             <form onSubmit={handleForgotPassword} className="space-y-4">
               {forgotError && (
                 <Alert variant="destructive">

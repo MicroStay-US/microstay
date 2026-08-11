@@ -1,22 +1,53 @@
-import "jsr:@supabase/functions-js/edge-runtime.d.ts";
+import { NextRequest, NextResponse } from 'next/server';
+import { Resend } from 'resend';
+import { createClient } from '@supabase/supabase-js';
 
-const corsHeaders = {
-  "Access-Control-Allow-Origin": "*",
-  "Access-Control-Allow-Methods": "GET, POST, PUT, DELETE, OPTIONS",
-  "Access-Control-Allow-Headers": "Content-Type, Authorization, X-Client-Info, Apikey",
-};
+const resendKey = process.env.RESEND_API_KEY;
+const isDev = process.env.NODE_ENV === 'development';
 
-Deno.serve(async (req: Request) => {
-  if (req.method === "OPTIONS") {
-    return new Response(null, {
-      status: 200,
-      headers: corsHeaders,
-    });
-  }
-
+export async function POST(req: NextRequest) {
   try {
-    const { userId, userEmail, ipAddress, city, country, region, userAgent, loginTime } = await req.json();
+    let { userId, userEmail, userAgent, loginTime } = await req.json();
 
+    const clientIp = req.headers.get('x-forwarded-for') || req.headers.get('x-real-ip') || '127.0.0.1';
+    const actualIp = clientIp.split(',')[0].trim();
+    
+    // Fetch geo from IP (server-side to avoid CSP)
+    let ipAddress = actualIp;
+    let city = 'Unknown';
+    let region = '';
+    let country = 'Unknown';
+    
+    try {
+      const geoUrl = actualIp === '127.0.0.1' || actualIp === '::1' ? 'https://ipapi.co/json/' : `https://ipapi.co/${actualIp}/json/`;
+      const geoRes = await fetch(geoUrl, {
+        headers: { 'User-Agent': 'MicroStay-Server/1.0' }
+      });
+      const geo = await geoRes.json();
+      
+      if (geo.error) {
+        throw new Error(geo.reason || 'IP API returned an error');
+      }
+
+      ipAddress = geo.ip || actualIp;
+      city = geo.city || 'Unknown';
+      region = geo.region || '';
+      country = geo.country_name || 'Unknown';
+    } catch (e) {
+      console.error('Geo fetch failed, falling back:', e);
+      try {
+        // Fallback for just IP if ipapi is rate limited
+        if (actualIp === '127.0.0.1' || actualIp === '::1') {
+          const ipRes = await fetch('https://api.ipify.org?format=json');
+          const ipData = await ipRes.json();
+          ipAddress = ipData.ip || actualIp;
+        }
+      } catch (fallbackErr) {
+        console.error('Fallback IP fetch failed:', fallbackErr);
+      }
+    }
+
+    loginTime = loginTime || new Date().toISOString();
     const loginDate = new Date(loginTime).toLocaleString('en-US', {
       timeZone: 'America/New_York',
       dateStyle: 'full',
@@ -26,25 +57,29 @@ Deno.serve(async (req: Request) => {
     const location = [city, region, country].filter(Boolean).join(', ');
 
     // Fetch user profile to get role
-    const supabaseUrl = Deno.env.get('SUPABASE_URL') || '';
-    const supabaseAnonKey = Deno.env.get('SUPABASE_ANON_KEY') || '';
+    const supabaseUrl = process.env.NEXT_PUBLIC_SUPABASE_URL!;
+    const serviceKey = process.env.SUPABASE_SERVICE_ROLE_KEY!;
+    const svc = createClient(supabaseUrl, serviceKey);
+
+    // Audit log
+    await svc.from('login_audit_log').insert({
+      user_id: userId,
+      ip_address: ipAddress,
+      location: location,
+      user_agent: userAgent || 'Unknown',
+      created_at: loginTime,
+    }).then(() => {});
+
+    // Fetch user profile to get role
     let role = 'customer';
-    
-    if (supabaseUrl && supabaseAnonKey && userId) {
-      try {
-        const profileRes = await fetch(`${supabaseUrl}/rest/v1/profiles?id=eq.${userId}&select=role`, {
-          headers: {
-            'apikey': supabaseAnonKey,
-            'Authorization': `Bearer ${supabaseAnonKey}`
-          }
-        });
-        const profiles = await profileRes.json();
-        if (profiles && profiles.length > 0 && profiles[0].role) {
-          role = profiles[0].role;
-        }
-      } catch (err) {
-        console.error('Failed to fetch profile role:', err);
-      }
+    const { data: profile } = await svc
+      .from('profiles')
+      .select('role')
+      .eq('id', userId)
+      .single();
+      
+    if (profile?.role) {
+      role = profile.role;
     }
 
     let headerText = 'New Login to MicroStay';
@@ -108,63 +143,25 @@ Deno.serve(async (req: Request) => {
       </div>
     `;
 
-    const resendKey = Deno.env.get('RESEND_API_KEY');
-
     if (resendKey) {
-      // In dev mode on the edge function, we might want to route to team@microstay.us to bypass sandbox
-      // But Edge Functions don't have NODE_ENV. Let's just use the URL to guess if it's dev.
-      const isDev = !supabaseUrl.includes('supabase.co');
       const targetEmail = isDev ? 'team@microstay.us' : userEmail;
-
-      const resendResponse = await fetch('https://api.resend.com/emails', {
-        method: 'POST',
-        headers: {
-          'Authorization': `Bearer ${resendKey}`,
-          'Content-Type': 'application/json'
-        },
-        body: JSON.stringify({
-          from: isDev ? 'onboarding@resend.dev' : 'MicroStay Security <noreply@microstay.us>',
-          to: targetEmail,
-          subject: subjectText,
-          html: emailHtml,
-        })
+      const resend = new Resend(resendKey);
+      
+      const { error: resendErr } = await resend.emails.send({
+        from: isDev ? 'onboarding@resend.dev' : 'MicroStay Security <noreply@microstay.us>',
+        to: targetEmail,
+        subject: subjectText,
+        html: emailHtml,
       });
 
-      if (!resendResponse.ok) {
-        const error = await resendResponse.text();
-        console.error('Resend API error:', error);
+      if (resendErr) {
+        console.error('Resend API error:', resendErr);
       }
-    } else {
-      console.log('Login notification (no email provider configured):', {
-        userEmail,
-        ipAddress,
-        location,
-        time: loginDate
-      });
     }
 
-    return new Response(
-      JSON.stringify({ success: true, message: 'Login notification processed' }),
-      {
-        status: 200,
-        headers: {
-          ...corsHeaders,
-          'Content-Type': 'application/json',
-        },
-      }
-    );
-  } catch (error) {
-    console.error('Error in send-login-notification:', error);
-
-    return new Response(
-      JSON.stringify({ success: false, error: error.message }),
-      {
-        status: 500,
-        headers: {
-          ...corsHeaders,
-          'Content-Type': 'application/json',
-        },
-      }
-    );
+    return NextResponse.json({ success: true });
+  } catch (error: any) {
+    console.error('Error in send-login-email:', error);
+    return NextResponse.json({ success: false, error: error.message }, { status: 500 });
   }
-});
+}

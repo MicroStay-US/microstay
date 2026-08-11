@@ -1396,8 +1396,8 @@ function VendorSignupStepper() {
 
           <p className="text-center text-xs text-gray-400 mt-6">
             MICROSTAY HOLDINGS LLC d/b/a MicroStay.us · EIN 41-4740422 · Wyoming LLC ·{' '}
-            <a href="mailto:info@microstay.us" className="hover:text-ms-orange">
-              info@microstay.us
+            <a href="mailto:support@microstay.us" className="hover:text-ms-orange">
+              support@microstay.us
             </a>
           </p>
         </div>

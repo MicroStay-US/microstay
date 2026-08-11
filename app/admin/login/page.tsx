@@ -13,7 +13,7 @@ import { createClient } from '@supabase/supabase-js';
 
 const ADMIN_ROLES = ['admin', 'super_admin', 'manager', 'support'];
 
-type Step = 'password' | 'totp';
+type Step = 'password' | 'otp';
 
 export default function AdminLoginPage() {
   const router = useRouter();
@@ -48,9 +48,9 @@ export default function AdminLoginPage() {
     }
   }, [user, profile, authLoading, router]);
 
-  // Auto-focus first TOTP digit when step changes
+  // Auto-focus first OTP digit when step changes
   useEffect(() => {
-    if (step === 'totp') {
+    if (step === 'otp') {
       setTimeout(() => inputRefs.current[0]?.focus(), 100);
     }
   }, [step]);
@@ -63,56 +63,25 @@ export default function AdminLoginPage() {
     setError('');
 
     try {
-      const { data, error: signInError } = await supabase.auth.signInWithPassword({
-        email: 'team@microstay.us',
-        password,
+      const res = await fetch('/api/admin/auth/send-otp', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ email: 'team@microstay.us', password }),
       });
+      const result = await res.json();
 
-      if (signInError) throw signInError;
-      if (!data.user || !data.session) throw new Error('Sign-in failed');
-
-      // Check if MFA is enabled for this user
-      const serviceClient = createClient(
-        process.env.NEXT_PUBLIC_SUPABASE_URL!,
-        process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY!
-      );
-      const { data: mfaRow } = await serviceClient
-        .from('user_mfa_secrets')
-        .select('is_enabled')
-        .eq('user_id', data.user.id)
-        .eq('is_enabled', true)
-        .maybeSingle();
-
-      if (mfaRow?.is_enabled) {
-        // MFA is on — hold the session, move to TOTP step
-        // Sign out from Supabase client-side so the session cookie isn't set yet
-        await supabase.auth.signOut();
-        setPendingUserId(data.user.id);
-        setPendingSession({ password }); // store password so we can re-authenticate after TOTP
-        setStep('totp');
-      } else {
-        // No MFA — set cookie and go straight to dashboard
-        const maxAge = data.session.expires_in ?? 3600;
-        document.cookie = `sb-access-token=${data.session.access_token}; path=/; max-age=${maxAge}; SameSite=Lax; Secure`;
-        await fetch("/api/admin/login-alert", {
-          method: "POST",
-          headers: { "Content-Type": "application/json" },
-          body: JSON.stringify({
-            email: "team@microstay.us",
-            userAgent: navigator.userAgent,
-          }),
-        });
-
-        // // Send login notification
-        // fetch('/api/admin/notify-login', {
-        //   method: 'POST',
-        //   headers: { 'Content-Type': 'application/json' },
-        //   body: JSON.stringify({ email: 'team@microstay.us' })
-        // }).catch(err => console.error('Notify login failed:', err));
-
-        // Let onAuthStateChange drive the redirect (via useEffect above)
-        return;
+      if (!res.ok || result.error) {
+        throw new Error(result.error || 'Login failed.');
       }
+
+      if (result.dev_code) {
+        setTotpCode(result.dev_code);
+        // Print it to browser console just in case
+        console.log('DEV MODE OTP CODE:', result.dev_code);
+      }
+
+      setPendingSession({ password }); // store password so we can verify OTP
+      setStep('otp');
     } catch (err: any) {
       setError(err.message || 'Login failed.');
     } finally {
@@ -120,7 +89,7 @@ export default function AdminLoginPage() {
     }
   };
 
-  // ── Step 2: TOTP ──────────────────────────────────────────────────────────
+  // ── Step 2: OTP ──────────────────────────────────────────────────────────
   const handleTotpSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     const code = totpCode.replace(/\s/g, '');
@@ -130,11 +99,11 @@ export default function AdminLoginPage() {
     setTotpError('');
 
     try {
-      // Verify the TOTP code against stored secret
-      const res = await fetch('/api/admin/mfa/challenge', {
+      // Verify the OTP code
+      const res = await fetch('/api/admin/auth/verify-otp', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ userId: pendingUserId, token: code }),
+        body: JSON.stringify({ code, password: pendingSession.password }),
       });
       const result = await res.json();
 
@@ -142,16 +111,17 @@ export default function AdminLoginPage() {
         throw new Error(result.error || 'Invalid code');
       }
 
-      // TOTP passed — re-authenticate to get a fresh session & cookie
-      const { data, error: signInError } = await supabase.auth.signInWithPassword({
-        email: 'team@microstay.us',
-        password: pendingSession.password,
+      // OTP passed — set session manually
+      const { data, error: sessionErr } = await supabase.auth.setSession({
+        access_token: result.access_token,
+        refresh_token: result.refresh_token,
       });
+      
+      if (sessionErr) throw new Error('Session setup failed.');
 
-      if (signInError || !data.session) throw new Error('Re-authentication failed. Please start over.');
-
-      const maxAge = data.session.expires_in ?? 3600;
-      document.cookie = `sb-access-token=${data.session.access_token}; path=/; max-age=${maxAge}; SameSite=Lax; Secure`;
+      // Also set the cookie manually as fallback for middleware
+      const maxAge = 3600;
+      document.cookie = `sb-access-token=${result.access_token}; path=/; max-age=${maxAge}; SameSite=Lax; Secure`;
 
       await fetch("/api/admin/login-alert", {
         method: "POST",
@@ -161,13 +131,6 @@ export default function AdminLoginPage() {
           userAgent: navigator.userAgent,
         }),
       });
-
-      // Send login notification
-      // fetch('/api/admin/notify-login', {
-      //   method: 'POST',
-      //   headers: { 'Content-Type': 'application/json' },
-      //   body: JSON.stringify({ email: 'team@microstay.us' })
-      // }).catch(err => console.error('Notify login failed:', err));
 
       // onAuthStateChange will fire and the useEffect above will redirect
     } catch (err: any) {
@@ -181,18 +144,19 @@ export default function AdminLoginPage() {
 
   // Handle 6-box digit input
   const handleDigitChange = (index: number, value: string) => {
-    if (!/^\d?$/.test(value)) return;
-    const digits = totpCode.split('');
-    digits[index] = value;
+    const val = value.replace(/[^0-9]/g, '').slice(-1);
+    const digits = totpCode.padEnd(6, ' ').split('');
+    digits[index] = val || ' ';
     const next = digits.join('').slice(0, 6);
     setTotpCode(next);
-    if (value && index < 5) {
+    if (val && index < 5) {
       inputRefs.current[index + 1]?.focus();
     }
   };
 
   const handleDigitKeyDown = (index: number, e: React.KeyboardEvent) => {
-    if (e.key === 'Backspace' && !totpCode[index] && index > 0) {
+    const isEmpty = !totpCode[index] || totpCode[index] === ' ';
+    if (e.key === 'Backspace' && isEmpty && index > 0) {
       inputRefs.current[index - 1]?.focus();
     }
   };
@@ -255,9 +219,9 @@ export default function AdminLoginPage() {
 
   }
 
-  // ── TOTP screen ───────────────────────────────────────────────────────────
-  if (step === 'totp') {
-    const digits = totpCode.padEnd(6, '').split('');
+  // ── OTP screen ───────────────────────────────────────────────────────────
+  if (step === 'otp') {
+    const digits = totpCode.padEnd(6, ' ').split('');
 
     return (
       <>
@@ -270,9 +234,9 @@ export default function AdminLoginPage() {
                   <SmartphoneNfc className="h-8 w-8 text-white" />
                 </div>
               </div>
-              <CardTitle className="text-2xl font-bold">Two-Factor Auth</CardTitle>
+              <CardTitle className="text-2xl font-bold">Check your email</CardTitle>
               <CardDescription>
-                Open Google Authenticator and enter the 6-digit code for <strong>MicroStay Admin</strong>
+                Enter the 6-digit OTP code sent to your email for <strong>MicroStay Admin</strong>
               </CardDescription>
             </CardHeader>
 

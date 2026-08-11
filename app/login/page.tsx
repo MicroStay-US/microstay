@@ -3,6 +3,7 @@
 import { useState } from 'react';
 import { useRouter } from 'next/navigation';
 import { signIn, signUp, resetPassword } from '@/lib/auth';
+import { supabase } from '@/lib/supabase';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
@@ -56,6 +57,9 @@ export default function LoginPage() {
   const [forgotError, setForgotError] = useState('');
 
   const [signInData, setSignInData] = useState({ email: '', password: '' });
+  const [step, setStep] = useState<'password' | 'otp'>('password');
+  const [otpCode, setOtpCode] = useState('');
+  
   const [signUpData, setSignUpData] = useState({
     email: '',
     password: '',
@@ -82,13 +86,87 @@ export default function LoginPage() {
     setLoading(true);
     setError('');
 
-    const { data, error: signInError } = await signIn(signInData.email, signInData.password);
+    try {
+      const res = await fetch('/api/auth/send-otp', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ email: signInData.email, password: signInData.password }),
+      });
+      const result = await res.json();
 
-    if (signInError) {
-      setError(signInError.message);
+      if (!res.ok || result.error) {
+        setError(result.error || 'Failed to send OTP.');
+        setLoading(false);
+        return;
+      }
+
+      if (result.bypassed) {
+        // Vendor hasn't completed onboarding — bypass OTP entirely
+        const { error: sessionErr } = await supabase.auth.setSession({
+          access_token: result.access_token,
+          refresh_token: result.refresh_token,
+        });
+
+        if (sessionErr) throw new Error('Session setup failed.');
+
+        const maxAge = 3600;
+        document.cookie = `sb-access-token=${result.access_token}; path=/; max-age=${maxAge}; SameSite=Lax; Secure`;
+
+        // The useEffect will catch the auth state change and route to dashboard
+        window.location.reload();
+        return;
+      }
+
+      setStep('otp');
+      if (result.dev_code) {
+        setOtpCode(result.dev_code.padEnd(6, ' '));
+      }
+    } catch (err: any) {
+      setError('An unexpected error occurred.');
+    }
+    setLoading(false);
+  };
+
+  const handleOtpSubmit = async (e: React.FormEvent) => {
+    e.preventDefault();
+    setLoading(true);
+    setError('');
+
+    const code = otpCode.replace(/\s/g, '');
+    if (code.length !== 6) return;
+
+    try {
+      const res = await fetch('/api/auth/verify-otp', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ email: signInData.email, password: signInData.password, code }),
+      });
+      const result = await res.json();
+
+      if (!res.ok || result.error) {
+        setError(result.error || 'Invalid or expired code.');
+        setLoading(false);
+        return;
+      }
+
+      const { error: sessionErr } = await supabase.auth.setSession({
+        access_token: result.access_token,
+        refresh_token: result.refresh_token,
+      });
+
+      if (sessionErr) throw new Error('Session setup failed.');
+
+      const maxAge = 3600;
+      document.cookie = `sb-access-token=${result.access_token}; path=/; max-age=${maxAge}; SameSite=Lax; Secure`;
+
+      // Send login notification and wait for it
+      await sendLoginNotification(result.user?.id || 'unknown', signInData.email);
+
+      // The useEffect at the top of the file will now detect the auth state change and route them appropriately
+      window.location.reload();
+    } catch (err: any) {
+      setError('An unexpected error occurred.');
       setLoading(false);
-    } else if (data?.user) {
-      sendLoginNotification(data.user.id, signInData.email);
     }
   };
 
@@ -207,6 +285,99 @@ export default function LoginPage() {
                       className="text-sm text-ms-orange hover:text-ms-orange-hover hover:underline font-medium transition-colors"
                     >
                       Back to Login
+                    </button>
+                  </div>
+                </form>
+              ) : step === 'otp' ? (
+                <form onSubmit={handleOtpSubmit} className="space-y-6">
+                  {error && (
+                    <Alert variant="destructive">
+                      <AlertDescription>{error}</AlertDescription>
+                    </Alert>
+                  )}
+                  
+                  <div className="text-center mb-6">
+                    <div className="mx-auto w-16 h-16 bg-ms-orange text-white rounded-2xl flex items-center justify-center mb-4 shadow-lg shadow-orange-500/30">
+                      <svg className="w-8 h-8" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 19v-8.93a2 2 0 01.89-1.664l7-4.666a2 2 0 012.22 0l7 4.666A2 2 0 0121 10.07V19M3 19a2 2 0 002 2h14a2 2 0 002-2M3 19l6.75-4.5M21 19l-6.75-4.5M3 10l6.75 4.5M21 10l-6.75 4.5m0 0l-1.14.76a2 2 0 01-2.22 0l-1.14-.76" />
+                      </svg>
+                    </div>
+                    <h2 className="text-2xl font-bold text-gray-900 mb-2">Check your email</h2>
+                    <p className="text-gray-500">
+                      Enter the 6-digit OTP code sent to your email.
+                    </p>
+                  </div>
+
+                  <div className="flex justify-center gap-2 mb-8">
+                    {[0, 1, 2, 3, 4, 5].map((index) => (
+                      <Input
+                        key={index}
+                        id={`otp-${index}`}
+                        type="text"
+                        maxLength={1}
+                        className="w-12 h-14 text-center text-xl font-bold rounded-xl border-2 focus:border-ms-orange focus:ring-ms-orange transition-all duration-200"
+                        value={otpCode[index] !== ' ' ? (otpCode[index] || '') : ''}
+                        onChange={(e) => {
+                          const val = e.target.value.replace(/[^0-9]/g, '').slice(-1);
+                          
+                          const newCode = otpCode.split('');
+                          newCode[index] = val || ' ';
+                          while (newCode.length < 6) newCode.push(' ');
+                          setOtpCode(newCode.slice(0, 6).join(''));
+                          
+                          if (val && index < 5) {
+                            const next = document.getElementById(`otp-${index + 1}`);
+                            next?.focus();
+                          }
+                        }}
+                        onKeyDown={(e) => {
+                          if (e.key === 'Backspace') {
+                            const isEmpty = !otpCode[index] || otpCode[index] === ' ';
+                            if (isEmpty && index > 0) {
+                              const prev = document.getElementById(`otp-${index - 1}`);
+                              prev?.focus();
+                            } else {
+                              const newCode = otpCode.split('');
+                              newCode[index] = ' ';
+                              setOtpCode(newCode.join(''));
+                            }
+                          }
+                        }}
+                        onPaste={(e) => {
+                          e.preventDefault();
+                          const pasted = e.clipboardData.getData('text').replace(/[^0-9]/g, '').slice(0, 6);
+                          if (pasted) {
+                            setOtpCode(pasted.padEnd(6, ' '));
+                            const focusIndex = Math.min(5, pasted.length);
+                            document.getElementById(`otp-${focusIndex === 6 ? 5 : focusIndex}`)?.focus();
+                          }
+                        }}
+                      />
+                    ))}
+                  </div>
+
+                  <Button 
+                    type="submit" 
+                    className="w-full h-12 text-lg font-semibold bg-ms-orange hover:bg-ms-orange-hover text-white rounded-xl shadow-lg shadow-orange-500/30 transition-all hover:scale-[1.02]" 
+                    disabled={loading || otpCode.replace(/\s/g, '').length !== 6}
+                  >
+                    {loading ? 'Verifying...' : 'Verify Code'}
+                  </Button>
+
+                  <div className="text-center mt-6">
+                    <button
+                      type="button"
+                      onClick={() => {
+                        setStep('password');
+                        setOtpCode('');
+                        setError('');
+                      }}
+                      className="text-sm text-gray-500 hover:text-ms-orange transition-colors flex items-center justify-center gap-2 mx-auto"
+                    >
+                      <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" />
+                      </svg>
+                      Back to login
                     </button>
                   </div>
                 </form>
