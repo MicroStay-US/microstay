@@ -294,7 +294,7 @@ const handleSearch = (e: React.FormEvent) => {
   return (
     <div className="min-h-screen bg-orange-300/40 dark:bg-black">
       <section
-        className="relative py-32 px-4 bg-cover bg-center"
+        className="relative py-32 px-4 bg-cover bg-center "
         style={{
           backgroundImage: "url('https://images.pexels.com/photos/271624/pexels-photo-271624.jpeg?auto=compress&cs=tinysrgb&w=1920')",
           backgroundAttachment: 'fixed',
