@@ -119,7 +119,8 @@ export default function VendorOperationsCenter() {
   const noShows     = bookings.filter(b => b.status === 'no_show');
   const pending     = bookings.filter(b => b.status === 'pending');
   const totalRooms  = slots.reduce((s, slot) => s + slot.max_rooms, 0);
-  const roomsBooked = bookings.reduce((s, b) => s + b.rooms_booked, 0);
+  const activeBookings = bookings.filter(b => b.status === 'pending' || b.status === 'checked_in');
+  const roomsBooked = activeBookings.reduce((s, b) => s + b.rooms_booked, 0);
   const roomsAvail  = Math.max(0, totalRooms - roomsBooked);
   const occupancy   = totalRooms > 0 ? Math.round((roomsBooked / totalRooms) * 100) : 0;
   const earnings    = checkedIn.reduce((s, b) => s + calculateFees(Number(b.gross_amount)).vendorNet, 0);
@@ -248,7 +249,7 @@ export default function VendorOperationsCenter() {
           </div>
           <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-px bg-gray-100 dark:bg-gray-700">
             {slots.map(s => {
-              const booked = bookings.filter(b => b.slot_id === s.id).reduce((sum, b) => sum + b.rooms_booked, 0);
+              const booked = activeBookings.filter(b => b.slot_id === s.id).reduce((sum, b) => sum + b.rooms_booked, 0);
               const avail  = Math.max(0, s.max_rooms - booked);
               return (
                 <div key={s.id} className="bg-white p-4">
@@ -294,6 +295,7 @@ const STATUS_CFG: Record<string, { label: string; cls: string }> = {
   checked_in:   { label: 'Checked In',  cls: 'bg-ms-teal-light text-ms-teal border-ms-teal-border dark:bg-teal-700/40 dark:text-white dark:border-transparent' },
   no_show:      { label: 'No-Show',     cls: 'bg-slate-100 text-slate-600 border-slate-200 dark:bg-slate-900/40 dark:text-white dark:border-transparent' },
   owner_cancel: { label: 'Cancelled',   cls: 'bg-red-50 text-red-700 border-red-200 dark:bg-red-700/40 dark:text-white dark:border-transparent' },
+  customer_cancel:{ label: 'Customer Cancelled', cls: 'bg-rose-50 text-rose-700 border-rose-200 dark:bg-rose-700/40 dark:text-white dark:border-transparent' },
 };
 
 function StatusBadge({ status }: { status: string }) {

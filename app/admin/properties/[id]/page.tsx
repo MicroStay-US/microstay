@@ -64,7 +64,7 @@ export default function PropertyDetailPage() {
           revenue += Number(b.gross_amount);
           totalHours += Number(b.duration_hours) || 2;
           successful++;
-        } else if (b.status === 'owner_cancel' || b.status === 'guest_cancel' || b.status === 'no_show') {
+        } else if (b.status === 'owner_cancel' || b.status === 'customer_cancel' || b.status === 'no_show') {
           cancelled++;
         }
       });

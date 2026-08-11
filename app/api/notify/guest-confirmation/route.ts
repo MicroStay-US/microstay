@@ -188,7 +188,7 @@ export async function POST(req: Request) {
                 style="margin-bottom:28px;">
                 <tr>
                   <td align="center">
-                    <a href="https://microstay.us/my-bookings"
+                    <a href="https://microstay.us/check-booking"
                       style="display:inline-block;background:linear-gradient(135deg, #FF5E1A, #F0997B);color:#ffffff;font-weight:800;font-size:14px;text-decoration:none;padding:14px 32px;border-radius:10px;letter-spacing:0.5px;">
                       View My Bookings
                     </a>

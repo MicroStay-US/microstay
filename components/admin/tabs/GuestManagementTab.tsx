@@ -332,7 +332,7 @@ export function GuestManagementTab() {
                                         <span className={`px-2 py-0.5 rounded text-[10px] font-black uppercase tracking-widest border ${
                                           b.status === 'checked_in' ? 'bg-emerald-50 text-emerald-700 border-emerald-200 dark:bg-emerald-600 dark:text-white dark:border-transparent' :
                                           b.status === 'no_show' ? 'bg-rose-50 text-rose-700 border-rose-200 dark:bg-red-800/40 dark:text-white dark:animate-pulse dark:border-transparent' :
-                                          b.status === 'owner_cancel' || b.status === 'guest_cancel' ? 'bg-zinc-100 text-zinc-600 border-zinc-200 dark:bg-slate-500 dark:text-black dark:border-transparent' :
+                                          b.status === 'owner_cancel' || b.status === 'customer_cancel' ? 'bg-zinc-100 text-zinc-600 border-zinc-200 dark:bg-slate-500 dark:text-black dark:border-transparent' :
                                           'bg-amber-50 text-amber-700 border-amber-200 dark:bg-amber-800/40 dark:text-white dark:border-transparent'
                                         }`}>{b.status}</span>
                                         <span className="ml-auto font-bold text-zinc-900">${Number(b.gross_amount).toFixed(2)}</span>

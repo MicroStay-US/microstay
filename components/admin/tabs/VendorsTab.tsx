@@ -35,7 +35,7 @@ export function VendorsTab() {
         bookings.forEach(b => {
           const stats = bookingData.get(b.vendor_id) || { total: 0, cancelled: 0 };
           stats.total++;
-          if (b.status === 'owner_cancel' || b.status === 'guest_cancel' || b.status === 'no_show') {
+          if (b.status === 'owner_cancel' || b.status === 'customer_cancel' || b.status === 'no_show') {
             stats.cancelled++;
           }
           bookingData.set(b.vendor_id, stats);

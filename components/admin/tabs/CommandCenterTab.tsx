@@ -109,7 +109,7 @@ const STATUS_CFG: Record<string, { label: string; cls: string }> = {
   checked_in: { label: 'Checked In', cls: 'bg-[#EAF7F0] dark:bg-transparent dark:border-transparent text-[#1F7A4D] border-[#A3D9BF]' },
   no_show: { label: 'No-Show', cls: 'bg-[#FDECEC] dark:bg-transparent dark:border-transparent text-[#B42318] border-[#F5B7B1]' },
   owner_cancel: { label: 'Cancelled', cls: 'bg-[#F3EEE7] dark:bg-transparent dark:border-transparent text-[#536072] border-[#DDD1C3]' },
-  guest_cancel: { label: 'Cancelled', cls: 'bg-[#F3EEE7] dark:bg-transparent dark:border-transparent text-[#536072] border-[#DDD1C3]' },
+  customer_cancel: { label: 'Customer Cancelled', cls: 'bg-[#F3EEE7] dark:bg-transparent dark:border-transparent text-[#536072] border-[#DDD1C3]' },
 };
 
 const ALERT_CFG = {
@@ -437,7 +437,7 @@ export function CommandCenterTab() {
       if (!b.vendor_id) return;
       if (!byVendor[b.vendor_id]) byVendor[b.vendor_id] = { total: 0, cancels: 0 };
       byVendor[b.vendor_id].total++;
-      if (b.status === 'owner_cancel' || b.status === 'guest_cancel') byVendor[b.vendor_id].cancels++;
+      if (b.status === 'owner_cancel' || b.status === 'customer_cancel') byVendor[b.vendor_id].cancels++;
     });
     Object.entries(byVendor).forEach(([vid, v]) => {
       const rate = v.total > 0 ? v.cancels / v.total : 0;
@@ -460,7 +460,7 @@ export function CommandCenterTab() {
     let rows = [...bookings];
     if (filterStatus !== 'all') {
       if (filterStatus === 'cancelled') {
-        rows = rows.filter(b => b.status === 'owner_cancel' || b.status === 'guest_cancel');
+        rows = rows.filter(b => b.status === 'owner_cancel' || b.status === 'customer_cancel');
       } else {
         rows = rows.filter(b => b.status === filterStatus);
       }

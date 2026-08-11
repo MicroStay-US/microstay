@@ -12,7 +12,7 @@ const statusConfig: Record<string, { label: string; cls: string; icon: React.Rea
   checked_in:   { label: 'CHECKED IN', cls: 'bg-[#EAF7F0] text-[#1F7A4D] border-[#A3D9BF] dark:bg-transparent dark:shadow-md dark:shadow-green-400 dark:border-transparent', icon: <CheckCircle2 className="w-3 h-3 mr-1" /> },
   no_show:      { label: 'NO-SHOW',    cls: 'bg-[#F3EEE7] text-[#536072] border-[#DDD1C3] dark:bg-transparent dark:shadow-md dark:shadow-zinc-400 dark:border-transparent',     icon: <UserX className="w-3 h-3 mr-1" /> },
   owner_cancel: { label: 'CANCELLED',  cls: 'bg-[#FDECEC] text-[#B42318] border-[#F5B7B1] dark:bg-transparent dark:shadow-md dark:shadow-slate-400 dark:border-transparent',      icon: <Ban  className="w-3 h-3 mr-1" /> },
-  guest_cancel: { label: 'CANCELLED',  cls: 'bg-[#FDECEC] text-[#B42318] border-[#F5B7B1] dark:bg-transparent dark:shadow-md dark:shadow-red-400 dark:border-transparent',      icon: <Ban  className="w-3 h-3 mr-1" /> },
+  customer_cancel: { label: 'CANCELLED',  cls: 'bg-[#FDECEC] text-[#B42318] border-[#F5B7B1] dark:bg-transparent dark:shadow-md dark:shadow-red-400 dark:border-transparent',      icon: <Ban  className="w-3 h-3 mr-1" /> },
 };
 
 function todayStr() {

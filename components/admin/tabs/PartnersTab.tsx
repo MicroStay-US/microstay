@@ -71,7 +71,7 @@ export function PartnersTab({ initialSubTab }: { initialSubTab?: SubTab }) {
       (bookings || []).forEach((b: any) => {
         const s = bookingData.get(b.vendor_id) || { total: 0, cancelled: 0 };
         s.total++;
-        if (['owner_cancel', 'guest_cancel', 'no_show'].includes(b.status)) s.cancelled++;
+        if (['owner_cancel', 'customer_cancel', 'no_show'].includes(b.status)) s.cancelled++;
         bookingData.set(b.vendor_id, s);
       });
 

@@ -14,6 +14,7 @@ const statusConfig: Record<string, { label: string; color: string; icon: React.R
   checked_in:   { label: 'Checked In',                   color: 'text-ms-teal bg-ms-teal-light border-ms-teal-border dark:text-white dark:bg-teal-800/40 dark:border-transparent', icon: <CheckCircle2 className="w-5 h-5" /> },
   no_show:      { label: 'No Show',                      color: 'text-gray-600 bg-gray-50 border-gray-200 dark:text-white dark:bg-gray-900/40 dark:border-transparent',       icon: <UserX className="w-5 h-5" /> },
   owner_cancel: { label: 'Cancelled by Property',        color: 'text-rose-700 bg-rose-50 border-rose-200 dark:bg-rose-700/40 dark:text-white dark:border-transparent',       icon: <Ban className="w-5 h-5" /> },
+  customer_cancel: { label: 'Cancelled by You',          color: 'text-rose-700 bg-rose-50 border-rose-200 dark:bg-rose-700/40 dark:text-white dark:border-transparent',       icon: <Ban className="w-5 h-5" /> },
 };
 
 export default function CheckBookingPage() {
@@ -21,6 +22,7 @@ export default function CheckBookingPage() {
   const [guestEmail, setGuestEmail] = useState('');
   const [booking, setBooking] = useState<any>(null); //  here try to change null to any other datatype  //
   const [loading, setLoading] = useState(false);
+  const [cancelLoading, setCancelLoading] = useState(false);
   const [error, setError] = useState('');
 
   // const handleSearch = async (e: React.FormEvent) => {
@@ -138,6 +140,47 @@ export default function CheckBookingPage() {
 
   const statusInfo = booking ? (statusConfig[booking.status] || { label: booking.status, color: 'text-gray-700 bg-gray-50 border-gray-200', icon: null }) : null;
 
+  const handleCancelBooking = async () => {
+    if (!confirm('Are you sure you want to cancel your booking? This action cannot be undone.')) return;
+    
+    setCancelLoading(true);
+    setError('');
+    
+    try {
+      const res = await fetch('/api/booking/cancel', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ bookingRef, guestEmail }),
+      });
+      const result = await res.json();
+      
+      if (!res.ok) throw new Error(result.error || 'Failed to cancel booking');
+      
+      // Update local state to show cancelled status
+      setBooking({ ...booking, status: 'Customer Cancel' });
+      alert('Booking cancelled successfully.');
+    } catch (err: any) {
+      setError(err.message || 'Error cancelling booking');
+    } finally {
+      setCancelLoading(false);
+    }
+  };
+
+  // Check if current time is before boarding time
+  let canCancel = false;
+  if (booking && booking.status === 'pending') {
+    try {
+      const [year, month, day] = booking.booking_date.split('-').map(Number);
+      const startHour = booking.slot?.start_hour || 14;
+      const boardingTime = new Date(year, month - 1, day, startHour, 0, 0);
+      if (new Date() < boardingTime) {
+        canCancel = true;
+      }
+    } catch (e) {
+      // safe fallback
+    }
+  }
+
   return (
     <div className="min-h-screen flex flex-col   items-center justify-center py-12 px-4 bg-orange-300/40  dark:bg-gradient-to-b dark:from-black dark:via-slate-900 dark:to-black">
       <div className=" flex  flex-col max-w-2xl mx-auto ">
@@ -248,7 +291,7 @@ export default function CheckBookingPage() {
                   <Phone className="h-5 w-5 text-ms-orange mt-0.5 shrink-0" />
                   <div>
                     <p className="text-sm text-gray-500 font-medium">Property Contact</p>
-                    <a href={`tel:${booking.property?.phone}`} className="font-bold text-white hover:underline">
+                    <a href={`tel:${booking.property?.phone}`} className="font-bold text-zinc-800 hover:underline">
                       {booking.property?.phone || 'Contact via support'}
                     </a>
                   </div>
@@ -268,6 +311,19 @@ export default function CheckBookingPage() {
                 </p>
               </CardContent>
             </Card>
+
+            {canCancel && (
+              <div className="pt-4 text-center">
+                <Button 
+                  variant="destructive" 
+                  onClick={handleCancelBooking} 
+                  disabled={cancelLoading}
+                  className="bg-rose-100 hover:bg-rose-200 text-rose-700 font-bold border border-rose-200 dark:bg-rose-900/40 dark:text-rose-200 dark:hover:bg-rose-900/60 dark:border-transparent"
+                >
+                  {cancelLoading ? 'Cancelling...' : 'Cancel Booking'}
+                </Button>
+              </div>
+            )}
           </div>
         )}
       </div>

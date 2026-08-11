@@ -126,7 +126,7 @@ export function FraudAlertsTab() {
     const cancelAlerts: AlertRow[] = [];
     Array.from(guestMap.entries()).forEach(([email, bks]) => {
       const ownerCancels = bks.filter(b => b.status === 'owner_cancel').length;
-      const guestCancels = bks.filter(b => b.status === 'guest_cancel').length;
+      const guestCancels = bks.filter(b => b.status === 'customer_cancel').length;
       const totalCancels = ownerCancels + guestCancels;
       if (totalCancels >= 2) {
         cancelAlerts.push({

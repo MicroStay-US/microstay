@@ -31,7 +31,7 @@ interface PropertyStats {
   checked_in: number;
   no_show: number;
   owner_cancel: number;
-  guest_cancel: number;
+  customer_cancel: number;
   revenue: number;
   no_show_rate: number;
   cancel_rate: number;
@@ -86,7 +86,7 @@ function computeStats(bookings: RawBooking[], start: Date, end: Date): PropertyS
         city: b.property.city,
         state: b.property.state || '',
         total: 0, checked_in: 0, no_show: 0, owner_cancel: 0,
-        guest_cancel: 0, revenue: 0, no_show_rate: 0, cancel_rate: 0,
+        customer_cancel: 0, revenue: 0, no_show_rate: 0, cancel_rate: 0,
       });
     }
     const s = map.get(pid)!;
@@ -94,7 +94,7 @@ function computeStats(bookings: RawBooking[], start: Date, end: Date): PropertyS
     if (b.status === 'checked_in') { s.checked_in++; s.revenue += b.gross_amount || 0; }
     if (b.status === 'no_show') s.no_show++;
     if (b.status === 'owner_cancel') s.owner_cancel++;
-    if (b.status === 'guest_cancel') s.guest_cancel++;
+    if (b.status === 'customer_cancel') s.customer_cancel++;
   }
 
   Array.from(map.values()).forEach(s => {
