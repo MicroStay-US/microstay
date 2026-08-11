@@ -148,25 +148,12 @@ function PropertyDetailContent() {
 
       if (slotsError) throw slotsError;
 
-      // Merge default + custom
-      const slotMap = new Map();
-
-      // Add default slots
-      (defaultSlots || []).forEach(slot => {
-        const key = `${slot.start_hour}-${slot.end_hour}-${slot.room_type}`;
-        slotMap.set(key, slot);
-      });
-
-      // Replace with custom slots
-      (dateSlots || []).forEach(slot => {
-        const key = `${slot.start_hour}-${slot.end_hour}-${slot.room_type}`;
-        slotMap.set(key, slot);
-      });
-
-      // Final merged slots
-      const slotsData = Array.from(slotMap.values()).sort(
-        (a: any, b: any) => a.start_hour - b.start_hour
-      );
+      let slotsData = [];
+      if (dateSlots && dateSlots.length > 0) {
+        slotsData = dateSlots.sort((a: any, b: any) => a.start_hour - b.start_hour);
+      } else {
+        slotsData = (defaultSlots || []).sort((a: any, b: any) => a.start_hour - b.start_hour);
+      }
 
       const { data: bookingsData } = await supabase
         .from('vd_bookings')
@@ -176,7 +163,24 @@ function PropertyDetailContent() {
         .neq('status', 'owner_cancel')
         .neq('status', 'no_show');
 
-      const mappedSlots = slotsData.map((slot: VDSlot) => {
+      const now = new Date();
+      const tzOffsetMs = now.getTimezoneOffset() * 60000;
+      const todayLocal = new Date(now.getTime() - tzOffsetMs).toISOString().split('T')[0];
+      const currentHour = now.getHours();
+
+      const mappedSlots = slotsData.filter((slot: VDSlot) => {
+        if (selectedDate === todayLocal) {
+          let effectiveEnd = slot.end_hour;
+          if (effectiveEnd <= slot.start_hour) {
+            effectiveEnd += 24; // Handle slots that cross midnight
+          }
+          // The slot is still bookable if its end time is strictly in the future relative to the current hour
+          return effectiveEnd > currentHour;
+        } else if (selectedDate < todayLocal) {
+          return false; // Hide all slots for past dates
+        }
+        return true; // Show all slots for future dates
+      }).map((slot: VDSlot) => {
         const slotBookings = (bookingsData || []).filter(b => b.slot_id === slot.id);
         const bookedCount = slotBookings.reduce((sum, b) => sum + (b.rooms_booked || 1), 0);
         return { slot, available: bookedCount < slot.max_rooms };

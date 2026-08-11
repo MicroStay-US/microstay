@@ -74,7 +74,7 @@ export async function POST(req: Request) {
         .select('*', { count: 'exact', head: true })
         .eq('slot_id', slotId)
         .eq('booking_date', dateStr)
-        .not('status', 'in', '(owner_cancel,no_show)');
+        .in('status', ['pending', 'checked_in']);
 
       if (count !== null && count >= dwData.max_rooms) {
         return NextResponse.json(
@@ -96,21 +96,24 @@ export async function POST(req: Request) {
 
       // Bypass FK Constraint by syncing a "mirrored" slot into vd_time_slots
       // This prevents DDL errors for vd_date_windows while preserving integrity.
-      try {
-        await supabase.from('vd_time_slots')
-          .upsert({
-            id: slotId,
-            property_id: propertyId,
-            slot_label: `${dwData.duration_hours || 3}H Date Window Booking`,
-            price_per_room: Math.max(Number(dwData.price_per_room) || 50, 50),
-            start_hour: dwData.start_hour || 0,
-            end_hour: dwData.end_hour || ((dwData.start_hour || 0) + Math.max(dwData.duration_hours || 3, 3)) % 24,
-            duration_hours: Math.max(dwData.duration_hours || 3, 3),
-            max_rooms: Math.max(dwData.max_rooms || 1, 1),
-            is_active: false
-          }, { onConflict: 'id' });
-      } catch (e: any) {
-        console.error('Silent FK Shadow Slot Sync Error:', e);
+      const { error: syncErr } = await supabase.from('vd_time_slots')
+        .upsert({
+          id: slotId,
+          property_id: propertyId,
+          slot_label: `${dwData.duration_hours || 3}H Date Window Booking`,
+          price_per_room: Math.max(Number(dwData.price_per_room) || 50, 50),
+          start_hour: dwData.start_hour,
+          end_hour: (dwData.start_hour + Math.max(dwData.duration_hours, 3)) % 24,
+          duration_hours: Math.max(dwData.duration_hours, 3),
+          max_rooms: Math.max(dwData.max_rooms || 1, 1),
+          is_active: false,
+          room_type: 'Standard',
+          bed_type: '1 bed',
+          smoking_type: 'non-smoking'
+        }, { onConflict: 'id' });
+      
+      if (syncErr) {
+        console.error('Silent FK Shadow Slot Sync Error:', syncErr);
       }
 
       const { data: newBooking, error: insertError } = await supabase

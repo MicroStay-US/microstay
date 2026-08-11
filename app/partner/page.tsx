@@ -113,7 +113,7 @@ export default function PartnerPage() {
                     where you can:
                   </p>
                   <ul className="list-disc list-inside text-gray-600 mt-2 space-y-1">
-                    <li>Set up 10 customizable time windows (minimum 3 hours each)</li>
+                    <li>Set up 10 customizable time windows (minimum 2 hours each)</li>
                     <li>Manage pricing and availability</li>
                     <li>Block specific dates</li>
                     <li>Track bookings and revenue</li>
@@ -145,7 +145,7 @@ export default function PartnerPage() {
           <CardContent className="space-y-2">
             <p className="flex items-start gap-2">
               <CheckCircle className="h-5 w-5 text-green-600 flex-shrink-0 mt-0.5" />
-              <span>All time windows must be minimum 3 hours (legal requirement)</span>
+              <span>All time windows must be minimum 2 hours (legal requirement)</span>
             </p>
             <p className="flex items-start gap-2">
               <CheckCircle className="h-5 w-5 text-green-600 flex-shrink-0 mt-0.5" />

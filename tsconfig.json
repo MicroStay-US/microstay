@@ -23,5 +23,5 @@
     }
   },
   "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", ".next/types/**/*.ts"],
-  "exclude": ["node_modules", "supabase/functions", "UPLOAD_FILES"]
+  "exclude": ["node_modules", "supabase/functions", "UPLOAD_FILES", "tests", "playwright.config.ts"]
 }

@@ -24,7 +24,7 @@
 
   4. New Table: time_slot_templates
     - Templates for 10 time windows that vendors can configure
-    - Must be minimum 3 hours by law
+    - Must be minimum 2 hours by law
     - Vendors set these once, applied to all dates
 
   5. Security

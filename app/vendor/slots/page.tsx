@@ -855,7 +855,7 @@ function SlotFormModal({ title, description, existingCount, totalRooms, allocate
 
   const validate = () => {
     if (startHour >= endHour)                                return 'Check-in must be before check-out';
-    if (duration < 3)                                         return 'Minimum 3 hours required';
+    if (duration < 2)                                         return 'Minimum 2 hours required';
     if (isNaN(parseFloat(price)) || parseFloat(price) < 50)  return 'Minimum rate is $50.00';
     if (isNaN(parseInt(maxRooms)) || parseInt(maxRooms) < 1) return 'At least 1 room required';
     if (existingCount >= 6)                                   return 'Maximum 6 windows reached';
@@ -927,7 +927,7 @@ function SlotFormModal({ title, description, existingCount, totalRooms, allocate
             duration >= 3 ? 'bg-ms-orange-light border-ms-orange-border text-ms-orange' : 'bg-rose-50 border-rose-100 text-rose-700'
           }`}>
             Duration: <span className="font-black">{duration}h</span>
-            {duration < 3 && ' — minimum 3 hours required'}
+            {duration < 2 && ' — minimum 2 hours required'}
           </div>
 
           <div className="space-y-1.5">

@@ -35,15 +35,11 @@ yarn-error.log*
 VERCEL_ENV_PRODUCTION.txt
 
 # build / test / typecheck artefacts
-build_log*.txt
-build_log*.txt.old
-build_final.log
-build_new.log
-typecheck.log
-typecheck.log.old
-typecheck_new.log
-e2e_*.log
-sentry.client.config.ts.bak
+*.log
+*.bak
+test.html
+.bolt/
+.claude/
 test-results/
 
 # vercel
