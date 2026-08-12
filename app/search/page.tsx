@@ -90,6 +90,9 @@ function SearchContent() {
   const [filterMenuOpen, setFilterMenuOpen] = useState(false);
   const [selectedTags, setSelectedTags] = useState<string[]>([]);
 
+
+
+
   useEffect(() => {
     if (searchType === 'nearby') {
       // Pure GPS — no city in URL
@@ -143,10 +146,6 @@ function SearchContent() {
     setLoading(true);
     try {
       const searchDate = searchParams.get('date') || date;
-      // let query = supabase
-      //       .from('properties')
-      //       .select(`*, vd_time_slots(*)`)
-      //       .eq('status', 'active');
       let query = supabase
           .from('properties')
           .select(`
@@ -166,10 +165,6 @@ function SearchContent() {
           const { data, error } = await query;
           console.log("Vendor Filter Result", data);
 console.log("Count =", data?.length);
-      // const { data, error } = await supabase
-      //   .from('properties')
-      //   .select(`*, vd_time_slots(*)`)
-      //   .eq('status', 'active');
       if (error) throw error;
 
       // Fetch date-specific windows for the selected date
@@ -207,11 +202,6 @@ console.log("Count =", data?.length);
           (property: any) => property.smoking_allowed !== true
         );
       }
-      // if (roomType) {
-      //   filteredData = filteredData.filter((property: any) =>
-      //     property.vd_time_slots?.some((slot: any) => slot.bed_type?.toLowerCase().includes(roomType.toLowerCase().split(' ')[0]) && slot.is_active)
-      //   );
-      // }
             if (roomType) {
           filteredData = filteredData.filter((property: any) =>
             property.vd_time_slots?.some(
@@ -230,29 +220,6 @@ console.log("Count =", data?.length);
             )
           );
         }
-      // if (priceSort === 'low') {
-      //   filteredData.sort((a: any, b: any) => {
-      //     const aPrice =
-      //       a.vd_time_slots?.find((s: any) => s.is_active)?.price_per_room || 0;
-
-      //     const bPrice =
-      //       b.vd_time_slots?.find((s: any) => s.is_active)?.price_per_room || 0;
-
-      //     return aPrice - bPrice;
-      //   });
-      // }
-
-      // if (priceSort === 'high') {
-      //   filteredData.sort((a: any, b: any) => {
-      //     const aPrice =
-      //       a.vd_time_slots?.find((s: any) => s.is_active)?.price_per_room || 0;
-
-      //     const bPrice =
-      //       b.vd_time_slots?.find((s: any) => s.is_active)?.price_per_room || 0;
-
-      //     return bPrice - aPrice;
-      //   });
-      // }
       if (priceSort === 'low') {
       filteredData = [...filteredData].sort((a, b) => {
         const aPrice =
@@ -343,27 +310,6 @@ console.log("Count =", data?.length);
         dateWinByProp[w.property_id].push(w);
       });
 
-      // Replace vd_time_slots with date windows where they exist for this date
-      // if (smokingFilter) {
-      //   data = (data || []).filter(
-      //     (property: any) => property.smoking_allowed === true
-      //   );
-      // }
-      // let filteredData: any[] = (data || []).map((property: any) => {
-      //   if (smokingParam === 'smoking') {
-      //     filteredData = filteredData.filter(
-      //       (property: any) => property.smoking_allowed === true
-      //     );
-      //   }
-
-      //   if (smokingParam === 'non-smoking') {
-      //     filteredData = filteredData.filter(
-      //       (property: any) => property.smoking_allowed !== true
-      //     );
-      //   }
-      //   const dw = dateWinByProp[property.id];
-      //   return dw && dw.length > 0 ? { ...property, vd_time_slots: dw } : property;
-      // });
       let filteredData: any[] = (data || []).map((property: any) => {
         
           const dw = dateWinByProp[property.id];
@@ -386,11 +332,6 @@ console.log("Count =", data?.length);
             (property: any) => property.smoking_allowed !== true
           );
         }
-      // if (roomType) {
-      //   filteredData = filteredData.filter((property: any) =>
-      //     property.vd_time_slots?.some((slot: any) => slot.bed_type?.toLowerCase().includes(roomType.toLowerCase().split(' ')[0]) && slot.is_active)
-      //   );
-      // }
       if (roomType) {
           filteredData = filteredData.filter((property: any) =>
             property.vd_time_slots?.some(
@@ -409,29 +350,6 @@ console.log("Count =", data?.length);
             )
           );
         }
-      // if (priceSort === 'low') {
-      //   filteredData.sort((a: any, b: any) => {
-      //     const aPrice =
-      //       a.vd_time_slots?.find((s: any) => s.is_active)?.price_per_room || 0;
-
-      //     const bPrice =
-      //       b.vd_time_slots?.find((s: any) => s.is_active)?.price_per_room || 0;
-
-      //     return aPrice - bPrice;
-      //   });
-      // }
-
-      // if (priceSort === 'high') {
-      //   filteredData.sort((a: any, b: any) => {
-      //     const aPrice =
-      //       a.vd_time_slots?.find((s: any) => s.is_active)?.price_per_room || 0;
-
-      //     const bPrice =
-      //       b.vd_time_slots?.find((s: any) => s.is_active)?.price_per_room || 0;
-
-      //     return bPrice - aPrice;
-      //   });
-      // }
       if (priceSort === 'low') {
         filteredData = [...filteredData].sort((a, b) => {
           const aPrice =
@@ -565,7 +483,7 @@ console.log("Count =", data?.length);
         </div>
         <div className="p-5 flex flex-wrap gap-2">
           <Badge variant="outline" onClick={() => toggleTag('couple')} className={`cursor-pointer p-2 font-semibold shadow-sm ${selectedTags.includes('couple') ? 'border-ms-orange-border bg-ms-orange-light text-ms-orange dark:bg-ms-orange dark:text-white dark:border-transparent' : 'border-gray-200 text-gray-600 dark:hover:bg-slate-900'}`}>Couple Friendly</Badge>
-          <Badge variant="outline" onClick={() => toggleTag('payAtHotel')} className={`cursor-pointer p-2 font-semibold shadow-sm ${selectedTags.includes('payAtHotel') ? 'border-ms-orange-border bg-ms-orange-light text-ms-orange dark:bg-ms-orange dark:text-white dark:border-transparent' : 'border-gray-200 text-gray-600 dark:hover:bg-slate-900'}`}>Pay At Hotel</Badge>
+          
           <Badge variant="outline" onClick={() => toggleTag('localId')} className={`cursor-pointer p-2 font-semibold shadow-sm ${selectedTags.includes('localId') ? 'border-ms-orange-border bg-ms-orange-light text-ms-orange dark:bg-ms-orange dark:text-white dark:border-transparent' : 'border-gray-200 text-gray-600 dark:hover:bg-slate-900'}`}>Local ID Accepted</Badge>
         </div>
       </div>
@@ -601,22 +519,7 @@ console.log("Count =", data?.length);
           </label>
         </div>
       </div>
-      {/* Customer Ratings */}
-      <div className="bg-white rounded-xl shadow-sm border border-gray-200 overflow-hidden mb-4">
-        <div className="px-5 py-4 border-b border-gray-100 dark:border-transparent flex justify-between items-center dark:bg-black/50 bg-gray-50/50">
-          <h3 className="font-bold text-gray-900 text-sm">Customer Ratings</h3>
-        </div>
-        <div className="p-5">
-          <div className="grid grid-cols-4 gap-2">
-            {['3.0+', '3.5+', '4.0+', '4.5+'].map(rating => (
-              <div key={rating} className="border border-ms-orange-border bg-ms-orange-light rounded-md py-2 flex flex-row items-center justify-center cursor-pointer hover:bg-ms-orange-light transition-colors shadow-sm dark:bg-ms-orange gap-1 dark:hover:bg-orange-500/60">
-                <span className="text-xs font-black text-ms-orange dark:text-white">{rating}</span>
-                <Star className="w-3 h-3 text-ms-orange fill-ms-orange mt-0.5 dark:text-white dark:fill-white" />
-              </div>
-            ))}
-          </div>
-        </div>
-      </div>
+
       
     </div>
   </div>
@@ -641,7 +544,6 @@ console.log("Count =", data?.length);
             <div className=" bg-white rounded-xl shadow-sm border border-gray-200 overflow-hidden">
               <div className="px-5 py-4 border-b border-gray-100 dark:border-transparent flex justify-between items-center dark:bg-black/50 bg-gray-50/50">
                 <h3 className="font-bold text-gray-900 text-sm">Popular Tags</h3>
-                {/* <span className="text-xs font-bold text-ms-orange cursor-pointer hover:underline">Clear</span> */}
                 <button
                 type="button"
                 onClick={() => setSelectedTags([])}
@@ -695,7 +597,6 @@ console.log("Count =", data?.length);
             <div className="bg-white rounded-xl shadow-sm border border-gray-200 overflow-hidden">
               <div className="px-5 py-4 border-b border-gray-100 dark:border-transparent flex justify-between items-center dark:bg-black/50 bg-gray-50/50">
                 <h3 className="font-bold text-gray-900 text-sm">Price</h3>
-                {/* <span className="text-xs font-bold text-ms-orange cursor-pointer hover:underline">Clear</span> */}
                 <button
                   type="button"
                   onClick={() => setPriceSort('')}
@@ -755,7 +656,7 @@ console.log("Count =", data?.length);
                 </div>
               </div>
             {/* Ratings Filter Area */}
-            <div className="bg-white rounded-xl shadow-sm border border-gray-200 overflow-hidden hidden md:block">
+            {/* <div className="bg-white rounded-xl shadow-sm border border-gray-200 overflow-hidden hidden md:block">
               <div className="px-5 py-4 border-b border-gray-100 dark:border-transparent flex justify-between items-center dark:bg-black/50 bg-gray-50/50">
                 <h3 className="font-bold text-gray-900 text-sm">Customer Ratings</h3>
               </div>
@@ -768,8 +669,8 @@ console.log("Count =", data?.length);
                     </div>
                   ))}
                 </div>
-              </div>
-            </div>
+              </div> 
+            </div>*/}
 
           </div>
 
