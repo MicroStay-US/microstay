@@ -9,7 +9,7 @@ import { Button } from '@/components/ui/button';
 import { Badge } from '@/components/ui/badge';
 import { Checkbox } from '@/components/ui/checkbox';
 import { Input } from '@/components/ui/input';
-import { MapPin, Wifi, Coffee, Tv, Car, Map, List, Search as SearchIcon, Star, CheckCircle2, ChevronRight, ChevronLeft } from 'lucide-react';
+import { MapPin, Wifi, Coffee, Tv, Car, Map, List, Search as SearchIcon, Star, CheckCircle2, ChevronRight, ChevronLeft, Menu, X, Filter } from 'lucide-react';
 
 const MapWrapper = dynamic(() => import('@/components/search/MapWrapper'), { 
   ssr: false, 
@@ -87,6 +87,7 @@ function SearchContent() {
   const [amenityFilters, setAmenityFilters] = useState<string[]>([]);
   const [smokingFilter, setSmokingFilter] = useState(false);
   const [priceSort, setPriceSort] = useState<'low' | 'high' | ''>('');
+  const [filterMenuOpen, setFilterMenuOpen] = useState(false);
   const [selectedTags, setSelectedTags] = useState<string[]>([]);
 
   useEffect(() => {
@@ -536,9 +537,90 @@ console.log("Count =", data?.length);
             </div>
 
             <Button type="submit" className="w-full relative top-3 md:w-auto h-10 px-8 bg-ms-orange hover:bg-ms-orange-hover text-white font-black hover:scale-[1.02] transition-transform rounded-lg shadow-md active:scale-95">
-              <SearchIcon className="w-5 h-5 mr-2" /> Search
-            </Button>
+                <SearchIcon className="w-5 h-5 mr-2" /> Search
+              </Button>
+              {/* Mobile filter burger menu button */}
+              <Button type="button" variant="ghost" className="md:hidden gap-2 h-10  mt-3 w-full flex items-center justify-center  bg-orange-400/40  text-gray-700 ml-2" onClick={() => setFilterMenuOpen(true)}>
+                <Filter className="w-5 h-5" /> <p className='font-black '>Filter</p>
+              </Button>
           </form>
+{/* Mobile Filter Drawer */}
+{filterMenuOpen && (
+  <div className="fixed inset-0 z-50 flex">
+    {/* Overlay */}
+    <div className="fixed inset-0 bg-black/50" onClick={() => setFilterMenuOpen(false)}></div>
+    {/* Drawer */}
+    <div className="relative w-80 max-w-full bg-white dark:bg-gray-900 p-4 overflow-y-auto">
+      <div className="flex justify-between items-center mb-4">
+        <h2 className="text-lg font-bold">Filters</h2>
+        <Button type="button" variant="ghost" onClick={() => setFilterMenuOpen(false)}>
+          <X className="w-5 h-5" />
+        </Button>
+      </div>
+      {/* Popular Tags */}
+      <div className="bg-white rounded-xl shadow-sm border border-gray-200 overflow-hidden mb-4">
+        <div className="px-5 py-4 border-b border-gray-100 dark:border-transparent flex justify-between items-center dark:bg-black/50 bg-gray-50/50">
+          <h3 className="font-bold text-gray-900 text-sm">Popular Tags</h3>
+          <button type="button" onClick={() => setSelectedTags([])} className="text-xs font-bold text-ms-orange hover:underline">Clear</button>
+        </div>
+        <div className="p-5 flex flex-wrap gap-2">
+          <Badge variant="outline" onClick={() => toggleTag('couple')} className={`cursor-pointer p-2 font-semibold shadow-sm ${selectedTags.includes('couple') ? 'border-ms-orange-border bg-ms-orange-light text-ms-orange dark:bg-ms-orange dark:text-white dark:border-transparent' : 'border-gray-200 text-gray-600 dark:hover:bg-slate-900'}`}>Couple Friendly</Badge>
+          <Badge variant="outline" onClick={() => toggleTag('payAtHotel')} className={`cursor-pointer p-2 font-semibold shadow-sm ${selectedTags.includes('payAtHotel') ? 'border-ms-orange-border bg-ms-orange-light text-ms-orange dark:bg-ms-orange dark:text-white dark:border-transparent' : 'border-gray-200 text-gray-600 dark:hover:bg-slate-900'}`}>Pay At Hotel</Badge>
+          <Badge variant="outline" onClick={() => toggleTag('localId')} className={`cursor-pointer p-2 font-semibold shadow-sm ${selectedTags.includes('localId') ? 'border-ms-orange-border bg-ms-orange-light text-ms-orange dark:bg-ms-orange dark:text-white dark:border-transparent' : 'border-gray-200 text-gray-600 dark:hover:bg-slate-900'}`}>Local ID Accepted</Badge>
+        </div>
+      </div>
+      {/* Price Filter */}
+      <div className="bg-white rounded-xl shadow-sm border border-gray-200 overflow-hidden mb-4">
+        <div className="px-5 py-4 border-b border-gray-100 dark:border-transparent flex justify-between items-center dark:bg-black/50 bg-gray-50/50">
+          <h3 className="font-bold text-gray-900 text-sm">Price</h3>
+          <button type="button" onClick={() => setPriceSort('')} className="text-xs font-bold text-ms-orange hover:underline">Clear</button>
+        </div>
+        <div className="p-5">
+          <h4 className="text-xs font-bold text-gray-500 uppercase tracking-wider mb-4">Sort By Price</h4>
+          <div className="space-y-3">
+            <label className="flex items-center gap-3 cursor-pointer group">
+              <Checkbox checked={priceSort === 'low'} onCheckedChange={(checked) => setPriceSort(checked ? 'low' : '')} />
+              <span className="text-sm font-semibold text-gray-700 group-hover:text-gray-900 dark:text-white/50 dark:group-hover:text-ms-orange-light">Low to High</span>
+            </label>
+            <label className="flex items-center gap-3 cursor-pointer group">
+              <Checkbox checked={priceSort === 'high'} onCheckedChange={(checked) => setPriceSort(checked ? 'high' : '')} />
+              <span className="text-sm font-semibold text-gray-700 group-hover:text-gray-900 dark:text-white/50 dark:group-hover:text-ms-orange-light">High to Low</span>
+            </label>
+          </div>
+        </div>
+      </div>
+      {/* Property Preferences */}
+      <div className="bg-white rounded-xl shadow-sm border border-gray-200 overflow-hidden mb-4">
+        <div className="px-5 py-4 border-b border-gray-100 dark:border-transparent flex justify-between items-center dark:bg-black/50 bg-gray-50/50">
+          <h3 className="font-bold text-gray-900 text-sm">Property Preferences</h3>
+        </div>
+        <div className="p-5 dark:group-hover:text-white">
+          <label className="flex items-center gap-3 cursor-pointer group ">
+            <input type="checkbox" checked={smokingFilter} onChange={(e) => setSmokingFilter(e.target.checked)} />
+            <span className="text-sm font-semibold text-gray-700 dark:text-white/50 dark:hover:text-inherit">Smoking Allowed</span>
+          </label>
+        </div>
+      </div>
+      {/* Customer Ratings */}
+      <div className="bg-white rounded-xl shadow-sm border border-gray-200 overflow-hidden mb-4">
+        <div className="px-5 py-4 border-b border-gray-100 dark:border-transparent flex justify-between items-center dark:bg-black/50 bg-gray-50/50">
+          <h3 className="font-bold text-gray-900 text-sm">Customer Ratings</h3>
+        </div>
+        <div className="p-5">
+          <div className="grid grid-cols-4 gap-2">
+            {['3.0+', '3.5+', '4.0+', '4.5+'].map(rating => (
+              <div key={rating} className="border border-ms-orange-border bg-ms-orange-light rounded-md py-2 flex flex-row items-center justify-center cursor-pointer hover:bg-ms-orange-light transition-colors shadow-sm dark:bg-ms-orange gap-1 dark:hover:bg-orange-500/60">
+                <span className="text-xs font-black text-ms-orange dark:text-white">{rating}</span>
+                <Star className="w-3 h-3 text-ms-orange fill-ms-orange mt-0.5 dark:text-white dark:fill-white" />
+              </div>
+            ))}
+          </div>
+        </div>
+      </div>
+      
+    </div>
+  </div>
+)}
         </div>
       </div>
 
@@ -553,7 +635,7 @@ console.log("Count =", data?.length);
         <div className="flex-1 max-w-7xl mx-auto px-4 py-8 w-full flex flex-col lg:flex-row gap-6">
           
           {/* 2. Left Sidebar Filters */}
-          <div className="w-full lg:w-[280px] flex-shrink-0 space-y-6">
+          <div className="hidden md:block w-full lg:w-[280px] flex-shrink-0 space-y-6">
             
             {/* Dynamic Tags Area */}
             <div className=" bg-white rounded-xl shadow-sm border border-gray-200 overflow-hidden">
