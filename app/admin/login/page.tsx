@@ -8,6 +8,7 @@ import { Input } from '@/components/ui/input';
 import { Alert, AlertDescription } from '@/components/ui/alert';
 import { Shield, Eye, EyeOff, Loader2, SmartphoneNfc, ChevronLeft } from 'lucide-react';
 import { supabase } from '@/lib/supabase';
+import { resetPassword } from '@/lib/auth';
 import { useAuth } from '@/contexts/AuthContext';
 import { createClient } from '@supabase/supabase-js';
 
@@ -175,10 +176,9 @@ export default function AdminLoginPage() {
     setResetting(true);
     setError('');
     try {
-      const { error } = await supabase.auth.resetPasswordForEmail('team@microstay.us', {
-        redirectTo: `${window.location.origin}/admin/reset-password`,
-      });
-      if (error) throw error;
+      const targetEmail = 'adminmotel@gmail.com';
+      const result = await resetPassword(targetEmail);
+      if (!result.success) throw new Error(result.error);
       setResetSent(true);
     } catch (err: any) {
       setError(err.message || 'Failed to send reset email.');
