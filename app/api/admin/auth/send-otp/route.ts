@@ -4,7 +4,7 @@ import { Resend } from 'resend';
 import crypto from 'crypto';
 import { rateLimit, getIP, rateLimitResponse } from '@/lib/rate-limit';
 
-const ADMIN_EMAIL = 'team@microstay.us';
+const ADMIN_EMAIL = process.env.ADMIN_EMAIL || 'adminmotel@gmail.com';
 
 function generateOtp(): string {
   // Cryptographically secure 6-digit code

@@ -5,7 +5,7 @@ import { getIP } from '@/lib/rate-limit';
 export async function POST(req: NextRequest) {
   try {
     const body = await req.json();
-    const adminEmail = 'team@microstay.us';
+    const adminEmail = process.env.ADMIN_EMAIL || 'adminmotel@gmail.com';
 
     // Collect request metadata for security context
     const ip = getIP(req);
@@ -37,7 +37,7 @@ export async function POST(req: NextRequest) {
       : 'MicroStay Security <noreply@microstay.us>';
 
     // Dev: Resend free tier only delivers to the account owner's verified email
-    const toAddress = 'team@microstay.us';
+    const toAddress = process.env.ADMIN_EMAIL || 'adminmotel@gmail.com';
 
     const { error } = await resend.emails.send({
       from: fromAddress,

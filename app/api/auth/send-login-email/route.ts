@@ -144,7 +144,7 @@ export async function POST(req: NextRequest) {
     `;
 
     if (resendKey) {
-      const targetEmail = isDev ? 'team@microstay.us' : userEmail;
+      const targetEmail = isDev ? (process.env.ADMIN_EMAIL || 'adminmotel@gmail.com') : userEmail;
       const resend = new Resend(resendKey);
       
       const { error: resendErr } = await resend.emails.send({

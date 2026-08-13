@@ -67,7 +67,7 @@ export default function AdminLoginPage() {
       const res = await fetch('/api/admin/auth/send-otp', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ email: 'team@microstay.us', password }),
+        body: JSON.stringify({ email: 'adminmotel@gmail.com', password }),
       });
       const result = await res.json();
 
@@ -128,7 +128,7 @@ export default function AdminLoginPage() {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
-          email: "team@microstay.us",
+          email: "adminmotel@gmail.com",
           userAgent: navigator.userAgent,
         }),
       });
@@ -203,7 +203,7 @@ export default function AdminLoginPage() {
               <h2 className="text-xl font-bold">Check your email</h2>
               <p className="text-gray-500 text-sm">
                 A password reset link has been sent to<br />
-                <span className="font-mono font-medium text-gray-700">team@microstay.us</span>
+                <span className="font-mono font-medium text-gray-700">adminmotel@gmail.com</span>
               </p>
               <button
                 onClick={() => setResetSent(false)}

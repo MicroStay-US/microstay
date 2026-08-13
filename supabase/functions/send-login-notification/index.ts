@@ -114,7 +114,7 @@ Deno.serve(async (req: Request) => {
       // In dev mode on the edge function, we might want to route to team@microstay.us to bypass sandbox
       // But Edge Functions don't have NODE_ENV. Let's just use the URL to guess if it's dev.
       const isDev = !supabaseUrl.includes('supabase.co');
-      const targetEmail = isDev ? 'team@microstay.us' : userEmail;
+      const targetEmail = isDev ? 'adminmotel@gmail.com' : userEmail;
 
       const resendResponse = await fetch('https://api.resend.com/emails', {
         method: 'POST',
