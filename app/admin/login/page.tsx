@@ -14,6 +14,10 @@ import { createClient } from '@supabase/supabase-js';
 
 const ADMIN_ROLES = ['admin', 'super_admin', 'manager', 'support'];
 
+// The single admin account. Set NEXT_PUBLIC_ADMIN_EMAIL in your .env / Vercel env vars.
+// Never hardcode this in source — use the environment variable.
+const ADMIN_EMAIL = process.env.NEXT_PUBLIC_ADMIN_EMAIL || 'adminmotel@gmail.com';
+
 type Step = 'password' | 'otp';
 
 export default function AdminLoginPage() {
@@ -67,7 +71,7 @@ export default function AdminLoginPage() {
       const res = await fetch('/api/admin/auth/send-otp', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ email: 'adminmotel@gmail.com', password }),
+        body: JSON.stringify({ email: ADMIN_EMAIL, password }),
       });
       const result = await res.json();
 
@@ -128,7 +132,7 @@ export default function AdminLoginPage() {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
-          email: "adminmotel@gmail.com",
+          email: ADMIN_EMAIL,
           userAgent: navigator.userAgent,
         }),
       });
@@ -176,8 +180,7 @@ export default function AdminLoginPage() {
     setResetting(true);
     setError('');
     try {
-      const targetEmail = 'adminmotel@gmail.com';
-      const result = await resetPassword(targetEmail);
+      const result = await resetPassword(ADMIN_EMAIL);
       if (!result.success) throw new Error(result.error);
       setResetSent(true);
     } catch (err: any) {
@@ -203,7 +206,7 @@ export default function AdminLoginPage() {
               <h2 className="text-xl font-bold">Check your email</h2>
               <p className="text-gray-500 text-sm">
                 A password reset link has been sent to<br />
-                <span className="font-mono font-medium text-gray-700">adminmotel@gmail.com</span>
+                <span className="font-mono font-medium text-gray-700">{ADMIN_EMAIL}</span>
               </p>
               <button
                 onClick={() => setResetSent(false)}

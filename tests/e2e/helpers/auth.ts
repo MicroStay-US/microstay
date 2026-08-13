@@ -2,7 +2,9 @@ import { Page, expect } from '@playwright/test';
 
 export const CREDS = {
   admin: {
-    email: process.env.TEST_ADMIN_EMAIL || 'admin@microstay.us',
+    // Admin email is intentionally a single shared account.
+    // Set ADMIN_EMAIL in Vercel env vars / GitHub Actions secrets.
+    email: process.env.TEST_ADMIN_EMAIL || process.env.NEXT_PUBLIC_ADMIN_EMAIL || '',
     password: process.env.TEST_ADMIN_PASSWORD || '',
   },
   vendor: {

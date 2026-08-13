@@ -28,7 +28,7 @@
     - Vendors set these once, applied to all dates
 
   5. Security
-    - Admin portal locked to admin@microstay.us only
+    - Admin portal locked to adminmotel@gmail.com only
     - Vendors can only manage their own properties
     - Public users can view active properties only
 */

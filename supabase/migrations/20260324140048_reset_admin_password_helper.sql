@@ -7,7 +7,7 @@
 
   2. Security
     - Function requires service role to execute
-    - Only affects admin@microstay.us account
+    - Only affects adminmotel@gmail.com account
 */
 
 CREATE OR REPLACE FUNCTION reset_admin_password(new_password text)
@@ -20,7 +20,7 @@ DECLARE
 BEGIN
   SELECT id INTO admin_user_id 
   FROM auth.users 
-  WHERE email = 'admin@microstay.us';
+  WHERE email = 'adminmotel@gmail.com';
   
   IF admin_user_id IS NULL THEN
     RETURN json_build_object('error', 'Admin user not found');

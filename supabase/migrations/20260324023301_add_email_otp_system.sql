@@ -19,7 +19,7 @@
   3. Notes
     - OTP codes expire after 10 minutes
     - Codes are single-use only
-    - System sends OTP to admin@microstay.us email
+    - System sends OTP to adminmotel@gmail.com email
 */
 
 CREATE TABLE IF NOT EXISTS admin_otp_codes (

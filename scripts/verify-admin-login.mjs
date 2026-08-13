@@ -5,7 +5,7 @@ const c = createClient(
   process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY
 );
 const { data, error } = await c.auth.signInWithPassword({
-  email: 'admin@microstay.us',
+  email: 'adminmotel@gmail.com',
   password: process.env.ADMIN_PASSWORD,
 });
 console.log('Admin login with rotated password:', error ? 'FAIL ' + error.message : 'OK ✓');

@@ -121,7 +121,7 @@ Once deployed, test the complete user flow:
 ### C. Admin Flow
 
 1. **Admin Login**
-   - Only `admin@microstay.us` and `manager@microstay.us`
+   - Only `adminmotel@gmail.com` and `manager@microstay.us`
    - Go to `/login`
    - Access admin dashboard
 
@@ -214,7 +214,7 @@ To test the system, create 4 dummy motels:
   - Cannot view full analytics
 
 ### Admin
-- **Email**: admin@microstay.us or manager@microstay.us
+- **Email**: adminmotel@gmail.com or manager@microstay.us
 - **Access**: Full platform administration
 - **Capabilities**:
   - Approve/reject vendor applications
@@ -275,7 +275,7 @@ These are already configured in your Netlify deployment.
 ## 8. Going Live Checklist
 
 - [ ] Domain configured and SSL enabled
-- [ ] Admin accounts created (admin@microstay.us, manager@microstay.us)
+- [ ] Admin accounts created (adminmotel@gmail.com, manager@microstay.us)
 - [ ] Test vendor application submission
 - [ ] Test admin approval process
 - [ ] Test vendor motel creation

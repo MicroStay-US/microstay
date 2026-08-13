@@ -14,10 +14,12 @@ import { test, expect, Page } from '@playwright/test';
 
 const BASE = process.env.TEST_BASE_URL || 'https://www.microstay.us';
 
-const ADMIN_EMAIL = 'admin@microstay.us';
-const ADMIN_PW = '9fTkHuRHhDc6MtgGt9SgMx%0';
-const VENDOR_EMAIL = 'iamsam0228@gmail.com';
-const VENDOR_PW = 'VendorAudit#2026!Test';
+// Load credentials from environment — NEVER hardcode passwords in source.
+// Set these in your CI/CD secrets or a local .env.test file (gitignored).
+const ADMIN_EMAIL = process.env.TEST_ADMIN_EMAIL || '';
+const ADMIN_PW    = process.env.TEST_ADMIN_PASSWORD || '';
+const VENDOR_EMAIL = process.env.TEST_VENDOR_EMAIL || '';
+const VENDOR_PW   = process.env.TEST_VENDOR_PASSWORD || '';
 
 type Finding = {
   portal: 'public' | 'vendor' | 'admin';

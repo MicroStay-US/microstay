@@ -134,7 +134,8 @@ export default function VendorOperationsCenter() {
     } else if (action === 'no_show') {
       await supabase.from('vd_bookings').update({ status: action, no_show_at: new Date().toISOString(), action_taken_by: user?.id }).eq('id', bookingId);
     } else {
-      await supabase.from('vd_bookings').update({ status: action, owner_cancelled_at: new Date().toISOString(), penalty_fee: 5.0, cancel_reason: 'Cancelled via Quick Action', action_taken_by: user?.id }).eq('id', bookingId);
+      // No penalty_fee at cancel time — owner cancels don't incur a fee per §18.
+      await supabase.from('vd_bookings').update({ status: action, owner_cancelled_at: new Date().toISOString(), penalty_fee: 0, cancel_reason: 'Cancelled via Quick Action', action_taken_by: user?.id }).eq('id', bookingId);
     }
     loadData();
   };

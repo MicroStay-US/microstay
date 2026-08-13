@@ -22,7 +22,7 @@ MicroStay is a comprehensive platform for hourly motel bookings with advanced pa
 
 ### Authorized Admin Emails
 Only these two email addresses can access the admin dashboard:
-- **admin@microstay.us** - Full access
+- **adminmotel@gmail.com** - Full access
 - **manager@microstay.us** - Full access
 
 ### Security Features
@@ -197,7 +197,7 @@ All tables have comprehensive RLS policies:
 - Contact support@microstay.us
 
 ### Admin
-- Only admin@microstay.us and manager@microstay.us
+- Only adminmotel@gmail.com and manager@microstay.us
 - Approve/reject partner applications
 - View all bookings and properties
 - Access business analytics
@@ -300,7 +300,7 @@ All tables have comprehensive RLS policies:
 - [ ] Perform permitted actions only
 
 ### Admin Flow
-- [ ] Login as admin@microstay.us or manager@microstay.us
+- [ ] Login as adminmotel@gmail.com or manager@microstay.us
 - [ ] Review pending applications
 - [ ] Approve vendor
 - [ ] View analytics

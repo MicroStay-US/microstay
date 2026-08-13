@@ -339,7 +339,7 @@ SELECT mark_invoice_paid(
 ## Support Contacts
 
 - **Vendor Billing Questions**: support@microstay.us
-- **Admin Support**: admin@microstay.us
+- **Admin Support**: adminmotel@gmail.com
 - **Technical Issues**: support@microstay.us
 
 ---

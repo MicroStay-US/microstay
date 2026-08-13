@@ -9,7 +9,7 @@
  * and create a new migration when updating this file.
  */
 
-export const AGREEMENT_VERSION = 'v3.0';
+export const AGREEMENT_VERSION = 'v3.1';
 
 export const AGREEMENT_SECTIONS = [
   "1. ACCEPTANCE OF AGREEMENT",
@@ -93,8 +93,8 @@ MICROSTAY PARTNER AGREEMENT
 MicroStay.us
 Operated by MICROSTAY HOLDINGS LLC
 
-Last Updated: August 6, 2026
-Agreement Version: 1.0
+Last Updated: August 14, 2026
+Agreement Version: 3.1
 
 This MicroStay Partner Agreement ("Agreement") is entered into between MICROSTAY HOLDINGS LLC,
 doing business as MicroStay.us ("MicroStay," "we," "us," or "our") and the hotel, motel, lodging property,
@@ -758,68 +758,55 @@ have been paid.
 
 32. BILLING NOTICE – 1ST OF THE MONTH
 
-On or around the 1st day of each month, MicroStay will provide the Partner with the monthly bill or billing
-notice.
+On or around the 1st day of each month, MicroStay will generate the Partner's monthly commission invoice
+for the previous billing period and will provide the Partner with the invoice or billing notice by email.
 
-The payment is due at that time.
+The invoice covers all commissionable reservations completed or auto-completed during the previous
+calendar month.
 
-MicroStay may automatically attempt payment using the authorized card.
+MicroStay may automatically attempt card payment upon invoice generation.
 
-If payment succeeds, the invoice will be marked paid.
+If payment succeeds, the invoice will be marked paid and no further action is required.
 
-33. PAYMENT REMINDER – 5TH OF THE MONTH
+33. FIRST PAYMENT REMINDER – 5TH OF THE MONTH
 
-If the invoice remains unpaid on the 5th day of the month, MicroStay may send a second payment notice
-or reminder.
+If the invoice remains unpaid on the 5th day of the month following the billing period, MicroStay will
+send a first payment reminder to the Partner.
 
-The Partner must promptly:
+The reminder will state the amount due and request prompt payment.
 
-• Resolve the failed payment; or
-• Update the debit or credit card.
+The Partner must:
 
-34. FINAL PAYMENT REMINDER – 10TH OF THE
-MONTH
+• Pay the outstanding balance; or
+• Update the payment method if the prior attempt failed.
 
-If the invoice remains unpaid on the 10th day of the month, MicroStay may send a third and final payment
-reminder before additional account action.
+34. SECOND AND FINAL PAYMENT REMINDER – 25TH OF THE MONTH
 
-The notice may state that:
+If the invoice remains unpaid on the 25th day of the month following the billing period, MicroStay will
+send a second and final payment reminder.
 
-• The account is past due.
-• A late-payment charge will apply.
-• The property may become inactive if payment is not made by the 15th.
+The notice will state that:
 
-35. 10% LATE-PAYMENT CHARGE
+• The account balance is overdue.
+• The property will be automatically deactivated on the 26th if payment is not received.
+• Reactivation will require the original unpaid amount plus a 25% reinstatement charge.
 
-If the invoice remains unpaid after the 10th day of the month, MicroStay may assess a late-payment charge
-equal to:
+35. NO ADDITIONAL PERCENTAGE LATE-PAYMENT CHARGE BEFORE DEACTIVATION
 
-10% of the original unpaid invoice amount.
+MicroStay does not assess a separate percentage-based late-payment charge prior to the deactivation
+date described in Section 36.
 
-Example:
+The applicable reinstatement charge is described in Section 37 and applies only upon reactivation
+after deactivation.
 
-Original Invoice: $1,000
+36. ACCOUNT DEACTIVATION ON THE 26TH
 
-Late Charge: $100
-
-Amount Due: $1,100
-
-The parties acknowledge that delinquent accounts create additional billing, collection, payment-processing,
-administrative, customer-service, account-management, and operational costs.
-
-The late-payment charge is intended to provide a reasonable predetermined allocation of these costs and
-risks and is not intended as punishment.
-
-The charge applies only to the extent permitted by applicable law.
-
-36. ACCOUNT INACTIVATION AFTER THE 15TH
-
-If the Partner has not fully paid the required balance by the end of the 15th day of the month, MicroStay
-may immediately place the property into:
+If the Partner has not fully paid the required balance by the end of the 25th day of the month following
+the billing period, MicroStay will place the property into:
 
 INACTIVE – NON-PAYMENT
 
-status.
+status on the 26th day of that same month.
 
 An inactive property may:
 
@@ -827,38 +814,33 @@ An inactive property may:
 • Stop receiving new bookings.
 • Have listing availability disabled.
 • Have Vendor Portal functionality restricted.
-• Remain responsible for existing financial obligations.
+• Remain responsible for all existing financial obligations.
 
-Account inactivation does not cancel amounts already owed to MicroStay.
+Account deactivation does not cancel amounts already owed to MicroStay.
 
 37. 25% REINSTATEMENT CHARGE
 
-If a Partner account becomes inactive because of non-payment, reactivation may require payment of:
+If a Partner account is deactivated for non-payment, reactivation requires payment of:
 
-1. The original unpaid invoice; and
-2. A total late-payment/account-reinstatement charge equal to 25% of the original unpaid
-invoice amount.
+1. The full original unpaid commission invoice (12% of gross booking revenue for the period); and
+2. A reinstatement charge equal to 25% of the original unpaid invoice amount.
 
-The 25% charge includes and replaces the previously assessed 10% late-payment charge.
+The 25% reinstatement charge reflects the additional administrative, collection, account-suspension,
+reactivation, payment-processing, and operational costs caused by continued delinquency.
 
-The 10% and 25% charges are not cumulative.
+There is no separate cumulative late-payment charge — the 25% reinstatement charge is the only
+additional fee assessed upon reactivation.
 
 Example:
 
-Original unpaid invoice: $1,000
+Original unpaid commission: $1,000
 
-Total reinstatement charge: $250
+Reinstatement charge (25%): $250
 
-Total required for reactivation:
-$1,250
+Total required for reactivation: $1,250
 
-not $1,350.
-
-The reinstatement charge is intended to reasonably address additional collection, administration, account
-suspension, reactivation, payment-processing, operational, and related costs and risks resulting from
-continued delinquency.
-
-The charge applies only to the extent permitted by applicable law.
+The charge applies only to the extent permitted by applicable law, including California Civil Code
+Section 1671 (liquidated damages) and any other applicable California consumer protection statutes.
 
 38. REACTIVATION
 

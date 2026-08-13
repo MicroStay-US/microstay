@@ -48,7 +48,7 @@ CREATE TABLE IF NOT EXISTS vendor_agreements (
 );
 
 ALTER TABLE vendor_agreements ENABLE ROW LEVEL SECURITY;
-CREATE POLICY "Admins view vendor agreements" ON vendor_agreements FOR SELECT TO authenticated USING (auth.jwt() ->> 'email' = 'admin@microstay.us');
+CREATE POLICY "Admins view vendor agreements" ON vendor_agreements FOR SELECT TO authenticated USING (auth.jwt() ->> 'email' = 'adminmotel@gmail.com');
 CREATE POLICY "Service insert vendor agreements" ON vendor_agreements FOR ALL USING (true) WITH CHECK (true);
 
 -- Ensure vendors table also allows service role inserts during signup

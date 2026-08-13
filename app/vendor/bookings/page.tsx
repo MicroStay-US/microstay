@@ -98,10 +98,11 @@ export default function VendorBookingsPage() {
         action_taken_by: user?.id,
       }).eq('id', bookingId);
     } else if (actionType === 'owner_cancel') {
+      // No penalty_fee at cancel time (§18). Cancel actions don't incur a charge.
       await supabase.from('vd_bookings').update({
         status: actionType,
         owner_cancelled_at: new Date().toISOString(),
-        penalty_fee: Number((booking.gross_amount * 0.12).toFixed(2)),
+        penalty_fee: 0,
         cancel_reason: 'Cancelled from Bookings Table',
         action_taken_by: user?.id,
       }).eq('id', bookingId);

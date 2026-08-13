@@ -83,7 +83,7 @@ export default function PartnerPage() {
                     <li>Business name and license document</li>
                     <li>Motel details (name, address, location)</li>
                     <li>Point of contact information</li>
-                    <li>Minimum 12 high-quality motel photos</li>
+                    <li>Property photos (uploaded via your partner portal after approval)</li>
                     <li>Signed partnership agreement</li>
                   </ul>
                 </div>
@@ -145,20 +145,12 @@ export default function PartnerPage() {
           <CardContent className="space-y-2">
             <p className="flex items-start gap-2">
               <CheckCircle className="h-5 w-5 text-green-600 flex-shrink-0 mt-0.5" />
-              <span>All time windows must be minimum 2 hours (legal requirement)</span>
+              <span>Booking actions (check-in / no-show / cancel) must be updated before the end of each month</span>
             </p>
             <p className="flex items-start gap-2">
               <CheckCircle className="h-5 w-5 text-green-600 flex-shrink-0 mt-0.5" />
-              <span>Booking actions (check-in/no-show/cancel) must be updated before the end of the month</span>
+              <span>Monthly platform commission: 12% of gross booking revenue (billed on the 1st)</span>
             </p>
-            {/* <p className="flex items-start gap-2">
-              <CheckCircle className="h-5 w-5 text-green-600 flex-shrink-0 mt-0.5" />
-              <span>Late updates incur a 12% of booking value</span>
-            </p>
-            <p className="flex items-start gap-2">
-              <CheckCircle className="h-5 w-5 text-green-600 flex-shrink-0 mt-0.5" />
-              <span>Monthly platform fee: 12% of gross booking revenue</span>
-            </p> */}
           </CardContent>
         </Card>
 
