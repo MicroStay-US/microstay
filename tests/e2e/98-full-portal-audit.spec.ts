@@ -155,7 +155,7 @@ test('Audit vendor portal (authenticated)', async ({ page }) => {
   await page.fill('input[type="email"]', VENDOR_EMAIL);
   await page.fill('input[type="password"]', VENDOR_PW);
   await page.click('button[type="submit"], button:has-text("Sign In"), button:has-text("Login")');
-  await page.waitForURL(/\/vendor\/(dashboard|onboarding|pending|agreement)/, { timeout: 15000 }).catch(() => {});
+  await page.waitForURL(/\/vendor\/(dashboard|onboarding|pending|agreement)/, { timeout: 15000 }).catch(() => { });
   await page.waitForTimeout(2000);
 
   const vendorPages = [
@@ -201,22 +201,22 @@ test('Audit admin portal (authenticated)', async ({ page }) => {
 
   // All admin tabs — switch via the sidebar
   const adminTabs = [
-    { label: 'Command Center',  text: 'Command Center' },
-    { label: 'Live Bookings',   text: 'Live Bookings' },
-    { label: 'Vendors',         text: 'Vendors' },
-    { label: 'Approval Queue',  text: 'Approval Queue' },
-    { label: 'Guest Management',text: 'Guest Management' },
+    { label: 'Command Center', text: 'Command Center' },
+    { label: 'Live Bookings', text: 'Live Bookings' },
+    { label: 'Vendors', text: 'Vendors' },
+    { label: 'Approval Queue', text: 'Approval Queue' },
+    { label: 'Guest Management', text: 'Guest Management' },
     { label: 'Support Tickets', text: 'Support Tickets' },
-    { label: 'SLA Monitor',     text: 'SLA Monitor' },
-    { label: 'Fraud Alerts',    text: 'Fraud Alerts' },
-    { label: 'Revenue Ops',     text: 'Revenue Ops' },
-    { label: 'Payout Tracker',  text: 'Payout Tracker' },
-    { label: 'Map View',        text: 'Map View' },
+    { label: 'SLA Monitor', text: 'SLA Monitor' },
+    { label: 'Fraud Alerts', text: 'Fraud Alerts' },
+    { label: 'Revenue Ops', text: 'Revenue Ops' },
+    { label: 'Payout Tracker', text: 'Payout Tracker' },
+    { label: 'Map View', text: 'Map View' },
     { label: 'Motel Analytics', text: 'Motel Analytics' },
-    { label: 'Reports',         text: 'Reports' },
+    { label: 'Reports', text: 'Reports' },
     { label: 'AI Ops Insights', text: 'AI Ops Insights' },
-    { label: 'Announcements',   text: 'Announcements' },
-    { label: 'Settings',        text: 'Settings' },
+    { label: 'Announcements', text: 'Announcements' },
+    { label: 'Settings', text: 'Settings' },
   ];
 
   for (const tab of adminTabs) {

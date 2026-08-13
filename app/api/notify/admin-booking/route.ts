@@ -26,7 +26,7 @@ export async function POST(req: Request) {
     };
 
     const fromAddress = isDev ? 'MicroStay Admin <onboarding@resend.dev>' : 'MicroStay Admin <noreply@microstay.us>';
-    const toAddress = 'team@microstay.us';
+    const toAddress = process.env.ADMIN_EMAIL || 'team@microstay.us';
 
     const { data, error } = await resend.emails.send({
       from: fromAddress,

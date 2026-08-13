@@ -119,7 +119,9 @@ function BookingContent() {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
-          vendorEmail: propertyDetails.vendor?.email || propertyDetails.email,
+          vendorEmail: propertyDetails?.vendor?.email || propertyDetails?.email,
+          vendorId: propertyDetails?.vendor_id || propertyDetails?.vendor?.id,
+          propertyId: propertyDetails?.id,
           guestName,
           bookingRef,
           checkInTime: timeWindowStr,

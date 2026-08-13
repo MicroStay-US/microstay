@@ -46,13 +46,12 @@ export async function POST(req: Request) {
     };
 
     const fromAddress = isDev ? 'MicroStay Reservations <onboarding@resend.dev>' : 'MicroStay Reservations <noreply@microstay.us>';
-    // Temporarily routing to admin email as requested by user until domain is verified
-    const toAddress = 'team@microstay.us';
+    const toAddress = guestEmail.trim();
 
     const { data, error } = await resend.emails.send({
       from: fromAddress,
       to: [toAddress],
-      subject: `[GUEST] Booking Confirmed – ${safe.bookingRef} · ${safe.propertyName} (Intended for: ${escapeHtml(guestEmail)})`,
+      subject: `Booking Confirmed – ${safe.bookingRef} · ${safe.propertyName}`,
       html: `
 <!DOCTYPE html>
 <html lang="en">
