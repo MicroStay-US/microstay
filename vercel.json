@@ -2,33 +2,27 @@
   "crons": [
     {
       "path": "/api/cron/commissions",
-      "schedule": "0 0 * * *",
-      "description": "Daily: mark bookings no-show when 48h after slot end has passed"
+      "schedule": "0 0 * * *"
     },
     {
       "path": "/api/cron/auto-complete",
-      "schedule": "0 6 1 * *",
-      "description": "1st of month: auto-complete pending bookings from previous month (§15)"
+      "schedule": "0 6 1 * *"
     },
     {
       "path": "/api/cron/bill-month",
-      "schedule": "0 7 1 * *",
-      "description": "1st of month: generate commission invoices for all active vendors"
+      "schedule": "0 7 1 * *"
     },
     {
       "path": "/api/cron/remind-payment?reminder=first",
-      "schedule": "0 9 5 * *",
-      "description": "5th of month: first payment reminder to vendors with unpaid invoices"
+      "schedule": "0 9 5 * *"
     },
     {
       "path": "/api/cron/remind-payment?reminder=second",
-      "schedule": "0 9 25 * *",
-      "description": "25th of month: second (final) payment reminder with deactivation warning"
+      "schedule": "0 9 25 * *"
     },
     {
       "path": "/api/cron/deactivate-overdue",
-      "schedule": "0 0 26 * *",
-      "description": "26th of month: deactivate vendors with unpaid invoices + apply 25% reinstatement penalty"
+      "schedule": "0 0 26 * *"
     }
   ]
 }
