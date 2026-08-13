@@ -132,7 +132,7 @@ export default function Navbar() {
               </>
             ) : (
               <Link href="/login" onClick={() => setMobileMenuOpen(false)}>
-                <Button className="w-full bg-gradient-to-r from-ms-orange to-ms-orange hover:from-ms-orange hover:to-ms-orange text-white">SIgn-in</Button>
+                <Button className="w-full bg-gradient-to-r from-ms-orange to-ms-orange hover:from-ms-orange hover:to-ms-orange text-white">Sign-in</Button>
               </Link>
             )}
           </div>
