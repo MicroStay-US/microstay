@@ -1,5 +1,5 @@
 import { NextResponse } from 'next/server';
-import { Resend } from 'resend';
+import { sendEmail } from '@/lib/send-email';
 import { createClient } from '@supabase/supabase-js';
 
 function escapeHtml(str: string): string {
@@ -7,11 +7,6 @@ function escapeHtml(str: string): string {
 }
 
 export async function POST(req: Request) {
-
-  const resendKey = process.env.RESEND_API_KEY || process.env.Resend_API_KEY;
-  if (!resendKey) return NextResponse.json({ success: true, skipped: true });
-  
-  const resend = new Resend(resendKey);
   const isDev = process.env.NODE_ENV !== 'production';
 
   try {
@@ -56,7 +51,7 @@ export async function POST(req: Request) {
     const fromAddress = isDev ? 'MicroStay Alerts <onboarding@resend.dev>' : 'MicroStay Alerts <noreply@microstay.us>';
     const toAddress = targetVendorEmail.trim();
 
-    const { data, error } = await resend.emails.send({
+    const result = await sendEmail({
       from: fromAddress,
       to: [toAddress],
       subject: `New Booking Request: ${safe.bookingRef}`,
@@ -77,12 +72,12 @@ export async function POST(req: Request) {
       `,
     });
 
-    if (error) {
-      console.warn('Resend Error:', error.message);
-      return NextResponse.json({ success: false, warning: 'Failed to send booking notification' });
+    if (!result.success) {
+      console.warn('Booking Notification Email Error:', result.error);
+      return NextResponse.json({ success: false, warning: 'Failed to send booking notification', error: result.error });
     }
 
-    return NextResponse.json({ success: true, data });
+    return NextResponse.json({ success: true, provider: result.provider });
 
   } catch (err: any) {
     console.error('Notification API Error:', err);

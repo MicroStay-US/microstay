@@ -1,15 +1,11 @@
 import { NextResponse } from 'next/server';
-import { Resend } from 'resend';
+import { sendEmail } from '@/lib/send-email';
 
 function escapeHtml(str: string): string {
   return String(str).replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;').replace(/'/g, '&#39;');
 }
 
 export async function POST(req: Request) {
-  const resendKey = process.env.RESEND_API_KEY || process.env.Resend_API_KEY;
-  if (!resendKey) return NextResponse.json({ success: true, skipped: true });
-  
-  const resend = new Resend(resendKey);
   const isDev = process.env.NODE_ENV !== 'production';
   
   try {
@@ -28,7 +24,7 @@ export async function POST(req: Request) {
     const fromAddress = isDev ? 'MicroStay Admin <onboarding@resend.dev>' : 'MicroStay Admin <noreply@microstay.us>';
     const toAddress = process.env.ADMIN_EMAIL || 'team@microstay.us';
 
-    const { data, error } = await resend.emails.send({
+    const result = await sendEmail({
       from: fromAddress,
       to: [toAddress],
       subject: `[ADMIN] New Booking Alert: ${safe.bookingRef}`,
@@ -49,12 +45,12 @@ export async function POST(req: Request) {
       `,
     });
 
-    if (error) {
-      console.warn('Resend Error:', error.message);
-      return NextResponse.json({ success: false, warning: 'Failed to send admin notification' });
+    if (!result.success) {
+      console.warn('Admin Notification Email Error:', result.error);
+      return NextResponse.json({ success: false, warning: 'Failed to send admin notification', error: result.error });
     }
 
-    return NextResponse.json({ success: true, data });
+    return NextResponse.json({ success: true, provider: result.provider });
 
   } catch (err: any) {
     console.error('Notification API Error:', err);
