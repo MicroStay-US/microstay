@@ -83,7 +83,7 @@ export default function PartnerPage() {
                     <li>Business name and license document</li>
                     <li>Motel details (name, address, location)</li>
                     <li>Point of contact information</li>
-                    <li>Minimum 6 high-quality motel photos</li>
+                    <li>Minimum 12 high-quality motel photos</li>
                     <li>Signed partnership agreement</li>
                   </ul>
                 </div>
@@ -129,7 +129,7 @@ export default function PartnerPage() {
                 <div>
                   <h3 className="font-semibold mb-1">Start Accepting Bookings</h3>
                   <p className="text-gray-600">
-                    Your motel will be live on MicroStay.us. Customers can instantly book available
+                    Your motel will be live on microstay.us. Customers can instantly book available
                     time slots, and you'll receive notifications for each reservation.
                   </p>
                 </div>
@@ -149,16 +149,16 @@ export default function PartnerPage() {
             </p>
             <p className="flex items-start gap-2">
               <CheckCircle className="h-5 w-5 text-green-600 flex-shrink-0 mt-0.5" />
-              <span>Booking actions (check-in/no-show/cancel) must be updated within 48 hours</span>
+              <span>Booking actions (check-in/no-show/cancel) must be updated before the end of the month</span>
             </p>
-            <p className="flex items-start gap-2">
+            {/* <p className="flex items-start gap-2">
               <CheckCircle className="h-5 w-5 text-green-600 flex-shrink-0 mt-0.5" />
               <span>Late updates incur a 12% of booking value</span>
             </p>
             <p className="flex items-start gap-2">
               <CheckCircle className="h-5 w-5 text-green-600 flex-shrink-0 mt-0.5" />
               <span>Monthly platform fee: 12% of gross booking revenue</span>
-            </p>
+            </p> */}
           </CardContent>
         </Card>
 

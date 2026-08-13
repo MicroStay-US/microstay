@@ -205,7 +205,7 @@ export default function VendorLoginPage() {
   return (
      <>
       <Navbar />
-    <div className="min-h-screen flex flex-col items-center justify-center py-12 px-4 bg-gradient-to-br from-ms-orange via-white to-ms-teal dark:bg-gradient-to-br dark:from-ms-orange dark:to-ms-teal">
+    <div className="min-h-screen flex flex-col items-center justify-center py-12 px-4 bg-orange-300/40 dark:bg-gradient-to-br dark:from-ms-orange dark:to-ms-teal">
       
       <Card className="w-full max-w-md border-ms-orange-border/30 shadow-2xl bg-white/95 backdrop-blur-sm dark:bg-black">
         <CardHeader className="space-y-1 text-center">
@@ -245,7 +245,7 @@ export default function VendorLoginPage() {
                     value={digit === ' ' ? '' : digit}
                     onChange={e => handleDigitChange(i, e.target.value)}
                     onKeyDown={e => handleDigitKeyDown(i, e)}
-                    className="w-12 h-14 text-center text-xl font-bold border-2 rounded-xl focus:outline-none focus:border-ms-orange focus:ring-2 focus:ring-ms-orange/20 transition-colors bg-white dark:bg-gray-800 dark:text-white"
+                    className="w-12 h-14 text-center text-xl font-bold border-2 rounded-xl focus:outline-none focus:border-ms-orange focus:ring-2 focus:ring-ms-orange/20 transition-colors bg-orange-300/60 dark:bg-gray-800 dark:text-white"
                     style={{ borderColor: digit && digit !== ' ' ? '#FF5E1A' : '' }}
                   />
                 ))}
@@ -254,7 +254,7 @@ export default function VendorLoginPage() {
               <Button
                 type="submit"
                 disabled={otpLoading || otpCode.replace(/\s/g, '').length !== 6}
-                className="w-full bg-gradient-to-r from-ms-orange to-ms-orange-hover hover:from-ms-orange-hover hover:to-ms-orange h-12 font-bold text-lg text-white shadow-lg"
+                className="w-full bg-gradient-to-r from-ms-orange to-ms-orange-hover hover:bg-gradient-to-b hover:from-ms-orange-hover hover:to-ms-orange h-12 font-bold text-lg text-white shadow-lg"
               >
                 {otpLoading
                   ? <><Loader2 className="h-5 w-5 animate-spin mr-2" /> Verifying…</>
@@ -269,7 +269,7 @@ export default function VendorLoginPage() {
                   setOtpCode('');
                   setOtpError('');
                 }}
-                className="w-full flex items-center justify-center gap-1.5 text-sm text-ms-text-muted hover:text-ms-orange transition-colors"
+                className="w-full flex items-center justify-center gap-1.5 text-sm text-ms-text-muted hover:text-ms-orange transition-colors font-bold"
               >
                 <ChevronLeft className="h-4 w-4" />
                 Back to login
@@ -292,6 +292,7 @@ export default function VendorLoginPage() {
                 <Label htmlFor="forgot-email">Email</Label>
                 <Input
                   id="forgot-email"
+                  className='bg-orange-300/40 dark:bg-transparent'
                   type="email"
                   placeholder="manager@motel.com"
                   value={forgotEmail}
