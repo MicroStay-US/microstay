@@ -1395,7 +1395,7 @@ function VendorSignupStepper() {
           </div>
 
           <p className="text-center text-xs text-gray-400 mt-6">
-            MICROSTAY HOLDINGS LLC d/b/a MicroStay.us {' '}
+            MICROSTAY HOLDINGS LLC{' '}
             <a href="mailto:support@microstay.us" className="hover:text-ms-orange">
               support@microstay.us
             </a>
