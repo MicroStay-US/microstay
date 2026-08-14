@@ -228,7 +228,7 @@ ${fullName}`;
 
                   <p className="mt-2 dark:text-slate-400">
                     All of the Business, Motel related support will be provided at 
-                    <span className="text-ms-orange"> support@microstay.us</span>
+                    <span className="text-ms-orange"> support@microstay.us</span> within 48 hours of response time.
                   </p>
 
                 </div>

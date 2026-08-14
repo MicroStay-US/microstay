@@ -54,7 +54,7 @@ export default function Navbar() {
             </div>
           </Link>
 
-          <div className="hidden md:flex items-center space-x-6">
+          <div className="hidden lg:flex items-center space-x-6">
             <ThemeToggle />
             <Link href="/search"  className="text-gray-700 hover:text-ms-orange transition-all font-medium hover:scale-105 dark:text-ms-orange-light dark:hover:text-ms-orange active:scale-95">
               Book Now
@@ -83,7 +83,7 @@ export default function Navbar() {
           </div>
 
           <button
-            className="md:hidden text-ms-orange hover:scale-110 transition-transform"
+            className="lg:hidden text-ms-orange hover:scale-110 transition-transform"
             onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
           >
             {mobileMenuOpen ? (
@@ -95,7 +95,7 @@ export default function Navbar() {
         </div>
 
         {mobileMenuOpen && (
-          <div className="flex flex-col justify-center items-center md:hidden py-4 space-y-3">
+          <div className="flex flex-col justify-center items-center lg:hidden py-4 space-y-3">
           <ThemeToggle />
             <Link
               href="/search"
