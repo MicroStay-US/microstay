@@ -450,7 +450,8 @@ console.log("Mapped Slots:", mappedSlots);
                   </li>
                   <li className="flex gap-3">
                     <span className="w-1.5 h-1.5 rounded-full bg-ms-orange mt-1.5 flex-shrink-0"></span>
-                    Contact the property directly at <strong>{property.phone}</strong> if you anticipate being late for your check-in window.
+                    <p>Contact the property directly at <strong>{property.phone}</strong> if you anticipate being late for your check-in window.</p>
+                    
                   </li>
                 </ul>
               </div>

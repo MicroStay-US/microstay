@@ -387,7 +387,7 @@ export default function VendorOnboardingPage() {
                 <div className="bg-gray-50  dark:bg-slate-700 border border-gray-200 rounded-xl p-5 h-48 overflow-y-auto text-xs text-gray-600 leading-relaxed space-y-3">
                   <p className="font-bold text-gray-800 dark:text-ms-orange">MicroStay Vendor Partnership Agreement</p>
                   <p>By signing this agreement, you agree to list your property on the MicroStay platform and comply with all platform policies, including but not limited to: maintaining accurate availability, honoring confirmed bookings, and maintaining property standards.</p>
-                  <p>MicroStay charges a platform fee of <strong>10%</strong> of gross amount. Fees are deducted before payout to the vendor.</p>
+                  <p>MicroStay charges a platform fee of <strong>12%</strong> of gross amount. Fees are deducted from Vendor (not directly from the customers)</p>
                   <p>Vendors must maintain a cancellation rate below 30%. Accounts exceeding this threshold may be flagged, suspended, or removed from the platform.</p>
                   <p>MicroStay reserves the right to suspend accounts that violate platform policies, receive excessive negative reviews, or engage in fraudulent activity.</p>
                   <p>This agreement is effective from the date of signing and remains in force until terminated by either party with 30 days written notice.</p>
