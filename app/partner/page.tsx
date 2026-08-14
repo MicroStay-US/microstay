@@ -32,7 +32,7 @@ export default function PartnerPage() {
             <CardContent>
               <p className="text-gray-600">
                 Fill empty rooms with hourly bookings. Simple transparent pricing with
-                12% per booking.
+                12% of the gross amount.
               </p>
             </CardContent>
           </Card>

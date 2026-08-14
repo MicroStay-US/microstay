@@ -23,7 +23,7 @@ export default function PrivacyPolicyPage() {
       <div className="max-w-3xl mx-auto px-4 py-12 text-gray-700 dark:text-gray-300 space-y-6 [&>h2]:text-2xl [&>h2]:font-bold [&>h2]:text-ms-text dark:[&>h2]:text-white [&>h2]:mt-10 [&>h2]:mb-4 [&>h3]:text-xl [&>h3]:font-semibold [&>h3]:text-ms-text dark:[&>h3]:text-gray-100 [&>h3]:mt-6 [&>h3]:mb-3 [&>p]:leading-relaxed [&>ul]:list-disc [&>ul]:pl-6 [&>ul]:space-y-2 [&_a]:text-ms-orange hover:[&_a]:text-ms-orange-hover [&_strong]:font-semibold [&_strong]:text-gray-900 dark:[&_strong]:text-white">
 
         <p className="text-gray-700 dark:text-gray-300 text-lg leading-relaxed mb-8">
-          MICROSTAY HOLDINGS LLC d/b/a MicroStay.us ("MicroStay," "we," "us," or "our") is committed to protecting your privacy.
+          MICROSTAY HOLDINGS LLC ("MicroStay," "we," "us," or "our") is committed to protecting your privacy.
           This Privacy Policy explains how we collect, use, disclose, and safeguard your information
           when you use our website at <strong>microstay.us</strong> and our related services.
         </p>
@@ -32,7 +32,7 @@ export default function PrivacyPolicyPage() {
         <h3>Information You Provide</h3>
         <ul>
           <li><strong>Account registration:</strong> name, email address, phone number, and password.</li>
-          <li><strong>Bookings:</strong> guest name, contact information, check-in/check-out time, booking reference, selected property, selected room/time window, and booking status. MicroStay does not collect or store guest card payment information for pay-at-property bookings</li>
+          <li><strong>Bookings:</strong> guest name, contact information, check-in/check-out time, booking reference, selected property, selected room/time window, and booking status. MicroStay does not collect or store guest card payment information, the required payment for your booking will be done to the motel vendor at front-desk</li>
           <li><strong>Vendor applications:</strong> business name, address, owner details, tax information, and supporting documents.</li>
           <li><strong>Communications:</strong> messages you send through our platform or to our support team.</li>
         </ul>
@@ -47,7 +47,7 @@ export default function PrivacyPolicyPage() {
         <h2>2. How We Use Your Information</h2>
         <p>We use your information to:</p>
         <ul>
-          <li><strong>For Customers:</strong> Process and confirm booking information (customers pay the motel directly).</li>
+          <li><strong>For Customers:</strong> Process and confirm booking information (customers pay the motel directly at front-desk).</li>
           <li><strong>For Vendors:</strong> Process platform commission payments through Stripe.</li>
           <li>Create and manage your account.</li>
           <li>Communicate booking confirmations, receipts, and support responses.</li>
@@ -121,7 +121,7 @@ export default function PrivacyPolicyPage() {
         <h2>10. Contact Us</h2>
         <p>
           Questions about this policy? Reach us at:<br />
-          <strong>MICROSTAY HOLDINGS LLC d/b/a MicroStay.us</strong><br />
+          <strong>MICROSTAY HOLDINGS LLC </strong><br />
           {/* Email: <a href="mailto:privacy@microstay.us">privacy@microstay.us</a><br /> */}
           Support: <a href="mailto:support@microstay.us">support@microstay.us</a>
         </p>

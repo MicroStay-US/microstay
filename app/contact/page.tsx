@@ -117,18 +117,13 @@ export default function ContactPage() {
 
               <div className="mt-8 space-y-6">
                 <div className="rounded-2xl border  dark:border-slate-800 dark:bg-slate-950 p-5">
-                  <h4 className="font-semibold dark:text-white">Email Support</h4>
+                  <h4 className="font-semibold dark:text-white">Email & Business Support</h4>
                   <p className="mt-2 dark:text-slate-400 text-ms-orange">
                     support@microstay.us
                   </p>
                 </div>
 
-                <div className="rounded-2xl border dark:border-slate-800 dark:bg-slate-950 p-5">
-                  <h4 className="font-semibold dark:text-white">Business Inquiries</h4>
-                  <p className="mt-2 dark:text-slate-400 text-ms-orange">
-                    partnerships@microstay.us
-                  </p>
-                </div>
+                
 
                 <div className="rounded-2xl border dark:border-slate-800 dark:bg-slate-950 p-5">
                   <h4 className="font-semibold dark:text-white  ">Customer Care</h4>
@@ -212,7 +207,7 @@ export default function ContactPage() {
               </h3>
 
               <p className="mt-3 text-sm text-slate-400">
-                Contact our partnerships team to begin the onboarding process.
+                Contact our support team to begin the onboarding process.
               </p>
             </div>
           </div>

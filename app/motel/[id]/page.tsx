@@ -216,7 +216,7 @@ console.log("Mapped Slots:", mappedSlots);
 
   if (loading) {
     return (
-      <div className="min-h-screen bg-gray-50 dark:bg-slate-700 flex items-center justify-center">
+      <div className="min-h-screen bg-orange-300/40 dark:bg-slate-700 flex items-center justify-center">
         <div className="text-slate-900 font-bold text-xl dark:text-white animate-pulse flex items-center gap-3">
           <div className="w-6 h-6 border-4 border-ms-orange-border border-t-transparent rounded-full animate-spin"></div>
           Loading Property Details...
@@ -227,9 +227,9 @@ console.log("Mapped Slots:", mappedSlots);
 
   if (!property) {
     return (
-      <div className="min-h-screen bg-gray-50 py-12 px-4 shadow-inner">
+      <div className="min-h-screen bg-orange-300/40 py-12 px-4 shadow-inner">
         <div className="max-w-7xl mx-auto text-center">
-          <div className="w-24 h-24 bg-gray-200 rounded-full flex items-center justify-center mx-auto mb-6">
+          <div className="w-24 h-24 bg-orange-300/50 rounded-full flex items-center justify-center mx-auto mb-6">
             <Info className="w-12 h-12 text-gray-400" />
           </div>
           <p className="text-2xl font-black mb-6 text-gray-900">Property not found</p>
@@ -250,10 +250,10 @@ console.log("Mapped Slots:", mappedSlots);
   }, {} as Record<string, { slot: VDSlot, available: boolean }[]>);
 
   return (
-    <div className="min-h-screen bg-gray-50 dark:bg-black/50 font-sans pb-24">
+    <div className="min-h-screen bg-orange-300/40 dark:bg-black/50 font-sans pb-24">
       {/* 1. Breadcrumbs */}
       <div className="max-w-7xl mx-auto px-4 pt-6 pb-2 text-sm font-semibold text-gray-500 flex items-center gap-2">
-        <span className="cursor-pointer hover:text-ms-orange transition-colors" onClick={() => router.push('/')}>Home</span>
+        <span className="cursor-pointer hover:text-ms-orange transition-colors" onClick={() => router.push('/search')}>Home</span>
         <ChevronRight className="w-4 h-4 text-gray-400" />
         <span className="cursor-pointer hover:text-ms-orange transition-colors" onClick={() => router.push(`/search?city=${property.city}`)}>{property.city} Hotels</span>
         <ChevronRight className="w-4 h-4 text-gray-400" />
@@ -288,7 +288,7 @@ console.log("Mapped Slots:", mappedSlots);
         </div>
 
         {/* 3. Sticky Tab Navigation */}
-        <div className="sticky top-0 z-30 bg-white shadow-sm border-b border-gray-200 mb-8 rounded-b-xl px-4 flex gap-8 overflow-x-auto scrollbar-hide">
+        <div className="sticky top-0 z-30 bg-orange-400/50 shadow-sm border-b border-gray-200 mb-8 rounded-xl px-4 flex gap-8 overflow-x-auto justify-evenly scrollbar-hide">
           {['Basic Info', 'Facilities', 'Room Options', 'Policies'].map((tab) => (
             <div 
               key={tab} 
@@ -363,14 +363,14 @@ console.log("Mapped Slots:", mappedSlots);
               
               <div className="space-y-6">
                 {Object.keys(groupedRooms).length === 0 ? (
-                  <Card className="border-gray-200 shadow-sm bg-white dark:bg-slate-700 dark:border-transparent">
-                    <CardContent className="p-12 text-center text-gray-500 dark:text-red-600 font-medium">
+                  <Card className="border-gray-200 shadow-sm bg-orange-300/40 dark:bg-transparent dark:border-transparent">
+                    <CardContent className="p-12 text-center text-gray-500 dark:text-red-600 animate-pulse font-medium">
                       No window inventory available for the selected date. Please try another day.
                     </CardContent>
                   </Card>
                 ) : (
                   Object.entries(groupedRooms).map(([roomName, roomSlots]) => (
-                    <Card key={roomName} className="border border-gray-200 shadow-sm overflow-hidden bg-white hover:border-ms-orange-border transition-colors">
+                    <Card key={roomName} className="border border-gray-200 shadow-sm overflow-hidden bg-orange-400/40 hover:border-ms-orange-border transition-colors">
                       {/* Room Header Area */}
                       <div className="bg-gray-50/50 dark:bg-black/60 dark:border-transparent p-5 border-b border-gray-100 flex items-start justify-between">
                         <div>

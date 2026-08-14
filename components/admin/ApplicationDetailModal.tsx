@@ -55,9 +55,9 @@ export default function ApplicationDetailModal({
   const agreement = app.vendor_agreements?.[0];
 
   const statusColor =
-    app.status === 'pending'
+    app.status === 'pending' || app.status === 'pending_review'
       ? 'secondary'
-      : app.status === 'approved'
+      : app.status === 'approved' || app.status === 'active'
       ? 'default'
       : 'destructive';
 

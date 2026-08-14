@@ -174,7 +174,7 @@ export function AIInsightsTab() {
     ]);
 
     const risks: VendorRisk[] = (vendors || [])
-      .filter((v: any) => v.status === 'approved')
+      .filter((v: any) => v.status === 'approved' || v.status === 'active')
       .map((v: any) => {
         const vBookings = (bookings || []).filter((b: any) => b.vendor_id === v.id);
         const vProperties = (properties || []).filter((p: any) => p.vendor_id === v.id);

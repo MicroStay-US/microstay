@@ -56,7 +56,7 @@ export function PropertyApprovalTab() {
     const { data, error: e } = await supabase
       .from('vendors')
       .select('id, auth_user_id, business_name, owner_name, email, status, created_at, properties(id, name, address, city, state, status, photos)')
-      .eq('status', 'pending')
+      .or('status.eq.pending,status.eq.pending_review')
       .order('created_at', { ascending: false });
     if (e) setError(e.message);
     else setVendors((data as VendorWithProperty[]) ?? []);
@@ -65,14 +65,14 @@ export function PropertyApprovalTab() {
 
   useEffect(() => { load(); }, [load]);
 
-  const updateVendorStatus = async (vendorId: string, status: 'approved' | 'rejected') => {
+  const updateVendorStatus = async (vendorId: string, status: 'active' | 'rejected') => {
     const key = `${vendorId}-${status}`;
     setActionLoading(prev => ({ ...prev, [key]: true }));
     setError('');
     const { error: e } = await supabase.from('vendors').update({ status }).eq('id', vendorId);
     if (e) { setError(e.message); }
     else {
-      setSuccess(`Vendor ${status === 'approved' ? 'approved' : 'rejected'} successfully.`);
+      setSuccess(`Vendor ${status === 'active' ? 'approved' : 'rejected'} successfully.`);
       setTimeout(() => setSuccess(''), 4000);
       await load();
     }
@@ -154,7 +154,7 @@ export function PropertyApprovalTab() {
             const prop = vendor.properties?.[0];
             const photos: string[] = prop?.photos || [];
             const previewPhotos = photos.slice(0, 3);
-            const approveKey = `${vendor.id}-approved`;
+            const approveKey = `${vendor.id}-active`;
             const rejectKey = `${vendor.id}-rejected`;
 
             return (
@@ -234,7 +234,7 @@ export function PropertyApprovalTab() {
                     <Button
                       className="flex-1 bg-emerald-600 hover:bg-emerald-700 text-white font-bold shadow-sm gap-2"
                       disabled={actionLoading[approveKey] || actionLoading[rejectKey]}
-                      onClick={() => updateVendorStatus(vendor.id, 'approved')}
+                      onClick={() => updateVendorStatus(vendor.id, 'active')}
                     >
                       {actionLoading[approveKey]
                         ? <RefreshCw className="w-4 h-4 animate-spin" />

@@ -458,7 +458,7 @@ console.log("Count =", data?.length);
                 <SearchIcon className="w-5 h-5 mr-2" /> Search
               </Button>
               {/* Mobile filter burger menu button */}
-              <Button type="button" variant="ghost" className="md:hidden gap-2 h-10  mt-3 w-full flex items-center justify-center  bg-orange-400/40  text-gray-700 ml-2" onClick={() => setFilterMenuOpen(true)}>
+              <Button type="button" variant="ghost" className="md:hidden gap-2 h-10  mt-3 w-full flex items-center justify-center    text-white tracking-widest ml-2" onClick={() => setFilterMenuOpen(true)}>
                 <Filter className="w-5 h-5" /> <p className='font-black '>Filter</p>
               </Button>
           </form>

@@ -166,7 +166,7 @@ export function OverviewTab() {
     setKpis([
       { label: 'Total Revenue', value: revenue >= 1000 ? `${(revenue / 1000).toFixed(1)}K` : String(Math.round(revenue)), change: revChange, icon: DollarSign, color: 'text-emerald-500', bg: 'bg-emerald-500/10', prefix: '$' },
       { label: 'Total Bookings', value: String(total), change: bookChange, icon: Calendar, color: 'text-blue-500', bg: 'bg-blue-500/10' },
-      { label: 'Active Partners', value: String((vendors || []).filter((v: any) => v.status === 'approved').length), change: 5, icon: Users, color: 'text-violet-500', bg: 'bg-violet-500/10' },
+      { label: 'Active Partners', value: String((vendors || []).filter((v: any) => v.status === 'approved' || v.status === 'active').length), change: 5, icon: Users, color: 'text-violet-500', bg: 'bg-violet-500/10' },
       { label: 'Live Properties', value: String((properties || []).length), change: 8, icon: Building2, color: 'text-ms-orange', bg: 'bg-ms-orange-light' },
       { label: 'Avg Rating', value: avgRating, change: 2, icon: Star, color: 'text-amber-500', bg: 'bg-amber-500/10', suffix: '★' },
     ]);

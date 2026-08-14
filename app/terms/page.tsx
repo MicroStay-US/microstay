@@ -92,7 +92,7 @@ export default function TermsOfServicePage() {
         <h2>7. Intellectual Property</h2>
         <p>
           The MicroStay name, logo, and all platform content (excluding user-generated content) are owned
-          by MICROSTAY HOLDINGS LLC d/b/a MicroStay.us and protected by U.S. and international copyright and trademark laws. You may
+          by MICROSTAY HOLDINGS LLC and protected by U.S. and international copyright and trademark laws. You may
           not reproduce, distribute, or create derivative works without our prior written consent.
         </p>
 
@@ -138,7 +138,7 @@ export default function TermsOfServicePage() {
         <h2>13. Contact</h2>
         <p>
           Questions about these Terms?<br />
-          <strong>MICROSTAY HOLDINGS LLC d/b/a MicroStay.us</strong><br />
+          <strong>MICROSTAY HOLDINGS LLC</strong><br />
           {/* Email: <a href="mailto:legal@microstay.us">legal@microstay.us</a><br /> */}
           Support: <a href="mailto:support@microstay.us">support@microstay.us</a>
         </p>

@@ -422,7 +422,7 @@ export function CommandCenterTab() {
 
   async function loadVendors() {
     const { data: vendors } = await supabase.from('vendors').select('id, status');
-    const active = (vendors || []).filter((v: any) => v.status === 'approved').length;
+    const active = (vendors || []).filter((v: any) => v.status === 'approved' || v.status === 'active').length;
     setStats(prev => ({ ...prev, activeVendors: active }));
 
     // Compute vendor risk from recent bookings

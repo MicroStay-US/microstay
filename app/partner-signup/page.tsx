@@ -585,7 +585,7 @@ function PropertyInfoForm({
             <TextInput required value={form.legal_business_name} onChange={set('legal_business_name')} placeholder="ABC Motel LLC" className="w-full  bg-gradient-to-r from-teal-200/40 via-black/10 to-purple-200 border-none dark:bg-gradient-to-r dark:from-teal-800/40 dark:to-transparent/40" />
           </Field>
         </div>
-        <Field required label="DBA / Trade Name">
+        <Field required label="DBA / Trade / Motel Name">
           <TextInput required value={form.dba_name} onChange={set('dba_name')} placeholder="The Grand Motel" className="w-full  bg-gradient-to-r from-teal-200/40 via-black/10 to-purple-200 border-none dark:bg-gradient-to-r dark:from-teal-800/40 dark:to-transparent/40 " />
         </Field>
         <Field required label="Contact Name" >

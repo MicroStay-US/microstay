@@ -81,7 +81,7 @@ export default function Footer() {
         </div>
 
         <div className="border-t border-black/20 pt-6 flex flex-col md:flex-row justify-between items-center gap-3">
-          <p className="text-sm text-black/60 font-medium">© {new Date().getFullYear()} MICROSTAY HOLDINGS LLC d/b/a MicroStay.us. All rights reserved.</p>
+          <p className="text-sm text-black/60 font-medium">© {new Date().getFullYear()} MICROSTAY HOLDINGS LLC. All rights reserved.</p>
           <Link href="/admin/login" className="text-xs text-black/60 hover:text-white font-medium transition-colors border border-black/30 hover:border-white hover:bg-slate-600 px-3 py-1 rounded-full dark:bg-transparent dark:text-white/70 dark:border-white/50 dark:hover:bg-black dark:hover:text-ms-orange">🔐 Admin Portal</Link>
         </div>
       </div>
