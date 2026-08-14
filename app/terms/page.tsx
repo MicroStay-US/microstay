@@ -54,7 +54,7 @@ export default function TermsOfServicePage() {
           <li>All bookings are subject to property availability and vendor confirmation.</li>
           <li>Prices are displayed in US Dollars.</li>
           <li><strong>Customer Payments:</strong> Customers do not pay MicroStay a booking, service, or platform fee. Customers pay the property directly at check-in. MicroStay does not collect guest payments, does not hold guest funds, and does not process refunds.</li>
-          <li><strong>Vendor Commission:</strong> Vendors pay a 12% commission to MicroStay for each completed booking. Vendors are responsible for collecting guest payment, honoring confirmed bookings, and applying their own cancellation/no-show policies.</li>
+          <li> Vendors are responsible for collecting guest payment, honoring confirmed bookings, and applying their own cancellation/no-show policies.</li>
           <li>
             <strong>Cancellations:</strong> Cancellation and refund policies vary by property. The
             policy applicable to your booking is displayed before checkout. MicroStay is not responsible
@@ -84,7 +84,6 @@ export default function TermsOfServicePage() {
         <ul>
           <li>Vendors must ensure their listings are accurate, complete, and up to date.</li>
           <li>Vendors must honor confirmed bookings.</li>
-          <li>MicroStay charges a 12% commission per completed booking as detailed in the Partner Agreement.</li>
           <li>Vendors may not circumvent the platform to arrange direct payments with guests for stays
               found through MicroStay.</li>
         </ul>

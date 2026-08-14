@@ -42,22 +42,19 @@ export async function POST(req: Request) {
     const supabase = createClient(supabaseUrl, serviceKey);
 
     // ── Determine which table owns this slot ──────────────────────────────────
-    const { data: tsData } = await supabase
-      .from('vd_time_slots')
-      .select('id, max_rooms, price_per_room')
+    // First, check if the slot exists in vd_date_windows.
+    // Date windows can be mirrored into vd_time_slots on first booking, so we cannot
+    // rely on slot absence from vd_time_slots to detect date-window bookings.
+    const { data: dwData } = await supabase
+      .from('vd_date_windows')
+      .select('id, max_rooms, duration_hours, price_per_room, start_hour, end_hour')
       .eq('id', slotId)
       .maybeSingle();
 
-    const isDateWindow = !tsData;
+    const isDateWindow = !!dwData;
 
     if (isDateWindow) {
       // ── Date-window path: handle entirely in the API route ─────────────────
-      const { data: dwData } = await supabase
-        .from('vd_date_windows')
-        .select('id, max_rooms, duration_hours, price_per_room, start_hour, end_hour')
-        .eq('id', slotId)
-        .maybeSingle();
-
       if (!dwData) {
         return NextResponse.json({ error: 'Slot not found' }, { status: 404 });
       }
@@ -109,7 +106,8 @@ export async function POST(req: Request) {
           is_active: false,
           room_type: 'Standard',
           bed_type: '1 bed',
-          smoking_type: 'non-smoking'
+          smoking_type: 'non-smoking',
+          rooms_available: Math.max(dwData.max_rooms || 1, 1)
         }, { onConflict: 'id' });
       
       if (syncErr) {
@@ -157,7 +155,17 @@ export async function POST(req: Request) {
     }
 
     // ── Default slot path: use the atomic Postgres RPC ────────────────────────
-    // Re-fetch authoritative price from DB — never trust client-supplied grossAmount
+    // Re-fetch slot details and authoritative price from DB — never trust client-supplied grossAmount
+    const { data: tsData } = await supabase
+      .from('vd_time_slots')
+      .select('id, max_rooms, price_per_room')
+      .eq('id', slotId)
+      .maybeSingle();
+
+    if (!tsData) {
+      return NextResponse.json({ error: 'Slot not found' }, { status: 404 });
+    }
+
     const serverPrice = Number(tsData.price_per_room ?? 0);
     if (!serverPrice || serverPrice <= 0) {
       return NextResponse.json({ error: 'Invalid slot price' }, { status: 400 });

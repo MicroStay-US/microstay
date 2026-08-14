@@ -7,7 +7,7 @@ export const metadata: Metadata = {
 };
 
 export default function PrivacyPolicyPage() {
-  const lastUpdated = 'April 8, 2026';
+  const lastUpdated = 'August 10, 2026';
 
   return (
     <div className="min-h-screen bg-orange-300/40 dark:bg-black  text-foreground transition-colors duration-300">
@@ -69,7 +69,7 @@ export default function PrivacyPolicyPage() {
         <h2>4. Data Retention</h2>
         <p>
           We retain your account data for as long as your account is active, plus 7 years for financial
-          records (as required by U.S. tax law). You may request deletion of your account and associated
+          records (as required by U.S. tax law). You may request deletion of your account and associated.
           {/* data at any time by emailing <a href="mailto:privacy@microstay.us">privacy@microstay.us</a>. */}
         </p>
 
@@ -121,9 +121,9 @@ export default function PrivacyPolicyPage() {
         <h2>10. Contact Us</h2>
         <p>
           Questions about this policy? Reach us at:<br />
-          <strong>MICROSTAY HOLDINGS LLC </strong><br />
           {/* Email: <a href="mailto:privacy@microstay.us">privacy@microstay.us</a><br /> */}
-          Support: <a href="mailto:support@microstay.us">support@microstay.us</a>
+          Support: <a href="mailto:support@microstay.us">support@microstay.us</a><br />
+          <strong>MICROSTAY HOLDINGS LLC </strong>
         </p>
 
         <div className="mt-12 pt-8 border-t flex justify-between border-gray-200 dark:border-gray-800 text-start">

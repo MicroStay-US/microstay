@@ -31,8 +31,7 @@ export default function PartnerPage() {
             </CardHeader>
             <CardContent>
               <p className="text-gray-600">
-                Fill empty rooms with hourly bookings. Simple transparent pricing with
-                12% of the gross amount.
+                Fill empty rooms with hourly bookings. Simple transparent pricing.
               </p>
             </CardContent>
           </Card>
@@ -149,7 +148,7 @@ export default function PartnerPage() {
             </p>
             <p className="flex items-start gap-2">
               <CheckCircle className="h-5 w-5 text-green-600 flex-shrink-0 mt-0.5" />
-              <span>Monthly platform commission: 12% of gross booking revenue (billed on the 1st)</span>
+              <span>Monthly platform commission: billed on the 1st</span>
             </p>
           </CardContent>
         </Card>

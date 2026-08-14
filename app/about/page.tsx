@@ -5,8 +5,8 @@ export default function AboutUs() {
       <div className="relative overflow-hidden">
         <div className="absolute inset-0 dark:bg-gradient-to-br dark:from-orange-500/10 dark:via-slate-950 dark:to-cyan-500/10" />
 
-        <div className="relative mx-auto max-w-7xl px-6 py-24 lg:px-8">
-          <div className="max-w-4xl">
+        <div className="relative mx-auto max-w-7xl px-6 py-10 mt-10 lg:px-8 border-b-black/30 border border-solid">
+          <div className="max-w-4xl ">
             <span className="inline-flex items-center bg-ms-orange text-white rounded-full border dark:border-orange-500/20 dark:bg-orange-500/10 px-4 py-2 text-sm font-medium dark:text-orange-400">
               About MicroStay
             </span>
@@ -16,7 +16,7 @@ export default function AboutUs() {
               <span className="text-orange-500"> Modern Travelers</span>
             </h1>
 
-            <p className="mt-6 text-lg leading-8 dark:text-slate-300">
+            <p className="mt-6 text-lg leading-8 dark:text-slate-300 ">
               At MicroStay, we believe travelers should only pay for the time
               they actually need. Whether you`re between meetings, waiting for a
               flight, working remotely, or simply looking for a comfortable
@@ -28,24 +28,24 @@ export default function AboutUs() {
       </div>
 
       {/* Stats */}
-      <div className="border-y dark:border-slate-800 dark:bg-slate-900/50">
+      <div className="border-y dark:border-slate-800 dark:bg-slate-900/50 border-b-black/30 border border-solid">
         <div className="mx-auto grid max-w-7xl grid-cols-2 gap-6 px-6 py-10 md:grid-cols-4">
-          <div>
+          <div className="bg-orange-300/60 dark:bg-transparent p-5 text-center rounded-lg">
             <h3 className="text-3xl font-bold text-orange-500">Growing</h3>
             <p className="mt-2 dark:text-slate-400">Partner Network</p>
           </div>
 
-          <div>
+          <div className="bg-orange-300/60 dark:bg-transparent p-5 text-center rounded-lg">
             <h3 className="text-3xl font-bold text-orange-500">24/7</h3>
             <p className="mt-2 dark:text-slate-400">Booking Availability</p>
           </div>
 
-          <div>
+          <div className="bg-orange-300/60 dark:bg-transparent p-5 text-center rounded-lg">
             <h3 className="text-3xl font-bold text-orange-500">Flexible</h3>
             <p className="mt-2 dark:text-slate-400">Hourly Stays</p>
           </div>
 
-          <div>
+          <div className="bg-orange-300/60 dark:bg-transparent p-5 text-center rounded-lg">
             <h3 className="text-3xl font-bold text-orange-500">Trusted</h3>
             <p className="mt-2 dark:text-slate-400">By Modern Travelers</p>
           </div>
@@ -53,7 +53,7 @@ export default function AboutUs() {
       </div>
 
       {/* Mission */}
-      <div className="mx-auto max-w-7xl px-6 py-24 lg:px-8">
+      <div className="mx-auto max-w-7xl px-6 py-16 lg:px-8">
         <div className="grid gap-16 lg:grid-cols-2">
           <div>
             <h2 className="text-4xl font-bold">Our Mission : <span className="text-ms-orange">Flexibility</span>
@@ -67,12 +67,12 @@ export default function AboutUs() {
             </p>
           </div>
 
-          <div className="rounded-3xl border dark:border-slate-800 dark:bg-slate-900 p-8">
-            <h3 className="text-2xl font-semibold text-orange-500">
-              Why We Exist
+          <div className="rounded-3xl border dark:border-slate-800 dark:bg-slate-900 p-8 bg-orange-300/70">
+            <h3 className="text-2xl font-semibold text-orange-500 ">
+              Why We Exist ?
             </h3>
 
-            <p className="mt-4 dark:text-slate-300 leading-7">
+            <p className="mt-4 dark:text-slate-300 leading-7 opacity-80">
               Modern travel has changed. People need spaces for a few hours,
               not always an entire night. MicroStay was built to provide a
               smarter booking experience that adapts to the needs of today`s
@@ -96,7 +96,7 @@ export default function AboutUs() {
           </div>
 
           <div className="mt-16 grid gap-8 md:grid-cols-2 lg:grid-cols-4">
-            <div className="rounded-2xl border dark:border-slate-800 dark:bg-slate-950 p-6">
+            <div className="rounded-2xl border dark:border-slate-800 dark:bg-slate-950 p-6 bg-orange-300/60">
               <h3 className="text-xl font-semibold text-orange-500">
                 Flexible Booking
               </h3>
@@ -106,7 +106,7 @@ export default function AboutUs() {
               </p>
             </div>
 
-            <div className="rounded-2xl border dark:border-slate-800 dark:bg-slate-950 p-6">
+            <div className="rounded-2xl border dark:border-slate-800 dark:bg-slate-950 p-6 bg-orange-300/60">
               <h3 className="text-xl font-semibold text-orange-500">
                 Transit Stays
               </h3>
@@ -116,7 +116,7 @@ export default function AboutUs() {
               </p>
             </div>
 
-            <div className="rounded-2xl border dark:border-slate-800 dark:bg-slate-950 p-6">
+            <div className="rounded-2xl border dark:border-slate-800 dark:bg-slate-950 p-6 bg-orange-300/60">
               <h3 className="text-xl font-semibold text-orange-500">
                 Workspaces
               </h3>
@@ -126,7 +126,7 @@ export default function AboutUs() {
               </p>
             </div>
 
-            <div className="rounded-2xl border dark:border-slate-800 dark:bg-slate-950 p-6">
+            <div className="rounded-2xl border dark:border-slate-800 dark:bg-slate-950 p-6 bg-orange-300/60">
               <h3 className="text-xl font-semibold text-orange-500">
                 Relax & Recharge
               </h3>
@@ -141,7 +141,7 @@ export default function AboutUs() {
 
       {/* Vision */}
       <div className="mx-auto max-w-7xl px-6 py-24 lg:px-8">
-        <div className="rounded-3xl border bg-rose-200 dark:bg-rose-900/40 border-slate-800 bg-gradient-to-r from-orange-500/10 to-cyan-500/10 p-12">
+        <div className="rounded-3xl border bg-orange-300/40 dark:bg-slate-900/40 border-slate-800  border-transparent p-12">
           <h2 className="text-4xl font-bold">
             Our Vision
           </h2>
@@ -156,7 +156,7 @@ export default function AboutUs() {
       </div>
 
       {/* Audience */}
-      <div className="dark:bg-slate-900/50">
+      <div className="dark:bg-slate-900/50 bg-orange-400/20">
         <div className="mx-auto max-w-7xl px-6 py-24 lg:px-8">
           <h2 className="text-center text-4xl font-bold text-ms-orange">
             Who We Serve
@@ -175,7 +175,7 @@ export default function AboutUs() {
             ].map((item) => (
               <span
                 key={item}
-                className="rounded-full border dark:border-slate-700 px-5 py-3 dark:text-slate-300 bg-ms-orange-light dark:bg-slate-950 border-ms-orange"
+                className="rounded-full border border-transparent dark:border-slate-700 px-5 py-3 dark:text-slate-300 bg-ms-orange-light dark:bg-slate-950 "
               >
                 {item}
               </span>
@@ -186,7 +186,7 @@ export default function AboutUs() {
 
       {/* CTA */}
       <div className="mx-auto max-w-7xl px-6 py-24 lg:px-8">
-        <div className="rounded-3xl bg-slate-400 border-slate-300 border dark:bg-slate-900 text-white  p-12 text-center">
+        <div className="rounded-3xl bg-amber-300/30 border-slate-300 border dark:bg-slate-900 dark:border-transparent text-white  p-12 text-center">
           <h2 className="text-4xl font-bold text-black/40 dark:text-white/50">
             Join the New Way to Stay
           </h2>

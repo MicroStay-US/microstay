@@ -12,6 +12,7 @@ import useLocation from "@/hooks/useLocation";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
 import { Search, MapPin, Clock, Shield, Award, Map as MapIcon, CheckCircle2, CalendarDays, LogIn } from 'lucide-react';
 import { getDistance } from "@/lib/getDistance";
+import MotelBanner from "./MotelBanner";
 // export function Home() {
 //   const [hotels, setHotels] = useState([]);
 // const [loading, setLoading] = useState(true);
@@ -303,13 +304,16 @@ const handleSearch = (e: React.FormEvent) => {
         <div className="absolute inset-0 bg-white/30 dark:bg-gradient-radial dark:from-white/20 dark:to-black/50 dark:via-slate-800/20"></div>
 
         <div className="max-w-full my-10 relative ">
-          <div className="text-center mb-12">
+          <MotelBanner />
+          <div className="text-center mb-12 flex flex-col justify-center items-center">
             <h1 className="text-3xl md:text-4xl font-bold mb-6 text-zinc-600 dark:text-gray-900 drop-shadow-sm">
-              Hotels by the Hour, Made Simple
+              Hotels by the Hours <br /> Made Simple
             </h1>
-            <p className="text-xl md:text-2xl text-zinc-600 dark:text-gray-800 mb-8 font-medium">
-              ✓ No booking fees ✓ Pay at the hotel ✓ Flexible hourly stays
-            </p>
+            <div className="text-xl md:text-2xl text-zinc-600 dark:text-gray-800 mb-8 font-medium ">
+              <p>✓ No booking fees</p>
+              <p>✓ Pay at the hotel</p>
+              <p>✓ Flexible hourly stays</p>
+            </div>
           </div>
 
           <Card className="max-w-5xl mx-auto shadow-2xl rounded-3xl border-white dark:border-none glossy-card  ">
@@ -320,7 +324,7 @@ const handleSearch = (e: React.FormEvent) => {
                 onClick={() => setSearchType('nearby')}
                 className={`flex-1 flex items-center justify-center gap-2 py-4 font-bold text-sm transition-colors ${searchType === 'nearby' ? 'bg-ms-orange-light dark:bg-ms-orange dark:text-white dark:border-tra text-ms-orange border-b-2 border-ms-orange-border' : 'text-gray-600 dark:bg-black/90 dark:text-white hover:bg-gray-50 bg-slate-300 dark:hover:bg-black/80'}`}
               >
-                <MapPin className="w-4 h-4" /> Nearby Me
+                <MapPin className="w-4 h-4" /> Near Me
               </button>
               <button
                 type="button"
@@ -607,7 +611,7 @@ const handleSearch = (e: React.FormEvent) => {
                 </div>
                 <h3 className="text-xl font-bold mb-3 text-gray-900">Flexible Hours</h3>
                 <p className="text-gray-600 font-medium leading-relaxed">
-                  Book by the hour, not the night. Perfect for layovers, rest breaks, or quick getaways.
+                  Book by the hours. Perfect for layovers, rest breaks, or quick getaways.
                 </p>
               </CardContent>
             </Card>
