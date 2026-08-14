@@ -654,7 +654,7 @@ const handleSearch = (e: React.FormEvent) => {
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8 relative px-4 md:px-0 ">
 
             {[
-              { step: '01', icon: Search, title: 'Search', desc: 'Enter your city or tap "Nearby" to find available motels for your date.' },
+              { step: '01', icon: Search, title: 'Search', desc: 'Enter your city or tap "Near Me" to find available motels for your date.' },
               { step: '02', icon: CalendarDays, title: 'Book', desc: 'Pick your time window, choose a room, and confirm with your name and phone.' },
               { step: '03', icon: LogIn, title: 'Check In', desc: 'Show your confirmation code at the front desk — no app or account needed.' },
             ].map(({ step, icon: Icon, title, desc }) => (

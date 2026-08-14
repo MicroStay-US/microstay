@@ -5,7 +5,7 @@ export default function AboutUs() {
       <div className="relative overflow-hidden">
         <div className="absolute inset-0 dark:bg-gradient-to-br dark:from-orange-500/10 dark:via-slate-950 dark:to-cyan-500/10" />
 
-        <div className="relative mx-auto max-w-7xl px-6 py-10 mt-10 lg:px-8 border-b-black/30 border border-solid">
+        <div className="relative mx-auto max-w-7xl px-6  mt-10 lg:px-8 border-b-black/30 border border-solid">
           <div className="max-w-4xl ">
             <span className="inline-flex items-center bg-ms-orange text-white rounded-full border dark:border-orange-500/20 dark:bg-orange-500/10 px-4 py-2 text-sm font-medium dark:text-orange-400">
               About MicroStay
@@ -84,7 +84,7 @@ export default function AboutUs() {
 
       {/* Features */}
       <div className="dark:bg-slate-900/50">
-        <div className="mx-auto max-w-7xl px-6 py-24 lg:px-8">
+        <div className="mx-auto max-w-7xl px-6  lg:px-8">
           <div className="text-center">
             <h2 className="text-4xl font-bold">
               What We Offer
@@ -140,7 +140,7 @@ export default function AboutUs() {
       </div>
 
       {/* Vision */}
-      <div className="mx-auto max-w-7xl px-6 py-24 lg:px-8">
+      <div className="mx-auto max-w-7xl px-6 py-5 lg:px-8">
         <div className="rounded-3xl border bg-orange-300/40 dark:bg-slate-900/40 border-slate-800  border-transparent p-12">
           <h2 className="text-4xl font-bold">
             Our Vision

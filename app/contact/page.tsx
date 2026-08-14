@@ -68,9 +68,9 @@ ${fullName}`;
 
       {/* Hero Section */}
       <div className="relative overflow-hidden border-b dark:border-slate-800">
-        <div className="absolute inset-0 dark:bg-gradient-to-br dark:from-orange-500/10 dark:via-slate-950 dark:to-cyan-500/10" />
+        <div className="absolute inset-0 dark:bg-gradient-to-br dark:from-orange-500/10 dark:via-slate-950 dark:to-cyan-500/10  " />
 
-        <div className="relative mx-auto max-w-7xl px-6 py-24 lg:px-8">
+        <div className="relative mx-auto max-w-7xl px-6 py-10 lg:px-8">
           <div className="max-w-4xl">
 
             <span className="inline-flex items-center rounded-full border dark:border-orange-500/20 dark:bg-orange-500/10 px-4 py-2 text-sm font-medium dark:text-orange-400 bg-ms-orange text-white">
@@ -93,7 +93,7 @@ ${fullName}`;
       </div>
 
       {/* Contact Section */}
-      <div className="mx-auto max-w-7xl px-6 py-24 lg:px-8">
+      <div className="mx-auto max-w-7xl px-6  lg:px-8">
         <div className="grid gap-12 lg:grid-cols-2">
 
           {/* Contact Form */}
@@ -227,8 +227,9 @@ ${fullName}`;
                   </h4>
 
                   <p className="mt-2 dark:text-slate-400">
-                    All of the Business, Motel related support will be provided at 
-                    <span className="text-ms-orange"> support@microstay.us</span> within 48 hours of response time.
+                    For Motel related queries contact  
+                    <span className="text-ms-orange"> support@microstay.us </span>
+                    within 48 hours
                   </p>
 
                 </div>
@@ -293,7 +294,7 @@ ${fullName}`;
       {/* FAQ Preview */}
       <div className="border-t dark:border-slate-800 dark:bg-slate-900/40">
 
-        <div className="mx-auto max-w-7xl px-6 py-24 lg:px-8">
+        <div className="mx-auto max-w-7xl px-6 py-5 lg:px-8">
 
           <div className="text-center">
 
