@@ -13,6 +13,7 @@ import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@
 import { Search, MapPin, Clock, Shield, Award, Map as MapIcon, CheckCircle2, CalendarDays, LogIn } from 'lucide-react';
 import { getDistance } from "@/lib/getDistance";
 import MotelBanner from "./MotelBanner";
+import { url } from "node:inspector";
 // export function Home() {
 //   const [hotels, setHotels] = useState([]);
 // const [loading, setLoading] = useState(true);
@@ -297,7 +298,7 @@ const handleSearch = (e: React.FormEvent) => {
       <section
         className="relative py-32 px-4 bg-cover bg-center "
         style={{
-          backgroundImage: "url('https://images.pexels.com/photos/271624/pexels-photo-271624.jpeg?auto=compress&cs=tinysrgb&w=1920')",
+          backgroundImage: "url('/images/landingpage.jpg')",
           backgroundAttachment: 'fixed',
         }}
       >
@@ -719,7 +720,7 @@ const handleSearch = (e: React.FormEvent) => {
       <section
         className="py-24 px-4 relative bg-cover bg-center"
         style={{
-          backgroundImage: "url('https://images.pexels.com/photos/164595/pexels-photo-164595.jpeg?auto=compress&cs=tinysrgb&w=1920')",
+          backgroundImage: "url('/images/landingbottom.jpg')",
           backgroundAttachment: 'fixed',
         }}
       >
