@@ -2,7 +2,7 @@ import { Metadata } from 'next';
 import Link from 'next/link';
 
 export const metadata: Metadata = {
-  title: 'Terms of Service | MicroStay',
+  title: 'Terms of Services | MicroStay',
   description: 'Terms and conditions for using the MicroStay hourly booking platform.',
 };
 
@@ -14,7 +14,7 @@ export default function TermsOfServicePage() {
       {/* Header */}
       <div className="bg-orange-300 dark:bg-gradient-to-tl dark:from-black dark:to-ms-orange dark:via-black py-16 px-4">
         <div className="max-w-3xl mx-auto text-center text-ms-orange dark:text-white">
-          <h1 className="text-4xl font-bold mb-3">Terms of Service</h1>
+          <h1 className="text-4xl font-bold mb-3">Terms of Services</h1>
           <p className="text-orange-800 dark:text-white/50">Last updated: {lastUpdated}</p>
         </div>
       </div>
@@ -24,7 +24,7 @@ export default function TermsOfServicePage() {
 
         <p className="text-gray-700 dark:text-gray-300 text-lg leading-relaxed mb-8">
           Welcome to MicroStay. By accessing or using our platform at <strong>microstay.us</strong>,
-          you agree to be bound by these Terms of Service. Please read them carefully.
+          you agree to be bound by these Terms of Services. Please read them carefully.
         </p>
 
         <h2>1. Acceptance of Terms</h2>

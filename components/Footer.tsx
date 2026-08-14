@@ -69,7 +69,7 @@ export default function Footer() {
                 { label: 'About Us', href: '/about' },
                 { label: 'Contact', href: '/contact' },
                 { label: 'Privacy Policy', href: '/privacy' },
-                { label: 'Terms of Service', href: '/terms' },
+                { label: 'Terms of Services', href: '/terms' },
               ].map(({ label, href }) => (
                 <li key={label}>
                   <Link href={href} className="text-sm text-orange-500 hover:text-orange-700 font-medium transition-colors">{label}</Link>
