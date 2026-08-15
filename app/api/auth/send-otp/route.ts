@@ -3,6 +3,7 @@ import { createClient } from '@supabase/supabase-js';
 import { Resend } from 'resend';
 import crypto from 'crypto';
 import { rateLimit, getIP, rateLimitResponse } from '@/lib/rate-limit';
+import { verifyReCaptcha } from '@/lib/recaptcha';
 
 function generateOtp(): string {
   return String(crypto.randomInt(100000, 999999));
@@ -21,10 +22,20 @@ export async function POST(req: Request) {
   if (!globalLimit.allowed) return rateLimitResponse(globalLimit.retryAfterMs);
 
   const body = await req.json().catch(() => ({}));
-  const { email, password } = body;
+  const { email, password, recaptchaToken } = body;
 
   if (!email || !password) {
     return NextResponse.json({ error: 'Email and password required.' }, { status: 400 });
+  }
+
+  // Verify Google reCAPTCHA v3 token
+  const captchaVerification = await verifyReCaptcha(recaptchaToken, ip);
+  if (!captchaVerification.ok) {
+    console.error('reCAPTCHA verification failed:', captchaVerification.error);
+    return NextResponse.json(
+      { error: captchaVerification.error || 'Captcha verification failed' },
+      { status: 400 }
+    );
   }
 
   const supabaseUrl = process.env.NEXT_PUBLIC_SUPABASE_URL!;

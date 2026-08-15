@@ -1,7 +1,13 @@
 import { defineConfig, devices } from '@playwright/test';
 import * as dotenv from 'dotenv';
 
-dotenv.config({ path: '.env.local' });
+import * as fs from 'fs';
+
+if (fs.existsSync('.env.test.local')) {
+  dotenv.config({ path: '.env.test.local' });
+} else {
+  dotenv.config({ path: '.env.local' });
+}
 
 const PORT = process.env.TEST_PORT || '3001';
 const BASE_URL = process.env.TEST_BASE_URL || `http://localhost:${PORT}`;

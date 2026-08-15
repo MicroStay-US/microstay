@@ -14,6 +14,7 @@ import { useAuth } from '@/contexts/AuthContext';
 import { useEffect } from 'react';
 import { Eye, EyeOff } from 'lucide-react';
 import { sendLoginNotification } from '@/lib/login-notification';
+import { useReCaptcha } from '@/hooks/useReCaptcha';
 
 interface PasswordStrengthProps {
   password: string;
@@ -45,6 +46,7 @@ function PasswordStrengthGuide({ password }: PasswordStrengthProps) {
 export default function LoginPage() {
   const router = useRouter();
   const { user, profile, loading: authLoading } = useAuth();
+  const { execute: executeReCaptcha } = useReCaptcha();
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState('');
   const [success, setSuccess] = useState('');
@@ -87,10 +89,21 @@ export default function LoginPage() {
     setError('');
 
     try {
+      let recaptchaToken = '';
+      try {
+        recaptchaToken = await executeReCaptcha('login');
+      } catch (captchaErr) {
+        console.error('Failed to execute reCAPTCHA:', captchaErr);
+      }
+
       const res = await fetch('/api/auth/send-otp', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ email: signInData.email, password: signInData.password }),
+        body: JSON.stringify({
+          email: signInData.email,
+          password: signInData.password,
+          recaptchaToken,
+        }),
       });
       const result = await res.json();
 
