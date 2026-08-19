@@ -1,6 +1,6 @@
 /**
- * MicroStay Partner Agreement v3.0 — VERBATIM TEXT
- * MICROSTAY HOLDINGS LLC d/b/a MicroStay.us — EIN 41-4740422 — Wyoming LLC (Filed March 8, 2026)
+ * MicroStay Partner Agreement v6.0 — VERBATIM TEXT
+ * MICROSTAY HOLDINGS LLC d/b/a MicroStay.us — EIN 41-4740422
  *
  * This is the canonical agreement text. The SHA-256 hash of AGREEMENT_TEXT
  * is stored in agreement_signatures.agreement_text_hash for legal integrity.
@@ -9,1612 +9,613 @@
  * and create a new migration when updating this file.
  */
 
-export const AGREEMENT_VERSION = 'v3.1';
+export const AGREEMENT_VERSION = 'v6.0';
 
 export const AGREEMENT_SECTIONS = [
   "1. ACCEPTANCE OF AGREEMENT",
   "2. DEFINITIONS",
-  "3. MICROSTAY SERVICE",
+  "3. MICROSTAY SERVICE AND ROLE",
   "4. INDEPENDENT BUSINESS RELATIONSHIP",
   "5. PARTNER AUTHORITY AND LEGAL OPERATION",
-  "6. PROPERTY INFORMATION",
-  "7. PRICING AND ALL-IN PRICE REQUIREMENT",
-  "8. HONORING CONFIRMED PRICES",
-  "9. AVAILABILITY AND INVENTORY",
-  "10. PAY-AT-PROPERTY MODEL",
-  "11. TAX RESPONSIBILITY",
-  "12. CUSTOMER CHECK-IN",
-  "13. RESERVATION STATUS REQUIREMENT",
-  "14. 48-HOUR STATUS DEADLINE",
-  "15. AUTOMATIC COMPLETION",
-  "16. COMPLETED STAYS",
-  "17. NO-SHOWS",
-  "18. CANCELLATIONS",
-  "19. CORRECTION OF AUTO-COMPLETED",
-  "20. FALSE RESERVATION STATUS",
-  "21. CANCELLATION RATE MONITORING",
-  "23. HIGH-CANCELLATION INVESTIGATION",
-  "24. ANTI-CIRCUMVENTION",
-  "25. MICROSTAY COMMISSION",
-  "26. COMMISSION CALCULATION",
-  "27. MONTHLY BILLING",
-  "28. PAYMENT DUE ON THE 1ST",
-  "29. STRIPE CARD-ONLY BILLING",
-  "30. PAYMENT METHOD REQUIRED FOR ACTIVE",
-  "31. AUTOMATIC CARD AUTHORIZATION",
-  "36. ACCOUNT INACTIVATION AFTER THE 15TH",
-  "38. REACTIVATION",
-  "39. FAILED OR DECLINED CARD",
-  "40. PARTNER CARD CHARGEBACKS",
-  "41. BILLING DISPUTES",
-  "42. RECORDKEEPING AND AUDIT RIGHTS",
-  "43. PROPERTY STANDARDS",
-  "44. ACCESSIBILITY AND NONDISCRIMINATION",
-  "45. INSURANCE",
-  "46. CUSTOMER SAFETY",
-  "47. ILLEGAL OR DANGEROUS ACTIVITY",
-  "48. CUSTOMER DATA AND PRIVACY",
-  "49. SECURITY INCIDENTS",
-  "50. INTELLECTUAL PROPERTY AND PROPERTY",
-  "51. REVIEWS AND CUSTOMER FEEDBACK",
-  "52. PLATFORM AVAILABILITY",
-  "53. THIRD-PARTY SERVICES",
-  "54. FORCE MAJEURE",
-  "55. PARTNER REPRESENTATIONS AND WARRANTIES",
-  "56. SUSPENSION",
-  "57. TERMINATION BY PARTNER",
-  "58. TERMINATION BY MICROSTAY",
-  "59. EFFECT OF TERMINATION",
-  "60. INDEMNIFICATION",
-  "61. DISCLAIMER OF WARRANTIES",
-  "62. LIMITATION OF LIABILITY",
-  "63. GOOD-FAITH DISPUTE RESOLUTION",
-  "64. BINDING ARBITRATION",
-  "65. GOVERNING LAW",
-  "66. ATTORNEYS' FEES AND COSTS",
-  "67. ELECTRONIC TRANSACTIONS",
-  "68. ELECTRONIC COMMUNICATIONS",
-  "69. NOTICES TO MICROSTAY",
-  "70. CHANGES TO THIS AGREEMENT",
-  "71. ASSIGNMENT",
-  "72. ENTIRE AGREEMENT",
-  "73. SEVERABILITY",
-  "74. NO WAIVER",
-  "75. SURVIVAL",
-  "76. PARTNER BILLING ACKNOWLEDGMENT",
-  "77. PARTNER ACKNOWLEDGMENT",
-  "PARTNER INFORMATION",
-  "MICROSTAY"
+  "6. CITY, COUNTY, AND LOCAL LAW DUE DILIGENCE - PARTNER RESPONSIBILITY",
+  "7. PROPERTY INFORMATION",
+  "8. PRICING, TOTAL PRICE, AND MANDATORY CHARGES",
+  "9. HONORING CONFIRMED PRICES",
+  "10. DEPOSITS",
+  "11. PAY-AT-PROPERTY MODEL",
+  "12. TAX RESPONSIBILITY",
+  "13. MANDATORY GOVERNMENT-ISSUED PHOTO ID AND MINIMUM CHECK-IN AGE",
+  "14. LOS ANGELES CHECK-IN AND RECORDKEEPING REQUIREMENTS",
+  "15. GUEST RECORDS AND IDENTIFICATION DATA",
+  "16. AVAILABILITY AND INVENTORY",
+  "17. MONTHLY RESERVATION RECONCILIATION",
+  "18. AUTO-COMPLETED RESERVATIONS",
+  "19. COMPLETED STAYS, CANCELLATIONS, AND NO-SHOWS",
+  "20. CANCELLATION-RATE MONITORING",
+  "21. ANTI-CIRCUMVENTION",
+  "22. FLAT 12% MICROSTAY COMMISSION",
+  "23. COMMISSION CALCULATION",
+  "24. MONTHLY BILLING AND INVOICE CONTENT",
+  "25. BILLING SCHEDULE - 5TH, 15TH, 25TH, AND MONTH-END",
+  "26. NO STANDARD LATE FEE OR REINSTATEMENT PENALTY",
+  "27. STRIPE BILLING AND PAYMENT METHOD",
+  "28. NON-PAYMENT AND PROPERTY DEACTIVATION",
+  "29. EXISTING RESERVATIONS AFTER DEACTIVATION",
+  "30. REACTIVATION",
+  "31. BILLING DISPUTES",
+  "32. RECORDKEEPING AND AUDIT RIGHTS",
+  "33. PROPERTY STANDARDS AND GUEST SAFETY",
+  "34. ACCESSIBILITY AND NONDISCRIMINATION",
+  "35. ILLEGAL ACTIVITY, HUMAN TRAFFICKING, AND REQUIRED TRAINING",
+  "36. PARTNER INSURANCE",
+  "37. CUSTOMER DATA AND PRIVACY",
+  "38. SECURITY INCIDENTS",
+  "39. INTELLECTUAL PROPERTY AND LISTING MATERIALS",
+  "40. CUSTOMER REVIEWS AND FEEDBACK",
+  "41. PLATFORM AVAILABILITY AND THIRD-PARTY SERVICES",
+  "42. PARTNER REPRESENTATIONS AND CONTINUING CERTIFICATIONS",
+  "43. SUSPENSION RIGHTS",
+  "44. TERMINATION BY PARTNER",
+  "45. TERMINATION BY MICROSTAY",
+  "46. EFFECT OF TERMINATION AND RECORD RETENTION",
+  "47. INDEMNIFICATION",
+  "48. DISCLAIMER OF WARRANTIES",
+  "49. LIMITATION OF LIABILITY",
+  "50. GOOD-FAITH DISPUTE RESOLUTION",
+  "51. BINDING ARBITRATION",
+  "52. GOVERNING LAW; ATTORNEYS' FEES",
+  "53. FORCE MAJEURE",
+  "54. ELECTRONIC TRANSACTIONS, DIGITAL SIGNATURE, AND PARTNER SIGNUP",
+  "55. ELECTRONIC COMMUNICATIONS",
+  "56. NOTICES TO MICROSTAY",
+  "57. CHANGES TO AGREEMENT",
+  "58. ASSIGNMENT AND CHANGE OF PROPERTY OWNERSHIP",
+  "59. ENTIRE AGREEMENT; SEVERABILITY; NO WAIVER",
+  "60. SURVIVAL",
+  "APPENDIX A - CALIFORNIA AND LOCAL COMPLIANCE ADDENDUM",
+  "APPENDIX B - PARTNER COMPLIANCE AND BILLING CERTIFICATION",
+  "APPENDIX C - DIGITAL ACCEPTANCE RECORD"
 ];
 
 export const AGREEMENT_TEXT = `
 MICROSTAY PARTNER AGREEMENT
 
-MicroStay.us
-Operated by MICROSTAY HOLDINGS LLC
+MICROSTAY
+PARTNER AGREEMENT
+For hotels, motels, and participating lodging properties
 
-Last Updated: August 14, 2026
-Agreement Version: 3.1
+Operated by: MICROSTAY HOLDINGS LLC d/b/a MicroStay.us
+Agreement Version: 6.0 - Partner Execution Version
+Last Updated: August 18, 2026
+Effective Date: Date of Partner digital acceptance
+Standard Commission: Flat 12% of Eligible Booking Amount on commissionable stays
 
-This MicroStay Partner Agreement ("Agreement") is entered into between MICROSTAY HOLDINGS LLC,
-doing business as MicroStay.us ("MicroStay," "we," "us," or "our") and the hotel, motel, lodging property,
-property owner, operator, or authorized representative accepting this Agreement ("Partner," "you," or
-"your").
+This agreement is formatted for electronic acceptance through the MicroStay Partner signup process. No wet-ink signature is required when the Partner executes the Agreement using MicroStay's approved digital acceptance flow.
 
-This Agreement governs the Partner's participation in the MicroStay platform and all reservations made
-available through MicroStay.
+This MicroStay Partner Agreement ("Agreement") is entered into between MICROSTAY HOLDINGS LLC, doing business as MicroStay.us ("MicroStay," "we," "us," or "our"), and the hotel, motel, lodging property, property owner, operator, management company, or other authorized legal entity that accepts this Agreement ("Partner," "you," or "your"). This Agreement governs Partner's participation in the MicroStay Platform and all lodging inventory and reservations made available through the Platform.
 
 1. ACCEPTANCE OF AGREEMENT
 
-By signing this Agreement, electronically accepting this Agreement, clicking an "I Agree" or similar
-acceptance button, creating or maintaining a Partner account after acceptance, or otherwise agreeing
-electronically through the MicroStay Vendor Portal, the Partner agrees to be bound by this Agreement.
+By signing or electronically accepting this Agreement through the MicroStay Partner signup process, Vendor Portal, an "I Agree," "Agree & Sign," or similar acceptance mechanism, Partner agrees to be legally bound by this Agreement.
 
 The individual accepting this Agreement represents and warrants that:
+• the individual is at least eighteen (18) years old;
+• the individual has authority to act for Partner;
+• the individual has authority to bind Partner and each Property enrolled under the Partner account; and
+• all information supplied to MicroStay is accurate and complete.
 
-• They are at least 18 years old.
-• They have authority to act for the Partner.
-• They have authority to bind the property and legal business identified in the Partner account.
-• The information supplied to MicroStay is accurate.
-
-This Agreement becomes effective when accepted by the Partner and approved by MicroStay.
+This Agreement becomes effective on the date Partner completes the approved digital acceptance process and MicroStay activates or approves the Partner account, whichever occurs later.
 
 2. DEFINITIONS
 
-For purposes of this Agreement:
+"MicroStay Platform" means MicroStay.us, the MicroStay Vendor Portal, related applications, booking technology, communications systems, APIs, and services operated by or for MICROSTAY HOLDINGS LLC.
 
-"MicroStay Platform" means MicroStay.us, the MicroStay Vendor Portal, Admin Portal, applications,
-booking technology, communications systems, and related services operated by or for MICROSTAY
-HOLDINGS LLC.
+"Partner" means the participating hotel, motel, lodging property, owner, operator, management company, or other authorized legal business using MicroStay.
 
-"Partner" means the participating hotel, motel, lodging property, owner, operator, or legal business using
-MicroStay.
+"Property" means each hotel, motel, or other lawful lodging establishment enrolled by Partner.
 
-"Customer" or "Guest" means a person making or using a reservation through MicroStay.
+"Guest or Customer" means a person making or using a Reservation through MicroStay.
 
-"Reservation" or "Booking" means a lodging reservation generated through the MicroStay Platform.
+"Reservation or Booking" means a lodging reservation generated through the MicroStay Platform.
 
-"Eligible Booking Amount" means the lodging price associated with the reservation on which MicroStay's
-commission is calculated, excluding applicable government taxes and other exclusions identified in this
-Agreement.
+"Eligible Booking Amount" means the lodging amount associated with a Reservation on which MicroStay's Commission is calculated, excluding government taxes, refundable deposits, tips, optional purchases, Guest damage charges, separate incidental charges, and other exclusions stated in this Agreement.
 
-"Completed Stay" means a reservation where the Guest used the booked lodging service or which became
-Auto-Completed under this Agreement.
+"Completed Stay" means a Reservation where the Guest actually used the booked lodging service.
 
-"Auto-Completed" means a reservation automatically treated as completed because the Partner failed to
-properly update its final status within the required 48-hour period.
+"Auto-Completed Reservation" means a Reservation treated as completed for billing because Partner failed to provide a valid final status by the applicable monthly reconciliation deadline.
 
-"Commission" means the amount payable by the Partner to MicroStay for a commissionable reservation.
+"Commission" means the amount payable by Partner to MicroStay for a commissionable Completed Stay or Auto-Completed Reservation.
 
-3. MICROSTAY SERVICE
+3. MICROSTAY SERVICE AND ROLE
 
-MicroStay operates a technology marketplace connecting Guests with participating lodging properties
-offering:
+MicroStay operates a lodging-only online technology, marketing, discovery, and reservation marketplace connecting Guests with independent participating lodging properties offering short-duration, day-use, hourly, flexible-duration, evening, and other lawful lodging periods.
 
-• Short stays.
-• Day-use stays.
-• Hourly stays.
-• Flexible-duration stays.
-• Other lodging periods made available through the Platform.
+MicroStay may allow Guests to search Properties, review Property information, compare available stay periods and prices, submit Reservations, receive confirmations, and manage eligible Reservation information.
 
-MicroStay may allow Guests to:
+MicroStay does not own, lease, operate, manage, maintain, control, supervise, or staff Partner Properties. Partner is the independent provider and operator of the lodging accommodation. The physical lodging service is provided by Partner to the Guest.
 
-• Search properties.
-• View property information.
-• View prices.
-• Review available stay periods.
-• Make reservations.
-• Receive booking confirmations.
-• Manage eligible reservation information.
+Under the standard MicroStay model described in this Agreement, MicroStay does not sell or arrange transportation and does not collect the Guest's lodging payment.
 
-MicroStay is a marketplace and technology provider.
-
-MicroStay does not own, operate, manage, maintain, control, or supervise participating Partner properties.
-
-The Partner independently operates its lodging business.
-
-MicroStay does not guarantee:
-
-• Any minimum number of bookings.
-• Occupancy.
-• Customer traffic.
-• Revenue.
-• Profit.
-• Search position.
-• Property ranking.
-• Business performance.
+MicroStay does not guarantee any minimum number of bookings, occupancy, Guest traffic, revenue, profit, search position, or business performance.
 
 4. INDEPENDENT BUSINESS RELATIONSHIP
 
-The Partner operates as an independent business.
+Partner operates as an independent business. Nothing in this Agreement creates an employer-employee relationship, partnership, joint venture, franchise, fiduciary relationship, or property-management relationship between MicroStay and Partner.
 
-Nothing in this Agreement creates:
-
-• An employer-employee relationship.
-• Agency.
-• Partnership.
-• Franchise.
-• Joint venture.
-• Fiduciary relationship.
-• Property-management relationship
-
-between MicroStay and the Partner.
-
-The Partner has no authority to make commitments or representations on behalf of MICROSTAY HOLDINGS
-LLC.
-
-MicroStay has no responsibility for managing the Partner's day-to-day lodging operations.
+Except to the extent a limited relationship is independently imposed by applicable law and cannot lawfully be disclaimed, Partner is not MicroStay's agent and has no authority to make commitments or representations on MicroStay's behalf. MicroStay has no responsibility for Partner's day-to-day lodging operations.
 
 5. PARTNER AUTHORITY AND LEGAL OPERATION
 
-The Partner represents and warrants that:
+Partner represents, warrants, and continuously covenants that:
+• Partner legally owns, operates, manages, or is authorized to represent each Property;
+• each Property is legally permitted to operate as a lodging establishment;
+• each Property has and will maintain all required licenses, permits, approvals, registrations, certificates, tax registrations, and governmental authorizations;
+• each short-duration, hourly, day-use, flexible-duration, or other stay period offered through MicroStay is lawful at the applicable Property;
+• Partner will comply with applicable federal, state, county, city, municipal, district, health, fire, building, zoning, accessibility, tax, lodging, privacy, consumer-protection, and public-safety requirements.
 
-• The Partner legally owns, operates, manages, or is authorized to represent the property.
-• The individual accepting this Agreement has authority to bind the Partner.
-• The property is legally permitted to operate as a lodging establishment.
-• The property has all licenses, permits, approvals, registrations, and authorizations required by
-applicable law.
-• Offering short-stay, daytime, hourly, or flexible-duration lodging through MicroStay is permitted
-under applicable law and property rules.
-• The Partner will maintain all required licenses and permits while using MicroStay.
-• The property will comply with applicable federal, state, county, municipal, health, fire, safety,
-accessibility, tax, and lodging requirements.
+Partner must promptly notify MicroStay if a license, permit, authorization, tax registration, occupancy approval, or other legal authority affecting a Property is suspended, revoked, expired, restricted, challenged, or made subject to material governmental enforcement. MicroStay may request reasonable documentation verifying authority to operate.
 
-The Partner must immediately notify MicroStay if any license, permit, authorization, or legal authority
-required to operate the property is suspended, revoked, expires, or becomes materially restricted.
+6. CITY, COUNTY, AND LOCAL LAW DUE DILIGENCE - PARTNER RESPONSIBILITY
 
-MicroStay may request reasonable documentation verifying the Partner's authority to operate.
+Partner is independently responsible for determining whether each Property and each stay duration offered through MicroStay is lawful under all rules applicable to the Property's specific location.
 
-6. PROPERTY INFORMATION
+Before making inventory available through MicroStay, and throughout the Partner relationship, Partner shall independently investigate, monitor, and comply with applicable:
+• city and county ordinances and municipal codes;
+• zoning and land-use restrictions;
+• hotel and motel regulations;
+• hourly, day-use, short-duration, and transient-occupancy requirements;
+• business licenses, lodging permits, and tax registrations;
+• Guest-identification and age-verification requirements;
+• Guest-register, recordkeeping, and record-retention requirements;
+• public-safety, nuisance, and occupancy regulations;
+• employee-training and human-trafficking awareness requirements; and
+• other governmental requirements affecting the Property.
 
-The Partner is responsible for providing complete and accurate information regarding the property.
+Partner acknowledges that local rules may differ between cities and counties and may change over time. If a law, permit condition, governmental order, or enforcement action makes a stay duration unlawful or materially restricted, Partner shall promptly stop offering the affected inventory, update availability, comply with the requirement, and notify MicroStay if the issue materially affects existing Reservations or the Property's legal authority to operate.
 
-This may include:
+MicroStay's approval, activation, listing, marketing, or continued publication of a Property does not constitute a legal opinion, legal certification, or representation by MicroStay that the Property or any stay duration complies with applicable law.
 
-• Property name.
-• Legal business name.
-• Property address.
-• Contact information.
-• Room information.
-• Property photos.
-• Room photos.
-• Amenities.
-• Parking information.
-• Accessibility information.
-• Check-in policies.
-• Identification requirements.
-• Age restrictions.
-• Deposit requirements.
-• Property rules.
-• Room restrictions.
-• Available booking periods.
-• Prices.
-• Mandatory charges.
-• Other relevant information.
+7. PROPERTY INFORMATION
 
-The Partner must promptly update information that becomes inaccurate.
+Partner is responsible for providing complete, truthful, accurate, and current information for each Property, including as applicable:
+• Property and legal business name;
+• Property address and contact information;
+• room descriptions, photos, and amenities;
+• parking and accessibility information;
+• available booking periods;
+• check-in and identification requirements;
+• minimum age requirements;
+• deposit requirements;
+• Property rules and restrictions;
+• rates;
+• mandatory fees and charges;
+• tax information supplied for display; and
+• other information reasonably necessary to describe the lodging offer.
 
-MicroStay may correct, remove, reject, or suspend listings containing information reasonably believed to be
-inaccurate, misleading, illegal, unsafe, or incomplete.
+Partner must promptly correct information that becomes inaccurate. MicroStay may correct, reject, remove, restrict, or suspend listings reasonably believed to be inaccurate, misleading, unlawful, unsafe, fraudulent, or materially incomplete.
 
-7. PRICING AND ALL-IN PRICE REQUIREMENT
+8. PRICING, TOTAL PRICE, AND MANDATORY CHARGES
 
-The Partner controls the lodging rates it makes available through MicroStay unless otherwise agreed in
-writing.
+Partner controls the lodging rates it offers through MicroStay unless otherwise agreed in writing and may establish different prices for different stay durations.
 
-The Partner may establish pricing for different booking durations.
+Partner shall provide complete and accurate pricing information and shall disclose all mandatory charges known or reasonably calculable before booking as required by applicable law. Partner may not require a MicroStay Guest to pay an undisclosed mandatory resort fee, service fee, facility fee, cleaning fee, processing fee, mandatory parking fee, booking fee, amenity fee, or similar required charge.
 
-The Partner must provide MicroStay with complete and accurate pricing information.
+Government-imposed taxes and assessments may be shown separately where permitted by applicable law. Partner is responsible for the accuracy of all pricing, fee, deposit, and tax information it supplies to MicroStay.
 
-The Partner must disclose all mandatory fees and charges associated with a reservation that are known or
-reasonably capable of being calculated before booking.
+9. HONORING CONFIRMED PRICES
 
-The Partner may not require a MicroStay Guest to pay an undisclosed mandatory:
+Partner shall honor the lodging price and disclosed mandatory charges shown in a valid confirmed MicroStay Reservation. Partner may not increase the confirmed lodging price at check-in.
 
-• Resort fee.
-• Service fee.
-• Facility fee.
-• Cleaning fee.
-• Processing fee.
-• Mandatory parking fee.
-• Booking fee.
-• Mandatory amenity fee.
-• Other required charge
+Partner may separately collect properly disclosed and lawful government taxes, refundable security or damage deposits, optional Guest-selected services, incidental purchases, Guest damage charges, and other charges not required to be included in the confirmed lodging price.
 
-that was not properly disclosed as part of the reservation process.
+10. DEPOSITS
 
-Government-imposed taxes and other charges may be separately disclosed where permitted by applicable
-law.
+A Property may require a security, incidental, or damage deposit based on Partner's own lawful requirements. MicroStay does not establish a universal deposit amount.
 
-The Partner is responsible for the accuracy of all pricing and fee information supplied to MicroStay.
+Partner is solely responsible for determining, disclosing, collecting, holding, processing, deducting from, refunding, and resolving disputes concerning any deposit. MicroStay does not hold or administer Partner deposits unless expressly agreed otherwise in writing.
 
-8. HONORING CONFIRMED PRICES
+11. PAY-AT-PROPERTY MODEL
 
-The Partner agrees to honor the price shown in the Guest's confirmed MicroStay reservation.
+MicroStay operates under a pay-at-property model unless expressly agreed otherwise in writing. The Guest pays Partner directly at the Property. MicroStay does not collect or hold the Guest's lodging payment under the standard MicroStay model and is not the merchant of record for the Guest's lodging transaction unless expressly agreed otherwise in writing.
 
-The Partner may not increase the confirmed lodging price at check-in.
+Partner is responsible for collecting Guest payments, processing Guest cards, accepting cash if Partner permits it, issuing legally required receipts, deposits, refunds, Guest payment disputes, chargebacks, incidental charges, Guest damage charges, and transaction records. MicroStay is not responsible if a Guest fails to pay Partner.
 
-This does not prevent the Partner from collecting separately disclosed and legally permitted:
+12. TAX RESPONSIBILITY
 
-• Government taxes.
-• Security or damage deposits.
-• Optional services selected by the Guest.
-• Charges resulting from Guest damage.
-• Incidental purchases.
-• Other properly disclosed lawful charges.
+As between MicroStay and Partner, Partner is responsible for determining, collecting, reporting, and remitting taxes and governmental assessments applicable to lodging payments collected by Partner, including where applicable transient occupancy tax, hotel occupancy tax, tourism assessments, local lodging assessments, and similar charges.
 
-9. AVAILABILITY AND INVENTORY
+MicroStay is responsible for taxes legally imposed directly on MicroStay's own revenue. Nothing in this Agreement constitutes tax advice or eliminates an obligation that applicable law independently and non-waivably imposes directly on MicroStay.
 
-The Partner is responsible for maintaining accurate room availability through the Vendor Portal or another
-MicroStay-approved system.
+13. MANDATORY GOVERNMENT-ISSUED PHOTO ID AND MINIMUM CHECK-IN AGE
 
-The Partner must make reasonable efforts to honor all confirmed reservations.
+Every primary Guest checking in under a MicroStay Reservation must present a valid, unexpired government-issued photo identification document acceptable under applicable law and Partner's lawful check-in policies.
 
-The Partner must promptly update inventory when rooms become unavailable.
+The primary Guest checking in must be at least eighteen (18) years of age. If applicable law or Partner's established Property policy requires a higher minimum check-in age, including age twenty-one (21) or older, the higher requirement controls for that Property.
 
-MicroStay is not responsible for Partner overbooking or inaccurate Partner inventory.
+Partner is solely responsible for:
+• physically inspecting and verifying the Guest's government-issued photo identification at check-in;
+• confirming that the Guest satisfies the applicable minimum check-in age;
+• reasonably confirming that the identification corresponds to the Guest using the Reservation;
+• obtaining additional Guest information required by applicable law;
+• completing legally required Guest registration;
+• recording identification information where required by law;
+• maintaining legally required Guest registers and records;
+• retaining those records for the legally required period; and
+• training applicable employees regarding legally required identification, registration, and recordkeeping procedures.
 
-Repeated avoidable availability problems may result in:
+Acceptable identification may include, where lawful and accepted by Partner, a state-issued driver's license, state-issued identification card, passport, military identification, or another valid government-issued photo identification document.
 
-• Warning.
-• Reduced visibility.
-• Booking restrictions.
-• Suspension.
-• Termination.
+Partner shall deny check-in when the primary Guest cannot present the required valid government-issued photo identification, is under eighteen (18), fails to satisfy a higher lawful Property minimum age, presents identification Partner reasonably determines to be invalid or fraudulent, or otherwise fails to satisfy lawful check-in requirements.
 
-10. PAY-AT-PROPERTY MODEL
+MicroStay does not physically inspect Guest identification and does not independently certify or guarantee Guest identity, age, conduct, payment ability, or eligibility to check in.
 
-MicroStay operates using a pay-at-property model.
+14. LOS ANGELES CHECK-IN AND RECORDKEEPING REQUIREMENTS
 
-The Guest pays the Partner directly at the property.
+For each Property located in the City of Los Angeles, Partner shall independently determine and comply with Los Angeles Municipal Code Section 41.49, as amended and applicable, including any requirements concerning sub-12-hour or hourly rentals, official identification documents, hotel registers, information recorded at check-in, record retention, and training of employees responsible for check-in.
 
-MicroStay does not collect the Guest's lodging payment on behalf of the Partner.
+Partner remains responsible for determining the exact current requirements applicable to its Property and for complying with any additional or more stringent federal, state, county, city, or other local requirements.
 
-Unless otherwise expressly stated in writing, MicroStay is not the merchant of record for the Guest's lodging
-transaction.
+15. GUEST RECORDS AND IDENTIFICATION DATA
 
-The Partner is responsible for:
+Partner is solely responsible for creating, maintaining, protecting, and retaining any hotel register, identification record, Guest ledger, occupancy record, or other record required by applicable law. Partner shall retain records for at least the period required by applicable law.
 
-• Collecting Guest payments.
-• Processing Guest cards.
-• Accepting cash if the Partner permits it.
-• Issuing legally required receipts.
-• Handling deposits.
-• Handling refunds.
-• Handling Guest payment disputes.
-• Handling Guest chargebacks.
-• Handling incidental charges.
-• Handling damage charges.
-• Maintaining appropriate transaction records.
+Unless specifically required for a lawful and legitimate purpose, Partner should not transmit copies of Guest driver's licenses, passports, or similar sensitive identification documents to MicroStay. Such records should ordinarily remain under Partner's control. Nothing prevents Partner from providing limited supporting information reasonably necessary to investigate a Reservation, billing, fraud, safety, or compliance issue where lawful.
 
-MicroStay is not responsible if a Guest fails to pay the Partner.
+16. AVAILABILITY AND INVENTORY
 
-11. TAX RESPONSIBILITY
+Partner is responsible for maintaining accurate room availability and must make commercially reasonable efforts to honor confirmed Reservations. Partner shall promptly remove or update inventory that is unavailable or cannot lawfully be honored.
 
-The Partner is responsible for determining, collecting, reporting, and paying all taxes and assessments
-applicable to lodging payments collected by the Partner.
+Repeated avoidable inventory failures may result in warning, reduced visibility, booking restrictions, suspension, or termination.
 
-These may include:
+17. MONTHLY RESERVATION RECONCILIATION
 
-• Transient occupancy taxes.
-• Hotel occupancy taxes.
-• Sales taxes.
-• Tourism assessments.
-• Local lodging assessments.
-• Other applicable government charges.
+Partner may update Reservation statuses throughout each calendar month. Partner shall accurately reconcile each eligible Reservation as Completed, Cancelled, No-Show, or another status made available by MicroStay.
 
-MicroStay is responsible for taxes imposed directly on MicroStay's own revenue where required by law.
+Partner must complete reconciliation no later than 11:59 p.m. Pacific Time on the last calendar day of each month for Reservations included in that billing period.
 
-Nothing provided by MicroStay constitutes tax advice.
+A Reservation whose scheduled checkout occurs on the final calendar day of a month may, at MicroStay's discretion, be included in the following reconciliation cycle to give Partner a reasonable opportunity to verify the final status.
 
-12. CUSTOMER CHECK-IN
+Partner is responsible for ensuring that every reported status truthfully reflects what occurred.
 
-The Partner is responsible for Guest check-in.
+18. AUTO-COMPLETED RESERVATIONS
 
-The Partner may require lawful and properly disclosed:
+If Partner fails to assign a valid final status to an eligible Reservation by the applicable monthly reconciliation deadline, MicroStay may classify the Reservation as an Auto-Completed Reservation. An Auto-Completed Reservation is treated as a Completed Stay for commission and billing purposes and is subject to the flat twelve percent (12%) Commission.
 
-• Identification.
-• Payment.
-• Deposits.
-• Age verification.
-• Guest registration.
-• Compliance with reasonable property rules.
+Partner may request correction by promptly providing reasonably satisfactory records showing that the Reservation was actually cancelled, a No-Show, incorrectly recorded, or affected by a genuine system or administrative error. MicroStay may correct substantiated errors in good faith. Failure to reconcile Reservations does not permit Partner to avoid valid Commissions.
 
-The Partner should use commercially reasonable efforts to process Guest check-in promptly after the Guest
-satisfies applicable requirements.
+19. COMPLETED STAYS, CANCELLATIONS, AND NO-SHOWS
 
-The Partner is responsible for independently determining whether a Guest satisfies the property's lawful
-check-in requirements.
+A Completed Stay is commissionable. A legitimate cancellation where the Guest did not receive lodging and a legitimate No-Show where the Guest did not use lodging are not ordinarily commissionable unless MicroStay and Partner expressly agree otherwise in writing.
 
-MicroStay does not guarantee the identity, behavior, payment ability, or conduct of any Guest.
+Partner must accurately report cancellations and No-Shows and maintain reasonably sufficient records to substantiate non-completed statuses if a legitimate billing or compliance question arises. Partner may not knowingly classify a completed stay as Cancelled, No-Show, refunded, incomplete, or otherwise non-commissionable to avoid MicroStay's Commission.
 
-13. RESERVATION STATUS REQUIREMENT
+20. CANCELLATION-RATE MONITORING
 
-The Partner must accurately update every MicroStay reservation through the Vendor Portal.
+MicroStay may monitor Partner cancellation activity for platform integrity and commission protection. If a Property's cancellation rate exceeds thirty percent (30%) of its MicroStay Reservation activity, MicroStay may review the account. Exceeding 30% does not automatically establish wrongdoing.
 
-Available statuses may include:
+MicroStay may consider Guest-initiated cancellations, emergencies, fraud, technical problems, documented operational issues, and other circumstances outside Partner's reasonable control. Where evidence reasonably indicates manipulation, commission avoidance, or off-platform diversion, MicroStay may request records, correct billing, restrict bookings, suspend the Property, or terminate the Partner relationship.
 
-• Confirmed.
-• Checked-In.
-• Completed.
-• Cancelled.
-• No-Show.
-• Auto-Completed.
-• Other statuses provided by MicroStay.
+21. ANTI-CIRCUMVENTION
 
-The Partner is responsible for ensuring that the status accurately reflects what occurred.
+Partner shall not intentionally circumvent MicroStay or avoid properly earned MicroStay Commissions. Partner may not encourage, request, instruct, or induce a Guest introduced through MicroStay to cancel or bypass a valid MicroStay Reservation for the purpose of booking directly with Partner and avoiding Commission.
 
-14. 48-HOUR STATUS DEADLINE
+Prohibited conduct includes asking a MicroStay Guest to cancel and book directly, replacing a MicroStay Reservation with a direct booking solely to avoid Commission, offering a special direct price conditioned on cancellation, falsely marking an actual stay as Cancelled or No-Show, manipulating Reservation records, or falsifying booking information. Intentional circumvention is a material breach.
 
-The Partner has forty-eight (48) hours after the scheduled end time of the reservation to update the
-reservation to the correct final status.
+22. FLAT 12% MICROSTAY COMMISSION
 
-For example:
+STANDARD COMMISSION: FLAT TWELVE PERCENT (12%) OF THE ELIGIBLE BOOKING AMOUNT
 
-If a reservation ends at:
+For each commissionable Completed Stay or Auto-Completed Reservation, Partner shall pay MicroStay a flat twelve percent (12%) Commission of the applicable Eligible Booking Amount.
 
-4:00 PM on August 10
+Example: Eligible Booking Amount $100.00; MicroStay Commission $12.00.
 
-the Partner must update the final status by:
+Partner collects the Guest's lodging payment directly. MicroStay subsequently invoices Partner for the Commission. Unless MicroStay and Partner expressly execute a written amendment, the standard Commission rate under this Agreement is 12% flat.
 
-4:00 PM on August 12.
+23. COMMISSION CALCULATION
 
-15. AUTOMATIC COMPLETION
+The Eligible Booking Amount generally includes the lodging amount associated with the Reservation. Unless expressly stated otherwise, Commission does not apply to government-imposed taxes, refundable security or damage deposits, tips, optional purchases, Guest damage charges, separate incidental charges, or unrelated charges not included in the Reservation.
 
-If the Partner does not properly update a reservation within forty-eight (48) hours after its scheduled end
-time, the MicroStay system may automatically classify the reservation as:
+24. MONTHLY BILLING AND INVOICE CONTENT
 
-AUTO-COMPLETED
+MicroStay bills Partner Commissions monthly after the applicable monthly reconciliation period. The invoice may identify Reservation numbers and dates, Completed Stays, Auto-Completed Reservations, Eligible Booking Amounts, credits or adjustments, commissionable revenue, MicroStay's flat 12% Commission, previous unpaid amounts, and the total outstanding balance.
 
-or
+25. BILLING SCHEDULE - 5TH, 15TH, 25TH, AND MONTH-END
 
-COMPLETED – AUTO
+Invoice - 5th:
+MicroStay will ordinarily issue the monthly Commission invoice on or around the 5th calendar day of each month for the preceding billing period.
 
-The reservation will then be treated as a Completed Stay for commission purposes.
+Payment Reminder - 15th:
+If the invoice remains unpaid as of the 15th calendar day of the invoice month, MicroStay may issue a payment reminder.
 
-The applicable 12% MicroStay commission will be assessed.
+Final Payment Notice - 25th:
+If the invoice remains unpaid as of the 25th calendar day of the invoice month, MicroStay may issue a final notice advising Partner of the approaching account-deactivation deadline.
 
-Failure to update the reservation within the required 48-hour period constitutes the Partner's acceptance of
-the reservation as completed for billing purposes, subject to the correction procedure contained in this
-Agreement.
+Final Payment Deadline - Last Calendar Day:
+Unless MicroStay agrees otherwise in writing, all undisputed amounts must be paid no later than 11:59 p.m. Pacific Time on the last calendar day of the invoice month.
 
-16. COMPLETED STAYS
+26. NO STANDARD LATE FEE OR REINSTATEMENT PENALTY
 
-A reservation will generally be considered commissionable when:
+Under the standard billing policy in this Agreement, MicroStay does not impose a percentage late fee, a 10% late-payment penalty, a 25% reinstatement charge, or interest solely because an invoice remains unpaid during the normal invoice month. The original unpaid Commission and other valid undisputed amounts remain owed. Nothing prevents MicroStay from seeking amounts, collection costs, attorneys' fees, arbitration awards, or court awards that are separately recoverable under this Agreement or applicable law.
 
-• The Guest checked in.
-• The Guest received the lodging service.
-• The Partner marks the reservation Completed.
-• A Checked-In reservation becomes completed.
-• The reservation becomes Auto-Completed after the 48-hour deadline.
+27. STRIPE BILLING AND PAYMENT METHOD
 
-All such reservations are subject to MicroStay's applicable commission.
+Partner shall maintain an approved debit or credit card through MicroStay's authorized payment processor, currently Stripe, while the Partner account remains active unless MicroStay approves another method in writing.
 
-17. NO-SHOWS
+MicroStay may require payment-method validation before activating a Property. If Partner separately authorizes recurring or off-session charges through Stripe or another processor, MicroStay may charge properly owed and undisputed amounts consistent with that authorization. A declined, expired, blocked, invalid, or cancelled payment method does not eliminate Partner's payment obligation.
 
-If the Guest does not arrive or use the reserved lodging, the Partner must accurately mark the reservation:
+28. NON-PAYMENT AND PROPERTY DEACTIVATION
 
-NO-SHOW
+If an undisputed invoice remains unpaid after 11:59 p.m. Pacific Time on the last calendar day of the invoice month, MicroStay may designate the Property INACTIVE - NON-PAYMENT and deactivate or delist it from new MicroStay Reservations.
 
-within the 48-hour status period.
+MicroStay may remove or suppress the Property from Guest search results, stop new Reservations, disable inventory, restrict Vendor Portal functionality, stop marketing the Property, and take other reasonable account-restriction measures. Deactivation does not cancel or forgive any amount already owed.
 
-A properly reported No-Show will not ordinarily be subject to MicroStay's commission unless otherwise
-expressly provided in writing.
+MicroStay may retain Partner, Reservation, billing, and communications records reasonably necessary for accounting, tax, fraud prevention, security, dispute resolution, legal compliance, regulatory obligations, and enforcement. Deactivation is not the same as deleting those records.
 
-18. CANCELLATIONS
+29. EXISTING RESERVATIONS AFTER DEACTIVATION
 
-If a reservation is cancelled and the Guest did not receive the lodging service, the Partner must accurately
-mark the reservation:
+Unless MicroStay determines otherwise for safety, fraud, legal, regulatory, or material operational reasons, deactivation for non-payment does not automatically cancel valid confirmed Reservations made before deactivation. Partner remains responsible for honoring existing Reservations and obligations incurred before deactivation.
 
-CANCELLED
+30. REACTIVATION
 
-within the required status period.
+A Property deactivated for non-payment may request reactivation after all undisputed overdue amounts are paid, a valid approved payment method is restored, material billing issues are resolved, and any independent compliance or account issues are corrected. No automatic 25% reinstatement charge applies under this Agreement.
 
-A legitimate cancelled reservation will not ordinarily be subject to MicroStay's commission.
+MicroStay may reasonably review the account before reactivation. Payment does not require MicroStay to reactivate a Property independently suspended for fraud, safety, licensing, unlawful activity, commission avoidance, data misuse, or another material violation.
 
-The Partner must not misuse the cancellation status to avoid commission.
+31. BILLING DISPUTES
 
-19. CORRECTION OF AUTO-COMPLETED
-RESERVATIONS
+Partner should notify MicroStay of a good-faith invoice dispute within ten (10) calendar days after receiving the invoice and identify the invoice, affected Reservation number, disputed amount, reason, and reasonably available supporting records. Partner remains responsible for paying all undisputed amounts when due. MicroStay will review reasonable billing disputes in good faith.
 
-If a reservation becomes Auto-Completed because the Partner failed to update it within 48 hours, the
-Partner may submit a correction request within seven (7) calendar days following Auto-Completion.
+32. RECORDKEEPING AND AUDIT RIGHTS
 
-MicroStay may request reasonable evidence showing that the reservation was actually:
+Partner shall maintain reasonably accurate business records relating to MicroStay Reservations, including as applicable Reservation status, check-in records, completed-stay records, cancellation records, No-Show records, folio information, and payment records maintained in the ordinary course.
 
-• Cancelled.
-• A No-Show.
-• Incorrectly recorded.
-• Affected by a genuine technical issue.
+Partner should retain MicroStay Reservation records for at least twenty-four (24) months unless applicable law requires longer retention. Government-required hotel registers, identification records, tax records, and other statutory records shall be retained for the period required by applicable law.
 
-MicroStay may consider:
+Where MicroStay reasonably suspects commission avoidance, off-platform diversion, excessive or suspicious cancellations, false No-Show or cancellation reporting, fraud, Reservation manipulation, or another material breach, MicroStay may request reasonably relevant records relating to affected MicroStay Reservations. Partner shall reasonably cooperate. MicroStay will not knowingly request unrelated confidential information unnecessary to a legitimate investigation.
 
-• Platform records.
-• Partner records.
-• Customer communications.
-• Customer confirmation.
-• Check-in information.
-• Reservation history.
-• Other reasonably relevant evidence.
+33. PROPERTY STANDARDS AND GUEST SAFETY
 
-After the seven-day correction period, an Auto-Completed reservation will generally be considered final for
-commission purposes unless MicroStay determines that a clear billing, technical, or administrative error
-occurred.
+Partner is solely responsible for operating a lawful and reasonably safe lodging establishment, including Guest rooms, locks, plumbing, electricity, sanitary facilities, fire and life-safety compliance, security, housekeeping, maintenance, emergency procedures, employees, contractors, parking areas under Partner control, Property equipment, building conditions, and Guest injuries arising from Property operations.
 
-20. FALSE RESERVATION STATUS
+MicroStay does not control the physical Property and does not inspect, certify, or guarantee the condition or safety of every participating Property.
 
-The Partner must report reservation activity truthfully.
+34. ACCESSIBILITY AND NONDISCRIMINATION
 
-The Partner may not knowingly mark an actual stay as:
+Partner shall comply with applicable disability-access, public-accommodation, civil-rights, and nondiscrimination laws. Partner is responsible for accurate accessible-room information, lawful handling of accessible-room Reservations, legally required reasonable modifications, lawful handling of service animals, and nondiscriminatory Guest treatment.
 
-• Cancelled.
-• No-Show.
-• Incomplete.
-• Refunded.
-• Non-commissionable.
-• Any other inaccurate status
+35. ILLEGAL ACTIVITY, HUMAN TRAFFICKING, AND REQUIRED TRAINING
 
-for the purpose of avoiding MicroStay commission.
+Partner shall not knowingly use or permit its Property or the MicroStay Platform to facilitate unlawful activity. Partner is responsible for complying with applicable laws concerning human-trafficking prevention and awareness, required employee training and notices, unlawful commercial sexual activity, controlled substances, violence, illegal surveillance, fraud, Guest safety, and other unlawful activity affecting hotel operations.
 
-Knowingly falsifying reservation information constitutes a material breach of this Agreement.
+MicroStay may immediately investigate, restrict, suspend, or terminate a Property when reasonably credible information indicates serious unlawful activity, trafficking concerns, material safety concerns, governmental closure, or material legal violations. MicroStay's right to act does not create a duty to continuously monitor every Guest or Property.
 
-MicroStay may:
+36. PARTNER INSURANCE
 
-• Correct the reservation.
-• Assess unpaid commission.
-• Request documentation.
-• Restrict the Partner account.
-• Suspend the property.
-• Terminate the account.
-• Recover amounts properly owed.
+Partner shall maintain insurance appropriate for its lodging operations and required by applicable law. Unless MicroStay approves otherwise in writing, Partner should maintain commercial general liability coverage with limits of at least $1,000,000 per occurrence and $2,000,000 aggregate, or higher limits required by law, franchise requirements, lender requirements, or the Property's risk profile.
 
-21. CANCELLATION RATE MONITORING
+Partner should also maintain, as applicable, innkeeper or hospitality liability coverage, property insurance, workers' compensation, employer liability, cyber/privacy coverage, and other coverage reasonably appropriate to the Property.
 
-MicroStay may monitor each Partner's cancellation activity.
+MicroStay may request certificates or other reasonable evidence of insurance. Where commercially available and reasonably requested, Partner shall use commercially reasonable efforts to name MICROSTAY HOLDINGS LLC d/b/a MicroStay.us as an Additional Insured with respect to claims arising from Partner's Property operations.
 
-For purposes of platform monitoring, MicroStay may calculate a property's cancellation rate by comparing
-cancelled MicroStay reservations with the property's overall MicroStay booking activity.
+37. CUSTOMER DATA AND PRIVACY
 
-MicroStay may take into account whether cancellations were:
+Partner may use Guest information obtained through MicroStay only for lawful and legitimate purposes related to Reservation fulfillment, check-in, Guest communications, customer service, fraud prevention, security, and legal compliance.
 
-• Entered by the Partner.
-• Requested by the Partner.
-• Initiated by the Guest.
-• Caused by MicroStay.
-• Related to fraud or abuse.
-• Caused by documented emergencies or circumstances beyond the Partner's reasonable control.
+Partner shall not sell Guest information obtained through MicroStay, improperly disclose it, use it for unlawful purposes, use it to circumvent MicroStay, or engage in marketing prohibited by applicable privacy or communications law. Partner shall maintain reasonable administrative, physical, and technical safeguards and comply with applicable privacy and data-security laws.
 
-22. MORE THAN 30% CANCELLATION RATE
+38. SECURITY INCIDENTS
 
-If a property's cancellation rate exceeds thirty percent (30%) of its overall MicroStay reservation activity,
-MicroStay may classify the account as:
+Partner must notify MicroStay without unreasonable delay if Partner becomes aware of actual or reasonably suspected unauthorized access to Guest information received through MicroStay. Partner shall reasonably cooperate regarding investigation, containment, remediation, legally required notices, and reasonable information requests relating to the incident.
 
-SUSPICIOUS ACTIVITY – HIGH CANCELLATION RATE
+39. INTELLECTUAL PROPERTY AND LISTING MATERIALS
 
-A cancellation rate exceeding 30% may indicate possible:
+Partner grants MicroStay a non-exclusive, worldwide, royalty-free license during the Partner relationship to use Partner-supplied Property names, trade names, logos, photographs, room photographs, descriptions, amenities, and promotional content for operating, displaying, advertising, marketing, and promoting MicroStay and Partner's listing.
 
-• Direct booking with MicroStay Guests.
-• Off-platform diversion.
-• Commission avoidance.
-• Reservation-status manipulation.
-• Incorrect cancellation reporting.
-• Other suspicious booking activity.
+Partner represents that it owns or has sufficient rights and authority to provide and license those materials.
 
-Exceeding 30% does not automatically establish fraud.
+40. CUSTOMER REVIEWS AND FEEDBACK
 
-However, exceeding the threshold gives MicroStay the right to review the Partner's activity and take
-appropriate action.
+MicroStay may permit legitimate Guest reviews, ratings, complaints, and feedback and may use them for rankings, quality monitoring, customer service, safety, fraud detection, and Partner-performance evaluation. Partner shall not create fake reviews, manipulate ratings, purchase false reviews, pressure Guests to submit misleading reviews, or retaliate against Guests for legitimate feedback.
 
-23. HIGH-CANCELLATION INVESTIGATION
+41. PLATFORM AVAILABILITY AND THIRD-PARTY SERVICES
 
-MicroStay may review relevant information concerning a Partner whose cancellation activity exceeds the
-30% threshold or otherwise appears suspicious.
+MicroStay will use commercially reasonable efforts to operate the Platform but does not guarantee uninterrupted or error-free service, specific uptime, specific search visibility, any minimum number of Reservations, Guest payment, occupancy, revenue, or profit.
 
-MicroStay may consider:
+MicroStay may use third parties including Stripe, hosting providers, database providers, communications providers, analytics providers, and security providers. MicroStay is not responsible for third-party failures outside its reasonable control except to the extent liability cannot lawfully be excluded.
 
-• Reservation history.
-• Cancellation patterns.
-• No-show activity.
-• Auto-Completed reservations.
-• Completed stays.
-• Customer reports.
-• Customer confirmations.
-• Partner communications.
-• Reservation status changes.
-• Relevant check-in records.
-• Other reasonably relevant evidence.
+42. PARTNER REPRESENTATIONS AND CONTINUING CERTIFICATIONS
 
-The Partner agrees to reasonably cooperate with the investigation.
+Throughout the Partner relationship, Partner represents and certifies that:
+• information supplied to MicroStay is truthful and current;
+• Partner has authority to enter this Agreement and operate each Property;
+• each Property is legally permitted to operate and each offered stay duration is lawful;
+• Partner has independently reviewed and will continuously monitor applicable city and county requirements;
+• Partner maintains required licenses, permits, tax registrations, and insurance;
+• Partner requires valid government-issued photo ID for each primary MicroStay Guest at check-in;
+• Partner verifies that the primary Guest is at least 18 years old and enforces any higher lawful Property minimum age;
+• Partner maintains legally required Guest registration and identification records;
+• Partner completes legally required employee training;
+• pricing, mandatory fees, deposit terms, and taxes supplied to MicroStay are accurate;
+• Partner accurately reports Reservation statuses;
+• Partner complies with applicable privacy, safety, accessibility, and tax obligations;
+• Partner will not intentionally circumvent MicroStay; and
+• Partner will promptly notify MicroStay of material governmental restrictions or enforcement affecting the Property.
 
-If MicroStay reasonably determines that the Partner has diverted MicroStay Guests to direct bookings,
-manipulated reservation statuses, intentionally avoided commission, or materially violated this Agreement,
-MicroStay may:
+43. SUSPENSION RIGHTS
 
-• Issue a warning.
-• Restrict bookings.
-• Suspend the Partner.
-• Correct affected reservation statuses.
-• Recover unpaid commission.
-• Terminate the Partner account.
+MicroStay may immediately or temporarily suspend, restrict, or delist a Partner or Property where reasonably necessary because of non-payment, failed billing, false Reservation reporting, commission avoidance, fraud, serious Guest complaints, safety issues, human-trafficking concerns, unlawful activity, invalid licensing, missing required insurance, governmental closure or enforcement, failure to perform required identification or age checks, failure to maintain required Guest records, failure to complete legally required employee training, material tax-compliance concerns, data-security concerns, Property misrepresentation, Platform misuse, or another material violation.
 
-MicroStay reserves the right to terminate the Partner relationship where the overall booking pattern and
-available evidence reasonably indicate repeated misuse or commission avoidance.
+44. TERMINATION BY PARTNER
 
-24. ANTI-CIRCUMVENTION
+Partner may terminate participation by providing thirty (30) days' written notice unless otherwise agreed. Termination does not eliminate responsibility for confirmed Reservations, Completed Stays, Auto-Completed Reservations, outstanding Commissions, unpaid invoices, pending disputes, or obligations incurred before termination.
 
-A Partner may not intentionally circumvent the MicroStay Platform or MicroStay commission.
+45. TERMINATION BY MICROSTAY
 
-The Partner may not encourage, instruct, request, or induce a Guest introduced through MicroStay to
-cancel or bypass a MicroStay reservation for the purpose of booking directly with the Partner and avoiding
-MicroStay commission.
+MicroStay may terminate the Partner relationship for material breach, including fraud, repeated non-payment, commission avoidance, intentional off-platform diversion, false Reservation statuses, serious or repeated safety violations, unlawful activity, misuse of Guest data, invalid licensing, material Property misrepresentation, serious or repeated Guest complaints, governmental action materially affecting operation, or another material violation.
 
-Prohibited activity includes:
+Where reasonably appropriate, MicroStay may provide an opportunity to explain or cure an issue. MicroStay may suspend or terminate immediately where reasonably necessary to protect Guests, MicroStay, the Platform, other Partners, or legal compliance.
 
-• Asking a MicroStay Guest to cancel and book directly.
-• Replacing a MicroStay reservation with a direct property reservation to avoid commission.
-• Offering a Guest a special direct price conditioned on cancellation of a MicroStay reservation.
-• Marking an actual Guest stay as cancelled or No-Show.
-• Manipulating reservation records.
-• Falsifying booking information.
+46. EFFECT OF TERMINATION AND RECORD RETENTION
 
-Intentional circumvention is a material breach of this Agreement.
+Termination does not cancel obligations incurred before termination. Partner remains responsible for outstanding Commissions, unpaid invoices, Completed Stays, existing disputes, and other properly accrued obligations.
 
-25. MICROSTAY COMMISSION
+MicroStay may retain records reasonably necessary for accounting, taxes, fraud prevention, security, dispute resolution, legal compliance, regulatory obligations, and enforcement of this Agreement.
 
-For each commissionable Completed Stay, the Partner agrees to pay:
+47. INDEMNIFICATION
 
-12% of the Eligible Booking Amount
+To the maximum extent permitted by applicable law, Partner shall defend, indemnify, and hold harmless MICROSTAY HOLDINGS LLC, MicroStay.us, and their respective owners, officers, employees, contractors, agents, and affiliates from third-party claims, governmental claims, liabilities, losses, damages, penalties, judgments, fines, and reasonable attorneys' fees and costs arising out of or relating to:
+• Partner's Property operations or Guest accommodations;
+• physical check-in and Guest interactions;
+• Property conditions or Guest injuries;
+• Partner employees or contractors;
+• Partner's violation of law or breach of this Agreement;
+• failure to obtain or verify required Guest identification or age;
+• Guest-register, identification-record, or record-retention violations;
+• employee-training violations;
+• violation of hourly, day-use, or short-duration lodging rules;
+• failure to identify, monitor, or comply with applicable city, county, zoning, licensing, or local requirements;
+• tax obligations allocated to Partner;
+• undisclosed or inaccurate pricing, deposits, refunds, or mandatory charges;
+• Partner's misuse or unauthorized disclosure of Guest information;
+• data-security incidents caused by Partner;
+• discrimination or accessibility violations;
+• unlawful activity attributable to Partner's operations;
+• Partner-provided content or infringement caused by Partner-provided materials;
+• fraud, false Reservation reporting, or commission avoidance.
 
-to MICROSTAY HOLDINGS LLC.
+This indemnification does not apply to the extent a claim is finally determined to have resulted from MicroStay's gross negligence, willful misconduct, fraud, or another liability that applicable law does not permit MicroStay to shift or exclude.
 
-Example:
+48. DISCLAIMER OF WARRANTIES
 
-Eligible Booking Amount: $60.00
-
-MicroStay Commission:
-
-$60.00 × 12% = $7.20
-
-The Partner collects the Guest's lodging payment directly.
-
-MicroStay subsequently bills the Partner for MicroStay's commission.
-
-26. COMMISSION CALCULATION
-
-Unless otherwise stated in writing, the Eligible Booking Amount generally includes the lodging amount
-associated with the MicroStay reservation.
-
-The commission does not ordinarily apply to:
-
-• Government taxes.
-• Security deposits.
-• Damage deposits.
-• Tips.
-• Optional purchases.
-• Guest damage charges.
-• Separate incidental charges.
-• Other non-reservation charges not included in the original Eligible Booking Amount.
-
-27. MONTHLY BILLING
-
-MicroStay bills Partner commissions monthly.
-
-The monthly invoice will generally include commissionable reservations attributable to the prior billing
-period.
-
-The invoice may identify:
-
-• Reservation numbers.
-• Reservation dates.
-• Completed reservations.
-• Auto-Completed reservations.
-• Eligible Booking Amounts.
-• Adjustments.
-• Credits.
-• Commissionable revenue.
-• MicroStay commission.
-• Previous unpaid amounts.
-• Applicable late or reinstatement charges.
-• Total balance due.
-
-28. PAYMENT DUE ON THE 1ST
-
-The Partner agrees that the monthly MicroStay commission invoice is due on the 1st day of each month.
-
-MicroStay may automatically attempt to charge the Partner's authorized payment card through Stripe on or
-after the 1st.
-
-The Partner is responsible for ensuring that a valid payment card remains available.
-
-29. STRIPE CARD-ONLY BILLING
-
-Partner commission payments are processed electronically through Stripe.
-
-MicroStay accepts Partner billing payments only through an approved:
-
-• Debit card; or
-• Credit card
-
-processed through Stripe.
-
-For standard Partner billing, MicroStay does not accept:
-
-• Cash.
-• Checks.
-• Money orders.
-• ACH.
-• Bank transfers.
-• Wire transfers.
-• Zelle.
-• Venmo.
-• PayPal.
-• Other manual payment methods.
-
-A Partner must maintain a valid debit or credit card through the MicroStay/Stripe billing system while the
-Partner account remains active.
-
-30. PAYMENT METHOD REQUIRED FOR ACTIVE
-STATUS
-
-MicroStay may require the Partner to add and successfully validate an approved debit or credit card before
-activating the property.
-
-If the Partner:
-
-• Removes its payment method.
-• Provides an invalid card.
-• Allows its card to expire.
-• Blocks authorized MicroStay billing.
-• Otherwise fails to maintain a valid card
-
-MicroStay may restrict or suspend the property.
-
-31. AUTOMATIC CARD AUTHORIZATION
-
-The Partner expressly authorizes MICROSTAY HOLDINGS LLC d/b/a MicroStay.us, acting through Stripe or
-its approved payment processor, to charge the Partner's saved debit or credit card for amounts properly
-due under this Agreement.
-
-Authorized amounts may include:
-
-• Monthly commissions.
-• Unpaid commissions.
-• Approved adjustments.
-• Applicable late-payment charges.
-• Applicable account-reinstatement charges.
-• Other undisputed amounts properly owed under this Agreement.
-
-The Partner understands that the amount charged may vary from month to month based on reservation
-activity.
-
-The Partner authorizes recurring and off-session card charges where supported by the applicable payment
-processor and card network.
-
-The Partner agrees to complete any additional Stripe authorization process reasonably required to establish
-or maintain this authorization.
-
-This authorization continues until the Partner relationship ends and all outstanding amounts properly owed
-have been paid.
-
-32. BILLING NOTICE – 1ST OF THE MONTH
-
-On or around the 1st day of each month, MicroStay will generate the Partner's monthly commission invoice
-for the previous billing period and will provide the Partner with the invoice or billing notice by email.
-
-The invoice covers all commissionable reservations completed or auto-completed during the previous
-calendar month.
-
-MicroStay may automatically attempt card payment upon invoice generation.
-
-If payment succeeds, the invoice will be marked paid and no further action is required.
-
-33. FIRST PAYMENT REMINDER – 5TH OF THE MONTH
-
-If the invoice remains unpaid on the 5th day of the month following the billing period, MicroStay will
-send a first payment reminder to the Partner.
-
-The reminder will state the amount due and request prompt payment.
-
-The Partner must:
-
-• Pay the outstanding balance; or
-• Update the payment method if the prior attempt failed.
-
-34. SECOND AND FINAL PAYMENT REMINDER – 25TH OF THE MONTH
-
-If the invoice remains unpaid on the 25th day of the month following the billing period, MicroStay will
-send a second and final payment reminder.
-
-The notice will state that:
-
-• The account balance is overdue.
-• The property will be automatically deactivated on the 26th if payment is not received.
-• Reactivation will require the original unpaid amount plus a 25% reinstatement charge.
-
-35. NO ADDITIONAL PERCENTAGE LATE-PAYMENT CHARGE BEFORE DEACTIVATION
-
-MicroStay does not assess a separate percentage-based late-payment charge prior to the deactivation
-date described in Section 36.
-
-The applicable reinstatement charge is described in Section 37 and applies only upon reactivation
-after deactivation.
-
-36. ACCOUNT DEACTIVATION ON THE 26TH
-
-If the Partner has not fully paid the required balance by the end of the 25th day of the month following
-the billing period, MicroStay will place the property into:
-
-INACTIVE – NON-PAYMENT
-
-status on the 26th day of that same month.
-
-An inactive property may:
-
-• Stop appearing in Guest search results.
-• Stop receiving new bookings.
-• Have listing availability disabled.
-• Have Vendor Portal functionality restricted.
-• Remain responsible for all existing financial obligations.
-
-Account deactivation does not cancel amounts already owed to MicroStay.
-
-37. 25% REINSTATEMENT CHARGE
-
-If a Partner account is deactivated for non-payment, reactivation requires payment of:
-
-1. The full original unpaid commission invoice (12% of gross booking revenue for the period); and
-2. A reinstatement charge equal to 25% of the original unpaid invoice amount.
-
-The 25% reinstatement charge reflects the additional administrative, collection, account-suspension,
-reactivation, payment-processing, and operational costs caused by continued delinquency.
-
-There is no separate cumulative late-payment charge — the 25% reinstatement charge is the only
-additional fee assessed upon reactivation.
-
-Example:
-
-Original unpaid commission: $1,000
-
-Reinstatement charge (25%): $250
-
-Total required for reactivation: $1,250
-
-The charge applies only to the extent permitted by applicable law, including California Civil Code
-Section 1671 (liquidated damages) and any other applicable California consumer protection statutes.
-
-38. REACTIVATION
-
-A property inactivated for non-payment may be reactivated after:
-
-• All required overdue amounts are successfully paid.
-• Applicable reinstatement charges are paid.
-• A valid debit or credit card is maintained through Stripe.
-• Other unresolved material account issues are resolved.
-
-MicroStay may require administrative review before reactivation.
-
-Payment alone does not require MicroStay to reactivate a property that is independently suspended for:
-
-• Fraud.
-• Safety concerns.
-• Excessive cancellations.
-• Commission avoidance.
-• Legal violations.
-• Other material Agreement violations.
-
-39. FAILED OR DECLINED CARD
-
-A declined, blocked, expired, invalid, cancelled, or otherwise unusable card does not excuse the Partner's
-payment obligation.
-
-The Partner must promptly update the payment method.
-
-MicroStay may make additional authorized attempts to collect an unpaid balance.
-
-40. PARTNER CARD CHARGEBACKS
-
-A Partner's dispute or chargeback against a MicroStay card transaction does not, by itself, eliminate the
-Partner's contractual obligation to pay a valid commission or other amount properly owed.
-
-If a payment is reversed, charged back, or otherwise returned, MicroStay may restore the applicable
-balance to unpaid status.
-
-Knowingly initiating an improper card dispute to avoid legitimate MicroStay commission may constitute a
-material breach of this Agreement.
-
-Nothing in this section prevents a Partner from making a legitimate billing dispute.
-
-41. BILLING DISPUTES
-
-The Partner must notify MicroStay of a disputed invoice or commission calculation within ten (10) calendar
-days after receiving the applicable statement.
-
-The Partner should provide:
-
-• Reservation number.
-• Amount disputed.
-• Reason.
-• Supporting documentation or information where available.
-
-The Partner remains responsible for paying all undisputed amounts when due.
-
-MicroStay will review reasonable billing disputes in good faith.
-
-42. RECORDKEEPING AND AUDIT RIGHTS
-
-The Partner must maintain reasonably accurate business records relating to MicroStay reservations.
-
-Relevant records may include:
-
-• Reservation status.
-• Check-in records.
-• Completed stay information.
-• Cancellation records.
-• No-show records.
-• Relevant payment or folio records maintained in the ordinary course of business.
-
-The Partner should retain relevant MicroStay reservation records for at least twenty-four (24) months unless
-applicable law requires longer retention.
-
-Where MicroStay reasonably suspects:
-
-• Commission avoidance.
-• Off-platform diversion.
-• Excessive cancellations.
-• False no-show reporting.
-• False cancellation reporting.
-• Fraud.
-• Reservation manipulation.
-• Other material violations,
-
-MicroStay may request reasonable supporting records relating specifically to affected MicroStay
-reservations.
-
-The Partner agrees to reasonably cooperate.
-
-MicroStay will not knowingly request unrelated confidential business information that is not reasonably
-necessary for the investigation.
-
-43. PROPERTY STANDARDS
-
-The Partner must maintain reasonable standards appropriate for a lawful lodging business.
-
-The Partner is responsible for:
-
-• Clean rooms.
-• Safe rooms.
-• Working locks.
-• Working plumbing.
-• Working electricity.
-• Sanitary facilities.
-• Properly maintained advertised amenities.
-• Fire and life-safety requirements.
-• Security procedures.
-• Housekeeping.
-• Maintenance.
-• Compliance with applicable building and lodging requirements.
-
-MicroStay does not inspect, certify, warrant, or guarantee the physical condition of every Partner property
-unless expressly stated otherwise.
-
-44. ACCESSIBILITY AND NONDISCRIMINATION
-
-The Partner must comply with all applicable disability-access, civil-rights, public-accommodation, and
-nondiscrimination laws.
-
-Where applicable, the Partner must:
-
-• Provide accurate information about accessible accommodations and features.
-• Handle accessible-room reservations as required by law.
-• Provide reasonable modifications required by law.
-• Properly handle lawful service-animal requests.
-• Not discriminate against Guests based on legally protected characteristics.
-
-The Partner is responsible for ensuring that its property, employees, policies, facilities, and operations
-comply with applicable accessibility requirements.
-
-45. INSURANCE
-
-The Partner must maintain insurance coverage that is:
-
-• Appropriate for its lodging operations.
-• Reasonably sufficient for the risks associated with operating the property.
-• Required by applicable federal, state, or local law.
-
-Coverage may include, as applicable:
-
-• Commercial general liability coverage.
-• Property coverage.
-• Workers' compensation.
-• Employer-related coverage.
-• Other coverage appropriate for the Partner's operations.
-
-Upon reasonable request, the Partner must provide evidence of current insurance.
-
-Where appropriate and commercially available, MicroStay may request that MICROSTAY HOLDINGS LLC and
-relevant affiliates be identified as additional insureds with respect to claims arising from the Partner's
-property operations.
-
-Failure to maintain legally required or reasonably appropriate insurance may result in suspension or
-termination.
-
-46. CUSTOMER SAFETY
-
-The Partner is solely responsible for safety at the Partner's property.
-
-This includes responsibility for:
-
-• Building conditions.
-• Guest rooms.
-• Parking areas under Partner control.
-• Employees.
-• Contractors.
-• Security.
-• Maintenance.
-• Housekeeping.
-• Emergency procedures.
-• Property equipment.
-• Guest injuries arising from property operations.
-
-MicroStay does not control the physical operation of the property.
-
-47. ILLEGAL OR DANGEROUS ACTIVITY
-
-The Partner must not knowingly use or permit the MicroStay Platform to facilitate illegal activity.
-
-MicroStay may immediately investigate, restrict, suspend, or terminate a Partner where reasonably credible
-information indicates serious:
-
-• Fraud.
-• Violence.
-• Human trafficking.
-• Illegal commercial sexual activity.
-• Illegal drug activity.
-• Illegal surveillance.
-• Serious safety violations.
-• Discrimination.
-• Criminal activity.
-• Government closure.
-• Other unlawful or dangerous activity.
-
-MicroStay's right to investigate or act does not create an obligation to continuously monitor all Partner
-activity or guarantee the safety or legality of every property.
-
-48. CUSTOMER DATA AND PRIVACY
-
-The Partner may use Guest information obtained through MicroStay only for legitimate purposes including:
-
-• Reservation fulfillment.
-• Check-in.
-• Customer service.
-• Fraud prevention.
-• Legal compliance.
-
-The Partner may not:
-
-• Sell Guest information obtained through MicroStay.
-• Use Guest information for unauthorized purposes.
-• Improperly disclose Guest information.
-• Use Guest information to circumvent MicroStay.
-
-The Partner must maintain reasonable administrative, physical, and technical safeguards appropriate to the
-customer information it receives.
-
-The Partner must comply with applicable privacy and data-security laws.
-
-49. SECURITY INCIDENTS
-
-The Partner must notify MicroStay without undue delay if it becomes aware of actual or reasonably
-suspected unauthorized access to MicroStay Guest information.
-
-The Partner agrees to reasonably cooperate regarding:
-
-• Investigation.
-• Containment.
-• Remediation.
-• Legally required notifications.
-• Reasonable information requests concerning the incident.
-
-50. INTELLECTUAL PROPERTY AND PROPERTY
-MATERIALS
-
-The Partner grants MICROSTAY HOLDINGS LLC a non-exclusive, worldwide, royalty-free license during the
-Partner relationship to use Partner-provided materials for operating, promoting, and marketing MicroStay
-and the Partner's listing.
-
-These materials may include:
-
-• Property name.
-• Trade name.
-• Logo.
-• Photos.
-• Room photos.
-• Descriptions.
-• Amenities.
-• Promotional content.
-
-MicroStay may use these materials through:
-
-• MicroStay.us.
-• Applications.
-• Search engines.
-• Social media.
-• Online advertising.
-• Email marketing.
-• Partner promotions.
-• Other reasonable marketing channels.
-
-The Partner represents that it owns or has authority to provide these materials.
-
-51. REVIEWS AND CUSTOMER FEEDBACK
-
-MicroStay may permit Guests to submit:
-
-• Reviews.
-• Ratings.
-• Complaints.
-• Feedback.
-
-MicroStay may use legitimate Guest feedback for:
-
-• Property rankings.
-• Quality monitoring.
-• Customer service.
-• Fraud detection.
-• Safety reviews.
-• Partner-performance evaluation.
-
-The Partner may not:
-
-• Create fake Guest reviews.
-• Manipulate ratings.
-• Buy false reviews.
-• Pressure Guests to submit misleading reviews.
-• Retaliate against Guests for legitimate negative feedback.
-
-MicroStay may identify reviews associated with genuine completed reservations as verified stays or similar
-terminology.
-
-52. PLATFORM AVAILABILITY
-
-MicroStay will use commercially reasonable efforts to operate its Platform.
-
-MicroStay does not guarantee:
-
-• Continuous operation.
-• Error-free operation.
-• Uninterrupted service.
-• Specific uptime.
-• Specific search visibility.
-• Data transmission without interruption.
-• Availability of any third-party service.
-
-MicroStay may temporarily restrict or suspend Platform functionality for:
-
-• Maintenance.
-• Security.
-• Updates.
-• Technical failures.
-• Fraud prevention.
-• Legal compliance.
-• Third-party service issues.
-• Emergency conditions.
-
-53. THIRD-PARTY SERVICES
-
-MicroStay may rely on third-party service providers including payment processors, hosting companies,
-email providers, analytics services, database providers, communications providers, and other technology
-vendors.
-
-MicroStay is not responsible for third-party outages or failures outside MicroStay's reasonable control,
-except to the extent responsibility cannot lawfully be excluded.
-
-Stripe is a third-party payment processor.
-
-Partner use of Stripe may also be subject to applicable Stripe terms and policies.
-
-54. FORCE MAJEURE
-
-Neither party will be liable for failure or delay in performance caused by circumstances beyond its
-reasonable control, except that this section does not excuse payment obligations for amounts already
-properly owed.
-
-Such circumstances may include:
-
-• Natural disasters.
-• Earthquakes.
-• Fires.
-• Floods.
-• Severe weather.
-• War.
-• Terrorism.
-• Civil disturbance.
-• Government action.
-• Epidemics or pandemics.
-• Utility failures.
-• Internet outages.
-• Telecommunications failures.
-• Third-party technology failures.
-• Payment-network outages.
-• Labor disruptions.
-• Other events beyond reasonable control.
-
-The affected party should use commercially reasonable efforts to reduce the impact of the event.
-
-55. PARTNER REPRESENTATIONS AND WARRANTIES
-
-The Partner represents and warrants that:
-
-• Information supplied to MicroStay is truthful.
-• The Partner has authority to operate the property.
-• The Partner has authority to enter this Agreement.
-• The property will operate legally.
-• The Partner has rights to listing materials supplied to MicroStay.
-• Prices and mandatory fees supplied to MicroStay are accurate.
-• The Partner will maintain appropriate insurance.
-• The Partner will maintain required permits and licenses.
-• Reservation statuses will be reported accurately.
-• The Partner will comply with applicable laws.
-• The Partner will not intentionally circumvent MicroStay commissions.
-
-56. SUSPENSION
-
-MicroStay may temporarily suspend or restrict a Partner account where reasonably necessary for:
-
-• Non-payment.
-• Failed billing.
-• Excessive cancellations.
-• Suspected commission avoidance.
-• Fraud investigation.
-• Safety concerns.
-• Customer complaints.
-• False information.
-• Insurance issues.
-• Legal compliance.
-• Government action.
-• Data-security concerns.
-• Platform misuse.
-• Material Agreement violations.
-
-Suspension may include disabling:
-
-• New bookings.
-• Property visibility.
-• Listing access.
-• Vendor Portal functions.
-
-57. TERMINATION BY PARTNER
-
-The Partner may terminate participation by providing thirty (30) days' written notice unless otherwise
-agreed.
-
-Termination does not remove responsibility for:
-
-• Existing confirmed reservations.
-• Completed reservations.
-• Auto-Completed reservations.
-• Outstanding commissions.
-• Valid invoices.
-• Properly assessed charges.
-• Other obligations arising before termination.
-
-58. TERMINATION BY MICROSTAY
-
-MicroStay may terminate the Partner relationship for material violations including:
-
-• Fraud.
-• Repeated non-payment.
-• Commission avoidance.
-• Intentional off-platform diversion.
-• False booking statuses.
-• Repeated excessive cancellations.
-• Suspicious cancellation activity supported by available evidence.
-• Illegal activity.
-• Serious safety violations.
-• Misuse of customer information.
-• Serious or repeated Guest complaints.
-• Invalid licensing.
-• Materially false property information.
-• Material violation of this Agreement.
-
-Where reasonably appropriate, MicroStay may provide the Partner an opportunity to explain or correct the
-issue.
-
-MicroStay may terminate or suspend immediately where reasonably necessary to protect Guests, the
-Platform, MicroStay, other Partners, or legal compliance.
-
-59. EFFECT OF TERMINATION
-
-Termination does not cancel obligations incurred before termination.
-
-The Partner remains responsible for:
-
-• Outstanding commissions.
-• Unpaid invoices.
-• Applicable billing charges.
-• Completed stays.
-• Existing disputes.
-• Other properly accrued obligations.
-
-MicroStay may retain records as reasonably necessary for:
-
-• Accounting.
-• Tax requirements.
-• Fraud prevention.
-• Security.
-• Disputes.
-• Legal compliance.
-• Enforcement of this Agreement.
-
-60. INDEMNIFICATION
-
-To the maximum extent permitted by law, the Partner agrees to defend, indemnify, and hold harmless:
-
-• MICROSTAY HOLDINGS LLC.
-• MicroStay.us.
-• Their owners.
-• Officers.
-• Employees.
-• Contractors.
-• Agents.
-• Affiliates.
-
-from third-party claims, liabilities, losses, damages, penalties, judgments, and reasonable costs and
-attorneys' fees arising out of or relating to:
-
-• Partner property operations.
-• Property conditions.
-• Guest injuries at the property.
-• Partner employees or contractors.
-• Partner violations of law.
-• Partner's breach of this Agreement.
-• Partner's undisclosed or inaccurate pricing.
-• Partner's tax obligations.
-• Partner's misuse of customer information.
-• Partner's infringement of third-party rights.
-• Partner-provided content.
-• Partner discrimination.
-• Partner fraud or commission avoidance.
-
-This obligation does not apply to the extent a claim results from MicroStay's own conduct for which liability
-cannot lawfully be excluded or shifted.
-
-61. DISCLAIMER OF WARRANTIES
-
-TO THE MAXIMUM EXTENT PERMITTED BY LAW, THE MICROSTAY PLATFORM IS PROVIDED ON AN "AS IS"
-AND "AS AVAILABLE" BASIS.
-
-MICROSTAY DOES NOT WARRANT THAT:
-
-• THE PLATFORM WILL ALWAYS BE AVAILABLE.
-• THE PLATFORM WILL ALWAYS BE ERROR FREE.
-• THE PARTNER WILL RECEIVE ANY PARTICULAR NUMBER OF BOOKINGS.
-• ANY GUEST WILL PAY OR COMPLETE A RESERVATION.
-• ANY SPECIFIC BUSINESS RESULT WILL OCCUR.
+TO THE MAXIMUM EXTENT PERMITTED BY LAW, THE MICROSTAY PLATFORM IS PROVIDED "AS IS" AND "AS AVAILABLE." MICROSTAY DOES NOT WARRANT THAT THE PLATFORM WILL ALWAYS BE AVAILABLE OR ERROR-FREE, THAT PARTNER WILL RECEIVE ANY MINIMUM NUMBER OF RESERVATIONS, THAT ANY GUEST WILL COMPLETE OR PAY FOR A RESERVATION, THAT ANY PARTICULAR SEARCH POSITION WILL BE MAINTAINED, OR THAT ANY PARTICULAR BUSINESS RESULT WILL OCCUR.
 
 Nothing in this Agreement eliminates rights or obligations that cannot legally be waived.
 
-62. LIMITATION OF LIABILITY
+49. LIMITATION OF LIABILITY
 
-TO THE MAXIMUM EXTENT PERMITTED BY APPLICABLE LAW, MICROSTAY WILL NOT BE LIABLE TO THE
-PARTNER FOR INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, PUNITIVE, OR CONSEQUENTIAL DAMAGES,
-INCLUDING LOST PROFITS, LOST REVENUE, LOST BUSINESS OPPORTUNITIES, OR LOSS OF GOODWILL
-ARISING FROM OR RELATING TO THIS AGREEMENT OR THE MICROSTAY PLATFORM.
+TO THE MAXIMUM EXTENT PERMITTED BY APPLICABLE LAW, MICROSTAY SHALL NOT BE LIABLE TO PARTNER FOR INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, PUNITIVE, OR CONSEQUENTIAL DAMAGES, INCLUDING LOST PROFITS, LOST REVENUE, LOST BUSINESS OPPORTUNITY, OR LOSS OF GOODWILL ARISING FROM OR RELATING TO THIS AGREEMENT OR THE MICROSTAY PLATFORM.
 
-TO THE MAXIMUM EXTENT PERMITTED BY LAW, MICROSTAY'S AGGREGATE LIABILITY TO THE PARTNER
-ARISING OUT OF OR RELATING TO THIS AGREEMENT WILL NOT EXCEED THE TOTAL COMMISSIONS
-ACTUALLY PAID BY THE PARTNER TO MICROSTAY DURING THE SIX (6) MONTHS IMMEDIATELY PRECEDING
-THE EVENT GIVING RISE TO THE CLAIM.
+TO THE MAXIMUM EXTENT PERMITTED BY LAW, MICROSTAY'S AGGREGATE LIABILITY TO PARTNER ARISING OUT OF OR RELATING TO THIS AGREEMENT SHALL NOT EXCEED THE TOTAL COMMISSIONS ACTUALLY PAID BY PARTNER TO MICROSTAY DURING THE SIX (6) MONTHS IMMEDIATELY PRECEDING THE EVENT GIVING RISE TO THE CLAIM.
 
-These limitations do not apply where liability cannot lawfully be limited or excluded, including where
-applicable law prohibits limitation for fraud, willful misconduct, or other legally non-waivable liability.
+These limitations do not apply where liability cannot lawfully be limited or excluded.
 
-63. GOOD-FAITH DISPUTE RESOLUTION
+50. GOOD-FAITH DISPUTE RESOLUTION
 
-Before filing arbitration or other formal proceedings, the parties agree to make reasonable good-faith
-efforts to resolve the dispute directly.
+Before initiating arbitration or other formal proceedings, the parties shall make reasonable good-faith efforts to resolve the dispute directly. A dispute notice should identify the nature of the dispute, relevant Reservation or invoice information, reasonably available supporting documentation, and requested resolution. This section does not prevent emergency or temporary relief where reasonably necessary.
 
-A party asserting a dispute should provide written notice describing:
+51. BINDING ARBITRATION
 
-• The nature of the dispute.
-• Relevant reservation or invoice information.
-• The requested resolution.
+Except where prohibited by applicable law, unresolved disputes arising out of or relating to this Agreement, Partner's participation in MicroStay, or the MicroStay Platform shall be resolved by binding arbitration administered by the American Arbitration Association (AAA) under its applicable Commercial Arbitration Rules.
 
-The parties should reasonably attempt informal resolution before proceeding to arbitration, except where
-immediate legal relief is reasonably necessary.
+Unless the parties agree otherwise, arbitration shall be before one arbitrator, conducted in English, and located in Los Angeles County, California. Judgment on the award may be entered in any court having jurisdiction. To the extent permitted by law, arbitration shall proceed on an individual basis and not as a class, representative, or consolidated proceeding unless the parties agree otherwise.
 
-64. BINDING ARBITRATION
+Either party may seek temporary or emergency injunctive relief from a court of competent jurisdiction where reasonably necessary to prevent fraud, data misuse, intellectual-property infringement, commission circumvention, or similar irreparable harm.
 
-Except where prohibited by law, any unresolved controversy or claim arising out of or relating to this
-Agreement, the Partner relationship, or the MicroStay Platform will be resolved by binding arbitration
-administered by the American Arbitration Association ("AAA") under its applicable Commercial
-Arbitration Rules.
+52. GOVERNING LAW; ATTORNEYS' FEES
 
-Unless the parties agree otherwise:
+This Agreement is governed by the laws of the State of California, without regard to conflict-of-law principles, except where applicable federal law controls.
 
-• The arbitration will be conducted before one arbitrator.
-• The arbitration will be conducted in English.
-• The arbitration location will be Los Angeles County, California.
-• Judgment on the arbitration award may be entered in any court having jurisdiction.
+To the extent permitted by applicable law, the prevailing party in a proceeding to enforce this Agreement may recover reasonable attorneys' fees and costs where awarded by the arbitrator or court.
 
-Nothing in this provision prevents either party from seeking temporary or emergency injunctive relief from
-a court of competent jurisdiction when reasonably necessary to prevent immediate misuse, fraud,
-intellectual-property infringement, data misuse, or similar irreparable harm.
+53. FORCE MAJEURE
 
-65. GOVERNING LAW
+Neither party shall be liable for failure or delay caused by circumstances beyond its reasonable control, including natural disasters, severe weather, fire, flood, earthquake, war, terrorism, government action, epidemic or pandemic, utility failure, telecommunications failure, labor disruption, third-party technology failure, or similar events. Force majeure does not excuse amounts already properly owed.
 
-This Agreement is governed by the laws of the State of California, without regard to conflict-of-law
-principles, except where applicable federal law controls.
+54. ELECTRONIC TRANSACTIONS, DIGITAL SIGNATURE, AND PARTNER SIGNUP
 
-66. ATTORNEYS' FEES AND COSTS
+Partner agrees that this Agreement, related records, notices, and signatures may be created, provided, and retained electronically to the extent permitted by applicable law.
 
-To the extent permitted by applicable law, the prevailing party in an action or proceeding to enforce this
-Agreement may recover reasonable attorneys' fees and costs as permitted by law.
+Partner may execute this Agreement through MicroStay's Partner signup or Vendor Portal by completing the required Partner and Property information, reviewing the Agreement, affirmatively checking the required acceptance certification, entering the authorized signer's legal name and title, and clicking an "Agree & Sign," "I Accept," or substantially similar button.
 
-67. ELECTRONIC TRANSACTIONS
+Partner agrees that this affirmative electronic action constitutes Partner's electronic signature and has the same force and effect as a handwritten signature to the extent permitted by applicable law. No wet-ink signature is required for an electronically executed Agreement.
 
-The Partner agrees that transactions with MicroStay may be conducted electronically.
+MicroStay may maintain evidence of acceptance including Partner account ID, Property identity, legal business name, authorized signer name and title, email address, Agreement version, acceptance date and time, IP address, browser or device information where collected, payment authorization records, and other reasonable evidence of assent.
 
-Electronic records, electronic acceptance, and electronic signatures may be used to form and administer
-this Agreement to the extent permitted by applicable law.
+MicroStay should make the accepted Agreement available to Partner electronically, including through the Vendor Portal, downloadable PDF, confirmation email, or another reasonable method.
 
-MicroStay may maintain records showing:
+55. ELECTRONIC COMMUNICATIONS
 
-• Partner identity.
-• Property identity.
-• Agreement version.
-• Acceptance date and time.
-• Account information.
-• Electronic acceptance.
-• IP address or device-related records where collected.
-• Payment authorization information.
-• Other reasonable evidence of acceptance.
+Partner agrees to receive Reservation notices, invoices, payment reminders, account notices, compliance notices, suspension notices, Agreement updates, and other Partner communications electronically through email, the Vendor Portal, MicroStay.us, SMS where authorized, or other approved electronic methods. Partner is responsible for maintaining current contact information.
 
-68. ELECTRONIC COMMUNICATIONS
+56. NOTICES TO MICROSTAY
 
-The Partner agrees that MicroStay may provide communications electronically, including:
+Official notices to MicroStay may be directed to: MICROSTAY HOLDINGS LLC d/b/a MicroStay.us, Email: support@microstay.us. MicroStay may designate an additional legal-notice address through the Platform or a written amendment.
 
-• Reservation notices.
-• Statements.
-• Invoices.
-• Payment reminders.
-• Suspension notices.
-• Agreement updates.
-• Policy notices.
-• Account communications.
-• Other business communications.
+57. CHANGES TO AGREEMENT
 
-Communications may be delivered through:
+MicroStay may update this Agreement from time to time. For material changes, MicroStay will provide reasonable advance notice, ordinarily at least thirty (30) days, unless a shorter period is reasonably necessary because of legal or regulatory changes, security concerns, fraud prevention, payment-network requirements, or emergency operational needs.
 
-• Email.
-• Vendor Portal.
-• MicroStay.us.
-• SMS where authorized.
-• Other electronic methods associated with the Partner account.
+Where appropriate or legally required, MicroStay may require renewed electronic acceptance. Continued use after the effective date of updated terms constitutes acceptance only to the extent permitted by applicable law.
 
-The Partner is responsible for maintaining accurate contact information.
+58. ASSIGNMENT AND CHANGE OF PROPERTY OWNERSHIP
 
-69. NOTICES TO MICROSTAY
+Partner may not assign or transfer this Agreement, the Partner account, or a Property listing to another owner, operator, management company, or legal entity without MicroStay's prior written approval. A material change in Property ownership or operating entity may require a new Partner Agreement and updated compliance information.
 
-Official notices to MicroStay should be directed to:
+MicroStay may assign this Agreement in connection with a merger, acquisition, corporate restructuring, sale of relevant assets, transfer to an affiliate, or other lawful business transaction.
 
-MICROSTAY HOLDINGS LLC
-d/b/a MicroStay.us
+59. ENTIRE AGREEMENT; SEVERABILITY; NO WAIVER
 
-Email:
-support@microstay.us
+This Agreement and any expressly incorporated addenda, payment authorizations, or written amendments constitute the entire agreement between MicroStay and Partner regarding the subject matter covered by this Agreement. A written addendum signed or electronically accepted by both parties controls over conflicting provisions concerning the subject addressed by that addendum.
 
-MicroStay may provide additional legal-notice contact information through the Platform.
+If any provision is determined to be unlawful, invalid, or unenforceable, it shall be enforced to the maximum lawful extent or severed where appropriate, and the remaining provisions shall continue in effect. Failure to enforce a provision on one occasion does not waive the right to enforce it later.
 
-70. CHANGES TO THIS AGREEMENT
+60. SURVIVAL
 
-MicroStay may update this Agreement from time to time.
+Provisions that by their nature should continue after termination shall survive, including payment and Commission obligations, recordkeeping and audit rights, privacy and data-security obligations, intellectual-property rights, indemnification, limitations of liability, dispute resolution, governing law, and obligations accrued before termination.
 
-For material changes, MicroStay will provide reasonable advance notice, generally at least thirty (30) days,
-unless a shorter period is reasonably necessary because of:
+APPENDIX A - CALIFORNIA AND LOCAL COMPLIANCE ADDENDUM
 
-• Changes in law.
-• Regulatory requirements.
-• Security concerns.
-• Fraud prevention.
-• Payment-network requirements.
-• Emergency operational needs.
+For each Property located in California, Partner additionally agrees that:
+1. Partner is the physical lodging operator and is responsible for applicable hotel and motel operational compliance.
+2. Partner will independently determine whether short-duration, day-use, hourly, flexible-duration, evening, or other stay periods offered through MicroStay are lawful at the specific Property.
+3. Partner will independently investigate applicable city and county regulations before making inventory available and will continuously monitor material changes in local requirements.
+4. Partner shall comply with applicable Guest-identification, minimum-age, Guest-register, recordkeeping, record-retention, employee-training, public-safety, anti-trafficking, tax, and lodging requirements.
+5. For a Property subject to Los Angeles Municipal Code Section 41.49, Partner shall comply with that section as amended and applicable.
+6. Partner shall maintain all required local business licenses, hotel or motel permits, tax registrations, and other Property-level authorizations.
+7. Partner shall promptly remove inventory that Partner determines cannot lawfully be offered and shall promptly notify MicroStay of governmental enforcement materially affecting the Property's ability to honor MicroStay Reservations.
+8. MicroStay's listing or activation of a Property does not constitute MicroStay's certification that Partner has satisfied local licensing, zoning, tax, hotel, short-duration, identification, age-verification, or recordkeeping requirements.
+9. Partner remains responsible for its Property-level legal and regulatory compliance to the maximum extent permitted by applicable law.
+10. Nothing in this Agreement attempts to eliminate a statutory obligation that applicable law independently and non-waivably imposes directly on MicroStay.
 
-MicroStay will maintain the effective version of the Agreement.
+APPENDIX B - PARTNER COMPLIANCE AND BILLING CERTIFICATION
 
-Where required, MicroStay may request renewed electronic acceptance.
-
-Continued use of the Platform after the effective date of updated terms constitutes acceptance to the
-extent permitted by applicable law.
-
-71. ASSIGNMENT
-
-The Partner may not transfer or assign this Agreement or the Partner account to another person, operator,
-property owner, or legal entity without MicroStay's prior written approval.
-
-MicroStay may assign this Agreement in connection with:
-
-• Corporate restructuring.
-• Merger.
-• Acquisition.
-• Sale of substantially all relevant assets.
-• Transfer to an affiliate.
-• Other lawful business transaction.
-
-72. ENTIRE AGREEMENT
-
-This Agreement, together with any policies, addenda, payment authorizations, or other terms expressly
-incorporated into it, constitutes the entire agreement between the Partner and MicroStay regarding the
-subject matter covered by this Agreement.
-
-A written addendum specifically executed by both parties will control over conflicting provisions of this
-Agreement for the subject addressed by that addendum.
-
-73. SEVERABILITY
-
-If any provision of this Agreement is determined to be unlawful, invalid, or unenforceable, that provision
-will be enforced to the maximum extent permitted by law or severed where appropriate.
-
-The remaining provisions will remain in effect.
-
-74. NO WAIVER
-
-Failure by either party to enforce a provision of this Agreement on one occasion does not waive the right to
-enforce that provision later.
-
-75. SURVIVAL
-
-Provisions that by their nature should continue after termination will survive termination.
-
-These include, as applicable:
-
-• Payment obligations.
-• Commission obligations.
-• Audit and recordkeeping rights.
-• Privacy obligations.
-• Intellectual-property rights.
-• Indemnification.
-• Limitations of liability.
-• Dispute resolution.
-• Governing law.
-• Amounts accrued before termination.
-
-76. PARTNER BILLING ACKNOWLEDGMENT
-
-By accepting this Agreement, the Partner specifically understands and agrees that:
-
-1. Guests pay the Partner directly.
-2. MicroStay does not collect the Guest's lodging payment.
-3. MicroStay charges the Partner a 12% commission on commissionable Completed Stays.
-4. The Partner must update every reservation accurately.
-5. The Partner has 48 hours after the reservation's scheduled end time to report the proper final
-status.
-6. A reservation not properly updated during the 48-hour period may automatically become Auto-
-Completed and commissionable.
-7. Legitimate cancellations and No-Shows must be properly reported.
-8. Cancellation activity exceeding 30% of overall MicroStay booking activity may be classified as
-suspicious and reviewed for possible direct Guest booking, circumvention, or commission avoidance.
-9. MicroStay may suspend or terminate a Partner based on reasonable evidence of intentional
-circumvention, booking manipulation, or other material violations.
-10. Monthly MicroStay bills are due on the 1st day of each month.
-11. Partner billing is handled through Stripe using a debit or credit card only.
-12. The Partner must maintain a valid debit or credit card.
-13. MicroStay may automatically charge the authorized card for properly owed amounts.
-14. An unpaid-payment notice may be issued on the 5th.
-15. A final unpaid-payment notice may be issued on the 10th.
-16. An invoice remaining unpaid after the 10th may receive a 10% late-payment charge.
-17. If payment remains outstanding through the 15th, the Partner account may become Inactive –
-Non-Payment.
-18. Reactivation after non-payment may require payment of the overdue balance plus a total 25% late-
-payment/account-reinstatement charge, inclusive of the prior 10% late charge.
-19. MicroStay does not accept cash, checks, ACH, bank transfer, or other manual forms of standard
-Partner commission payment.
-20. The Partner agrees to MicroStay's anti-circumvention, audit, safety, accessibility, legal-compliance,
-and recordkeeping requirements.
-
-77. PARTNER ACKNOWLEDGMENT
-
-By signing or electronically accepting this Agreement, the Partner confirms that:
-
-• The Partner has read the Agreement.
-• The Partner understands the Agreement.
-• The Partner has had the opportunity to obtain independent legal advice.
-• The Partner voluntarily accepts the Agreement.
-• The individual accepting the Agreement has authority to bind the Partner.
-• The information provided by the Partner is accurate.
-
-PARTNER INFORMATION
-
-Property Name: ______
-
-Legal Business Name: ______
-
-Property Address: _________
-
-Authorized Representative: _______
-
-Title: ________
-
-Email: ________
-
-Phone: ________
-
-Signature: __________
-
-Date: _________
-
-MICROSTAY
-
-MICROSTAY HOLDINGS LLC
-d/b/a MicroStay.us
-
-Authorized Representative: _______
-
-Title: ________
-
-Signature: __________
-
-Date: _________
+As part of the digital signup and acceptance process, MicroStay may require Partner to affirmatively certify the following statements before the account is activated:
+[ ] I am authorized to bind the Partner and Property to the MicroStay Partner Agreement.
+[ ] The Property is legally authorized and appropriately licensed to operate as a lodging establishment.
+[ ] The Partner has independently reviewed applicable city, county, zoning, hotel/motel, tax, and short-duration-stay requirements for the Property and will continuously monitor them.
+[ ] The Partner will require a valid, unexpired government-issued photo ID from every primary MicroStay Guest at check-in.
+[ ] The Partner will require each primary MicroStay Guest to be at least 18 years old and will enforce any higher lawful Property minimum age.
+[ ] The Partner will maintain legally required Guest registers, identification records, and other records for the required retention period.
+[ ] The Partner will complete legally required employee training, including applicable human-trafficking awareness training.
+[ ] The Partner will maintain required insurance and provide evidence upon reasonable request.
+[ ] The Partner will accurately disclose prices, mandatory fees, deposit requirements, and taxes supplied to MicroStay.
+[ ] The Partner will truthfully reconcile Reservations by the applicable month-end deadline and will not intentionally misclassify stays to avoid Commission.
+[ ] The Partner understands that MicroStay charges a flat 12% Commission on commissionable Completed Stays and Auto-Completed Reservations.
+[ ] The Partner understands the billing schedule: invoice around the 5th, reminder around the 15th, final notice around the 25th, and potential Property deactivation if an undisputed balance remains unpaid at month-end.
+[ ] The Partner understands that the standard policy contains no 10% late fee and no automatic 25% reinstatement fee.
+[ ] The Partner agrees to the anti-circumvention, safety, privacy, local-law compliance, recordkeeping, insurance, indemnification, and other requirements of the Agreement.
+
+APPENDIX C - DIGITAL ACCEPTANCE RECORD
+
+The following fields are intended to be captured and retained by the MicroStay Partner signup or Vendor Portal. They need not appear as handwriting on the PDF when the Agreement is digitally executed.
+Field | Digital Acceptance Record
+Property Name | Captured electronically by MicroStay
+Legal Business Name | Captured electronically by MicroStay
+Property Address | Captured electronically by MicroStay
+Authorized Signer - Full Legal Name | Captured electronically by MicroStay
+Authorized Signer - Title | Captured electronically by MicroStay
+Signer Email | Captured electronically by MicroStay
+Signer Phone | Captured electronically by MicroStay
+Partner Account ID / Property ID | Captured electronically by MicroStay
+Agreement Version | Captured electronically by MicroStay
+Acceptance Date and Time | Captured electronically by MicroStay
+IP Address (if collected) | Captured electronically by MicroStay
+Device/Browser Information (if collected) | Captured electronically by MicroStay
+Payment Authorization Reference (if applicable) | Captured electronically by MicroStay
+Electronic Signature / Typed Name | Captured electronically by MicroStay
+Acceptance Confirmation ID | Captured electronically by MicroStay
+
+By completing the approved digital acceptance process and clicking the applicable "Agree & Sign" or equivalent button, the authorized signer confirms that the signer has reviewed the Agreement, had an opportunity to seek independent legal advice, is authorized to bind Partner, and intends to electronically sign and accept the Agreement on behalf of Partner.
 `.trim();
 
 /**

@@ -204,6 +204,7 @@ console.log("Mapped Slots:", mappedSlots);
 
   const handleBookSlot = (slotId: string, price: number) => {
     router.push(`/book/${slotId}?propertyId=${params.id}&date=${selectedDate}&price=${price}`);
+    // comment router.push to stop the booking to be happened
   };
 
   const smoothScrollTo = (id: string) => {

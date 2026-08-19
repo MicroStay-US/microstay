@@ -1078,7 +1078,7 @@ function SignatureCapture({
         />
         <span className="text-sm text-gray-700 leading-relaxed dark:text-white/40">
           I have read and agree to the{' '}
-          <strong>MicroStay Partner Agreement Version 2.0</strong>, including all terms and
+          <strong>MicroStay Partner Agreement Version 6.0</strong>, including all terms and
           conditions contained therein.
         </span>
       </label>
@@ -1097,11 +1097,11 @@ function SignatureCapture({
           <strong className="text-red-700">MANDATORY ARBITRATION & CLASS ACTION WAIVER:</strong>{' '}
           <span className="text-red-800">
             I specifically acknowledge and agree to the{' '}
-            <strong>MANDATORY ARBITRATION clause (Section 10)</strong> and{' '}
-            <strong>CLASS ACTION WAIVER (Section 10.3)</strong>. I understand I am waiving my right
+            <strong>MANDATORY ARBITRATION clause (Section 51)</strong> and{' '}
+            <strong>CLASS ACTION WAIVER (Section 51)</strong>. I understand I am waiving my right
             to a jury trial and to participate in any class action lawsuit. All disputes must be
-            resolved through individual binding arbitration before the AAA in Sheridan County,
-            Wyoming.
+            resolved through individual binding arbitration before the AAA in Los Angeles County,
+            California.
           </span>
         </span>
       </label>
@@ -1112,7 +1112,7 @@ function SignatureCapture({
           <p><span className="font-medium text-gray-700">Signed by:</span> {typedName}</p>
           <p><span className="font-medium text-gray-700">Timestamp:</span> {new Date().toUTCString()}</p>
           {clientIp && <p><span className="font-medium text-gray-700">IP Address:</span> {clientIp}</p>}
-          <p><span className="font-medium text-gray-700">Agreement:</span> MicroStay Partner Agreement v2.0</p>
+          <p><span className="font-medium text-gray-700">Agreement:</span> MicroStay Partner Agreement v6.0</p>
           <p className="text-gray-400 italic">Electronically signed under E-SIGN Act 15 U.S.C. § 7001</p>
         </div>
       )}

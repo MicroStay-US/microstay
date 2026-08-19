@@ -278,3 +278,29 @@
 .rdp-day_today{
     color:#f59e0b;
 }
+
+/* ── Custom Landing Page Background Styles with iOS Safari workarounds ── */
+.landing-hero-bg {
+  background-image: url('/images/landingpage.jpg');
+  background-attachment: fixed;
+}
+
+.landing-bottom-bg {
+  background-image: url('/images/landingbottom.jpg');
+  background-attachment: fixed;
+}
+
+/* Disable background-attachment: fixed on iOS and other touch devices as it is highly bugged */
+@supports (-webkit-touch-callout: none) {
+  .landing-hero-bg,
+  .landing-bottom-bg {
+    background-attachment: scroll;
+  }
+}
+
+@media (pointer: coarse) {
+  .landing-hero-bg,
+  .landing-bottom-bg {
+    background-attachment: scroll;
+  }
+}

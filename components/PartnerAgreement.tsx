@@ -48,7 +48,7 @@ export default function PartnerAgreement({ onAccept, accepted }: PartnerAgreemen
           <Button
             variant="outline"
             size="sm"
-            onClick={() => window.open('/MicroStay_Final_Agreement.docx', '_blank')}
+            onClick={() => window.open('/microstay-partneragreement.pdf', '_blank')}
           >
             <Download className="h-4 w-4 mr-2" />
             Download PDF

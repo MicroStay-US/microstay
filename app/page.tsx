@@ -296,11 +296,7 @@ const handleSearch = (e: React.FormEvent) => {
   return (
     <div className="min-h-screen bg-orange-300/40 dark:bg-black">
       <section
-        className="relative py-32 px-4 bg-cover bg-center "
-        style={{
-          backgroundImage: "url('/images/landingpage.jpg')",
-          backgroundAttachment: 'fixed',
-        }}
+        className="relative py-32 px-4 bg-cover bg-center landing-hero-bg"
       >
         <div className="absolute inset-0 bg-white/30 dark:bg-gradient-radial dark:from-white/20 dark:to-black/50 dark:via-slate-800/20"></div>
 
@@ -721,11 +717,7 @@ const handleSearch = (e: React.FormEvent) => {
       )}
 
       <section
-        className="py-24 px-4 relative bg-cover bg-center"
-        style={{
-          backgroundImage: "url('/images/landingbottom.jpg')",
-          backgroundAttachment: 'fixed',
-        }}
+        className="py-24 px-4 relative bg-cover bg-center landing-bottom-bg"
       >
         <div className="absolute inset-0 bg-gradient-to-r from-gray-900/80 via-gray-900/70 to-gray-900/80"></div>
         <div className="max-w-4xl mx-auto text-center relative z-10">
@@ -733,7 +725,7 @@ const handleSearch = (e: React.FormEvent) => {
             List Your Property
           </h2>
           <p className="text-xl text-gray-200 mb-10 font-medium shadow-sm">
-            Join our network of trusted partners and start earning high margins from your unused windows.
+            Offer property-approved stay windows and earn additional revenue from available rooms.
           </p>
           <Button
             size="lg"

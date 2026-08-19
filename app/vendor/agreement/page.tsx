@@ -11,8 +11,8 @@ export default function VendorAgreementPage() {
 
   const handleDownload = () => {
     const link = document.createElement('a');
-    link.href = '/MicroStay_Final_Agreement.docx';
-    link.download = 'MicroStay_Final_Agreement.docx';
+    link.href = '/microstay-partneragreement.pdf';
+    link.download = 'microstay-partneragreement.pdf';
     document.body.appendChild(link);
     link.click();
     document.body.removeChild(link);
@@ -83,7 +83,7 @@ export default function VendorAgreementPage() {
         </div>
 
         <Button onClick={handleDownload} className="bg-cyan-500 hover:bg-cyan-600 font-bold w-full sm:w-auto">
-          <Download className="w-4 h-4 mr-2" />Download Agreement (DOCX)
+          <Download className="w-4 h-4 mr-2" />Download Agreement (PDF)
         </Button>
       </div>
 
@@ -97,10 +97,6 @@ export default function VendorAgreementPage() {
           <div className="flex justify-between py-2 border-b border-slate-800">
             <span className="text-slate-400">Platform Percentage Fee</span>
             <span className="text-white font-mono">12%</span>
-          </div>
-          <div className="flex justify-between py-2 border-b border-slate-800">
-            <span className="text-slate-400">Owner Cancellation Penalty</span>
-            <span className="text-rose-400 font-mono">12% of booking value per cancel</span>
           </div>
           <div className="flex justify-between py-2">
             <span className="text-slate-400">Owner Cancel Rate Threshold (flag)</span>

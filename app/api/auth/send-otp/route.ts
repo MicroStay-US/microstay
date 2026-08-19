@@ -1,6 +1,6 @@
 import { NextResponse } from 'next/server';
 import { createClient } from '@supabase/supabase-js';
-import { Resend } from 'resend';
+import { sendEmail } from '@/lib/send-email';
 import crypto from 'crypto';
 import { rateLimit, getIP, rateLimitResponse } from '@/lib/rate-limit';
 import { verifyReCaptcha } from '@/lib/recaptcha';
@@ -41,7 +41,6 @@ export async function POST(req: Request) {
   const supabaseUrl = process.env.NEXT_PUBLIC_SUPABASE_URL!;
   const anonKey = process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY!;
   const serviceKey = process.env.SUPABASE_SERVICE_ROLE_KEY!;
-  const resendKey = process.env.RESEND_API_KEY || process.env.Resend_API_KEY;
 
   // 1. Validate credentials FIRST
   const authClient = createClient(supabaseUrl, anonKey);
@@ -111,55 +110,54 @@ export async function POST(req: Request) {
 
   const isDev = process.env.NODE_ENV === 'development';
 
-  if (!resendKey) {
-    return NextResponse.json({ success: true, email });
+  if (isDev) {
+    console.log(`[DEV MODE] Public User OTP for ${email}: ${code}`);
   }
 
-  // Send via Resend (Works in production, and locally if API key is provided)
-  try {
-    const resend = new Resend(resendKey);
-    
-    let subject = 'Your MicroStay Login Code';
-    let headerText = 'MicroStay Login';
-    
-    if (profile?.role === 'vendor') {
-      subject = 'Your MicroStay Vendor Login Code';
-      headerText = 'MicroStay Vendor Portal';
-    } else if (profile?.role === 'admin') {
-      subject = 'Your MicroStay Admin Login Code';
-      headerText = 'MicroStay Admin Portal';
-    }
+  const targetEmail = isDev ? (process.env.ADMIN_EMAIL || 'admin@microstay.us') : email;
+  let subject = 'Your MicroStay Login Code';
+  let headerText = 'MicroStay Login';
+  
+  if (profile?.role === 'vendor') {
+    subject = 'Your MicroStay Vendor Login Code';
+    headerText = 'MicroStay Vendor Portal';
+  } else if (profile?.role === 'admin') {
+    subject = 'Your MicroStay Admin Login Code';
+    headerText = 'MicroStay Admin Portal';
+  }
 
-    const { error: resendErr } = await resend.emails.send({
-      from: isDev ? 'onboarding@resend.dev' : 'MicroStay <no-reply@microstay.us>',
-      to: isDev ? [process.env.ADMIN_EMAIL || 'admin@microstay.us'] : [email],
-      subject: subject,
-      html: `
-        <div style="font-family:Arial,sans-serif;max-width:480px;margin:0 auto;padding:32px;background:#fff;">
-          <div style="text-align:center;margin-bottom:24px;">
-            <div style="display:inline-block;background:linear-gradient(135deg, #FF5E1A, #F0997B);border-radius:50%;padding:16px;">
-              <span style="font-size:28px;">🏨</span>
-            </div>
-            <h1 style="color:#111;font-size:22px;margin:16px 0 4px;">${headerText}</h1>
-            <p style="color:#666;font-size:14px;margin:0;">Your login verification code</p>
+  // Send via unified email sender (Resend with SMTP fallback)
+  const emailRes = await sendEmail({
+    from: isDev ? 'MicroStay <onboarding@resend.dev>' : 'MicroStay <no-reply@microstay.us>',
+    to: targetEmail,
+    subject: subject,
+    html: `
+      <div style="font-family:Arial,sans-serif;max-width:480px;margin:0 auto;padding:32px;background:#fff;">
+        <div style="text-align:center;margin-bottom:24px;">
+          <div style="display:inline-block;background:linear-gradient(135deg, #FF5E1A, #F0997B);border-radius:50%;padding:16px;">
+            <span style="font-size:28px;">🏨</span>
           </div>
-          <div style="background:#FFF1EC;border:1px solid #F0997B;border-radius:12px;padding:32px;text-align:center;margin:24px 0;">
-            <p style="color:#2E1A16;font-size:14px;margin:0 0 12px;">Enter this code to log in:</p>
-            <div style="font-size:32px;font-weight:700;letter-spacing:8px;color:#FF5E1A;font-family:monospace;white-space:nowrap;">
-              ${code}
-            </div>
-            <p style="color:#8A5A50;font-size:12px;margin:16px 0 0;">Expires in <strong>10 minutes</strong></p>
-          </div>
+          <h1 style="color:#111;font-size:22px;margin:16px 0 4px;">${headerText}</h1>
+          <p style="color:#666;font-size:14px;margin:0;">Your login verification code</p>
         </div>
-      `,
-    });
+        <div style="background:#FFF1EC;border:1px solid #F0997B;border-radius:12px;padding:32px;text-align:center;margin:24px 0;">
+          <p style="color:#2E1A16;font-size:14px;margin:0 0 12px;">Enter this code to log in:</p>
+          <div style="font-size:32px;font-weight:700;letter-spacing:8px;color:#FF5E1A;font-family:monospace;white-space:nowrap;">
+            ${code}
+          </div>
+          <p style="color:#8A5A50;font-size:12px;margin:16px 0 0;">Expires in <strong>10 minutes</strong></p>
+        </div>
+      </div>
+    `,
+  });
 
-    if (resendErr) {
-      console.error('Resend API error:', resendErr);
-    }
-  } catch (e: any) {
-    console.error('Resend Exception:', e.message);
+  if (!emailRes.success) {
+    console.error('Failed to send public OTP email:', emailRes.error);
   }
 
-  return NextResponse.json({ success: true, email });
+  return NextResponse.json({
+    success: true,
+    email,
+    ...(isDev ? { dev_code: code } : {})
+  });
 }
