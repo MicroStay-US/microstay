@@ -9,6 +9,7 @@ const PORTAL_PREFIXES = ['/vendor/', '/admin/'];
 export default function LayoutShell({ children }: { children: React.ReactNode }) {
   const pathname = usePathname();
   const isPortal = PORTAL_PREFIXES.some((p) => pathname?.startsWith(p));
+  const isHome = pathname === '/';
 
   if (isPortal) {
     return <>{children}</>;
@@ -18,7 +19,7 @@ export default function LayoutShell({ children }: { children: React.ReactNode })
     <>
       <Navbar />
       <main className="flex-1">{children}</main>
-      <Footer />
+      {!isHome && <Footer />}
     </>
   );
 }

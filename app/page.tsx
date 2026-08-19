@@ -13,6 +13,7 @@ import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@
 import { Search, MapPin, Clock, Shield, Award, Map as MapIcon, CheckCircle2, CalendarDays, LogIn } from 'lucide-react';
 import { getDistance } from "@/lib/getDistance";
 import MotelBanner from "./MotelBanner";
+import Footer from "@/components/Footer";
 import { url } from "node:inspector";
 // export function Home() {
 //   const [hotels, setHotels] = useState([]);
@@ -294,47 +295,48 @@ const handleSearch = (e: React.FormEvent) => {
   router.push(`/search?${params.toString()}`);
 };
   return (
-    <div className="min-h-screen bg-orange-300/40 dark:bg-black">
+    <div className="h-[calc(100dvh-5rem)] md:h-auto overflow-y-auto md:overflow-visible snap-y snap-mandatory md:snap-none scroll-smooth scrollbar-none bg-orange-300/40 dark:bg-black">
       <section
-        className="relative py-32 px-4 bg-cover bg-center landing-hero-bg"
+        className="relative snap-start snap-always h-[calc(100dvh-5rem)] md:h-auto flex flex-col justify-center items-center py-4 px-3 bg-cover bg-center landing-hero-bg overflow-hidden md:py-32 md:px-4"
       >
         <div className="absolute inset-0 bg-white/30 dark:bg-gradient-radial dark:from-white/20 dark:to-black/50 dark:via-slate-800/20"></div>
 
-        <div className="max-w-full my-10 relative ">
+        <div className="max-w-full my-2 md:my-10 relative flex flex-col justify-center items-center w-full h-full md:h-auto">
           <MotelBanner />
-          <div className="text-center mb-12 flex flex-col justify-center items-center">
-            <h1 className="text-3xl md:text-4xl font-bold mb-6 text-zinc-600 dark:text-gray-900 drop-shadow-sm">
+          <div className="text-center mb-4 md:mb-12 flex flex-col justify-center items-center flex-shrink-0">
+            <h1 className="text-xl sm:text-2xl md:text-4xl font-bold mb-2 md:mb-6 text-zinc-600 dark:text-gray-900 drop-shadow-sm">
               Hotel Stays That Fit Your Schedule<br />
             </h1>
-            <div className="text-xl md:text-2xl text-zinc-600 dark:text-gray-800 mb-8 font-medium ">
+            <div className="text-xs sm:text-sm md:text-2xl text-zinc-600 dark:text-gray-800 mb-2 md:mb-8 font-medium flex flex-wrap justify-center gap-x-3 gap-y-1">
               <p>✓ No booking fees</p>
+              <p className="hidden md:block">•</p>
               <p>✓ Pay Directly at Check-In</p>
+              <p className="hidden md:block">•</p>
               <p>✓ Flexible Stay Windows</p>
-              {/* <p>Choose an available hotel time window for rest, work, travel, or a quick break</p> */}
             </div>
           </div>
 
-          <Card className="max-w-5xl mx-auto shadow-2xl rounded-3xl border-white dark:border-none glossy-card  ">
+          <Card className="max-w-5xl mx-auto shadow-2xl rounded-3xl border-white dark:border-none glossy-card w-full md:w-auto">
             {/* Top Tabs */}
             <div className="flex bg-white/80 border-b dark:border-none border-gray-100   backdrop-blur-sm ">
               <button
                 type="button"
                 onClick={() => setSearchType('nearby')}
-                className={`flex-1 flex items-center justify-center gap-2 py-4 font-bold text-sm transition-colors ${searchType === 'nearby' ? 'bg-ms-orange-light dark:bg-ms-orange dark:text-white dark:border-tra text-ms-orange border-b-2 border-ms-orange-border' : 'text-gray-600 dark:bg-black/90 dark:text-white hover:bg-gray-50 bg-slate-300 dark:hover:bg-black/80'}`}
+                className={`flex-1 flex items-center justify-center gap-2 py-3 md:py-4 font-bold text-xs md:text-sm transition-colors ${searchType === 'nearby' ? 'bg-ms-orange-light dark:bg-ms-orange dark:text-white dark:border-tra text-ms-orange border-b-2 border-ms-orange-border' : 'text-gray-600 dark:bg-black/90 dark:text-white hover:bg-gray-50 bg-slate-300 dark:hover:bg-black/80'}`}
               >
-                <MapPin className="w-4 h-4" /> Near Me
+                <MapPin className="w-3 h-3 md:w-4 md:h-4" /> Near Me
               </button>
               <button
                 type="button"
                 onClick={() => setSearchType('city')}
-                className={`flex-1 flex items-center justify-center gap-2 py-4 font-bold text-sm transition-colors ${searchType === 'city' ? 'bg-ms-orange-light dark:bg-ms-orange dark:text-white dark:border-tra text-ms-orange border-b-2 border-ms-orange-border' : 'text-gray-600 dark:bg-black/90 dark:text-white hover:bg-gray-50 bg-slate-300 dark:hover:bg-black/80'}`}
+                className={`flex-1 flex items-center justify-center gap-2 py-3 md:py-4 font-bold text-xs md:text-sm transition-colors ${searchType === 'city' ? 'bg-ms-orange-light dark:bg-ms-orange dark:text-white dark:border-tra text-ms-orange border-b-2 border-ms-orange-border' : 'text-gray-600 dark:bg-black/90 dark:text-white hover:bg-gray-50 bg-slate-300 dark:hover:bg-black/80'}`}
               >
-                <Search className="w-4 h-4" /> City / State Search
+                <Search className="w-3 h-3 md:w-4 md:h-4" /> City / State Search
               </button>
             </div>
 
-            <CardContent className="p-8  dark:bg-black backdrop-blur-md ">
-              <form onSubmit={handleSearch} className="space-y-6">
+            <CardContent className="p-4 md:p-8 dark:bg-black backdrop-blur-md">
+              <form onSubmit={handleSearch} className="space-y-3 md:space-y-6">
 
                 <div className="flex flex-col md:flex-row items-center justify-center gap-4 w-full">
                   <div className="flex flex-col md:flex-row gap-4 md:gap-10 items-center w-full md:w-auto">
@@ -572,21 +574,21 @@ const handleSearch = (e: React.FormEvent) => {
 
                 </div>
 
-                <div className="flex flex-col sm:flex-row gap-4 pt-4 border-t dark:border-black border-gray-100">
+                <div className="flex flex-row gap-2 pt-3 md:pt-4 border-t dark:border-black border-gray-100 w-full">
                   <Button
                     type="submit"
                     onClick={() => setViewType('list')}
-                    className="flex-1 h-12 bg-gradient-to-r from-ms-orange to-ms-orange hover:from-ms-orange-hover hover:to-ms-orange-hover text-white font-bold text-lg shadow-md"
+                    className="flex-1 h-10 md:h-12 bg-gradient-to-r from-ms-orange to-ms-orange hover:from-ms-orange-hover hover:to-ms-orange-hover text-white font-bold text-sm md:text-lg shadow-md"
                   >
-                    <Search className="mr-2 h-5 w-5" />
+                    <Search className="mr-1 md:mr-2 h-4 w-4 md:h-5 md:w-5" />
                     List View
                   </Button>
                   <Button
                     type="submit"
                     onClick={() => setViewType('map')}
-                    className="flex-1 h-12 bg-gray-900 hover:bg-black dark:hover:bg-zinc-900 dark:bg-slate-900 text-white font-bold text-lg shadow-md"
+                    className="flex-1 h-10 md:h-12 bg-gray-900 hover:bg-black dark:hover:bg-zinc-900 dark:bg-slate-900 text-white font-bold text-sm md:text-lg shadow-md"
                   >
-                    <MapIcon className="mr-2 h-5 w-5" />
+                    <MapIcon className="mr-1 md:mr-2 h-4 w-4 md:h-5 md:w-5" />
                     Map View
                   </Button>
                 </div>
@@ -596,144 +598,157 @@ const handleSearch = (e: React.FormEvent) => {
         </div>
       </section>
 
-      <section className="py-20 px-4 dark:bg-gradient-to-t dark:from-ms-orange ">
-        <div className="max-w-7xl mx-auto">
-          <h2 className="text-3xl md:text-4xl font-bold text-center mb-12 text-gray-900">
+      <section className="snap-start snap-always h-[calc(100dvh-5rem)] md:h-auto flex flex-col justify-center items-center py-6 px-4 dark:bg-gradient-to-t dark:from-ms-orange dark:to-transparent bg-orange-100/30 md:py-20">
+        <div className="max-w-7xl mx-auto w-full flex flex-col justify-center">
+          <h2 className="text-2xl md:text-4xl font-bold text-center mb-6 md:mb-12 text-gray-900">
             Why Choose MicroStay?
           </h2>
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-            <Card className="text-center hover:shadow-2xl transition dark:border-transparent border-gray-100 group">
-              <CardContent className="p-8">
-                <div className="bg-gradient-to-br from-ms-orange to-ms-orange w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-4 group-hover:scale-110 transition-transform shine-effect">
-                  <Clock className="h-8 w-8 text-white" />
+          <div className="flex flex-col gap-3 w-full md:grid md:grid-cols-3 md:gap-8">
+            <Card className="hover:shadow-2xl transition dark:border-transparent border-gray-100 group w-full text-left md:text-center">
+              <CardContent className="p-3 sm:p-4 md:p-8 flex flex-row md:flex-col items-center gap-4 md:gap-0">
+                <div className="bg-gradient-to-br from-ms-orange to-ms-orange w-12 h-12 md:w-16 md:h-16 rounded-full flex items-center justify-center flex-shrink-0 mb-0 md:mb-4 group-hover:scale-110 transition-transform shine-effect">
+                  <Clock className="h-6 w-6 md:h-8 md:w-8 text-white" />
                 </div>
-                <h3 className="text-xl font-bold mb-3 text-gray-900">Flexible Hours</h3>
-                <p className="text-gray-600 font-medium leading-relaxed">
-                  Book by the hours. Perfect for layovers, rest breaks, or quick getaways.
-                </p>
+                <div className="flex flex-col text-left md:text-center">
+                  <h3 className="text-base md:text-xl font-bold mb-0.5 md:mb-3 text-gray-900">Flexible Hours</h3>
+                  <p className="text-xs sm:text-sm md:text-base text-gray-600 font-medium leading-relaxed">
+                    Book by the hours. Perfect for layovers, rest breaks, or quick getaways.
+                  </p>
+                </div>
               </CardContent>
             </Card>
 
-            <Card className="text-center hover:shadow-2xl transition dark:border-transparent border-gray-100 group">
-              <CardContent className="p-8">
-                <div className="bg-gradient-to-br from-ms-orange to-ms-orange w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-4 group-hover:scale-110 transition-transform shine-effect">
-                  <Shield className="h-8 w-8 text-white" />
+            <Card className="hover:shadow-2xl transition dark:border-transparent border-gray-100 group w-full text-left md:text-center">
+              <CardContent className="p-3 sm:p-4 md:p-8 flex flex-row md:flex-col items-center gap-4 md:gap-0">
+                <div className="bg-gradient-to-br from-ms-orange to-ms-orange w-12 h-12 md:w-16 md:h-16 rounded-full flex items-center justify-center flex-shrink-0 mb-0 md:mb-4 group-hover:scale-110 transition-transform shine-effect">
+                  <Shield className="h-6 w-6 md:h-8 md:w-8 text-white" />
                 </div>
-                <h3 className="text-xl font-bold mb-3 text-gray-900">Reviewed Partners</h3>
-                <p className="text-gray-600 font-medium leading-relaxed">
-                  All properties verified. Secure booking process with instant confirmation directly from the vendor.
-                  {/* Partner identity and operating documents are reviewed before listing. */}
-                </p>
+                <div className="flex flex-col text-left md:text-center">
+                  <h3 className="text-base md:text-xl font-bold mb-0.5 md:mb-3 text-gray-900">Reviewed Partners</h3>
+                  <p className="text-xs sm:text-sm md:text-base text-gray-600 font-medium leading-relaxed">
+                    All properties verified. Secure booking process with instant confirmation directly from the vendor.
+                  </p>
+                </div>
               </CardContent>
             </Card>
 
-            <Card className="text-center hover:shadow-2xl transition dark:border-transparent border-gray-100 group">
-              <CardContent className="p-8">
-                <div className="bg-gradient-to-br from-ms-orange to-ms-orange w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-4 group-hover:scale-110 transition-transform shine-effect">
-                  <Award className="h-8 w-8 text-white" />
+            <Card className="hover:shadow-2xl transition dark:border-transparent border-gray-100 group w-full text-left md:text-center">
+              <CardContent className="p-3 sm:p-4 md:p-8 flex flex-row md:flex-col items-center gap-4 md:gap-0">
+                <div className="bg-gradient-to-br from-ms-orange to-ms-orange w-12 h-12 md:w-16 md:h-16 rounded-full flex items-center justify-center flex-shrink-0 mb-0 md:mb-4 group-hover:scale-110 transition-transform shine-effect">
+                  <Award className="h-6 w-6 md:h-8 md:w-8 text-white" />
                 </div>
-                <h3 className="text-xl font-bold mb-3 text-gray-900">Transparent Prices</h3>
-                <p className="text-gray-600 font-medium leading-relaxed">
-                  {/* No hidden platform fees for guests. Pay only for the window you need. Save up to 70% vs full-day rates. */}
-                  No MicroStay guest booking fee. See the room rate, taxes, and final amount before confirming.
-                </p>
+                <div className="flex flex-col text-left md:text-center">
+                  <h3 className="text-base md:text-xl font-bold mb-0.5 md:mb-3 text-gray-900">Transparent Prices</h3>
+                  <p className="text-xs sm:text-sm md:text-base text-gray-600 font-medium leading-relaxed">
+                    No MicroStay guest booking fee. See the room rate, taxes, and final amount before confirming.
+                  </p>
+                </div>
               </CardContent>
             </Card>
           </div>
         </div>
       </section>
 
-      {/* ── How It Works ── */}
-      <section className="py-20 px-4 dark:bg-ms-orange" id="how-it-works">
-        <div className="max-w-7xl mx-auto  py-2.5 rounded-lg ">
-          <div className="text-center mb-14 mt-10">
-            <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-3">How It Works</h2>
-            <p className="text-gray-500 text-lg font-medium">Book a room under 2 minutes</p>
-          </div>
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8 relative px-4 md:px-0 ">
-
-            {[
-              { step: '01', icon: Search, title: 'Search', desc: 'Enter your city or tap "Near Me" to find available motels for your date.' },
-              { step: '02', icon: CalendarDays, title: 'Book', desc: 'Pick your time window, choose a room, and confirm with your name and phone.' },
-              { step: '03', icon: LogIn, title: 'Check In', desc: 'Primary guest must be 18+ and present valid government photo ID at check-in' },
-            ].map(({ step, icon: Icon, title, desc }) => (
-              <div key={step} className="relative z-10 flex flex-col items-center text-center group mb-10 mx-auto max-w-xs bg-ms-orange-light pt-5 rounded-lg dark:bg-transparent/90">
-                <div className="w-20 h-20 rounded-2xl dark:bg-gradient-to-br dark:from-ms-orange dark:border-transparent dark:shadow-md dark:group-hover:shadow-ms-orange dark:to-ms-orange border-2 border-ms-orange-border flex items-center justify-center mb-5 group-hover:border-ms-orange-border group-hover:shadow-lg group-hover:shadow-ms-orange-light transition-all ">
-                  <Icon className="w-8 h-8 text-ms-orange dark:text-white" />
+      {/* ── Fold 3: How It Works & Popular Cities ── */}
+      <section className="snap-start snap-always h-[calc(100dvh-5rem)] md:h-auto flex flex-col justify-center py-4 md:py-20 px-4 dark:bg-ms-orange bg-orange-200/20" id="how-it-works">
+        <div className="max-w-7xl mx-auto w-full flex flex-col justify-center gap-4 md:gap-14">
+          
+          {/* How It Works */}
+          <div>
+            <div className="text-center mb-4 md:mb-14">
+              <h2 className="text-xl md:text-4xl font-bold text-gray-900 mb-0.5 md:mb-3">How It Works</h2>
+              <p className="text-gray-500 text-xs md:text-lg font-medium">Book a room in under 2 minutes</p>
+            </div>
+            
+            <div className="flex md:grid md:grid-cols-3 gap-4 overflow-x-auto md:overflow-visible pb-2 md:pb-0 scrollbar-none snap-x snap-mandatory px-2 md:px-0 w-full">
+              {[
+                { step: '01', icon: Search, title: 'Search', desc: 'Enter your city or tap "Near Me" to find available motels.' },
+                { step: '02', icon: CalendarDays, title: 'Book', desc: 'Pick your time window, room, and confirm with your name/phone.' },
+                { step: '03', icon: LogIn, title: 'Check In', desc: 'Primary guest must be 18+ and present government photo ID.' },
+              ].map(({ step, icon: Icon, title, desc }) => (
+                <div key={step} className="flex-shrink-0 w-[75vw] sm:w-[240px] md:w-auto snap-center relative z-10 flex flex-col items-center text-center group bg-ms-orange-light dark:bg-transparent/90 pt-3 pb-2 px-3 rounded-xl border border-orange-100 dark:border-zinc-800">
+                  <div className="w-12 h-12 md:w-20 md:h-20 rounded-xl md:rounded-2xl dark:bg-gradient-to-br dark:from-ms-orange dark:border-transparent dark:shadow-md dark:group-hover:shadow-ms-orange dark:to-ms-orange border-2 border-ms-orange-border flex items-center justify-center mb-2 md:mb-5 group-hover:border-ms-orange-border group-hover:shadow-lg group-hover:shadow-ms-orange-light transition-all">
+                    <Icon className="w-5 h-5 md:w-8 md:h-8 text-ms-orange dark:text-white" />
+                  </div>
+                  <span className="text-[10px] md:text-[11px] font-black tracking-widest text-ms-orange uppercase mb-0.5">Step {step}</span>
+                  <h3 className="text-sm md:text-xl font-bold text-gray-900 mb-1">{title}</h3>
+                  <p className="text-xs md:text-sm text-gray-500 font-medium leading-relaxed max-w-xs px-2 md:pl-5 md:pr-5 mb-1">{desc}</p>
                 </div>
-                <span className="text-[11px] font-black tracking-widest text-ms-orange uppercase mb-1">Step {step}</span>
-                <h3 className="text-xl font-bold text-gray-900 mb-2">{title}</h3>
-                <p className="text-gray-500 font-medium leading-relaxed max-w-xs pl-5 pr-5 mb-2">{desc}</p>
+              ))}
+            </div>
+          </div>
+
+          {/* Popular Cities */}
+          {popularCities.length > 0 && (
+            <div className="flex flex-col mt-4 md:mt-10 dark:bg-slate-950 rounded-lg">
+              <div className="text-center mb-3 md:mb-10">
+                <h2 className="text-xl md:text-4xl font-bold text-gray-900 mb-0.5 md:mb-3">Popular Cities</h2>
+                <p className="text-gray-500 text-xs md:text-lg font-medium">Hourly stays available in these locations</p>
               </div>
-            ))}
-          </div>
+              
+              <div className="flex md:grid md:grid-cols-3 gap-3 overflow-x-auto md:overflow-visible pb-2 md:pb-0 scrollbar-none snap-x snap-mandatory px-2 md:px-0 w-full mb-2 md:mb-10">
+                {popularCities.map(({ city, state, count }) => {
+                  const initials = city.split(' ').map(w => w[0]).join('').slice(0, 2).toUpperCase();
+                  const gradients = [
+                    'from-ms-orange to-rose-500',
+                    'from-blue-400 to-indigo-500',
+                    'from-emerald-400 to-teal-500',
+                    'from-violet-400 to-purple-500',
+                    'from-amber-400 to-ms-orange',
+                    'from-sky-400 to-blue-500',
+                  ];
+                  const grad = gradients[(city.charCodeAt(0) + city.length) % gradients.length];
+                  return (
+                    <button
+                      key={`${city}-${state}`}
+                      onClick={() => {
+                        const params = new URLSearchParams({ searchType: 'city', city, state, date });
+                        router.push(`/search?${params.toString()}`);
+                      }}
+                      className="flex-shrink-0 w-[60vw] sm:w-[200px] md:w-auto snap-center group relative overflow-hidden rounded-2xl border border-gray-100 dark:border-transparent bg-white hover:shadow-xl hover:-translate-y-1 transition-all duration-200 text-left p-3 flex items-center gap-3"
+                    >
+                      <div className={`w-8 h-8 md:w-12 md:h-12 rounded-xl bg-gradient-to-br ${grad} flex items-center justify-center flex-shrink-0 shadow-sm group-hover:scale-110 transition-transform`}>
+                        <span className="text-white font-black text-xs md:text-sm">{initials}</span>
+                      </div>
+                      <div className="min-w-0 flex-1">
+                        <div className="font-bold text-xs md:text-base text-gray-900 truncate">{city}</div>
+                        <div className="text-[10px] md:text-sm text-gray-500 font-medium">{state}</div>
+                        <div className="text-[9px] md:text-xs text-ms-orange font-bold mt-0.5">{count} {count === 1 ? 'property' : 'properties'}</div>
+                      </div>
+                      <MapPin className="w-3.5 h-3.5 md:w-4 md:h-4 text-gray-300 group-hover:text-ms-orange transition-colors ml-auto flex-shrink-0" />
+                    </button>
+                  );
+                })}
+              </div>
+            </div>
+          )}
+
         </div>
       </section>
-
-      {/* ── Popular Cities ── */}
-      {popularCities.length > 0 && (
-        <section className="py-20 px-4  dark:bg-gradient-to-b dark:from-ms-orange  ">
-          <div className="flex  flex-col max-w-7xl mx-auto dark:bg-slate-950 rounded-lg">
-            <div className="text-center mb-10 mt-10 ">
-              <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-3">Popular Cities</h2>
-              <p className="text-gray-500 text-lg font-medium">Hourly stays available in these locations</p>
-            </div>
-            <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4 mx-4 md:mx-10 mb-10">
-              {popularCities.map(({ city, state, count }) => {
-                const initials = city.split(' ').map(w => w[0]).join('').slice(0, 2).toUpperCase();
-                const gradients = [
-                  'from-ms-orange to-rose-500',
-                  'from-blue-400 to-indigo-500',
-                  'from-emerald-400 to-teal-500',
-                  'from-violet-400 to-purple-500',
-                  'from-amber-400 to-ms-orange',
-                  'from-sky-400 to-blue-500',
-                ];
-                const grad = gradients[(city.charCodeAt(0) + city.length) % gradients.length];
-                return (
-                  <button
-                    key={`${city}-${state}`}
-                    onClick={() => {
-                      const params = new URLSearchParams({ searchType: 'city', city, state, date });
-                      router.push(`/search?${params.toString()}`);
-                    }}
-                    className="group relative overflow-hidden rounded-2xl border border-gray-100 dark:border-transparent bg-white hover:shadow-xl hover:-translate-y-1 transition-all duration-200 text-left p-5 flex items-center gap-4"
-                  >
-                    <div className={`w-12 h-12 rounded-xl bg-gradient-to-br ${grad} flex items-center justify-center flex-shrink-0 shadow-sm group-hover:scale-110 transition-transform`}>
-                      <span className="text-white font-black text-sm">{initials}</span>
-                    </div>
-                    <div className="min-w-0">
-                      <div className="font-bold text-gray-900 truncate">{city}</div>
-                      <div className="text-sm text-gray-500 font-medium">{state}</div>
-                      <div className="text-xs text-ms-orange font-bold mt-0.5">{count} {count === 1 ? 'property' : 'properties'}</div>
-                    </div>
-                    <MapPin className="w-4 h-4 text-gray-300 group-hover:text-ms-orange transition-colors ml-auto flex-shrink-0" />
-                  </button>
-                );
-              })}
-            </div>
-          </div>
-        </section>
-      )}
 
       <section
-        className="py-24 px-4 relative bg-cover bg-center landing-bottom-bg"
+        className="snap-start snap-always min-h-[calc(100dvh-5rem)] md:min-h-0 flex flex-col justify-between py- px-4 relative bg-cover bg-center landing-bottom-bg overflow-hidden"
       >
-        <div className="absolute inset-0 bg-gradient-to-r from-gray-900/80 via-gray-900/70 to-gray-900/80"></div>
-        <div className="max-w-4xl mx-auto text-center relative z-10">
-          <h2 className="text-4xl md:text-5xl font-black mb-6 text-white tracking-tight">
+        <div className="absolute inset-0 bg-gradient-to-r from-gray-900/80 via-gray-900/70 to-gray-900/80 z-0"></div>
+        
+        <div className="max-w-4xl mx-auto text-center relative z-10 py-6 md:py-16">
+          <h2 className="text-2xl sm:text-3xl md:text-5xl font-black mb-2 md:mb-6 text-white tracking-tight">
             List Your Property
           </h2>
-          <p className="text-xl text-gray-200 mb-10 font-medium shadow-sm">
+          <p className="text-sm sm:text-base md:text-xl text-gray-200 mb-4 md:mb-10 font-medium shadow-sm">
             Offer property-approved stay windows and earn additional revenue from available rooms.
           </p>
           <Button
             size="lg"
             onClick={() => router.push('/partner')}
-            className="text-lg px-8 h-14 bg-gradient-to-r from-ms-orange to-ms-orange hover:from-ms-orange-hover hover:to-ms-orange-hover text-white shadow-xl shine-effect font-bold border border-ms-orange-border active:scale-95 hover:scale-105"
+            className="text-xs sm:text-sm md:text-lg px-6 md:px-8 h-10 md:h-14 bg-gradient-to-r from-ms-orange to-ms-orange hover:from-ms-orange-hover hover:to-ms-orange-hover text-white shadow-xl shine-effect font-bold border border-ms-orange-border active:scale-95 hover:scale-105"
           >
             Become a Partner
           </Button>
+        </div>
+
+        <div className="relative z-10 w-full mt-auto">
+          <Footer />
         </div>
       </section>
 

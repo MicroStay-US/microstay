@@ -5,12 +5,12 @@ import Image from 'next/image';
 
 export default function Footer() {
   return (
-    <footer className="bg-white/30 dark:bg-black  pt-16 pb-8 px-4">
+    <footer className="bg-white dark:bg-black m-[-15px] pt-6 md:pt-16 pb-4 md:pb-8 px-4">
       <div className="max-w-7xl mx-auto">
-        <div className="grid grid-cols-1 md:grid-cols-4 gap-10 md:ml-10 mb-12">
+        <div className="grid grid-cols-1 md:grid-cols-4 gap-6 md:gap-10 md:ml-10 mb- md:mb-12">
           {/* Brand */}
           <div className="md:col-span-1">
-            <div className="flex items-center gap-3 mb-4">
+            <div className="flex items-center gap-3 mb-2 md:mb-4">
               <div className=" p rounded-xl ">
                 <Image
                   src="/MicroStayNewLogo.png"
@@ -29,7 +29,7 @@ export default function Footer() {
           </div>
 
           {/* Guests */}
-          <div className="md:col-span-3 grid grid-cols-2 sm:grid-cols-2 md:grid-cols-3 gap-10 md:ml-5 mt-8 md:mt-0">
+          <div className="md:col-span-3 grid grid-cols-3 gap-4 md:gap-10 md:ml-5 mt-4 md:mt-0">
             <div>
             <h4 className="text-xs font-black uppercase tracking-widest text-black/50 dark:text-white/40 mb-4">For Guests</h4>
             <ul className="space-y-2.5">
@@ -80,9 +80,9 @@ export default function Footer() {
           </div>
         </div>
 
-        <div className="border-t border-black/20 pt-6 flex flex-col md:flex-row justify-between items-center gap-3">
-          <p className="text-sm text-black/60 font-medium">© {new Date().getFullYear()} MICROSTAY HOLDINGS LLC. All rights reserved.</p>
-          <Link href="/admin/login" className="text-xs text-black/60 hover:text-white font-medium transition-colors border border-black/30 hover:border-white hover:bg-slate-600 px-3 py-1 rounded-full dark:bg-transparent dark:text-white/70 dark:border-white/50 dark:hover:bg-black dark:hover:text-ms-orange">🔐 Admin Portal</Link>
+        <div className="border-t border-black/20 pt-4 md:pt-6 flex flex-col md:flex-row justify-between items-center gap-2 md:gap-3 text-center md:text-left">
+          <p className="text-xs md:text-sm text-black/60 font-medium">© {new Date().getFullYear()} MICROSTAY HOLDINGS LLC. All rights reserved.</p>
+          <Link href="/admin/login" className="text-[11px] md:text-xs text-black/60 hover:text-white font-medium transition-colors border border-black/30 hover:border-white hover:bg-slate-600 px-3 py-1 rounded-full dark:bg-transparent dark:text-white/70 dark:border-white/50 dark:hover:bg-black dark:hover:text-ms-orange">🔐 Admin Portal</Link>
         </div>
       </div>
     </footer>
