@@ -73,7 +73,7 @@ export function AdminSidebar({ activeTab, onTabChange, pendingCount }: AdminSide
       <div className="h-14 flex items-center px-4 border-b border-white/10 flex-shrink-0">
         <div className="flex items-center gap-2.5">
           <div className=" p-1.5 rounded-lg ">
-            <Image src="/MicroStayLogo.png" alt="MicroStay Logo" width={32} height={32} className="w-6 h-6" />
+            <Image src="/MicroStayNewLogo.png" alt="MicroStay Logo" width={32} height={32} className="w-6 h-6" />
           </div>
           <div>
             <div className="font-bold text-[13px]  leading-none text-ms-orange">MicroStay</div>

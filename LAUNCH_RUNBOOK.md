@@ -104,7 +104,7 @@ rotate these before launch:
 
 ## Step 4 — Resend sending domain (10 min + DNS wait)
 
-Without this, emails from `reservations@microstay.us` and `noreply@microstay.us`
+Without this, emails from `reservations@microstay.us` and `no-reply@microstay.us`
 will bounce.
 
 1. Go to https://resend.com/domains

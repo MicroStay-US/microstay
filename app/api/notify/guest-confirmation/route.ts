@@ -40,7 +40,7 @@ export async function POST(req: Request) {
       roomType: escapeHtml(roomType ?? ''),
     };
 
-    const fromAddress = isDev ? 'MicroStay Reservations <onboarding@resend.dev>' : 'MicroStay Reservations <noreply@microstay.us>';
+    const fromAddress = isDev ? 'MicroStay Reservations <onboarding@resend.dev>' : 'MicroStay Reservations <no-reply@microstay.us>';
     const toAddress = guestEmail.trim();
 
     const result = await sendEmail({

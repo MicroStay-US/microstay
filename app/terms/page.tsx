@@ -121,7 +121,7 @@ export default function TermsOfServicePage() {
 
         <h2>11. Governing Law and Disputes</h2>
         <p>
-          These Terms are governed by the laws of the State of Delaware, without regard to conflict-of-law
+          These Terms are governed by the laws of the State of California, without regard to conflict-of-law
           principles. Any disputes shall be resolved through binding arbitration under the rules of the
           American Arbitration Association, except that either party may seek injunctive relief in any
           court of competent jurisdiction.

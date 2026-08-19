@@ -138,7 +138,7 @@ async function runReminder(req: Request) {
       `;
 
     const { error: emailErr } = await resend.emails.send({
-      from: 'MicroStay Billing <noreply@microstay.us>',
+      from: 'MicroStay Billing <no-reply@microstay.us>',
       to: [vendor.email],
       subject,
       html,

@@ -7,7 +7,7 @@ const BASE = 'https://www.microstay.us';
 const TEST_BOOKING_ID = '00923f33-4e61-4605-9506-36d5252de074';
 const TEST_BOOKING_REF = 'MS-2026-9EDDEC8C26';
 
-const ADMIN_EMAIL = 'adminmotel@gmail.com';
+const ADMIN_EMAIL = 'admin@microstay.us';
 const ADMIN_PASSWORD = process.env.ADMIN_PASSWORD;
 
 const SUPABASE_URL = process.env.NEXT_PUBLIC_SUPABASE_URL;

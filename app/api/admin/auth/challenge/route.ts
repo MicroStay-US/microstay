@@ -13,7 +13,7 @@ export async function POST() {
   // Sign in server-side — password never exposed to browser
   const client = createClient(supabaseUrl, anonKey);
   const { data, error: signInErr } = await client.auth.signInWithPassword({
-    email: 'adminmotel@gmail.com',
+    email: 'admin@microstay.us',
     password: adminPassword,
   });
 

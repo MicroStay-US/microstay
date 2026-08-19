@@ -39,7 +39,7 @@ export async function POST(req: NextRequest) {
 
     // Fetch user email for the QR label
     const { data: userRecord } = await supabase.auth.admin.getUserById(userId);
-    const email = userRecord?.user?.email ?? 'adminmotel@gmail.com';
+    const email = userRecord?.user?.email ?? 'admin@microstay.us';
 
     const secret = generateBase32Secret();
 

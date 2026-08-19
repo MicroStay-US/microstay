@@ -180,7 +180,7 @@ export async function POST(req: Request) {
             'Content-Type': 'application/json',
           },
           body: JSON.stringify({
-            from: 'MicroStay <noreply@microstay.us>',
+            from: 'MicroStay <no-reply@microstay.us>',
             to: vendor.email,
             subject: 'Welcome to MicroStay! Your Application is Approved.',
             html: emailHtml,

@@ -8,16 +8,20 @@ export const metadata: Metadata = {
   metadataBase: new URL(
     process.env.NEXT_PUBLIC_SITE_URL || 'https://www.microstay.us'
   ),
-  title: 'MicroStay - Book Motels by the Hour',
+  title: 'MicroStay – Flexible Hotel Stay',
   description:
     'Find and book nearby motels for flexible hourly stays. Pay at front desk, no prepayment needed.',
   applicationName: 'MicroStay',
   manifest: '/manifest.json',
+  icons: {
+    icon: '/favicon.ico',
+    shortcut: '/favicon.ico',
+  },
 
   openGraph: {
     type: 'website',
     siteName: 'MicroStay',
-    title: 'MicroStay - Book Motels by the Hour',
+    title: 'MicroStay – Flexible Hotel Stay',
     description:
       'Find and book nearby motels for flexible hourly stays. Pay at front desk, no prepayment needed.',
     images: [
@@ -32,7 +36,7 @@ export const metadata: Metadata = {
 
   twitter: {
     card: 'summary',
-    title: 'MicroStay - Book Motels by the Hour',
+    title: 'MicroStay – Flexible Hotel Stay',
     description:
       'Find and book nearby motels for flexible hourly stays.',
     images: ['/icon-512.png'],

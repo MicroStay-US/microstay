@@ -26,7 +26,7 @@ async function sendVerificationEmail(
     try {
       const resend = new Resend(resendKey);
       await resend.emails.send({
-        from: 'MicroStay Partners <noreply@microstay.us>',
+        from: 'MicroStay Partners <no-reply@microstay.us>',
         to: [email],
         subject: 'Verify your MicroStay Partner account',
         html: `

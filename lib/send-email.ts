@@ -17,7 +17,7 @@ export async function sendEmail({ to, subject, html, from }: SendEmailParams) {
   if (resendKey) {
     try {
       const resend = new Resend(resendKey);
-      const defaultFrom = isDev ? 'MicroStay <onboarding@resend.dev>' : 'MicroStay <noreply@microstay.us>';
+      const defaultFrom = isDev ? 'MicroStay <onboarding@resend.dev>' : 'MicroStay <no-reply@microstay.us>';
       const fromAddr = from || defaultFrom;
 
       const { data, error } = await resend.emails.send({

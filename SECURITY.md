@@ -73,7 +73,7 @@ v=DMARC1; p=quarantine; rua=mailto:dmarc@microstay.us; pct=100
 ### Step 3 — Update your from address in email routes
 Once verified, change email sends from `onboarding@resend.dev` to:
 ```
-MicroStay <noreply@microstay.us>
+MicroStay <no-reply@microstay.us>
 ```
 
 ### Step 4 — Verify in Resend dashboard

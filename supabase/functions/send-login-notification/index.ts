@@ -114,16 +114,18 @@ Deno.serve(async (req: Request) => {
       // In dev mode on the edge function, we might want to route to team@microstay.us to bypass sandbox
       // But Edge Functions don't have NODE_ENV. Let's just use the URL to guess if it's dev.
       const isDev = !supabaseUrl.includes('supabase.co');
-      const targetEmail = isDev ? 'adminmotel@gmail.com' : userEmail;
+      const targetEmail = isDev ? 'admin@microstay.us' : userEmail;
 
-      const resendResponse = await fetch('https://api.resend.com/emails', {
+      let fromEmail = Deno.env.get("RESEND_FROM_EMAIL") || (isDev ? 'onboarding@resend.dev' : 'MicroStay Security <no-reply@microstay.us>');
+
+      let resendResponse = await fetch('https://api.resend.com/emails', {
         method: 'POST',
         headers: {
           'Authorization': `Bearer ${resendKey}`,
           'Content-Type': 'application/json'
         },
         body: JSON.stringify({
-          from: isDev ? 'onboarding@resend.dev' : 'MicroStay Security <noreply@microstay.us>',
+          from: fromEmail,
           to: targetEmail,
           subject: subjectText,
           html: emailHtml,
@@ -131,8 +133,47 @@ Deno.serve(async (req: Request) => {
       });
 
       if (!resendResponse.ok) {
+        const errorText = await resendResponse.text();
+        console.warn('First login notification email send attempt failed:', errorText);
+
+        let isDomainError = false;
+        try {
+          const errorJson = JSON.parse(errorText);
+          if (errorJson.message && (
+            errorJson.message.toLowerCase().includes("domain") ||
+            errorJson.message.toLowerCase().includes("not verified") ||
+            errorJson.statusCode === 400
+          )) {
+            isDomainError = true;
+          }
+        } catch {
+          if (errorText.toLowerCase().includes("domain") || errorText.toLowerCase().includes("verified")) {
+            isDomainError = true;
+          }
+        }
+
+        if (isDomainError && !fromEmail.includes("onboarding@resend.dev")) {
+          console.log("Domain verification error in login notification. Retrying with onboarding@resend.dev...");
+          fromEmail = "onboarding@resend.dev";
+          resendResponse = await fetch('https://api.resend.com/emails', {
+            method: 'POST',
+            headers: {
+              'Authorization': `Bearer ${resendKey}`,
+              'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({
+              from: fromEmail,
+              to: targetEmail,
+              subject: subjectText + " (Fallback)",
+              html: emailHtml,
+            })
+          });
+        }
+      }
+
+      if (!resendResponse.ok) {
         const error = await resendResponse.text();
-        console.error('Resend API error:', error);
+        console.error('Resend API error in login notification:', error);
       }
     } else {
       console.log('Login notification (no email provider configured):', {

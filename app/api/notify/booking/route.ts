@@ -48,7 +48,7 @@ export async function POST(req: Request) {
       price: escapeHtml(String(price ?? '')),
     };
 
-    const fromAddress = isDev ? 'MicroStay Alerts <onboarding@resend.dev>' : 'MicroStay Alerts <noreply@microstay.us>';
+    const fromAddress = isDev ? 'MicroStay Alerts <onboarding@resend.dev>' : 'MicroStay Alerts <no-reply@microstay.us>';
     const toAddress = targetVendorEmail.trim();
 
     const result = await sendEmail({

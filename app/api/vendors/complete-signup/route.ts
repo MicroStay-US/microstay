@@ -79,7 +79,7 @@ export async function POST(req: NextRequest) {
       // Email 1: Signed agreement copy to partner
       await resend.emails
         .send({
-          from: 'MicroStay Partners <noreply@microstay.us>',
+          from: 'MicroStay Partners <no-reply@microstay.us>',
           to: [vendor.email],
           subject: 'Your MicroStay Partner Application is Under Review',
           html: `
@@ -118,7 +118,7 @@ export async function POST(req: NextRequest) {
       // Email 2: Admin notification
       await resend.emails
         .send({
-          from: 'MicroStay System <noreply@microstay.us>',
+          from: 'MicroStay System <no-reply@microstay.us>',
           to: ['info@microstay.us'],
           subject: `New Partner Application: ${safeBiz || safeEmail}`,
           html: `

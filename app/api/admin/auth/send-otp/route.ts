@@ -4,7 +4,7 @@ import { Resend } from 'resend';
 import crypto from 'crypto';
 import { rateLimit, getIP, rateLimitResponse } from '@/lib/rate-limit';
 
-const ADMIN_EMAIL = process.env.ADMIN_EMAIL || 'adminmotel@gmail.com';
+const ADMIN_EMAIL = process.env.ADMIN_EMAIL || 'admin@microstay.us';
 
 function generateOtp(): string {
   // Cryptographically secure 6-digit code
@@ -81,7 +81,7 @@ export async function POST(req: Request) {
   try {
     const resend = new Resend(resendKey);
     const { error: resendErr } = await resend.emails.send({
-      from: isDev ? 'onboarding@resend.dev' : 'MicroStay <noreply@microstay.us>',
+      from: isDev ? 'onboarding@resend.dev' : 'MicroStay <no-reply@microstay.us>',
       to: [ADMIN_EMAIL],
       subject: 'Your MicroStay Admin Login Code',
       html: `

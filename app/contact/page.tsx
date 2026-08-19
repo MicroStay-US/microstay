@@ -56,7 +56,7 @@ ${fullName}`;
 
   const gmailUrl =
     `https://mail.google.com/mail/?view=cm&fs=1` +
-    `&to=${encodeURIComponent("adminmotel@gmail.com")}` +
+    `&to=${encodeURIComponent("admin@microstay.us")}` +
     `&su=${encodeURIComponent(subject)}` +
     `&body=${encodeURIComponent(emailBody)}`;
 

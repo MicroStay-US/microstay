@@ -114,8 +114,8 @@ export async function POST(req: Request) {
   try {
     const resend = new Resend(resendKey);
     const { error: resendErr } = await resend.emails.send({
-      from: isDev ? 'onboarding@resend.dev' : 'MicroStay <noreply@microstay.us>',
-      to: isDev ? [process.env.ADMIN_EMAIL || 'adminmotel@gmail.com'] : [email],
+      from: isDev ? 'onboarding@resend.dev' : 'MicroStay <no-reply@microstay.us>',
+      to: isDev ? [process.env.ADMIN_EMAIL || 'admin@microstay.us'] : [email],
       subject: 'Your MicroStay Vendor Login Code',
       html: `
         <div style="font-family:Arial,sans-serif;max-width:480px;margin:0 auto;padding:32px;background:#fff;">

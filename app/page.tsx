@@ -308,12 +308,13 @@ const handleSearch = (e: React.FormEvent) => {
           <MotelBanner />
           <div className="text-center mb-12 flex flex-col justify-center items-center">
             <h1 className="text-3xl md:text-4xl font-bold mb-6 text-zinc-600 dark:text-gray-900 drop-shadow-sm">
-              Hotels by the Hours <br /> Made Simple
+              Hotel Stays That Fit Your Schedule<br />
             </h1>
             <div className="text-xl md:text-2xl text-zinc-600 dark:text-gray-800 mb-8 font-medium ">
               <p>✓ No booking fees</p>
-              <p>✓ Pay at the hotel</p>
-              <p>✓ Flexible hourly stays</p>
+              <p>✓ Pay Directly at Check-In</p>
+              <p>✓ Flexible Stay Windows</p>
+              {/* <p>Choose an available hotel time window for rest, work, travel, or a quick break</p> */}
             </div>
           </div>
 
@@ -622,9 +623,10 @@ const handleSearch = (e: React.FormEvent) => {
                 <div className="bg-gradient-to-br from-ms-orange to-ms-orange w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-4 group-hover:scale-110 transition-transform shine-effect">
                   <Shield className="h-8 w-8 text-white" />
                 </div>
-                <h3 className="text-xl font-bold mb-3 text-gray-900">Safe & Secure</h3>
+                <h3 className="text-xl font-bold mb-3 text-gray-900">Reviewed Partners</h3>
                 <p className="text-gray-600 font-medium leading-relaxed">
                   All properties verified. Secure booking process with instant confirmation directly from the vendor.
+                  {/* Partner identity and operating documents are reviewed before listing. */}
                 </p>
               </CardContent>
             </Card>
@@ -634,9 +636,10 @@ const handleSearch = (e: React.FormEvent) => {
                 <div className="bg-gradient-to-br from-ms-orange to-ms-orange w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-4 group-hover:scale-110 transition-transform shine-effect">
                   <Award className="h-8 w-8 text-white" />
                 </div>
-                <h3 className="text-xl font-bold mb-3 text-gray-900">Best Prices</h3>
+                <h3 className="text-xl font-bold mb-3 text-gray-900">Transparent Prices</h3>
                 <p className="text-gray-600 font-medium leading-relaxed">
-                  No hidden platform fees for guests. Pay only for the window you need. Save up to 70% vs full-day rates.
+                  {/* No hidden platform fees for guests. Pay only for the window you need. Save up to 70% vs full-day rates. */}
+                  No MicroStay guest booking fee. See the room rate, taxes, and final amount before confirming.
                 </p>
               </CardContent>
             </Card>
@@ -656,7 +659,7 @@ const handleSearch = (e: React.FormEvent) => {
             {[
               { step: '01', icon: Search, title: 'Search', desc: 'Enter your city or tap "Near Me" to find available motels for your date.' },
               { step: '02', icon: CalendarDays, title: 'Book', desc: 'Pick your time window, choose a room, and confirm with your name and phone.' },
-              { step: '03', icon: LogIn, title: 'Check In', desc: 'Show your confirmation code at the front desk — no app or account needed.' },
+              { step: '03', icon: LogIn, title: 'Check In', desc: 'Primary guest must be 18+ and present valid government photo ID at check-in' },
             ].map(({ step, icon: Icon, title, desc }) => (
               <div key={step} className="relative z-10 flex flex-col items-center text-center group mb-10 mx-auto max-w-xs bg-ms-orange-light pt-5 rounded-lg dark:bg-transparent/90">
                 <div className="w-20 h-20 rounded-2xl dark:bg-gradient-to-br dark:from-ms-orange dark:border-transparent dark:shadow-md dark:group-hover:shadow-ms-orange dark:to-ms-orange border-2 border-ms-orange-border flex items-center justify-center mb-5 group-hover:border-ms-orange-border group-hover:shadow-lg group-hover:shadow-ms-orange-light transition-all ">

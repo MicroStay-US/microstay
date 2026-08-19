@@ -35,7 +35,7 @@ export default function Navbar() {
               <div className="absolute inset-0 rounded-xl  opacity-50 group-hover:opacity-75 transition-opacity"></div>
               <div className="relative  p-2 rounded-full  transition-all shine-effect">
                  <Image
-                  src="/MicroStayLogo.png"
+                  src="/MicroStayNewLogo.png"
                   alt="MicroStay Logo"
                   width={50}
                   height={50}
@@ -49,7 +49,7 @@ export default function Navbar() {
                 MicroStay.us
               </span>
               <span className="text-[10px] font-medium text-gray-500 -mt-1 tracking-wider">
-                HOURLY BOOKINGS
+                FLEXIBLE STAYS
               </span>
             </div>
           </Link>

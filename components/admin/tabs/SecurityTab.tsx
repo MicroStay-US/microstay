@@ -228,7 +228,7 @@ export function SecurityTab() {
                     <div className="mt-2 bg-black/30 rounded-lg p-3">
                       <p className="text-[10px] text-zinc-500 mb-1">In Google Authenticator, tap <strong className="text-zinc-400">Enter a setup key</strong> and use:</p>
                       <p className="font-mono text-sm text-ms-orange tracking-widest break-all select-all">{setupSecret}</p>
-                      <p className="text-[10px] text-zinc-600 mt-1">Account: adminmotel@gmail.com · Type: Time based</p>
+                      <p className="text-[10px] text-zinc-600 mt-1">Account: admin@microstay.us · Type: Time based</p>
                     </div>
                   </details>
                 )}

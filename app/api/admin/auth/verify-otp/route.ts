@@ -2,7 +2,7 @@ import { NextRequest, NextResponse } from 'next/server';
 import { createClient } from '@supabase/supabase-js';
 import crypto from 'crypto';
 
-const ADMIN_EMAIL = process.env.ADMIN_EMAIL || 'adminmotel@gmail.com';
+const ADMIN_EMAIL = process.env.ADMIN_EMAIL || 'admin@microstay.us';
 
 function hashCode(code: string): string {
   return crypto.createHash('sha256').update(code).digest('hex');

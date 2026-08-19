@@ -56,7 +56,7 @@ export async function POST(req: NextRequest) {
       try {
         const resend = new Resend(resendKey);
         await resend.emails.send({
-          from: 'MicroStay Partners <noreply@microstay.us>',
+          from: 'MicroStay Partners <no-reply@microstay.us>',
           to: [normalizedEmail],
           subject: 'Verify your MicroStay Partner account',
           html: `

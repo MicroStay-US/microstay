@@ -108,7 +108,7 @@ export function AdminHeader({ profileName, onSettingsClick, onMenuClick }: Admin
           >
             <div className="px-3 py-2 mb-1">
               <p className="text-xs font-semibold text-ms-text dark:text-white">{profileName || 'Admin User'}</p>
-              <p className="text-[10px] text-slate-400 dark:text-white/40">adminmotel@gmail.com</p>
+              <p className="text-[10px] text-slate-400 dark:text-white/40">admin@microstay.us</p>
             </div>
             <DropdownMenuSeparator className="bg-ms-orange-border/20 dark:bg-white/10" />
             <DropdownMenuItem onClick={onSettingsClick} className="rounded-lg cursor-pointer text-xs text-ms-text-muted dark:text-white/70 focus:bg-ms-orange-light dark:focus:bg-white/10 gap-2">

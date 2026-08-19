@@ -16,7 +16,7 @@ const ADMIN_ROLES = ['admin', 'super_admin', 'manager', 'support'];
 
 // The single admin account. Set NEXT_PUBLIC_ADMIN_EMAIL in your .env / Vercel env vars.
 // Never hardcode this in source — use the environment variable.
-const ADMIN_EMAIL = process.env.NEXT_PUBLIC_ADMIN_EMAIL || 'adminmotel@gmail.com';
+const ADMIN_EMAIL = process.env.NEXT_PUBLIC_ADMIN_EMAIL || 'admin@microstay.us';
 
 type Step = 'password' | 'otp';
 
@@ -44,6 +44,7 @@ export default function AdminLoginPage() {
   // Forgot password
   const [resetting, setResetting] = useState(false);
   const [resetSent, setResetSent] = useState(false);
+  const [resetLink, setResetLink] = useState('');
 
   // Already logged in → redirect
   useEffect(() => {
@@ -179,9 +180,13 @@ export default function AdminLoginPage() {
   const handleForgotPassword = async () => {
     setResetting(true);
     setError('');
+    setResetLink('');
     try {
       const result = await resetPassword(ADMIN_EMAIL);
       if (!result.success) throw new Error(result.error);
+      if (result.resetLink) {
+        setResetLink(result.resetLink);
+      }
       setResetSent(true);
     } catch (err: any) {
       setError(err.message || 'Failed to send reset email.');
@@ -208,9 +213,27 @@ export default function AdminLoginPage() {
                 A password reset link has been sent to<br />
                 <span className="font-mono font-medium text-gray-700">{ADMIN_EMAIL}</span>
               </p>
+
+              {resetLink && (
+                <div className="mt-4 p-3 bg-yellow-50 dark:bg-yellow-950/20 border border-yellow-200 dark:border-yellow-900/50 rounded text-left">
+                  <p className="text-xs font-semibold text-yellow-800 dark:text-yellow-400 uppercase tracking-wider mb-1">
+                    Development Bypass Link
+                  </p>
+                  <p className="text-xs text-gray-600 dark:text-gray-400 mb-2">
+                    Email sending failed or is in dev mode. Click below to reset:
+                  </p>
+                  <a
+                    href={resetLink}
+                    className="inline-block w-full text-center bg-orange-500 hover:bg-orange-600 text-white font-medium py-2 px-3 rounded text-xs transition"
+                  >
+                    Go to Reset Password
+                  </a>
+                </div>
+              )}
+
               <button
-                onClick={() => setResetSent(false)}
-                className="text-sm text-orange-600 hover:underline"
+                onClick={() => { setResetSent(false); setResetLink(''); }}
+                className="text-sm text-orange-600 hover:underline block w-full pt-2"
               >
                 Back to login
               </button>

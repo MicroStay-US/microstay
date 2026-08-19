@@ -94,4 +94,4 @@ CREATE POLICY "Vendors view own invoices"
 CREATE POLICY "Admin manage invoices"
   ON invoices FOR ALL
   TO authenticated
-  USING (auth.jwt() ->> 'email' = 'adminmotel@gmail.com');
+  USING (auth.jwt() ->> 'email' = 'admin@microstay.us');

@@ -21,8 +21,8 @@ export async function POST(req: Request) {
       price: escapeHtml(String(price ?? '')),
     };
 
-    const fromAddress = isDev ? 'MicroStay Admin <onboarding@resend.dev>' : 'MicroStay Admin <noreply@microstay.us>';
-    const toAddress = process.env.ADMIN_EMAIL || 'adminmotel@gmail.com';
+    const fromAddress = isDev ? 'MicroStay Admin <onboarding@resend.dev>' : 'MicroStay Admin <no-reply@microstay.us>';
+    const toAddress = process.env.ADMIN_EMAIL || 'admin@microstay.us';
 
     const result = await sendEmail({
       from: fromAddress,

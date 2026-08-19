@@ -126,14 +126,17 @@ Deno.serve(async (req: Request) => {
       );
     }
 
-    const resendResponse = await fetch("https://api.resend.com/emails", {
+    let fromEmail = Deno.env.get("RESEND_FROM_EMAIL") || "MicroStay Security <no-reply@microstay.us>";
+    const isLocalUrl = siteUrl.includes("localhost") || siteUrl.includes("127.0.0.1") || siteUrl.includes("3000") || siteUrl.includes("3001");
+
+    let resendResponse = await fetch("https://api.resend.com/emails", {
       method: "POST",
       headers: {
         Authorization: `Bearer ${resendKey}`,
         "Content-Type": "application/json",
       },
       body: JSON.stringify({
-        from: "MicroStay Security <noreply@microstay.us>",
+        from: fromEmail,
         to: email,
         subject: "Reset Your MicroStay Password",
         html: emailHtml,
@@ -141,15 +144,75 @@ Deno.serve(async (req: Request) => {
     });
 
     if (!resendResponse.ok) {
-      const error = await resendResponse.text();
-      console.error("Resend API error:", error);
-      throw new Error(`Resend API error: ${error}`);
+      const errorText = await resendResponse.text();
+      console.warn("First email send attempt failed:", errorText);
+
+      // Check if it's a domain verification issue
+      let isDomainError = false;
+      try {
+        const errorJson = JSON.parse(errorText);
+        if (errorJson.message && (
+          errorJson.message.toLowerCase().includes("domain") ||
+          errorJson.message.toLowerCase().includes("not verified") ||
+          errorJson.statusCode === 400
+        )) {
+          isDomainError = true;
+        }
+      } catch {
+        if (errorText.toLowerCase().includes("domain") || errorText.toLowerCase().includes("verified")) {
+          isDomainError = true;
+        }
+      }
+
+      if (isDomainError && !fromEmail.includes("onboarding@resend.dev")) {
+        console.log("Domain verification error detected. Retrying with onboarding@resend.dev...");
+        fromEmail = "onboarding@resend.dev";
+        resendResponse = await fetch("https://api.resend.com/emails", {
+          method: "POST",
+          headers: {
+            Authorization: `Bearer ${resendKey}`,
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({
+            from: fromEmail,
+            to: email,
+            subject: "Reset Your MicroStay Password (Fallback)",
+            html: emailHtml,
+          }),
+        });
+      } else {
+        // Not a domain error, re-throw/expose it
+        resendResponse = new Response(errorText, { status: resendResponse.status });
+      }
+    }
+
+    if (!resendResponse.ok) {
+      const errorText = await resendResponse.text();
+      console.error("Resend API error:", errorText);
+
+      if (isLocalUrl) {
+        return new Response(
+          JSON.stringify({
+            success: true,
+            message: "Email sending failed, but reset link was generated for local testing.",
+            resetLink: resetLink,
+            warning: `Email failed: ${errorText}`,
+          }),
+          {
+            status: 200,
+            headers: { ...corsHeaders, "Content-Type": "application/json" },
+          }
+        );
+      }
+
+      throw new Error(`Resend API error: ${errorText}`);
     }
 
     return new Response(
       JSON.stringify({
         success: true,
         message: "Password reset email sent successfully",
+        resetLink: isLocalUrl ? resetLink : undefined,
       }),
       {
         status: 200,

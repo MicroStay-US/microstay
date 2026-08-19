@@ -144,11 +144,11 @@ export async function POST(req: NextRequest) {
     `;
 
     if (resendKey) {
-      const targetEmail = isDev ? (process.env.ADMIN_EMAIL || 'adminmotel@gmail.com') : userEmail;
+      const targetEmail = isDev ? (process.env.ADMIN_EMAIL || 'admin@microstay.us') : userEmail;
       const resend = new Resend(resendKey);
       
       const { error: resendErr } = await resend.emails.send({
-        from: isDev ? 'onboarding@resend.dev' : 'MicroStay Security <noreply@microstay.us>',
+        from: isDev ? 'onboarding@resend.dev' : 'MicroStay Security <no-reply@microstay.us>',
         to: targetEmail,
         subject: subjectText,
         html: emailHtml,

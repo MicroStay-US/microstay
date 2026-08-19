@@ -96,7 +96,7 @@ export async function PATCH(
 
         await resend.emails
           .send({
-            from: 'MicroStay Partners <noreply@microstay.us>',
+            from: 'MicroStay Partners <no-reply@microstay.us>',
             to: [vendor.email],
             subject: 'Congratulations! Your MicroStay Partner Application is Approved',
             html: `
@@ -148,7 +148,7 @@ export async function PATCH(
 
       await resend.emails
         .send({
-          from: 'MicroStay Partners <noreply@microstay.us>',
+          from: 'MicroStay Partners <no-reply@microstay.us>',
           to: [vendor.email],
           subject: 'Update on Your MicroStay Partner Application',
           html: `

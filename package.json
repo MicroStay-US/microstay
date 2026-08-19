@@ -17,6 +17,8 @@
     "test:e2e:buttons": "playwright test 04-button"
   },
   "dependencies": {
+    "@coreui/icons": "^3.1.0",
+    "@coreui/icons-react": "^2.3.0",
     "@hookform/resolvers": "^3.9.0",
     "@netlify/plugin-nextjs": "^5.15.1",
     "@next/swc-wasm-nodejs": "14.2.33",
@@ -101,6 +103,7 @@
     "@playwright/test": "^1.58.2",
     "@types/nodemailer": "^8.0.1",
     "@types/qrcode": "^1.5.6",
+    "supabase": "^2.115.0",
     "tsx": "^4.21.0"
   }
 }

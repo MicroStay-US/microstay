@@ -129,7 +129,7 @@ async function runDeactivation(req: Request) {
 
     // 3. Send deactivation email
     await resend.emails.send({
-      from: 'MicroStay Billing <noreply@microstay.us>',
+      from: 'MicroStay Billing <no-reply@microstay.us>',
       to: [vendor.email],
       subject: '🔴 Your MicroStay Property Has Been Deactivated – Payment Required',
       html: `

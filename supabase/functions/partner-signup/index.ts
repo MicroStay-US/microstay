@@ -179,22 +179,65 @@ Deno.serve(async (req: Request) => {
       `;
 
       try {
-        await fetch("https://api.resend.com/emails", {
+        let fromEmail = Deno.env.get("RESEND_FROM_EMAIL") || "MicroStay <no-reply@microstay.us>";
+        let resendResponse = await fetch("https://api.resend.com/emails", {
           method: "POST",
           headers: {
             Authorization: `Bearer ${resendKey}`,
             "Content-Type": "application/json",
           },
           body: JSON.stringify({
-            from: "MicroStay <noreply@microstay.us>",
+            from: fromEmail,
             to: email,
-            subject:
-              "Your MicroStay Partner Application Has Been Received",
+            subject: "Your MicroStay Partner Application Has Been Received",
             html: emailHtml,
           }),
         });
+
+        if (!resendResponse.ok) {
+          const errorText = await resendResponse.text();
+          console.warn("First email send attempt in partner-signup failed:", errorText);
+
+          let isDomainError = false;
+          try {
+            const errorJson = JSON.parse(errorText);
+            if (errorJson.message && (
+              errorJson.message.toLowerCase().includes("domain") ||
+              errorJson.message.toLowerCase().includes("not verified") ||
+              errorJson.statusCode === 400
+            )) {
+              isDomainError = true;
+            }
+          } catch {
+            if (errorText.toLowerCase().includes("domain") || errorText.toLowerCase().includes("verified")) {
+              isDomainError = true;
+            }
+          }
+
+          if (isDomainError && !fromEmail.includes("onboarding@resend.dev")) {
+            console.log("Domain verification error in partner-signup. Retrying with onboarding@resend.dev...");
+            fromEmail = "onboarding@resend.dev";
+            resendResponse = await fetch("https://api.resend.com/emails", {
+              method: "POST",
+              headers: {
+                Authorization: `Bearer ${resendKey}`,
+                "Content-Type": "application/json",
+              },
+              body: JSON.stringify({
+                from: fromEmail,
+                to: email,
+                subject: "Your MicroStay Partner Application Has Been Received (Fallback)",
+                html: emailHtml,
+              }),
+            });
+          }
+        }
+
+        if (!resendResponse.ok) {
+          console.error("Partner signup email failed completely:", await resendResponse.text());
+        }
       } catch (emailErr) {
-        console.error("Email send error:", emailErr);
+        console.error("Email send error in partner-signup:", emailErr);
       }
     }
 

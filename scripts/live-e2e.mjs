@@ -15,7 +15,7 @@ const TEST_VENDOR_ID = 'e384c98f-428a-4786-a420-b45c31ad7139';
 const TEST_VENDOR_EMAIL = 'test+launch-1775949460851@microstay.us';
 const NEW_VENDOR_PASSWORD = 'LaunchVendor#2026!Test';
 
-const ADMIN_EMAIL = 'adminmotel@gmail.com';
+const ADMIN_EMAIL = 'admin@microstay.us';
 const ADMIN_PASSWORD = process.env.ADMIN_PASSWORD;
 
 const SUPABASE_URL = process.env.NEXT_PUBLIC_SUPABASE_URL;

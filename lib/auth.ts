@@ -3,7 +3,7 @@
 import { supabase, Profile } from './supabase';
 import { User } from '@supabase/supabase-js';
 
-const ADMIN_EMAILS = ['adminmotel@gmail.com', 'adminmotel@gmail.com', 'team@microstay.us', 'manager@microstay.us'];
+const ADMIN_EMAILS = ['admin@microstay.us', 'admin@microstay.us', 'team@microstay.us', 'manager@microstay.us'];
 
 export async function getCurrentUser(): Promise<User | null> {
   const { data: { user } } = await supabase.auth.getUser();
@@ -98,7 +98,12 @@ export async function resetPassword(email: string) {
       return { success: false, error: result.error || 'Failed to send reset email' };
     }
 
-    return { success: true, message: 'Password reset email sent. Check your inbox.' };
+    return {
+      success: true,
+      message: result.message || 'Password reset email sent. Check your inbox.',
+      resetLink: result.resetLink,
+      warning: result.warning,
+    };
   } catch (err: any) {
     console.error('Reset password exception:', err);
     return { success: false, error: err.message || 'Failed to send reset email' };

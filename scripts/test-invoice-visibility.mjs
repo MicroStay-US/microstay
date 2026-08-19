@@ -4,7 +4,7 @@ const c = createClient(process.env.NEXT_PUBLIC_SUPABASE_URL, process.env.NEXT_PU
 
 // 1. Sign in as admin
 const { data: auth, error: authErr } = await c.auth.signInWithPassword({
-  email: 'adminmotel@gmail.com',
+  email: 'admin@microstay.us',
   password: process.env.ADMIN_PASSWORD,
 });
 if (authErr) { console.log('Auth failed:', authErr.message); process.exit(1); }

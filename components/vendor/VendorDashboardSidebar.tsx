@@ -53,7 +53,7 @@ export default function VendorDashboardSidebar() {
         {!collapsed && (
           <div className="flex items-center gap-3 min-w-0">
             <div className="w-9 h-9 rounded-lg flex items-center justify-center shrink-0 ">
-              <Image src="/MicroStayLogo.png" alt="MicroStay Logo" width={32} height={32} className="w-6 h-6" />
+              <Image src="/MicroStayNewLogo.png" alt="MicroStay Logo" width={32} height={32} className="w-6 h-6" />
             </div>
             <div className="min-w-0">
               <p className="text-sm font-bold text-white truncate">MicroStay</p>

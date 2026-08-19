@@ -241,21 +241,33 @@ function BookingContent() {
                 </div>
 
                 <div className="flex items-center gap-3">
-                  <DollarSign className="h-5 w-5 text-emerald-500" />
-                  <div>
-                     <p className="text-xs font-bold text-gray-400 uppercase tracking-widest mb-1 mt-1">Total Rate</p>
-                    <p className="font-black text-3xl text-emerald-600">${timeSlot.price_per_room}</p>
+                  
+                  <div className='flex flex-col'>
+                  <div className='flex items-center ml-[-2px] gap-2'>
+                      <DollarSign className="h-5 w-5 text-zinc-600 dark:text-emerald-500" />
+                      <h1 className='text-lg font-bold dark:text-emerald-500'>Total Amount to Be Paid</h1>
+                  </div>
+                     {/* <p className="text-xs font-bold text-gray-400 uppercase tracking-widest mb-1 mt-1">Total Rate</p>
+                    <p className="font-black text-3xl text-emerald-600">${timeSlot.price_per_room}</p> */}
+                  <div className='ml-8'>
+                      <div>
+                        <p>Room Rate : <span className='text-ms-orange'>{timeSlot.price_per_room}</span></p>
+                        </div>
+                    <p>Manadatory Fees: <span className='text-ms-orange'>$ 0</span></p>
+                    <p>Government tax:   <span className='text-ms-orange'>$ govt_tax</span></p> {/* this govt_tax will be setted according ro DB or as requested by the Client / Sir */}
+                    <p>Total Due at Property : <span className="text-ms-orange">sum of all of the above things (Room Rate + Mandatory Fees + Govt tax )</span></p>
+                  </div>
                   </div>
                 </div>
               </CardContent>
             </Card>
 
              <Card className="bg-orange-500/50 border-orange-200 dark:border-transparent dark:bg-black/50 shadow-sm">
-              <CardContent className="p-6 flex items-start gap-4">
+              <CardContent className="p-6 flex items-center gap-4">
                  <Zap className="w-6 h-6 text-orange-600 dark:fill-orange-600 flex-shrink-0" />
                  <div>
-                   <h4 className="font-bold text-orange-700 mb-1">Instant Confirmation</h4>
-                   <p className="text-sm text-orange-800/70 font-medium leading-relaxed">Your booking will be immediately reserved at the property. No upfront payment required; pay directly at the front desk upon arrival.</p>
+                   <h4 className="font-bold text-orange-700 mb-1">No Upfront Payment</h4>
+                   <p className="text-sm text-orange-800/70 font-medium leading-relaxed">Pay the property when you check in. MicroStay will not charge you for cancellation or failure to arrive.</p>
                  </div>
               </CardContent>
             </Card>
@@ -312,10 +324,17 @@ function BookingContent() {
                       required
                     />
                   </div>
+                  <div className="flex">
+                    <span className='text-sm flex flex-row gap-2'> <Input
+                      type="checkbox"
+                      className='w-auto h-auto relative bottom-2'
+                      required
+                    />I agree to the Terms of Service and acknowledge the property’s check-in, identification, cancellation, deposit, and accessibility policies.</span>
+                  </div>
 
                   <div className="pt-6 border-t border-gray-100 flex flex-col gap-3">
                     <Button type="submit" className="w-full h-14 bg-gradient-to-r from-orange-500 to-orange-600 hover:from-orange-600 text-white font-black text-lg shadow-lg" disabled={booking}>
-                      {booking ? 'Reserving...' : 'Confirm Reservation'}
+                      {booking ? 'Processing...' : <p>Pay total_due at Property</p>}
                     </Button>
                     <Button
                       type="button"

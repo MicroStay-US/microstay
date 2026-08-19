@@ -13,7 +13,7 @@ export default function Footer() {
             <div className="flex items-center gap-3 mb-4">
               <div className=" p rounded-xl ">
                 <Image
-                  src="/MicroStayLogo.png"
+                  src="/MicroStayNewLogo.png"
                   alt="MicroStay Logo"
                   width={50}
                   height={50}
@@ -24,7 +24,7 @@ export default function Footer() {
               <span className="text-2xl font-bold bg-gradient-to-r from-ms-orange to-ms-orange tracking-tight bg-clip-text text-transparent group-hover:from-ms-orange group-hover:to-ms-orange transition-all">MicroStay.us</span>
             </div>
             <p className="text-sm text-black/60 dark:text-white leading-relaxed font-medium ml-5">
-              The smarter way to book a motel — by the hour, not the night.
+            The flexible way to book a hotel for the time you need.
             </p>
           </div>
 
@@ -69,7 +69,7 @@ export default function Footer() {
                 { label: 'About Us', href: '/about' },
                 { label: 'Contact', href: '/contact' },
                 { label: 'Privacy Policy', href: '/privacy' },
-                { label: 'Terms of Services', href: '/terms' },
+                { label: 'Terms of Service', href: '/terms' },
               ].map(({ label, href }) => (
                 <li key={label}>
                   <Link href={href} className="text-sm text-orange-500 hover:text-orange-700 font-medium transition-colors">{label}</Link>

@@ -26,6 +26,7 @@ export default function VendorLoginPage() {
   const [forgotLoading, setForgotLoading] = useState(false);
   const [forgotSuccess, setForgotSuccess] = useState('');
   const [forgotError, setForgotError] = useState('');
+  const [forgotResetLink, setForgotResetLink] = useState('');
 
   // OTP State
   const [step, setStep] = useState<'password' | 'otp'>('password');
@@ -170,6 +171,7 @@ export default function VendorLoginPage() {
     setForgotLoading(true);
     setForgotError('');
     setForgotSuccess('');
+    setForgotResetLink('');
 
     try {
       const supabaseUrl = process.env.NEXT_PUBLIC_SUPABASE_URL;
@@ -194,6 +196,9 @@ export default function VendorLoginPage() {
         setForgotError(result.error || 'Failed to send reset email');
       } else {
         setForgotSuccess('Password reset email sent! Check your inbox.');
+        if (result.resetLink) {
+          setForgotResetLink(result.resetLink);
+        }
       }
     } catch (err: any) {
       setForgotError(err.message || 'Failed to send reset email');
@@ -283,9 +288,28 @@ export default function VendorLoginPage() {
                 </Alert>
               )}
               {forgotSuccess && (
-                <Alert className="bg-ms-teal-light border-ms-teal-border dark:bg-green-600 dark:border-transparent">
-                  <AlertDescription className="text-ms-teal dark:text-white">{forgotSuccess}</AlertDescription>
-                </Alert>
+                <div className="space-y-3">
+                  <Alert className="bg-ms-teal-light border-ms-teal-border dark:bg-green-600 dark:border-transparent">
+                    <AlertDescription className="text-ms-teal dark:text-white">{forgotSuccess}</AlertDescription>
+                  </Alert>
+
+                  {forgotResetLink && (
+                    <div className="p-3 bg-yellow-50 dark:bg-yellow-950/20 border border-yellow-200 dark:border-yellow-900/50 rounded text-left">
+                      <p className="text-xs font-semibold text-yellow-800 dark:text-yellow-400 uppercase tracking-wider mb-1">
+                        Development Bypass Link
+                      </p>
+                      <p className="text-xs text-gray-600 dark:text-gray-400 mb-2">
+                        Email sending failed or is in dev mode. Click below to reset:
+                      </p>
+                      <a
+                        href={forgotResetLink}
+                        className="inline-block w-full text-center bg-ms-orange hover:bg-ms-orange-hover text-white font-semibold py-2 px-3 rounded text-xs transition"
+                      >
+                        Go to Reset Password
+                      </a>
+                    </div>
+                  )}
+                </div>
               )}
 
               <div className="space-y-2">
