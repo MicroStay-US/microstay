@@ -279,6 +279,42 @@
     color:#f59e0b;
 }
 
+/* ── Compact DayPicker for mobile modal ── */
+.rdp-mobile {
+    --rdp-cell-size: 38px;
+    font-size: 14px;
+}
+
+.rdp-mobile .rdp-caption {
+    font-size: 16px;
+    font-weight: 600;
+    padding: 0 0 4px;
+}
+
+.rdp-mobile .rdp-head_cell {
+    font-size: 12px;
+    padding: 2px 0;
+}
+
+.rdp-mobile .rdp-day {
+    width: 36px;
+    height: 36px;
+    font-size: 13px;
+}
+
+.rdp-mobile .rdp-months {
+    display: flex;
+    justify-content: center;
+}
+
+.rdp-mobile .rdp-month {
+    margin: 0;
+}
+
+.rdp-mobile .rdp-table {
+    max-width: 100%;
+}
+
 /* ── Custom Landing Page Background Styles with iOS Safari workarounds ── */
 .landing-hero-bg {
   background-image: url('/images/landingpage.jpg');

@@ -21,7 +21,7 @@ const MotelBanner = () => {
   }, []);
 
   return (
-    <div className="relative max-w-5xl mx-auto h-12 md:h-16 overflow-hidden rounded-xl border border-orange-200/70 bg-white/90 dark:bg-amber-800/30  dark:border-transparent shadow-[0_6px_20px_rgba(255,90,31,0.15)] backdrop-blur-md top-[-10px] md:top-[-60px]">
+    <div className="relative w-[92%] md:w-full max-w-5xl mx-auto h-12 md:h-16 overflow-hidden rounded-xl border border-orange-200/70 bg-white/90 dark:bg-amber-800/30  dark:border-transparent shadow-[0_6px_20px_rgba(255,90,31,0.15)] backdrop-blur-md top-0 md:top-[-60px]">
       <AnimatePresence mode="wait">
         <motion.div
           key={texts[index]}
