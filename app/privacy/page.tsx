@@ -154,7 +154,7 @@ export default function PrivacyPolicyPage() {
         <p>If a change materially affects how MicroStay uses personal information, additional notice or consent will be provided when legally required.</p>
         <h2>25. Contact Us</h2>
         <p>For questions, requests, or concerns regarding this Privacy Policy or MicroStay's privacy practices:</p>
-        <p>MICROSTAY HOLDINGS LLC d/b/a MicroStay.us</p>
+        <p className="font-bold text-ms-orange">MICROSTAY HOLDINGS LLC d/b/a MicroStay.us</p>
         <p>Email: support@microstay.us</p>
         <p>Subject: Privacy Inquiry</p>
 

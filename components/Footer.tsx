@@ -24,59 +24,59 @@ export default function Footer() {
               <span className="text-2xl font-bold bg-gradient-to-r from-ms-orange to-ms-orange tracking-tight bg-clip-text text-transparent group-hover:from-ms-orange group-hover:to-ms-orange transition-all">MicroStay.us</span>
             </div>
             <p className="text-sm text-black/60 dark:text-white leading-relaxed font-medium ml-5">
-            The flexible way to book a hotel for the time you need.
+              The flexible way to book a hotel for the time you need.
             </p>
           </div>
 
           {/* Guests */}
           <div className="md:col-span-3 grid grid-cols-3 gap-4 md:gap-10 md:ml-5 mt-4 md:mt-0">
             <div>
-            <h4 className="text-xs font-black uppercase tracking-widest text-black/50 dark:text-white/40 mb-4">For Guests</h4>
-            <ul className="space-y-2.5">
-              {[
-                { label: 'Book Now', href: '/search' },
-                { label: 'My Bookings', href: '/check-booking' },
-                // { label: 'How It Works', href: '/#how-it-works' },
-              ].map(({ label, href }) => (
-                <li key={label}>
-                  <Link href={href} className="text-md  tracking-tighter text-orange-500 hover:text-orange-700 font-medium transition-colors">{label}</Link>
-                </li>
-              ))}
-            </ul>
-          </div>
+              <h4 className="text-xs font-black uppercase tracking-widest text-black/50 dark:text-white/40 mb-4">For Guests</h4>
+              <ul className="space-y-2.5">
+                {[
+                  { label: 'Book Now', href: '/search' },
+                  { label: 'My Bookings', href: '/check-booking' },
+                  // { label: 'How It Works', href: '/#how-it-works' },
+                ].map(({ label, href }) => (
+                  <li key={label}>
+                    <Link href={href} className="text-md  tracking-tighter text-orange-500 hover:text-orange-700 font-medium transition-colors">{label}</Link>
+                  </li>
+                ))}
+              </ul>
+            </div>
 
-          {/* Partners */}
-          <div>
-            <h4 className="text-xs font-black uppercase tracking-widest text-black/50 dark:text-white/40 mb-4">For Partners</h4>
-            <ul className="space-y-2.5">
-              {[
-                { label: 'Become a Partner', href: '/partner' },
-                // { label: 'Partner Sign Up', href: '/partner-signup' },
-                { label: 'Partner Login', href: '/vendor/login' },
-              ].map(({ label, href }) => (
-                <li key={label}>
-                  <Link href={href} className="text-md tracking-tighter text-orange-500 hover:text-orange-700 font-medium transition-colors">{label}</Link>
-                </li>
-              ))}
-            </ul>
-          </div>
+            {/* Partners */}
+            <div>
+              <h4 className="text-xs font-black uppercase tracking-widest text-black/50 dark:text-white/40 mb-4">For Partners</h4>
+              <ul className="space-y-2.5">
+                {[
+                  { label: 'Become a Partner', href: '/partner' },
+                  // { label: 'Partner Sign Up', href: '/partner-signup' },
+                  { label: 'Partner Login', href: '/vendor/login' },
+                ].map(({ label, href }) => (
+                  <li key={label}>
+                    <Link href={href} className="text-md tracking-tighter text-orange-500 hover:text-orange-700 font-medium transition-colors">{label}</Link>
+                  </li>
+                ))}
+              </ul>
+            </div>
 
-          {/* Company */}
-          <div>
-            <h4 className="text-xs font-black uppercase tracking-widest text-black/50 dark:text-white/40 mb-4">Company</h4>
-            <ul className="space-y-2.5 ">
-              {[
-                { label: 'About Us', href: '/about' },
-                { label: 'Contact', href: '/contact' },
-                { label: 'Privacy Policy', href: '/privacy' },
-                { label: 'Terms of Service', href: '/terms' },
-              ].map(({ label, href }) => (
-                <li key={label}>
-                  <Link href={href} className="text-sm text-orange-500 hover:text-orange-700 font-medium transition-colors">{label}</Link>
-                </li>
-              ))}
-            </ul>
-          </div>
+            {/* Company */}
+            <div>
+              <h4 className="text-xs font-black uppercase tracking-widest text-black/50 dark:text-white/40 mb-4">Company</h4>
+              <ul className="space-y-2.5 ">
+                {[
+                  { label: 'About Us', href: '/about' },
+                  { label: 'Contact', href: '/contact' },
+                  { label: 'Privacy Policy', href: '/privacy' },
+                  { label: 'Terms of Service', href: '/terms' },
+                ].map(({ label, href }) => (
+                  <li key={label}>
+                    <Link href={href} className="text-sm text-orange-500 hover:text-orange-700 font-medium transition-colors">{label}</Link>
+                  </li>
+                ))}
+              </ul>
+            </div>
           </div>
         </div>
 

@@ -819,7 +819,7 @@ export default function TermsOfServiceContent() {
                     <p>A requested change is not effective until confirmed.</p>
                     <h3>13. Contact</h3>
                     <p>Questions regarding a MicroStay cancellation may be submitted to:</p>
-                    <h2 className="text-3xl font-bold mb-2">MICROSTAY HOLDINGS LLC</h2>
+                    <p className="font-bold text-ms-orange">MICROSTAY HOLDINGS LLC</p>
                     <p>d/b/a MicroStay.us</p>
                     <p>Email: support@microstay.us</p>
                     <p>Subject: Reservation Cancellation</p>
@@ -919,7 +919,7 @@ export default function TermsOfServiceContent() {
                     <h3>11. Feedback</h3>
                     <p>Accessibility feedback is welcome.</p>
                     <p>Contact:</p>
-                    <h2 className="text-3xl font-bold mb-2">MICROSTAY HOLDINGS LLC</h2>
+                    <p className="font-bold text-ms-orange">MICROSTAY HOLDINGS LLC</p>
                     <p>d/b/a MicroStay.us</p>
                     <p>Email: support@microstay.us</p>
                     <p>Subject: Accessibility Feedback</p>
@@ -1072,7 +1072,7 @@ export default function TermsOfServiceContent() {
                     <p>MicroStay's handling of personal information is described in the MicroStay Privacy Policy.</p>
                     <p>Participating properties independently handle information they collect during physical check-in and the guest's stay.</p>
                     <h3>13. Contact</h3>
-                    <h2 className="text-3xl font-bold mb-2">MICROSTAY HOLDINGS LLC</h2>
+                    <p className="font-bold text-ms-orange">MICROSTAY HOLDINGS LLC</p>
                     <p>d/b/a MicroStay.us</p>
                     <p>Email: support@microstay.us</p>
                     <p>Website: MicroStay.us</p>
@@ -1331,7 +1331,7 @@ export default function TermsOfServiceContent() {
 <li>safety regulations;</li>
 <li>and other rules applicable to the property.</li>
                     </ul>
-                    <h2 className="text-3xl font-bold mb-2">MICROSTAY HOLDINGS LLC</h2>
+                    <p className="font-bold text-ms-orange">MICROSTAY HOLDINGS LLC</p>
                     <p>d/b/a MicroStay.us</p>
                     <p>Partner Support: info@microstay.us</p>
                     <p>General Support: support@microstay.us</p>
