@@ -202,6 +202,15 @@ export default function AboutUs() {
           </button>
         </div>
       </div>
+
+      {/* Address Block */}
+      <div className="mx-auto max-w-7xl px-6 pb-24 lg:px-8 text-center text-slate-600 dark:text-slate-400">
+        <p className="font-bold">MICROSTAY HOLDINGS LLC</p>
+        <p>d/b/a MicroStay.us</p>
+        <p>United States</p>
+        <p className="mt-2">Website: <a href="https://MicroStay.us" className="text-ms-orange">MicroStay.us</a></p>
+        <p>Email: <a href="mailto:info@microstay.us" className="text-ms-orange">info@microstay.us</a></p>
+      </div>
     </section>
   );
 }

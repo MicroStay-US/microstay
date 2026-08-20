@@ -234,6 +234,22 @@ ${fullName}`;
 
                 </div>
 
+                {/* Legal Notices */}
+                <div className="rounded-2xl border dark:border-slate-800 dark:bg-slate-950 p-5">
+
+                  <h4 className="font-semibold dark:text-white">
+                    Legal Notices
+                  </h4>
+
+                  <p className="mt-2 text-sm dark:text-slate-400">
+                    Formal notices concerning MicroStay may be directed to:<br/>
+                    <strong>MICROSTAY HOLDINGS LLC d/b/a MicroStay.us</strong><br/>
+                    Email: <a href="mailto:support@microstay.us" className="text-ms-orange">support@microstay.us</a><br/>
+                    Subject: Legal Notice
+                  </p>
+
+                </div>
+
                 {/* Customer Care */}
                 {/* <div className="rounded-2xl border dark:border-slate-800 dark:bg-slate-950 p-5">
 
