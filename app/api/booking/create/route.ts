@@ -20,7 +20,7 @@ export async function POST(req: Request) {
     const {
       slotId, propertyId, vendorId,
       guestName, guestEmail, guestPhone,
-      dateStr, grossAmount,
+      dateStr, grossAmount, verificationToken
     } = await req.json();
 
     // Basic validation
@@ -37,6 +37,37 @@ export async function POST(req: Request) {
     const safeName = sanitizeString(guestName, 100);
     if (safeName.length < 1) {
       return NextResponse.json({ error: 'Guest name is required' }, { status: 400 });
+    }
+
+    // Verify Email Ownership
+    const { cookies } = await import('next/headers');
+    const { jwtVerify } = await import('jose');
+    const JWT_SECRET = new TextEncoder().encode(
+      process.env.JWT_SECRET || process.env.SUPABASE_JWT_SECRET || 'fallback-secret-for-booking-auth-must-change'
+    );
+
+    const token = cookies().get('sb-access-token')?.value;
+    let isUserAuthed = false;
+    
+    if (token) {
+      const authClient = createClient(supabaseUrl, process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY!);
+      const { data: { user } } = await authClient.auth.getUser(token);
+      if (user && user.email?.toLowerCase() === guestEmail.toLowerCase()) {
+        isUserAuthed = true;
+      }
+    }
+
+    if (!isUserAuthed && !verificationToken) {
+       return NextResponse.json({ error: 'Email verification required.' }, { status: 401 });
+    } else if (!isUserAuthed && verificationToken) {
+      try {
+        const { payload } = await jwtVerify(verificationToken, JWT_SECRET);
+        if (payload.guestEmail !== guestEmail.toLowerCase().trim()) {
+           return NextResponse.json({ error: 'Verification token email mismatch.' }, { status: 401 });
+        }
+      } catch (err) {
+        return NextResponse.json({ error: 'Invalid or expired verification token.' }, { status: 401 });
+      }
     }
 
     const supabase = createClient(supabaseUrl, serviceKey);

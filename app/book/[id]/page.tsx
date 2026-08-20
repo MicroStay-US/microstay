@@ -24,8 +24,15 @@ function BookingContent() {
   const [error, setError] = useState('');
   
   const [guestName, setGuestName] = useState('');
-  const [guestEmail, setGuestEmail] = useState('');
+  const [guestEmail, setGuestEmail] = useState(user?.email || '');
   const [guestPhone, setGuestPhone] = useState('');
+
+  const [isEmailVerified, setIsEmailVerified] = useState(!!user?.email);
+  const [verificationToken, setVerificationToken] = useState('');
+  const [showOtpInput, setShowOtpInput] = useState(false);
+  const [otp, setOtp] = useState('');
+  const [otpLoading, setOtpLoading] = useState(false);
+  const [otpMessage, setOtpMessage] = useState('');
 
   const propertyId = searchParams.get('propertyId');
   const dateStr = searchParams.get('date');
@@ -96,6 +103,7 @@ function BookingContent() {
           guestPhone,
           dateStr,
           grossAmount,
+          verificationToken,
         }),
       });
 
@@ -173,6 +181,58 @@ function BookingContent() {
       console.error('Error creating booking:', error);
       setError(error.message || 'Failed to create booking');
       setBooking(false);
+    }
+  };
+
+  const handleSendOtp = async () => {
+    if (!guestEmail) return;
+    setOtpLoading(true);
+    setOtpMessage('');
+    setError('');
+    
+    try {
+      const res = await fetch('/api/booking/guest-verify/send-otp', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ guestEmail }),
+      });
+      
+      const data = await res.json();
+      if (!res.ok) throw new Error(data.error || 'Failed to send OTP');
+      
+      setShowOtpInput(true);
+      setOtpMessage(data.message || 'Verification code sent to your email.');
+    } catch (err: any) {
+      setError(err.message);
+    } finally {
+      setOtpLoading(false);
+    }
+  };
+
+  const handleVerifyOtp = async () => {
+    if (!guestEmail || !otp) return;
+    setOtpLoading(true);
+    setOtpMessage('');
+    setError('');
+    
+    try {
+      const res = await fetch('/api/booking/guest-verify/verify-otp', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ guestEmail, code: otp }),
+      });
+      
+      const data = await res.json();
+      if (!res.ok) throw new Error(data.error || 'Failed to verify OTP');
+      
+      setVerificationToken(data.verificationToken);
+      setIsEmailVerified(true);
+      setShowOtpInput(false);
+      setOtpMessage('Email verified successfully!');
+    } catch (err: any) {
+      setError(err.message);
+    } finally {
+      setOtpLoading(false);
     }
   };
 
@@ -301,16 +361,66 @@ function BookingContent() {
                   
                    <div className="space-y-2.5">
                     <Label htmlFor="guestEmail" className="text-xs font-bold text-gray-600 uppercase tracking-wider">Email Address *</Label>
-                    <Input
-                      id="guestEmail"
-                      type="email"
-                      placeholder="jane@example.com"
-                      className="bg-gray-50 dark:bg-black dark:text-white border-gray-200 h-12 font-medium"
-                      value={guestEmail}
-                      onChange={(e) => setGuestEmail(e.target.value)}
-                      required
-                    />
+                    <div className="flex gap-2">
+                      <Input
+                        id="guestEmail"
+                        type="email"
+                        placeholder="jane@example.com"
+                        className="bg-gray-50 dark:bg-black dark:text-white border-gray-200 h-12 font-medium flex-1"
+                        value={guestEmail}
+                        onChange={(e) => {
+                          setGuestEmail(e.target.value);
+                          setIsEmailVerified(user?.email === e.target.value);
+                          setVerificationToken('');
+                          setShowOtpInput(false);
+                        }}
+                        disabled={showOtpInput && !isEmailVerified}
+                        required
+                      />
+                      {!isEmailVerified && !showOtpInput && (
+                        <Button 
+                          type="button" 
+                          onClick={handleSendOtp} 
+                          disabled={!guestEmail || otpLoading}
+                          className="h-12 px-6 bg-gray-900 hover:bg-black text-white font-bold"
+                        >
+                          Verify
+                        </Button>
+                      )}
+                    </div>
                   </div>
+
+                  {showOtpInput && !isEmailVerified && (
+                    <div className="space-y-2.5 bg-orange-50 dark:bg-orange-900/20 p-4 rounded-xl border border-orange-200 dark:border-orange-900/50">
+                      <Label htmlFor="otp" className="text-xs font-bold text-orange-800 dark:text-orange-200 uppercase tracking-wider">Verification Code *</Label>
+                      <div className="flex gap-2">
+                        <Input
+                          id="otp"
+                          type="text"
+                          placeholder="123456"
+                          maxLength={6}
+                          className="bg-white dark:bg-black border-orange-200 h-12 font-bold text-center text-lg tracking-[0.5em]"
+                          value={otp}
+                          onChange={(e) => setOtp(e.target.value)}
+                        />
+                        <Button 
+                          type="button" 
+                          onClick={handleVerifyOtp} 
+                          disabled={otp.length < 6 || otpLoading}
+                          className="h-12 px-6 bg-ms-orange hover:bg-ms-orange-hover text-white font-bold"
+                        >
+                          Confirm
+                        </Button>
+                      </div>
+                      <p className="text-xs text-orange-600 dark:text-orange-400 font-medium">Please check your email for the 6-digit code.</p>
+                    </div>
+                  )}
+
+                  {otpMessage && (
+                    <p className={`text-sm font-bold ${isEmailVerified ? 'text-emerald-600' : 'text-ms-orange'}`}>
+                      {otpMessage}
+                    </p>
+                  )}
 
                   <div className="space-y-2.5">
                     <Label htmlFor="guestPhone" className="text-xs font-bold text-gray-600 uppercase tracking-wider">Mobile Phone *</Label>
@@ -333,8 +443,12 @@ function BookingContent() {
                   </div>
 
                   <div className="pt-6 border-t border-gray-100 flex flex-col gap-3">
-                    <Button type="submit" className="w-full h-14 bg-gradient-to-r from-orange-500 to-orange-600 hover:from-orange-600 text-white font-black text-lg shadow-lg" disabled={booking}>
-                      {booking ? 'Processing...' : <p>Pay total_due at Property</p>}
+                    <Button 
+                      type="submit" 
+                      className="w-full h-14 bg-gradient-to-r from-orange-500 to-orange-600 hover:from-orange-600 text-white font-black text-lg shadow-lg disabled:opacity-50" 
+                      disabled={booking || !isEmailVerified}
+                    >
+                      {booking ? 'Processing...' : !isEmailVerified ? 'Verify Email to Book' : <p>Pay total_due at Property</p>}
                     </Button>
                     <Button
                       type="button"
