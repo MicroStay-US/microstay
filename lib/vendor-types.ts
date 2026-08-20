@@ -12,7 +12,7 @@ export type Vendor = {
   state: string | null;
   rooms: number | null;
   zip: string | null;
-  status: 'pending' | 'active' | 'suspended';
+  status: 'pending' | 'pending_email_verification' | 'pending_agreement' | 'pending_review' | 'active' | 'approved' | 'suspended' | 'rejected';
   is_flagged: boolean;
   flag_reason: string | null;
   flagged_at: string | null;

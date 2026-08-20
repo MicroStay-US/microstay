@@ -95,7 +95,7 @@ export default function VendorOperationsCenter() {
   }
 
   // Pending or no property → show approval screen
-  if (!vendor || vendor.status === 'pending') {
+  if (!vendor || vendor.status.startsWith('pending')) {
     return <PendingApprovalScreen businessName={vendor?.business_name || 'Your Property'} />;
   }
 
