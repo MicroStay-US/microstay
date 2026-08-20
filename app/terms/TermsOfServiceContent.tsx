@@ -200,7 +200,7 @@ export default function TermsOfServiceContent() {
 
             {/* Document Content Display */}
             <div className="lg:col-span-3 bg-white dark:bg-slate-900/40 rounded-3xl border border-slate-200 dark:border-slate-800 p-6 md:p-10 shadow-sm">
-              <div className="max-w-3xl mx-auto text-gray-700 dark:text-gray-300 space-y-6 [&>h2]:text-3xl [&>h2]:font-black [&>h2]:text-ms-text dark:[&>h2]:text-white [&>h2]:mb-2 [&>h3]:text-xl [&>h3]:font-bold [&>h3]:text-ms-text dark:[&>h3]:text-gray-100 [&>h3]:mt-8 [&>h3]:mb-3 [&>p]:leading-relaxed [&>p]:text-slate-600 dark:[&>p]:text-slate-300 [&>ul]:list-disc [&>ul]:pl-6 [&>ul]:space-y-2 [&_a]:text-ms-orange hover:[&_a]:text-ms-orange-hover [&_strong]:font-bold [&_strong]:text-slate-900 dark:[&_strong]:text-white">
+              <div className="max-w-3xl mx-auto text-gray-700 dark:text-gray-300 space-y-6 [&_h2]:text-3xl [&_h2]:font-black [&_h2]:text-ms-text dark:[&_h2]:text-white [&_h2]:mb-2 [&_h3]:text-xl [&_h3]:font-bold [&_h3]:text-ms-orange dark:[&_h3]:text-ms-orange [&_h3]:mt-8 [&_h3]:mb-3 [&_p]:leading-relaxed [&_p]:text-slate-600 dark:[&_p]:text-slate-300 [&_ul]:list-disc [&_ul]:pl-6 [&_ul]:space-y-2 [&_a]:text-ms-orange hover:[&_a]:text-ms-orange-hover [&_strong]:font-bold [&_strong]:text-slate-900 dark:[&_strong]:text-white">
                 
                 {/* 1. GENERAL TERMS OF SERVICE */}
                 {activeTab === "terms" && (
