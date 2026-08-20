@@ -770,11 +770,11 @@ export default function HomePage() {
       </section>
 
       <section
-        className="snap-start snap-always h-[calc(100dvh-5rem)] md:h-auto md:min-h-0 flex flex-col justify-center px-4 relative bg-cover bg-center landing-bottom-bg overflow-hidden"
+        className="snap-start snap-always min-h-[calc(100dvh-5rem)] h-auto md:min-h-0 flex flex-col justify-center px-4 relative bg-cover bg-center landing-bottom-bg overflow-hidden"
       >
         <div className="absolute inset-0 bg-gradient-to-r from-gray-900/80 via-gray-900/70 to-gray-900/80 z-0"></div>
 
-        <div className="max-w-4xl mx-auto text-center relative z-10 py-6 md:py-16">
+        <div className="max-w-4xl mx-auto text-center relative z-10 py-16 md:py-24 my-auto">
           <h2 className="text-2xl sm:text-3xl md:text-5xl font-black mb-2 md:mb-6 text-white tracking-tight">
             List Your Property
           </h2>
