@@ -4,6 +4,7 @@ import { sendEmail } from '@/lib/send-email';
 import crypto from 'crypto';
 import { rateLimit, getIP, rateLimitResponse } from '@/lib/rate-limit';
 import { verifyReCaptcha } from '@/lib/recaptcha';
+import { cookies } from 'next/headers';
 
 function generateOtp(): string {
   return String(crypto.randomInt(100000, 999999));
@@ -81,11 +82,28 @@ export async function POST(req: Request) {
   }
 
   if (shouldBypassOtp && signInData.session) {
+    const cookieStore = cookies();
+    const maxAge = 7 * 24 * 60 * 60; // 7 days
+    
+    cookieStore.set('sb-access-token', signInData.session.access_token, {
+      httpOnly: true,
+      secure: process.env.NODE_ENV === 'production',
+      sameSite: 'strict',
+      maxAge,
+      path: '/'
+    });
+    
+    cookieStore.set('sb-refresh-token', signInData.session.refresh_token, {
+      httpOnly: true,
+      secure: process.env.NODE_ENV === 'production',
+      sameSite: 'strict',
+      maxAge,
+      path: '/'
+    });
+
     return NextResponse.json({
       success: true,
       bypassed: true,
-      access_token: signInData.session.access_token,
-      refresh_token: signInData.session.refresh_token,
     });
   }
   // -----------------------------------------------

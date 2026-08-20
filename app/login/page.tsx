@@ -115,17 +115,7 @@ export default function LoginPage() {
 
       if (result.bypassed) {
         // Vendor hasn't completed onboarding — bypass OTP entirely
-        const { error: sessionErr } = await supabase.auth.setSession({
-          access_token: result.access_token,
-          refresh_token: result.refresh_token,
-        });
-
-        if (sessionErr) throw new Error('Session setup failed.');
-
-        const maxAge = 3600;
-        document.cookie = `sb-access-token=${result.access_token}; path=/; max-age=${maxAge}; SameSite=Lax; Secure`;
-
-        // The useEffect will catch the auth state change and route to dashboard
+        // The API route has already set the HttpOnly cookie.
         window.location.reload();
         return;
       }
@@ -162,16 +152,7 @@ export default function LoginPage() {
         return;
       }
 
-      const { error: sessionErr } = await supabase.auth.setSession({
-        access_token: result.access_token,
-        refresh_token: result.refresh_token,
-      });
-
-      if (sessionErr) throw new Error('Session setup failed.');
-
-      const maxAge = 3600;
-      document.cookie = `sb-access-token=${result.access_token}; path=/; max-age=${maxAge}; SameSite=Lax; Secure`;
-
+      // The API route has already set the HttpOnly cookie.
       // Send login notification and wait for it
       await sendLoginNotification(result.user?.id || 'unknown', signInData.email);
 

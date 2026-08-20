@@ -1,6 +1,7 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { createClient } from '@supabase/supabase-js';
 import crypto from 'crypto';
+import { cookies } from 'next/headers';
 
 function hashCode(code: string): string {
   return crypto.createHash('sha256').update(code).digest('hex');
@@ -59,9 +60,28 @@ export async function POST(req: NextRequest) {
   // Sign-in succeeded — now delete the code (prevent replay)
   await svc.from('user_otp_codes').delete().eq('id', otpRow.id);
 
+  // Set HttpOnly, Secure, SameSite=Strict cookies
+  const cookieStore = cookies();
+  const maxAge = 7 * 24 * 60 * 60; // 7 days as requested by prompt
+  
+  cookieStore.set('sb-access-token', data.session.access_token, {
+    httpOnly: true,
+    secure: process.env.NODE_ENV === 'production',
+    sameSite: 'strict',
+    maxAge,
+    path: '/'
+  });
+  
+  cookieStore.set('sb-refresh-token', data.session.refresh_token, {
+    httpOnly: true,
+    secure: process.env.NODE_ENV === 'production',
+    sameSite: 'strict',
+    maxAge,
+    path: '/'
+  });
+
   return NextResponse.json({
     user: data.session.user,
-    access_token: data.session.access_token,
-    refresh_token: data.session.refresh_token,
+    success: true,
   });
 }

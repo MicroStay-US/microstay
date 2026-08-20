@@ -1,13 +1,36 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { createClient } from '@supabase/supabase-js';
+import { jwtVerify } from 'jose';
+import { cookies } from 'next/headers';
+
+const JWT_SECRET = new TextEncoder().encode(
+  process.env.JWT_SECRET || process.env.SUPABASE_JWT_SECRET || 'fallback-secret-for-booking-auth-must-change'
+);
 
 export async function POST(req: NextRequest) {
   try {
-    const { bookingRef, guestEmail } = await req.json();
+    const cookieStore = cookies();
+    const token = cookieStore.get('booking_token')?.value;
 
-    if (!bookingRef || !guestEmail) {
-      return NextResponse.json({ error: 'Booking reference and email are required' }, { status: 400 });
+    if (!token) {
+      return NextResponse.json({ error: 'Unauthorized. Please verify your booking again.' }, { status: 401 });
     }
+
+    // Verify token
+    let payload;
+    try {
+      const verified = await jwtVerify(token, JWT_SECRET);
+      payload = verified.payload;
+    } catch (err) {
+      return NextResponse.json({ error: 'Invalid or expired session. Please verify your booking again.' }, { status: 401 });
+    }
+
+    if (payload.role !== 'booking_guest' || !payload.bookingRef || !payload.guestEmail) {
+      return NextResponse.json({ error: 'Invalid token payload' }, { status: 401 });
+    }
+
+    const bookingRef = String(payload.bookingRef);
+    const guestEmail = String(payload.guestEmail);
 
     const supabaseUrl = process.env.NEXT_PUBLIC_SUPABASE_URL!;
     const serviceKey = process.env.SUPABASE_SERVICE_ROLE_KEY!;
@@ -30,13 +53,10 @@ export async function POST(req: NextRequest) {
     }
 
     // Check if it's before boarding time
-    // For a booking today, compare current hour with start_hour
     const now = new Date();
-    // Assuming local time for the property. For simplicity, we use server's local time or a simple hour comparison.
-    // We should parse the booking_date
     const bookingDateStr = booking.booking_date; // YYYY-MM-DD
     const [year, month, day] = bookingDateStr.split('-').map(Number);
-    const startHour = booking.slot?.start_hour || booking.start_hour || 14; // Default to 2 PM if not found
+    const startHour = booking.slot?.start_hour || booking.start_hour || 14; 
     
     const boardingTime = new Date(year, month - 1, day, startHour, 0, 0);
 

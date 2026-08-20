@@ -3,12 +3,26 @@ import { createClient } from '@supabase/supabase-js';
 const supabaseUrl = process.env.NEXT_PUBLIC_SUPABASE_URL!;
 const supabaseAnonKey = process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY!;
 
+const isBrowser = typeof window !== 'undefined';
+
 export const supabase = createClient(supabaseUrl, supabaseAnonKey, {
   auth: {
     persistSession: true,
     autoRefreshToken: true,
     detectSessionInUrl: true,
     storageKey: 'microstay-auth',
+    storage: isBrowser ? {
+      getItem: (key) => {
+        const match = document.cookie.match(new RegExp(`(^| )${key}=([^;]+)`));
+        return match ? decodeURIComponent(match[2]) : null;
+      },
+      setItem: (key, value) => {
+        document.cookie = `${key}=${encodeURIComponent(value)}; path=/; max-age=604800; SameSite=Strict; Secure`;
+      },
+      removeItem: (key) => {
+        document.cookie = `${key}=; path=/; max-age=0; SameSite=Strict; Secure`;
+      },
+    } : undefined,
   },
 });
 // import { createClient } from '@supabase/supabase-js';

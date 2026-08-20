@@ -108,11 +108,11 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
       setUser(session?.user ?? null);
       if (session) {
         // Keep cookie in sync for server-side API routes (middleware uses sb-access-token)
-        const maxAge = session.expires_in ?? 3600;
-        document.cookie = `sb-access-token=${session.access_token}; path=/; max-age=${maxAge}; SameSite=Lax; Secure`;
+        const maxAge = session.expires_in ?? 604800;
+        document.cookie = `sb-access-token=${session.access_token}; path=/; max-age=${maxAge}; SameSite=Strict; Secure`;
         await fetchProfile(session.user.id);
       } else {
-        document.cookie = 'sb-access-token=; path=/; max-age=0; SameSite=Lax';
+        document.cookie = 'sb-access-token=; path=/; max-age=0; SameSite=Strict; Secure';
         setProfile(null);
         setProfileLoaded(true);
       }
@@ -146,7 +146,7 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
           }
           // TOKEN_REFRESHED path: cookie is already updated above, nothing else to do.
         } else {
-          document.cookie = 'sb-access-token=; path=/; max-age=0; SameSite=Lax';
+          document.cookie = 'sb-access-token=; path=/; max-age=0; SameSite=Strict; Secure';
           setProfile(null);
           setProfileFetchFailed(false);
           setProfileLoaded(true);
@@ -162,7 +162,7 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
   }, []);
 
   const handleSignOut = async () => {
-    document.cookie = 'sb-access-token=; path=/; max-age=0; SameSite=Lax';
+    document.cookie = 'sb-access-token=; path=/; max-age=0; SameSite=Strict; Secure';
     await supabase.auth.signOut();
     setUser(null);
     setProfile(null);

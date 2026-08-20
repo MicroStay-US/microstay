@@ -45,8 +45,8 @@ export async function POST(req: Request) {
     }
 
     const token = resetData.properties.hashed_token;
-    const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || 'https://microstay.us';
-    const resetLink = `${siteUrl}/reset-password?token_hash=${encodeURIComponent(token)}&type=recovery`;
+    // const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || 'https://microstay.us';
+    const resetLink = `https://microstay.us/reset-password?token_hash=${encodeURIComponent(token)}&type=recovery`;
 
     const isDev = process.env.NODE_ENV === 'development';
 

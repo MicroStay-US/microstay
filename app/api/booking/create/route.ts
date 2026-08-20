@@ -59,10 +59,13 @@ export async function POST(req: Request) {
         return NextResponse.json({ error: 'Slot not found' }, { status: 404 });
       }
 
-      // Re-fetch authoritative price from DB — never trust client-supplied grossAmount
       const serverPrice = Number(dwData.price_per_room);
       if (!serverPrice || serverPrice <= 0) {
         return NextResponse.json({ error: 'Invalid slot price' }, { status: 400 });
+      }
+
+      if (Math.abs(Number(grossAmount) - serverPrice) > 0.01) {
+        return NextResponse.json({ error: 'Price mismatch. Please refresh and try again.' }, { status: 400 });
       }
 
       // Check current bookings for this slot + date
@@ -169,6 +172,10 @@ export async function POST(req: Request) {
     const serverPrice = Number(tsData.price_per_room ?? 0);
     if (!serverPrice || serverPrice <= 0) {
       return NextResponse.json({ error: 'Invalid slot price' }, { status: 400 });
+    }
+
+    if (Math.abs(Number(grossAmount) - serverPrice) > 0.01) {
+      return NextResponse.json({ error: 'Price mismatch. Please refresh and try again.' }, { status: 400 });
     }
 
     const { error: lockErr } = await supabase.rpc('create_booking_atomic', {
