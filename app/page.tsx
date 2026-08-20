@@ -693,7 +693,7 @@ export default function HomePage() {
       </section>
 
       {/* ── Fold 3: How It Works & Popular Cities ── */}
-      <section className="snap-start snap-always h-[calc(100dvh)] md:h-auto flex flex-col justify-center py-4 md:py-20 px-10 dark:bg-ms-orange bg-orange-200/20" id="how-it-works">
+      <section className="snap-start snap-always h-[calc(100dvh+5dvh)] md:h-auto flex flex-col justify-center py-4 md:py-20 px-10 dark:bg-ms-orange bg-orange-200/20" id="how-it-works">
         <div className="max-w-7xl mx-auto w-full flex flex-col justify-center gap-24 md:gap-14">
 
           {/* How It Works */}

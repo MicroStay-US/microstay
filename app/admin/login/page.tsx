@@ -8,7 +8,6 @@ import { Input } from '@/components/ui/input';
 import { Alert, AlertDescription } from '@/components/ui/alert';
 import { Shield, Eye, EyeOff, Loader2, SmartphoneNfc, ChevronLeft } from 'lucide-react';
 import { supabase } from '@/lib/supabase';
-import { resetPassword } from '@/lib/auth';
 import { useAuth } from '@/contexts/AuthContext';
 import { createClient } from '@supabase/supabase-js';
 
@@ -122,7 +121,7 @@ export default function AdminLoginPage() {
         access_token: result.access_token,
         refresh_token: result.refresh_token,
       });
-      
+
       if (sessionErr) throw new Error('Session setup failed.');
 
       // Also set the cookie manually as fallback for middleware
@@ -182,8 +181,15 @@ export default function AdminLoginPage() {
     setError('');
     setResetLink('');
     try {
-      const result = await resetPassword(ADMIN_EMAIL);
-      if (!result.success) throw new Error(result.error);
+      const res = await fetch('/api/admin/auth/forgot-password', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ email: ADMIN_EMAIL }),
+      });
+      const result = await res.json();
+      if (!res.ok || !result.success) {
+        throw new Error(result.error || 'Failed to send reset email');
+      }
       if (result.resetLink) {
         setResetLink(result.resetLink);
       }
