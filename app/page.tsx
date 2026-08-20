@@ -295,9 +295,9 @@ export default function HomePage() {
     router.push(`/search?${params.toString()}`);
   };
   return (
-    <div className="h-[100dvh] md:h-auto overflow-y-auto md:overflow-visible snap-y snap-mandatory md:snap-none scroll-smooth scrollbar-none bg-orange-300/40 dark:bg-black" style={{ scrollSnapType: 'y mandatory' }}>
+    <div className="h-[calc(100dvh-5rem)] md:h-auto overflow-y-auto md:overflow-visible snap-y snap-mandatory md:snap-none scroll-smooth scrollbar-none bg-orange-300/40 dark:bg-black" style={{ scrollSnapType: 'y mandatory' }}>
       <section
-        className="relative snap-start snap-always h-[100dvh] md:h-auto flex flex-col justify-center items-center px-3 bg-cover bg-center landing-hero-bg overflow-hidden md:overflow-visible md:py-32 md:px-4"
+        className="relative snap-start snap-always h-[calc(100dvh-5rem)] md:h-auto flex flex-col justify-center items-center px-3 bg-cover bg-center landing-hero-bg overflow-hidden md:overflow-visible md:py-32 md:px-4"
       >
         <div className="absolute inset-0 bg-white/30 dark:bg-gradient-radial dark:from-white/20 dark:to-black/50 dark:via-slate-800/20"></div>
 
@@ -320,144 +320,144 @@ export default function HomePage() {
 
           <div className="w-full flex-shrink-0">
             <Card className="max-w-5xl mx-auto shadow-2xl rounded-3xl border-white dark:border-none glossy-card w-full  md:w-auto">
-            {/* Top Tabs */}
-            <div className="flex bg-white/80 border-b dark:border-none border-gray-100   backdrop-blur-sm ">
-              <button
-                type="button"
-                onClick={() => setSearchType('nearby')}
-                className={`flex-1 flex items-center justify-center gap-2 py-3 md:py-4 font-bold text-xs md:text-sm transition-colors ${searchType === 'nearby' ? 'bg-ms-orange-light dark:bg-ms-orange dark:text-white dark:border-tra text-ms-orange border-b-2 border-ms-orange-border' : 'text-gray-600 dark:bg-black/90 dark:text-white hover:bg-gray-50 bg-slate-300 dark:hover:bg-black/80'}`}
-              >
-                <MapPin className="w-3 h-3 md:w-4 md:h-4" /> Near Me
-              </button>
-              <button
-                type="button"
-                onClick={() => setSearchType('city')}
-                className={`flex-1 flex items-center justify-center gap-2 py-3 md:py-4 font-bold text-xs md:text-sm transition-colors ${searchType === 'city' ? 'bg-ms-orange-light dark:bg-ms-orange dark:text-white dark:border-tra text-ms-orange border-b-2 border-ms-orange-border' : 'text-gray-600 dark:bg-black/90 dark:text-white hover:bg-gray-50 bg-slate-300 dark:hover:bg-black/80'}`}
-              >
-                <Search className="w-3 h-3 md:w-4 md:h-4" /> City / State Search
-              </button>
-            </div>
+              {/* Top Tabs */}
+              <div className="flex bg-white/80 border-b dark:border-none border-gray-100   backdrop-blur-sm ">
+                <button
+                  type="button"
+                  onClick={() => setSearchType('nearby')}
+                  className={`flex-1 flex items-center justify-center gap-2 py-3 md:py-4 font-bold text-xs md:text-sm transition-colors ${searchType === 'nearby' ? 'bg-ms-orange-light dark:bg-ms-orange dark:text-white dark:border-tra text-ms-orange border-b-2 border-ms-orange-border' : 'text-gray-600 dark:bg-black/90 dark:text-white hover:bg-gray-50 bg-slate-300 dark:hover:bg-black/80'}`}
+                >
+                  <MapPin className="w-3 h-3 md:w-4 md:h-4" /> Near Me
+                </button>
+                <button
+                  type="button"
+                  onClick={() => setSearchType('city')}
+                  className={`flex-1 flex items-center justify-center gap-2 py-3 md:py-4 font-bold text-xs md:text-sm transition-colors ${searchType === 'city' ? 'bg-ms-orange-light dark:bg-ms-orange dark:text-white dark:border-tra text-ms-orange border-b-2 border-ms-orange-border' : 'text-gray-600 dark:bg-black/90 dark:text-white hover:bg-gray-50 bg-slate-300 dark:hover:bg-black/80'}`}
+                >
+                  <Search className="w-3 h-3 md:w-4 md:h-4" /> City / State Search
+                </button>
+              </div>
 
-            <CardContent className="p-4 md:p-8 dark:bg-black backdrop-blur-md">
-              <form onSubmit={handleSearch} className="space-y-3 md:space-y-6">
+              <CardContent className="p-4 md:p-8 dark:bg-black backdrop-blur-md">
+                <form onSubmit={handleSearch} className="space-y-3 md:space-y-6">
 
-                <div className="flex flex-col md:flex-row items-center justify-center gap-4 w-full">
-                  <div className="flex flex-col md:flex-row gap-4 md:gap-10 items-center w-full md:w-auto">
-                    {searchType === 'city' && (
-                      <div className="flex flex-col md:flex-row items-center gap-5 w-full md:w-auto">
-                        <div className="flex items-center w-full border rounded-md md:w-auto">
-                          <label className="text-xs font-bold text-white  uppercase tracking-wider mr-2 md:mr-0 bg-ms-orange p-3 rounded-md w-25">State </label>
-                          <Select value={state} onValueChange={setState}>
-                            <SelectTrigger className="h-10 w-full md:w-32 font-medium text-gray-900 border-transparent">
-                              <SelectValue placeholder="Select state" />
-                            </SelectTrigger>
-                            <SelectContent className="max-h-60">
-                              {uniqueStates.length === 0 && <div className="p-2 text-sm text-gray-500 dark:text-white">Loading states...</div>}
-                              {uniqueStates.map(s => (
-                                <SelectItem key={s} value={s}>{s}</SelectItem>
-                              ))}
-                            </SelectContent>
-                          </Select></div>
+                  <div className="flex flex-col md:flex-row items-center justify-center gap-4 w-full">
+                    <div className="flex flex-col md:flex-row gap-4 md:gap-10 items-center w-full md:w-auto">
+                      {searchType === 'city' && (
+                        <div className="flex flex-col md:flex-row items-center gap-5 w-full md:w-auto">
+                          <div className="flex items-center w-full border rounded-md md:w-auto">
+                            <label className="text-xs font-bold text-white  uppercase tracking-wider mr-2 md:mr-0 bg-ms-orange p-3 rounded-md w-25">State </label>
+                            <Select value={state} onValueChange={setState}>
+                              <SelectTrigger className="h-10 w-full md:w-32 font-medium text-gray-900 border-transparent">
+                                <SelectValue placeholder="Select state" />
+                              </SelectTrigger>
+                              <SelectContent className="max-h-60">
+                                {uniqueStates.length === 0 && <div className="p-2 text-sm text-gray-500 dark:text-white">Loading states...</div>}
+                                {uniqueStates.map(s => (
+                                  <SelectItem key={s} value={s}>{s}</SelectItem>
+                                ))}
+                              </SelectContent>
+                            </Select></div>
 
 
-                        <div className="flex items-center  w-full md:w-auto border rounded-md">
-                          <label className="text-xs font-bold text-white  uppercase tracking-wider mr-2 md:mr-0 bg-ms-orange p-3 rounded-md w-25">City </label>
-                          <Select value={city} onValueChange={setCity} disabled={!state || citiesForState.length === 0}>
-                            <SelectTrigger className="h-10 w-full md:w-32 font-medium text-gray-900 border-transparent">
-                              <SelectValue placeholder={state ? "Select city" : "Select state first"} />
-                            </SelectTrigger>
-                            <SelectContent className="max-h-60">
-                              {citiesForState.map(c => (
-                                <SelectItem key={c} value={c}>{c}</SelectItem>
-                              ))}
-                            </SelectContent>
-                          </Select>
+                          <div className="flex items-center  w-full md:w-auto border rounded-md">
+                            <label className="text-xs font-bold text-white  uppercase tracking-wider mr-2 md:mr-0 bg-ms-orange p-3 rounded-md w-25">City </label>
+                            <Select value={city} onValueChange={setCity} disabled={!state || citiesForState.length === 0}>
+                              <SelectTrigger className="h-10 w-full md:w-32 font-medium text-gray-900 border-transparent">
+                                <SelectValue placeholder={state ? "Select city" : "Select state first"} />
+                              </SelectTrigger>
+                              <SelectContent className="max-h-60">
+                                {citiesForState.map(c => (
+                                  <SelectItem key={c} value={c}>{c}</SelectItem>
+                                ))}
+                              </SelectContent>
+                            </Select>
+                          </div>
+
                         </div>
+                      )}
 
-                      </div>
-                    )}
-
-                    {/* <div className=" flex flex-row text-center items-center space-y-2 h-12 w-72 gap-2 pl-3 pr-3 m-2">
+                      {/* <div className=" flex flex-row text-center items-center space-y-2 h-12 w-72 gap-2 pl-3 pr-3 m-2">
                     <label className="text-xs font-bold text-gray-600 uppercase tracking-wider flex items-end ">
                       <MapPin className="h-5 w-10" />
                       <p>Where?</p>
                       </label>
                       
                   </div> */}
-                    {searchType === 'nearby' && (
-                      <>
-                        <div className="flex flex-row items-center h-12 w-full md:w-80 gap-2 border md:border-t md:border-r md:border-b rounded-lg border-black/40 dark:border-white/20">
-                          <label className="text-xs font-bold text-gray-600 uppercase tracking-wider bg-ms-orange dark:bg-ms-orange rounded-md p-2  flex items-center h-full border-ms-orange">
-                            <MapPin className="h-5 w-5 md:w-10 text-ms-orange-light" />
-                            <p className="text-ms-orange-light hidden md:block">Where</p>
-                          </label>
+                      {searchType === 'nearby' && (
+                        <>
+                          <div className="flex flex-row items-center h-12 w-full md:w-80 gap-2 border md:border-t md:border-r md:border-b rounded-lg border-black/40 dark:border-white/20">
+                            <label className="text-xs font-bold text-gray-600 uppercase tracking-wider bg-ms-orange dark:bg-ms-orange rounded-md p-2  flex items-center h-full border-ms-orange">
+                              <MapPin className="h-5 w-5 md:w-10 text-ms-orange-light" />
+                              <p className="text-ms-orange-light hidden md:block">Where</p>
+                            </label>
 
-                          <div ref={locationRef} className="relative w-full md:w-72">
-                            <button
-                              type="button"
-                              onClick={() => setLocationOpen((prev) => !prev)}
-                              className="w-full h-12 rounded-lg flex justify-start items-center text-left px-2"
-                            >
-                              <span className="truncate w-full">{selectedLocation || `${city} ${state}`}</span>
-                            </button>
+                            <div ref={locationRef} className="relative w-full md:w-72">
+                              <button
+                                type="button"
+                                onClick={() => setLocationOpen((prev) => !prev)}
+                                className="w-full h-12 rounded-lg flex justify-start items-center text-left px-2"
+                              >
+                                <span className="truncate w-full">{selectedLocation || `${city} ${state}`}</span>
+                              </button>
 
-                            {locationOpen && (
-                              <div className="absolute top-12 left-0 w-full bg-white rounded-xl shadow-xl z-50">
+                              {locationOpen && (
+                                <div className="absolute top-12 left-0 w-full bg-white rounded-xl shadow-xl z-50">
 
-                                <Input
-                                  placeholder="Search..."
-                                  value={locationSearch}
-                                  onChange={(e) => setLocationSearch(e.target.value)}
-                                  className="m-2 w-[calc(100%-16px)]"
-                                />
+                                  <Input
+                                    placeholder="Search..."
+                                    value={locationSearch}
+                                    onChange={(e) => setLocationSearch(e.target.value)}
+                                    className="m-2 w-[calc(100%-16px)]"
+                                  />
 
-                                <button
-                                  className="w-full text-left px-4 py-3 hover:bg-gray-100 font-semibold text-ms-orange"
-                                  onClick={() => {
-                                    // Pure GPS nearby — clear any picked city
-                                    setSelectedLocation(`${city} ${state}`);
-                                    setCity('');
-                                    setState('');
-                                    setLocationOpen(false);
-                                  }}
-                                >
-                                  {selectedLocation || `${city}  ${state}`}
+                                  <button
+                                    className="w-full text-left px-4 py-3 hover:bg-gray-100 font-semibold text-ms-orange"
+                                    onClick={() => {
+                                      // Pure GPS nearby — clear any picked city
+                                      setSelectedLocation(`${city} ${state}`);
+                                      setCity('');
+                                      setState('');
+                                      setLocationOpen(false);
+                                    }}
+                                  >
+                                    {selectedLocation || `${city}  ${state}`}
 
-                                </button>
-                                <div className="max-h-64 overflow-y-auto">
-                                  {filteredLocations.map((location) => (
-                                    <button
-                                      key={`${location.city}-${location.state}`}
-                                      className="w-full text-left px-4 py-3 hover:bg-gray-100"
-                                      onClick={() => {
-                                        setSelectedLocation(
-                                          `${location.city}, ${location.state}`
-                                        );
-                                        setCity(location.city);
-                                        setState(location.state);
-                                        setLocationOpen(false);
-                                      }}
-                                    >
-                                      {location.city}, {location.state}
-                                    </button>
-                                  ))}
+                                  </button>
+                                  <div className="max-h-64 overflow-y-auto">
+                                    {filteredLocations.map((location) => (
+                                      <button
+                                        key={`${location.city}-${location.state}`}
+                                        className="w-full text-left px-4 py-3 hover:bg-gray-100"
+                                        onClick={() => {
+                                          setSelectedLocation(
+                                            `${location.city}, ${location.state}`
+                                          );
+                                          setCity(location.city);
+                                          setState(location.state);
+                                          setLocationOpen(false);
+                                        }}
+                                      >
+                                        {location.city}, {location.state}
+                                      </button>
+                                    ))}
+
+                                  </div>
 
                                 </div>
+                              )}
 
-                              </div>
-                            )}
-
+                            </div>
                           </div>
-                        </div>
 
-                      </>
-                    )}</div>
-                  <div className="flex flex-row items-center h-12 w-full md:w-72 gap-2 border md:border-t md:border-r md:border-b rounded-lg border-black/40 dark:border-white/20 mt-4 md:mt-0">
-                    <label className="text-xs font-bold bg-ms-orange  dark:bg-ms-orange rounded-md p-2  uppercase tracking-wider flex items-center h-full">
-                      <CalendarDays className="h-5 w-5 md:w-10 text-ms-orange-light mr-1" />
-                      <p className="text-ms-orange-light hidden md:block">When</p>
-                    </label>
-                    {/* <Input
+                        </>
+                      )}</div>
+                    <div className="flex flex-row items-center h-12 w-full md:w-72 gap-2 border md:border-t md:border-r md:border-b rounded-lg border-black/40 dark:border-white/20 mt-4 md:mt-0">
+                      <label className="text-xs font-bold bg-ms-orange  dark:bg-ms-orange rounded-md p-2  uppercase tracking-wider flex items-center h-full">
+                        <CalendarDays className="h-5 w-5 md:w-10 text-ms-orange-light mr-1" />
+                        <p className="text-ms-orange-light hidden md:block">When</p>
+                      </label>
+                      {/* <Input
                       type="date"
                       value={date}
                       onChange={(e) => setDate(e.target.value)}
@@ -465,40 +465,80 @@ export default function HomePage() {
                       className="h-12 dark:focus:border-none font-medium text-gray-900"
                       required
                     /> */}
-                    <div
-                      ref={calendarRef}
-                      className="relative w-full"
-                    >
-
-                      <button
-                        type="button"
-                        onClick={() => setCalendarOpen(!calendarOpen)}
-                        className="w-full h-12 rounded-lg flex font-semibold text-left justify-start md:justify-center items-center px-2 md:px-0"
+                      <div
+                        ref={calendarRef}
+                        className="relative w-full"
                       >
-                        {dates
-                          ? dates.toLocaleDateString("en-US", {
-                            month: "long",
-                            day: "numeric",
-                            year: "numeric",
-                          })
-                          : "Select Date"}
-                      </button>
 
-                      {calendarOpen && (
-                        <>
-                          {/* Mobile: fixed overlay modal */}
-                          <div
-                            className="fixed inset-0 z-[99] bg-black/40 flex items-center justify-center md:hidden"
-                            onClick={() => setCalendarOpen(false)}
-                          >
+                        <button
+                          type="button"
+                          onClick={() => setCalendarOpen(!calendarOpen)}
+                          className="w-full h-12 rounded-lg flex font-semibold text-left justify-start md:justify-center items-center px-2 md:px-0"
+                        >
+                          {dates
+                            ? dates.toLocaleDateString("en-US", {
+                              month: "long",
+                              day: "numeric",
+                              year: "numeric",
+                            })
+                            : "Select Date"}
+                        </button>
+
+                        {calendarOpen && (
+                          <>
+                            {/* Mobile: fixed overlay modal */}
                             <div
-                              className="rounded-2xl bg-white shadow-2xl p-3 w-[290px] max-h-[85vh] overflow-y-auto"
-                              onClick={(e) => e.stopPropagation()}
+                              className="fixed inset-0 z-[99] bg-black/40 flex items-center justify-center md:hidden"
+                              onClick={() => setCalendarOpen(false)}
                             >
-                              <div className="flex gap-2 mb-2">
+                              <div
+                                className="rounded-2xl bg-white shadow-2xl p-3 w-[290px] max-h-[85vh] overflow-y-auto"
+                                onClick={(e) => e.stopPropagation()}
+                              >
+                                <div className="flex gap-2 mb-2">
+                                  <Button
+                                    variant="outline"
+                                    size="sm"
+                                    onClick={() => {
+                                      setDates(new Date());
+                                      setCalendarOpen(false);
+                                    }}
+                                  >
+                                    Today
+                                  </Button>
+                                  <Button
+                                    variant="outline"
+                                    size="sm"
+                                    onClick={() => {
+                                      const tomorrow = new Date();
+                                      tomorrow.setDate(tomorrow.getDate() + 1);
+                                      setDates(tomorrow);
+                                      setCalendarOpen(false);
+                                    }}
+                                  >
+                                    Tomorrow
+                                  </Button>
+                                </div>
+                                <DayPicker
+                                  style={{ color: "orangered" }}
+                                  className="rdp-mobile"
+                                  mode="single"
+                                  captionLayout="dropdown"
+                                  selected={dates}
+                                  onSelect={(d) => {
+                                    setDates(d);
+                                    setCalendarOpen(false);
+                                  }}
+                                  disabled={{ before: new Date() }}
+                                />
+                              </div>
+                            </div>
+
+                            {/* Desktop: absolute dropdown (unchanged) */}
+                            <div className="absolute top-14 left-0 md:-left-20 lg:-left-10 z-50 rounded-2xl bg-white shadow-lg shadow-slate-800/40 h-auto w-[310px] sm:w-[370px] p-4 sm:p-5 hidden md:block">
+                              <div className="relative flex gap-3 mb-5">
                                 <Button
                                   variant="outline"
-                                  size="sm"
                                   onClick={() => {
                                     setDates(new Date());
                                     setCalendarOpen(false);
@@ -508,7 +548,6 @@ export default function HomePage() {
                                 </Button>
                                 <Button
                                   variant="outline"
-                                  size="sm"
                                   onClick={() => {
                                     const tomorrow = new Date();
                                     tomorrow.setDate(tomorrow.getDate() + 1);
@@ -518,72 +557,33 @@ export default function HomePage() {
                                 >
                                   Tomorrow
                                 </Button>
+                                <DayPicker
+                                  style={{ color: "orangered" }}
+                                  className="relative rounded-3xl top-7 left-[-225px] p-6 z-50"
+                                  mode="single"
+                                  captionLayout="dropdown"
+                                  selected={dates}
+                                  onSelect={(d) => {
+                                    setDates(d);
+                                    setCalendarOpen(false);
+                                  }}
+                                  disabled={{ before: new Date() }}
+                                />
                               </div>
-                              <DayPicker
-                                style={{ color: "orangered" }}
-                                className="rdp-mobile"
-                                mode="single"
-                                captionLayout="dropdown"
-                                selected={dates}
-                                onSelect={(d) => {
-                                  setDates(d);
-                                  setCalendarOpen(false);
-                                }}
-                                disabled={{ before: new Date() }}
-                              />
                             </div>
-                          </div>
+                          </>
+                        )}
 
-                          {/* Desktop: absolute dropdown (unchanged) */}
-                          <div className="absolute top-14 left-0 md:-left-20 lg:-left-10 z-50 rounded-2xl bg-white shadow-lg shadow-slate-800/40 h-auto w-[310px] sm:w-[370px] p-4 sm:p-5 hidden md:block">
-                            <div className="relative flex gap-3 mb-5">
-                              <Button
-                                variant="outline"
-                                onClick={() => {
-                                  setDates(new Date());
-                                  setCalendarOpen(false);
-                                }}
-                              >
-                                Today
-                              </Button>
-                              <Button
-                                variant="outline"
-                                onClick={() => {
-                                  const tomorrow = new Date();
-                                  tomorrow.setDate(tomorrow.getDate() + 1);
-                                  setDates(tomorrow);
-                                  setCalendarOpen(false);
-                                }}
-                              >
-                                Tomorrow
-                              </Button>
-                              <DayPicker
-                                style={{ color: "orangered" }}
-                                className="relative rounded-3xl top-7 left-[-225px] p-6 z-50"
-                                mode="single"
-                                captionLayout="dropdown"
-                                selected={dates}
-                                onSelect={(d) => {
-                                  setDates(d);
-                                  setCalendarOpen(false);
-                                }}
-                                disabled={{ before: new Date() }}
-                              />
-                            </div>
-                          </div>
-                        </>
-                      )}
-
+                      </div>
                     </div>
-                  </div>
 
 
 
 
 
-                  {searchType === 'nearby' && (
-                    <>
-                      {/* <div className="space-y-2">
+                    {searchType === 'nearby' && (
+                      <>
+                        {/* <div className="space-y-2">
                         <label className="text-xs font-bold text-gray-600 uppercase tracking-wider">State</label>
                         <Select value={state} onValueChange={setState}>
                           <SelectTrigger className="h-12   font-medium text-gray-900">
@@ -598,7 +598,7 @@ export default function HomePage() {
                         </Select>
                       </div> */}
 
-                      {/* <div className="space-y-2">
+                        {/* <div className="space-y-2">
                         <label className="text-xs font-bold text-gray-600 uppercase tracking-wider">City</label>
                         <Select value={city} onValueChange={setCity} disabled={!state || citiesForState.length === 0}>
                           <SelectTrigger className="h-12   font-medium text-gray-900">
@@ -611,42 +611,42 @@ export default function HomePage() {
                           </SelectContent>
                         </Select>
                       </div> */}
-                    </>
-                  )}
+                      </>
+                    )}
 
-                </div>
+                  </div>
 
-                <div className="flex flex-row gap-2 pt-3 md:pt-4 border-t dark:border-black border-gray-100 w-full">
-                  <Button
-                    type="submit"
-                    onClick={() => setViewType('list')}
-                    className="flex-1 h-10 md:h-12 bg-gradient-to-r from-ms-orange to-ms-orange hover:from-ms-orange-hover hover:to-ms-orange-hover text-white font-bold text-sm md:text-lg shadow-md"
-                  >
-                    <Search className="mr-1 md:mr-2 h-4 w-4 md:h-5 md:w-5" />
-                    List View
-                  </Button>
-                  <Button
-                    type="submit"
-                    onClick={() => setViewType('map')}
-                    className="flex-1 h-10 md:h-12 bg-gray-900 hover:bg-black dark:hover:bg-zinc-900 dark:bg-slate-900 text-white font-bold text-sm md:text-lg shadow-md"
-                  >
-                    <MapIcon className="mr-1 md:mr-2 h-4 w-4 md:h-5 md:w-5" />
-                    Map View
-                  </Button>
-                </div>
-              </form>
-            </CardContent>
-          </Card>
+                  <div className="flex flex-row gap-2 pt-3 md:pt-4 border-t dark:border-black border-gray-100 w-full">
+                    <Button
+                      type="submit"
+                      onClick={() => setViewType('list')}
+                      className="flex-1 h-10 md:h-12 bg-gradient-to-r from-ms-orange to-ms-orange hover:from-ms-orange-hover hover:to-ms-orange-hover text-white font-bold text-sm md:text-lg shadow-md"
+                    >
+                      <Search className="mr-1 md:mr-2 h-4 w-4 md:h-5 md:w-5" />
+                      List View
+                    </Button>
+                    <Button
+                      type="submit"
+                      onClick={() => setViewType('map')}
+                      className="flex-1 h-10 md:h-12 bg-gray-900 hover:bg-black dark:hover:bg-zinc-900 dark:bg-slate-900 text-white font-bold text-sm md:text-lg shadow-md"
+                    >
+                      <MapIcon className="mr-1 md:mr-2 h-4 w-4 md:h-5 md:w-5" />
+                      Map View
+                    </Button>
+                  </div>
+                </form>
+              </CardContent>
+            </Card>
           </div>
         </div>
       </section>
 
-      <section className="snap-start snap-always h-[100dvh] md:h-auto flex flex-col justify-center items-center px-4 dark:bg-gradient-to-t dark:from-ms-orange dark:to-transparent bg-orange-100/30 md:py-20">
+      <section className="snap-start snap-always h-[calc(100dvh-5rem)] md:h-auto flex flex-col justify-center items-center px-4 dark:bg-gradient-to-t dark:from-ms-orange dark:to-transparent bg-orange-100/30 md:py-20">
         <div className="max-w-7xl mx-auto w-full flex flex-col justify-center flex-1 py-4 md:py-0">
-          <h2 className="text-2xl md:text-4xl font-bold text-center mb-4 md:mb-12 text-gray-900">
+          <h2 className="text-2xl md:text-4xl font-bold text-center mt-2 mb-4 md:mb-12 text-gray-900">
             Why Choose MicroStay?
           </h2>
-          <div className="flex flex-col gap-3 w-full flex-1 md:flex-initial md:grid md:grid-cols-3 md:gap-8">
+          <div className="flex flex-col gap-3 w-full flex-1 md:flex-initial md:grid md:grid-cols-3 md:gap-8 pb-4">
             <Card className="hover:shadow-2xl transition dark:border-transparent border-gray-100 group w-full text-left md:text-center flex-1 md:flex-initial">
               <CardContent className="p-4 sm:p-4 md:p-8 flex flex-row md:flex-col items-center gap-4 md:gap-0 h-full">
                 <div className="bg-gradient-to-br from-ms-orange to-ms-orange w-12 h-12 md:w-16 md:h-16 rounded-full flex items-center justify-center flex-shrink-0 mb-0 md:mb-4 group-hover:scale-110 transition-transform shine-effect">
@@ -693,7 +693,7 @@ export default function HomePage() {
       </section>
 
       {/* ── Fold 3: How It Works & Popular Cities ── */}
-      <section className="snap-start snap-always h-[100dvh] md:h-auto flex flex-col justify-center px-6 md:px-10 md:py-20 dark:bg-ms-orange bg-orange-200/20" id="how-it-works">
+      <section className="snap-start snap-always h-[calc(100dvh-5rem)] md:h-auto flex flex-col justify-center px-6 md:px-10 md:py-20 dark:bg-ms-orange bg-orange-200/20" id="how-it-works">
         <div className="max-w-7xl mx-auto w-full flex flex-col justify-center flex-1 md:flex-initial gap-8 md:gap-14 py-4 md:py-0">
 
           {/* How It Works */}
@@ -703,13 +703,13 @@ export default function HomePage() {
               <p className="text-gray-500 text-xs md:text-lg font-medium">Book a room in under 2 minutes</p>
             </div>
 
-            <div className="flex flex-col md:grid md:grid-cols-3 gap-4 overflow-x-auto md:overflow-visible pb-2 md:pb-0 scrollbar-none snap-x snap-mandatory px-2 md:px-0 w-full">
+            <div className="flex flex-col items-center md:grid md:grid-cols-3 gap-4 overflow-visible pb-2 md:pb-0 px-2 md:px-0 w-full">
               {[
                 { step: '01', icon: Search, title: 'Search', desc: 'Enter your city or tap "Near Me" to find available motels.' },
                 { step: '02', icon: CalendarDays, title: 'Book', desc: 'Pick your time window, room, and confirm with your name/phone.' },
                 { step: '03', icon: LogIn, title: 'Check In', desc: 'Primary guest must be 18+ and present government photo ID.' },
               ].map(({ step, icon: Icon, title, desc }) => (
-                <div key={step} className="flex-shrink-0 w-[75vw] sm:w-[240px] md:w-auto snap-center relative z-10 flex flex-col items-center text-center group bg-ms-orange-light dark:bg-transparent/90 pt-3 pb-2 px-3 rounded-xl border border-orange-100 dark:border-zinc-800">
+                <div key={step} className="flex-shrink-0 w-full md:w-auto snap-center relative z-10 flex flex-col items-center text-center group bg-ms-orange-light dark:bg-transparent/90 pt-3 pb-2 px-3 rounded-xl border border-orange-100 dark:border-zinc-800">
                   <div className="w-12 h-12 md:w-20 md:h-20 rounded-xl md:rounded-2xl dark:bg-gradient-to-br dark:from-ms-orange dark:border-transparent dark:shadow-md dark:group-hover:shadow-ms-orange dark:to-ms-orange border-2 border-ms-orange-border flex items-center justify-center mb-2 md:mb-5 group-hover:border-ms-orange-border group-hover:shadow-lg group-hover:shadow-ms-orange-light transition-all">
                     <Icon className="w-5 h-5 md:w-8 md:h-8 text-ms-orange dark:text-white" />
                   </div>
@@ -770,7 +770,7 @@ export default function HomePage() {
       </section>
 
       <section
-        className="snap-start snap-always h-[100dvh] md:h-auto md:min-h-0 flex flex-col justify-center px-4 relative bg-cover bg-center landing-bottom-bg overflow-hidden"
+        className="snap-start snap-always h-[calc(100dvh-5rem)] md:h-auto md:min-h-0 flex flex-col justify-center px-4 relative bg-cover bg-center landing-bottom-bg overflow-hidden"
       >
         <div className="absolute inset-0 bg-gradient-to-r from-gray-900/80 via-gray-900/70 to-gray-900/80 z-0"></div>
 
