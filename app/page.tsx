@@ -295,13 +295,13 @@ export default function HomePage() {
     router.push(`/search?${params.toString()}`);
   };
   return (
-    <div className="h-[100dvh] md:h-auto overflow-y-auto md:overflow-visible snap-y snap-mandatory md:snap-none scroll-smooth scrollbar-none bg-orange-300/40 dark:bg-black">
+    <div className="h-[100dvh] md:h-auto overflow-y-auto md:overflow-visible snap-y snap-mandatory md:snap-none scroll-smooth scrollbar-none bg-orange-300/40 dark:bg-black" style={{ scrollSnapType: 'y mandatory' }}>
       <section
-        className="relative snap-start snap-always h-[calc(100dvh-5rem)] md:h-auto flex flex-col justify-center items-center pt-2 pb-3 px-3 bg-cover bg-center landing-hero-bg overflow-hidden md:overflow-visible md:py-32 md:px-4"
+        className="relative snap-start snap-always h-[100dvh] md:h-auto flex flex-col justify-center items-center px-3 bg-cover bg-center landing-hero-bg overflow-hidden md:overflow-visible md:py-32 md:px-4"
       >
         <div className="absolute inset-0 bg-white/30 dark:bg-gradient-radial dark:from-white/20 dark:to-black/50 dark:via-slate-800/20"></div>
 
-        <div className="max-w-full my-0 relative flex flex-col justify-center items-center w-full md:h-auto">
+        <div className="max-w-full my-0 relative flex flex-col justify-center items-center w-full md:h-auto flex-1">
           <div className="flex flex-col justify-center items-center w-full gap-2 md:gap-10">
             <MotelBanner />
             <div className="text-center mb-0 md:mb-12 flex flex-col justify-center items-center flex-shrink-0">
@@ -641,8 +641,8 @@ export default function HomePage() {
         </div>
       </section>
 
-      <section className="snap-start snap-always h-[calc(100dvh)] md:h-auto flex flex-col justify-center items-center py-4 px-4 dark:bg-gradient-to-t dark:from-ms-orange dark:to-transparent bg-orange-100/30 md:py-20">
-        <div className="max-w-7xl mx-auto w-full flex flex-col justify-center flex-1">
+      <section className="snap-start snap-always h-[100dvh] md:h-auto flex flex-col justify-center items-center px-4 dark:bg-gradient-to-t dark:from-ms-orange dark:to-transparent bg-orange-100/30 md:py-20">
+        <div className="max-w-7xl mx-auto w-full flex flex-col justify-center flex-1 py-4 md:py-0">
           <h2 className="text-2xl md:text-4xl font-bold text-center mb-4 md:mb-12 text-gray-900">
             Why Choose MicroStay?
           </h2>
@@ -693,8 +693,8 @@ export default function HomePage() {
       </section>
 
       {/* ── Fold 3: How It Works & Popular Cities ── */}
-      <section className="snap-start snap-always h-[calc(100dvh+5dvh)] md:h-auto flex flex-col justify-center py-4 md:py-20 px-10 dark:bg-ms-orange bg-orange-200/20" id="how-it-works">
-        <div className="max-w-7xl mx-auto w-full flex flex-col justify-center gap-24 md:gap-14">
+      <section className="snap-start snap-always h-[100dvh] md:h-auto flex flex-col justify-center px-6 md:px-10 md:py-20 dark:bg-ms-orange bg-orange-200/20" id="how-it-works">
+        <div className="max-w-7xl mx-auto w-full flex flex-col justify-center flex-1 md:flex-initial gap-8 md:gap-14 py-4 md:py-0">
 
           {/* How It Works */}
           <div>
@@ -713,7 +713,7 @@ export default function HomePage() {
                   <div className="w-12 h-12 md:w-20 md:h-20 rounded-xl md:rounded-2xl dark:bg-gradient-to-br dark:from-ms-orange dark:border-transparent dark:shadow-md dark:group-hover:shadow-ms-orange dark:to-ms-orange border-2 border-ms-orange-border flex items-center justify-center mb-2 md:mb-5 group-hover:border-ms-orange-border group-hover:shadow-lg group-hover:shadow-ms-orange-light transition-all">
                     <Icon className="w-5 h-5 md:w-8 md:h-8 text-ms-orange dark:text-white" />
                   </div>
-                  <span className="text-[10px] md:text-[11px] font-black tracking-widest text-ms-orange uppercase mb-0.5">Step {step}</span>
+                  <span className="text-[10px] md:text-[11px] fonct-black tracking-widest text-ms-orange uppercase mb-0.5">Step {step}</span>
                   <h3 className="text-sm md:text-xl font-bold text-gray-900 mb-1">{title}</h3>
                   <p className="text-xs md:text-sm text-gray-500 font-medium leading-relaxed max-w-xs px-2 md:pl-5 md:pr-5 mb-1">{desc}</p>
                 </div>
@@ -723,7 +723,7 @@ export default function HomePage() {
 
           {/* Popular Cities */}
           {popularCities.length > 0 && (
-            <div className="flex flex-col h-[-10dvh] mt-4 md:mt-10 dark:bg-slate-950 rounded-lg">
+            <div className="hidden md:flex flex-col mt-4 md:mt-10 dark:bg-slate-950 rounded-lg">
               <div className="text-center mb-3 md:mb-10">
                 <h2 className="text-xl md:text-4xl font-bold text-gray-900 mb-0.5 md:mb-3">Popular Cities</h2>
                 <p className="text-gray-500 text-xs md:text-lg font-medium">Hourly stays available in these locations</p>
@@ -770,7 +770,7 @@ export default function HomePage() {
       </section>
 
       <section
-        className="snap-start snap-always h-[calc(100dvh-5rem)] md:h-auto md:min-h-0 flex flex-col justify-center py-4 px-4 relative bg-cover bg-center landing-bottom-bg overflow-hidden"
+        className="snap-start snap-always h-[100dvh] md:h-auto md:min-h-0 flex flex-col justify-center px-4 relative bg-cover bg-center landing-bottom-bg overflow-hidden"
       >
         <div className="absolute inset-0 bg-gradient-to-r from-gray-900/80 via-gray-900/70 to-gray-900/80 z-0"></div>
 
