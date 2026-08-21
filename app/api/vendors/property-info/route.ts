@@ -62,8 +62,6 @@ export async function POST(req: NextRequest) {
       contact_name: escapeStr(body.contact_name),
       contact_phone: escapeStr(body.contact_phone),
       contact_email: escapeStr(body.contact_email),
-      rooms_available: rooms,
-      business_license_file_url: escapeStr(body.business_license_file_url),
       updated_at: new Date().toISOString(),
     };
 
@@ -98,7 +96,7 @@ export async function POST(req: NextRequest) {
     await svc.from('vendors').update({
       business_name: escapeStr(body.legal_business_name),
       motel_name: escapeStr(body.dba_name) || escapeStr(body.legal_business_name),
-      owner_name: escapeStr(body.contact_name),
+      owner_name: escapeStr(body.dba_name),
       phone: escapeStr(body.contact_phone),
       city: escapeStr(body.city),
       state: escapeStr(body.state),

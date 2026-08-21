@@ -23,12 +23,12 @@ import {
   Camera,
 } from 'lucide-react';
 import { AGREEMENT_SECTIONS } from '@/lib/agreement-text';
-import { Select,SelectTrigger,SelectItem,SelectValue, SelectContent } from '@/components/ui/select';
+import { Select, SelectTrigger, SelectItem, SelectValue, SelectContent } from '@/components/ui/select';
 
 // ─────────────────────────────────────────────────────────────────
 // Types
 // ─────────────────────────────────────────────────────────────────
-type Step = 1 | 2 | 3 | 4 | 5 ;
+type Step = 1 | 2 | 3 | 4 | 5;
 
 interface AccountForm {
   email: string;
@@ -90,13 +90,12 @@ function StepIndicator({ current }: { current: Step }) {
           <div key={i} className="flex items-center shrink-0">
             <div className="flex flex-col items-center min-w-[64px] sm:min-w-[72px]">
               <div
-                className={`w-9 h-9 rounded-full flex items-center justify-center transition-all duration-300 ${
-                  done
-                    ? 'bg-green-500 text-white'
-                    : active
+                className={`w-9 h-9 rounded-full flex items-center justify-center transition-all duration-300 ${done
+                  ? 'bg-green-500 text-white'
+                  : active
                     ? 'bg-ms-orange text-white ring-4 ring-ms-orange'
                     : 'bg-gray-200 text-gray-400 dark:bg-white/30'
-                }`}
+                  }`}
               >
                 {done ? (
                   <CheckCircle2 className="w-5 h-5" />
@@ -105,18 +104,16 @@ function StepIndicator({ current }: { current: Step }) {
                 )}
               </div>
               <span
-                className={`text-xs mt-1 font-medium whitespace-nowrap ${
-                  active ? 'text-ms-orange' : done ? 'text-green-600' : 'text-gray-400'
-                }`}
+                className={`text-xs mt-1 font-medium whitespace-nowrap ${active ? 'text-ms-orange' : done ? 'text-green-600' : 'text-gray-400'
+                  }`}
               >
                 {s.label}
               </span>
             </div>
             {i < STEP_LABELS.length - 1 && (
               <div
-                className={`h-0.5 w-6 sm:w-14 mx-1 mb-5 transition-all duration-300 ${
-                  done ? 'bg-green-400' : 'bg-gray-200'
-                }`}
+                className={`h-0.5 w-6 sm:w-14 mx-1 mb-5 transition-all duration-300 ${done ? 'bg-green-400' : 'bg-gray-200'
+                  }`}
               />
             )}
           </div>
@@ -158,9 +155,8 @@ function TextInput(props: React.InputHTMLAttributes<HTMLInputElement> & { error?
     <>
       <input
         {...rest}
-        className={`border rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-ms-orange transition ${
-          error ? 'border-red-400 bg-red-50' : 'border-gray-300 bg-white'
-        } ${props.disabled ? 'opacity-60 cursor-not-allowed' : ''} ${props.className ?? ''}`}
+        className={`border rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-ms-orange transition ${error ? 'border-red-400 bg-red-50' : 'border-gray-300 bg-white'
+          } ${props.disabled ? 'opacity-60 cursor-not-allowed' : ''} ${props.className ?? ''}`}
       />
       {error && <p className="text-xs text-red-500">{error}</p>}
     </>
@@ -239,7 +235,7 @@ function AccountCreationForm({
       } else {
         setEmailError('');
       }
-    } catch {}
+    } catch { }
   };
 
   const handleSubmit = async (e: React.FormEvent) => {
@@ -465,13 +461,13 @@ function PropertyInfoForm({
 }) {
   const [form, setForm] = useState<PropertyForm>(emptyProperty);
   useEffect(() => {
-  if (accountEmail) {
-    setForm(prev => ({
-      ...prev,
-      contact_email: accountEmail,
-    }));
-  }
-}, [accountEmail]);
+    if (accountEmail) {
+      setForm(prev => ({
+        ...prev,
+        contact_email: accountEmail,
+      }));
+    }
+  }, [accountEmail]);
   const [error, setError] = useState('');
   const [loading, setLoading] = useState(false);
   const [licenseFile, setLicenseFile] = useState<File | null>(null);
@@ -479,24 +475,24 @@ function PropertyInfoForm({
 
   // const set = (k: keyof PropertyForm) => (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>) =>
   //   setForm(p => ({ ...p, [k]: e.target.value }));
-    const set = (k: keyof PropertyForm) =>
-  (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>) => {
-    const value = e.target.value;
+  const set = (k: keyof PropertyForm) =>
+    (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>) => {
+      const value = e.target.value;
 
-    setForm(prev => {
-      const updated = {
-        ...prev,
-        [k]: value,
-      };
+      setForm(prev => {
+        const updated = {
+          ...prev,
+          [k]: value,
+        };
 
-      // Auto-copy Legal Business Name to Contact Name
-      if (k === 'legal_business_name') {
-        updated.contact_name = value;
-      }
+        // Auto-copy Legal Business Name to Contact Name
+        if (k === 'legal_business_name') {
+          updated.contact_name = value;
+        }
 
-      return updated;
-    });
-  };
+        return updated;
+      });
+    };
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -504,10 +500,12 @@ function PropertyInfoForm({
 
     const required: (keyof PropertyForm)[] = [
       'legal_business_name',
+      'dba_name',
       'property_address',
       'city',
       'state',
       'zip',
+      'federal_ein',
       'contact_name',
       'contact_email',
       'rooms_available',
@@ -590,7 +588,7 @@ function PropertyInfoForm({
         </Field>
         <Field required label="Contact Name" >
           {/* <TextInput required value={form.contact_name} onChange={set('contact_name')} placeholder="Jane Smith" className="w-full" /> */}
-            <TextInput required value={form.contact_name} readOnly className="w-full bg-gray-100  dark:text-white bg-gradient-to-r from-teal-200/40 via-black/10 to-purple-200 border-none dark:bg-gradient-to-r dark:from-teal-800/40 dark:to-transparent/40" />
+          <TextInput required value={form.contact_name} readOnly className="w-full bg-gray-100  dark:text-white bg-gradient-to-r from-teal-200/40 via-black/10 to-purple-200 border-none dark:bg-gradient-to-r dark:from-teal-800/40 dark:to-transparent/40" />
 
         </Field>
         <Field required label="Contact Phone">
@@ -620,12 +618,12 @@ function PropertyInfoForm({
               className="border border-gray-300 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-ms-orange w-full dark:bg-slate-900 dark:border-transparent bg-gradient-to-r from-teal-200/40 via-black/10 to-purple-200 border-none dark:bg-gradient-to-r dark:from-teal-800/40 dark:to-transparent/40"
             >
               <option value="">Select state</option>
-              {['Alabama','Alaska','Arizona','Arkansas','California','Colorado','Connecticut','Delaware','Florida','Georgia','Hawaii','Idaho','Illinois','Indiana','Iowa','Kansas','Kentucky','Louisiana','Maine','Maryland','Massachusetts','Michigan','Minnesota','Mississippi','Missouri','Montana','Nebraska','Nevada','New Hampshire','New Jersey','New Mexico','New York','North Carolina','North Dakota','Ohio','Oklahoma','Oregon','Pennsylvania','Rhode Island','South Carolina','South Dakota','Tennessee','Texas','Utah','Vermont','Virginia','Washington','West Virginia','Wisconsin','Wyoming'].map(s => (
+              {['Alabama', 'Alaska', 'Arizona', 'Arkansas', 'California', 'Colorado', 'Connecticut', 'Delaware', 'Florida', 'Georgia', 'Hawaii', 'Idaho', 'Illinois', 'Indiana', 'Iowa', 'Kansas', 'Kentucky', 'Louisiana', 'Maine', 'Maryland', 'Massachusetts', 'Michigan', 'Minnesota', 'Mississippi', 'Missouri', 'Montana', 'Nebraska', 'Nevada', 'New Hampshire', 'New Jersey', 'New Mexico', 'New York', 'North Carolina', 'North Dakota', 'Ohio', 'Oklahoma', 'Oregon', 'Pennsylvania', 'Rhode Island', 'South Carolina', 'South Dakota', 'Tennessee', 'Texas', 'Utah', 'Vermont', 'Virginia', 'Washington', 'West Virginia', 'Wisconsin', 'Wyoming'].map(s => (
                 <option key={s} value={s}>{s}</option>
               ))}
             </select>
           </Field>
-          
+
           <Field required label="ZIP Code" >
             <TextInput required value={form.zip} onChange={set('zip')} placeholder="89101" maxLength={10} className="w-full  bg-gradient-to-r from-teal-200/40 via-black/10 to-purple-200 border-none dark:bg-gradient-to-r dark:from-teal-800/40 dark:to-transparent/40" />
           </Field>
@@ -670,7 +668,7 @@ function PropertyInfoForm({
           </Field>
         </div>
       </div>
-  
+
       <div className="flex gap-3 pt-2">
         <button
           type="button"
@@ -729,7 +727,7 @@ function AgreementViewer({
         setAgreementHash(d.hash ?? '');
         setAgreementVersion(d.version ?? 'v2.0');
       })
-      .catch(() => {});
+      .catch(() => { });
   }, []);
 
   const handleScroll = useCallback(() => {
@@ -885,11 +883,10 @@ function AgreementViewer({
             <button
               key={idx}
               onClick={() => scrollToSection(idx)}
-              className={`text-left text-xs px-2 py-1 rounded transition ${
-                activeSectionIdx === idx
-                  ? 'bg-ms-orange-light text-ms-orange font-semibold dark:bg-slate-800'
-                  : 'text-gray-500 hover:bg-gray-50 hover:text-gray-800 dark:hover:bg-black dark:hover:text-white'
-              }`}
+              className={`text-left text-xs px-2 py-1 rounded transition ${activeSectionIdx === idx
+                ? 'bg-ms-orange-light text-ms-orange font-semibold dark:bg-slate-800'
+                : 'text-gray-500 hover:bg-gray-50 hover:text-gray-800 dark:hover:bg-black dark:hover:text-white'
+                }`}
             >
               {sec}
             </button>
@@ -960,10 +957,10 @@ function SignatureCapture({
 }) {
   const [typedName, setTypedName] = useState(businessName);
   useEffect(() => {
-  if (businessName) {
-    setTypedName(businessName);
-  }
-}, [businessName]);
+    if (businessName) {
+      setTypedName(businessName);
+    }
+  }, [businessName]);
   const [agreed, setAgreed] = useState(false);
   const [arbitrationAgreed, setArbitrationAgreed] = useState(false);
   const [error, setError] = useState('');
@@ -974,7 +971,7 @@ function SignatureCapture({
     fetch('/api/utils/my-ip')
       .then(r => r.json())
       .then(d => setClientIp(d.ip ?? ''))
-      .catch(() => {});
+      .catch(() => { });
   }, []);
 
   const canSign = typedName.trim().length >= 2 && agreed && arbitrationAgreed;
@@ -1046,7 +1043,7 @@ function SignatureCapture({
         <label className="text-sm font-medium text-gray-700">
           Type Your Full Legal Name <span className="text-red-500">*</span>
         </label>
-        <input type="text"  value={typedName} readOnly  className="border border-gray-300 rounded-lg px-4 py-3 text-sm w-full bg-gray-100 dark:bg-transparent  bg-gradient-to-r from-teal-200/40 via-black/10 to-purple-200 border-none dark:bg-gradient-to-r dark:from-teal-800/40 dark:to-transparent/40"/>
+        <input type="text" value={typedName} readOnly className="border border-gray-300 rounded-lg px-4 py-3 text-sm w-full bg-gray-100 dark:bg-transparent  bg-gradient-to-r from-teal-200/40 via-black/10 to-purple-200 border-none dark:bg-gradient-to-r dark:from-teal-800/40 dark:to-transparent/40" />
         {/* <input
           type="text"
           value={typedName}
@@ -1162,19 +1159,19 @@ function SignupConfirmation({
 }) {
   const [showLogin, setShowLogin] = useState(false);
   const handleDownloadPdf = async () => {
-  // Open PDF in new tab
-  window.open(signedPdfUrl, '_blank');
+    // Open PDF in new tab
+    window.open(signedPdfUrl, '_blank');
 
-  // Logout user
-  await supabase.auth.signOut();
+    // Logout user
+    await supabase.auth.signOut();
 
-  // Show login button
-  setShowLogin(true);
-};
+    // Show login button
+    setShowLogin(true);
+  };
   const handleLoginRedirect = async () => {
-  await supabase.auth.signOut();
-  window.location.href = '/login';
-};
+    await supabase.auth.signOut();
+    window.location.href = '/login';
+  };
 
   return (
     <div className="flex flex-col items-center gap-6 py-4 text-center">
@@ -1220,14 +1217,14 @@ function SignupConfirmation({
             Download Signed Agreement
           </button>
         )}
-       {showLogin && (
-        <button
-          onClick={handleLoginRedirect}
-          className="flex items-center justify-center gap-2 border border-gray-300 text-gray-700 font-semibold py-3 px-5 rounded-xl hover:bg-gray-50 transition hover:scale-105 active:scale-95 dark:bg-transparent/40 dark:text-white dark:border-transparent"
-        >
-          Sign In
-        </button>
-      )}
+        {showLogin && (
+          <button
+            onClick={handleLoginRedirect}
+            className="flex items-center justify-center gap-2 border border-gray-300 text-gray-700 font-semibold py-3 px-5 rounded-xl hover:bg-gray-50 transition hover:scale-105 active:scale-95 dark:bg-transparent/40 dark:text-white dark:border-transparent"
+          >
+            Sign In
+          </button>
+        )}
         {/* <a
           href="/login"
           className="flex items-center justify-center gap-2 border border-gray-300 text-gray-700 font-semibold py-3 px-5 rounded-xl hover:bg-gray-50 transition"
@@ -1350,10 +1347,10 @@ function VendorSignupStepper() {
                 onBack={() => setStep(1)}
                 // onNext={() => setStep(3)}
                 onNext={(form) => {
-                    setBusinessName(form.legal_business_name);
-                    setPropertyForm(form);
-                    setStep(3);
-                  }}
+                  setBusinessName(form.legal_business_name);
+                  setPropertyForm(form);
+                  setStep(3);
+                }}
               />
             )}
 

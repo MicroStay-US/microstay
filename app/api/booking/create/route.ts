@@ -57,18 +57,6 @@ export async function POST(req: Request) {
       }
     }
 
-    if (!isUserAuthed && !verificationToken) {
-       return NextResponse.json({ error: 'Email verification required.' }, { status: 401 });
-    } else if (!isUserAuthed && verificationToken) {
-      try {
-        const { payload } = await jwtVerify(verificationToken, JWT_SECRET);
-        if (payload.guestEmail !== guestEmail.toLowerCase().trim()) {
-           return NextResponse.json({ error: 'Verification token email mismatch.' }, { status: 401 });
-        }
-      } catch (err) {
-        return NextResponse.json({ error: 'Invalid or expired verification token.' }, { status: 401 });
-      }
-    }
 
     const supabase = createClient(supabaseUrl, serviceKey);
 

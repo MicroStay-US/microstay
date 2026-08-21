@@ -94,13 +94,21 @@ export default function VendorOperationsCenter() {
     );
   }
 
-  // Pending or no property → show approval screen
+  // Pending or no property → show approval screen or redirect to onboarding
   if (!vendor || vendor.status.startsWith('pending')) {
+    if (vendor && (vendor.status === 'pending_agreement' || vendor.status === 'pending_email_verification')) {
+      window.location.href = '/partner-signup';
+      return (
+        <div className="flex items-center justify-center min-h-[70vh]">
+          <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-ms-orange"></div>
+        </div>
+      );
+    }
     return <PendingApprovalScreen businessName={vendor?.business_name || 'Your Property'} />;
   }
 
-  // Suspended
-  if (vendor.status === 'suspended') {
+  // Suspended or Rejected
+  if (vendor.status === 'suspended' || vendor.status === 'rejected') {
     return (
       <div className="flex items-center justify-center min-h-[70vh]">
         <div className="text-center max-w-sm bg-white dark:bg-black dark:border-transparent rounded-2xl shadow-sm border border-red-100 p-10 space-y-4">

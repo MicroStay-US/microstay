@@ -231,7 +231,7 @@ export function PartnersTab({ initialSubTab }: { initialSubTab?: SubTab }) {
                       return (
                         <div key={app.id} className="p-6 flex flex-col xl:flex-row gap-6 hover:bg-zinc-50/50 transition-colors bg-white dark:hover:bg-transparent/10">
                           <div className="xl:w-1/3">
-                            <h4 className="text-lg font-black text-zinc-900 tracking-tight">{app.business_name || app.motel_name}</h4>
+                            <h4 className="text-lg font-black text-zinc-900 tracking-tight">{app.business_name || app.motel_name || 'Pending Setup'}</h4>
                             <div className="flex flex-col gap-1 mt-2">
                               <span className="text-sm font-medium text-zinc-500 flex items-center gap-2"><Mail className="w-4 h-4 text-zinc-400" /> {app.email || app.contact_email}</span>
                               <span className="text-sm font-medium text-zinc-500 flex items-center gap-2"><UserPlus className="w-4 h-4 text-zinc-400" /> {app.poc_name || 'No POC Provided'}</span>
@@ -287,7 +287,7 @@ export function PartnersTab({ initialSubTab }: { initialSubTab?: SubTab }) {
                       <tbody className="divide-y divide-gray-100 ">
                         {past.map(app => (
                           <tr key={app.id} className="bg-white hover:bg-gray-50">
-                            <td className="px-5 py-4 whitespace-nowrap font-bold text-gray-900 dark:text-ms-orange">{app.business_name || app.motel_name}</td>
+                            <td className="px-5 py-4 whitespace-nowrap font-bold text-gray-900 dark:text-ms-orange">{app.business_name || app.motel_name || 'Pending Setup'}</td>
                             <td className="px-5 py-4 whitespace-nowrap text-sm text-gray-600 font-medium">{app.email || app.contact_email}</td>
                             <td className="px-5 py-4 whitespace-nowrap text-sm text-gray-500">{new Date(app.created_at).toLocaleDateString()}</td>
                             <td className="px-5 py-4 whitespace-nowrap text-center">
@@ -343,7 +343,7 @@ export function PartnersTab({ initialSubTab }: { initialSubTab?: SubTab }) {
                   </thead>
                   <tbody className="divide-y divide-zinc-100 dark:divide-black">
                     {filteredProperties.map(p => {
-                      const ownerName = p.vendor?.owner_name || p.vendor?.business_name || 'Unknown Owner';
+                      const ownerName = p.vendor?.owner_name || p.vendor?.business_name || 'Pending Setup';
                       return (
                         <tr key={p.id} onClick={() => router.push(`/admin/properties/${p.id}`)} className="hover:bg-zinc-50/80 transition-colors bg-white cursor-pointer group">
                           <td className="px-6 py-5 whitespace-nowrap">
@@ -438,7 +438,7 @@ export function PartnersTab({ initialSubTab }: { initialSubTab?: SubTab }) {
                       return (
                         <tr key={vendor.id} className="hover:bg-zinc-50/50 dark:hover:bg-transparent/10 transition-colors bg-white group  ">
                           <td className="px-6 py-5">
-                            <div className="font-bold text-zinc-900 dark:text-ms-orange">{vendor.business_name || vendor.motel_name}</div>
+                            <div className="font-bold text-zinc-900 dark:text-ms-orange">{vendor.business_name || vendor.motel_name || 'Pending Setup'}</div>
                             <div className="text-xs font-bold text-zinc-500 mt-1 flex items-center gap-1.5"><Users className="w-3.5 h-3.5" /> {vendor.poc_name || 'Admin'}</div>
                             <div className="text-[10px] text-zinc-400 mt-1 flex items-center gap-1.5"><Mail className="h-3 w-3" /> {vendor.email}</div>
                           </td>
@@ -493,7 +493,7 @@ export function PartnersTab({ initialSubTab }: { initialSubTab?: SubTab }) {
             <div className="flex items-center justify-between mb-5">
               <div>
                 <p className="text-[10px] font-black uppercase tracking-widest text-zinc-500 dark:text-ms-orange">Vendor Audit</p>
-                <h2 className="text-lg font-black text-zinc-900 mt-0.5">{auditVendor.business_name}</h2>
+                <h2 className="text-lg font-black text-zinc-900 mt-0.5">{auditVendor.business_name || auditVendor.motel_name || 'Pending Setup'}</h2>
               </div>
               <button onClick={() => setAuditVendor(null)} className="text-zinc-400 hover:text-zinc-700 p-1.5 rounded-lg hover:bg-gray-100 dark:hover:bg-transparent/40 dark:hover:text-white">✕</button>
             </div>

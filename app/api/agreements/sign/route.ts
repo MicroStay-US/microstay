@@ -420,7 +420,7 @@ export async function POST(req: NextRequest) {
       ipAddress,
       userAgent,
       vendorEmail: vendor.email,
-      exhibitA: propData ?? {},
+      exhibitA: { ...(propData ?? {}), rooms_available: vendor.rooms },
     });
 
     // Upload PDF to Supabase Storage (private bucket; we store the path and

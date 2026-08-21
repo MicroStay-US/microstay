@@ -104,7 +104,7 @@ export function VendorsTab() {
                   return (
                     <tr key={vendor.id} className="hover:bg-zinc-50/50 transition-colors bg-white group">
                       <td className="px-6 py-5">
-                        <div className="font-bold text-zinc-900">{vendor.business_name || vendor.motel_name}</div>
+                        <div className="font-bold text-zinc-900">{vendor.business_name || vendor.motel_name || 'Pending Setup'}</div>
                         <div className="text-xs font-bold text-zinc-500 mt-1 flex items-center gap-1.5">
                           <Users className="w-3.5 h-3.5" /> {vendor.poc_name || 'Admin'}
                         </div>

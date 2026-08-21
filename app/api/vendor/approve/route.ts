@@ -114,7 +114,7 @@ export async function POST(req: Request) {
         lat = parseFloat(geoData[0].lat);
         lon = parseFloat(geoData[0].lon);
       }
-    } catch(e) {
+    } catch (e) {
       console.error('Geocoding failed during approval:', e);
     }
 
@@ -125,19 +125,19 @@ export async function POST(req: Request) {
 
     if (!existingProp) {
       const res = await supabase.from('properties').insert({
-      vendor_id: vendorId,
-      name: vendor.motel_name || vendor.business_name,
-      address: vendor.address,
-      city: vendor.city,
-      state: vendor.state,
-      phone: vendor.phone,
-      description: vendor.description,
-      amenities: vendor.amenities ? JSON.parse(vendor.amenities) : [],
-      photos: vendor.photos && vendor.photos !== '[]' ? JSON.parse(vendor.photos) : [],
+        vendor_id: vendorId,
+        name: vendor.motel_name || vendor.business_name || 'Pending Property Setup',
+        address: vendor.address,
+        city: vendor.city,
+        state: vendor.state,
+        phone: vendor.phone,
+        description: vendor.description,
+        amenities: vendor.amenities ? JSON.parse(vendor.amenities) : [],
+        photos: vendor.photos && vendor.photos !== '[]' ? JSON.parse(vendor.photos) : [],
         latitude: lat,
         longitude: lon
       }).select().single();
-      
+
       property = res.data;
       propErr = res.error;
     }
@@ -147,12 +147,13 @@ export async function POST(req: Request) {
       // Don't throw here, sometimes properties are created separately or it fails due to duplicates, but vendor is approved.
     }
 
-    // 6. Send password reset so vendor can set their own password, then notify via Resend if available
+    // 6. Send password reset ONLY if the vendor didn't already have an account set up
     const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || 'https://www.microstay.us';
-    await supabase.auth.resetPasswordForEmail(vendor.email, {
-      redirectTo: `${siteUrl}/vendor/login`,
-    });
-
+    if (!vendor.auth_user_id) {
+      await supabase.auth.resetPasswordForEmail(vendor.email, {
+        redirectTo: `${siteUrl}/vendor/login`,
+      });
+    }
     const resendKey = process.env.RESEND_API_KEY || process.env.Resend_API_KEY;
     if (resendKey) {
       const vendorName = escapeHtml(vendor.poc_name || vendor.owner_name || '');

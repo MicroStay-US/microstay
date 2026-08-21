@@ -83,7 +83,7 @@ export function MotelsTab() {
             </thead>
             <tbody className="divide-y divide-zinc-100">
               {filtered.map((p) => {
-                const ownerName = p.vendor?.owner_name || p.vendor?.business_name || 'Unknown Owner';
+                const ownerName = p.vendor?.owner_name || p.vendor?.business_name || 'Pending Setup';
                 return (
                   <tr 
                     key={p.id} 

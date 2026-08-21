@@ -144,7 +144,7 @@ export function ApplicationsTab() {
                   
                   {/* Business Identity */}
                   <div className="xl:w-1/3">
-                    <h4 className="text-lg font-black text-zinc-900 tracking-tight">{app.business_name || app.motel_name}</h4>
+                    <h4 className="text-lg font-black text-zinc-900 tracking-tight">{app.business_name || app.motel_name || 'Pending Setup'}</h4>
                     <div className="flex flex-col gap-1 mt-2">
                       <span className="text-sm font-medium text-zinc-500 flex items-center gap-2"><Mail className="w-4 h-4 text-zinc-400"/> {app.email || app.contact_email}</span>
                       <span className="text-sm font-medium text-zinc-500 flex items-center gap-2"><UserPlus className="w-4 h-4 text-zinc-400"/> {app.poc_name || 'No POC Provided'}</span>
@@ -210,7 +210,7 @@ export function ApplicationsTab() {
             <tbody className="divide-y divide-gray-100">
               {past.map(app => (
                 <tr key={app.id} className="bg-white hover:bg-gray-50">
-                  <td className="px-5 py-4 whitespace-nowrap font-bold text-gray-900">{app.business_name || app.motel_name}</td>
+                  <td className="px-5 py-4 whitespace-nowrap font-bold text-gray-900">{app.business_name || app.motel_name || 'Pending Setup'}</td>
                   <td className="px-5 py-4 whitespace-nowrap text-sm text-gray-600 font-medium">{app.email || app.contact_email}</td>
                   <td className="px-5 py-4 whitespace-nowrap text-sm text-gray-500">{new Date(app.created_at).toLocaleDateString()}</td>
                   <td className="px-5 py-4 whitespace-nowrap text-center">

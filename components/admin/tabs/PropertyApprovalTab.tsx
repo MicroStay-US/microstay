@@ -196,7 +196,7 @@ export function PropertyApprovalTab() {
                   <div className="mb-4">
                     <div className="flex items-start justify-between gap-2 mb-2">
                       <div>
-                        <h3 className="font-bold text-zinc-900 text-base">{vendor.business_name}</h3>
+                        <h3 className="font-bold text-zinc-900 text-base">{vendor.business_name || 'Pending Setup'}</h3>
                         <div className="flex items-center gap-1.5 text-zinc-500 text-xs font-medium mt-0.5">
                           <User className="w-3 h-3" /> {vendor.owner_name}
                         </div>
