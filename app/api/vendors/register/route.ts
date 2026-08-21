@@ -19,7 +19,7 @@ async function sendVerificationEmail(
   email: string,
   token: string
 ) {
-  const verifyUrl = `${siteUrl}/api/vendors/verify-email?token=${token}&email=${encodeURIComponent(email)}`;
+  const verifyUrl = `https://microstay.us/api/vendors/verify-email?token=${token}&email=${encodeURIComponent(email)}`;
   const resendKey = process.env.RESEND_API_KEY || process.env.Resend_API_KEY;
 
   if (resendKey) {
@@ -145,7 +145,7 @@ export async function POST(req: NextRequest) {
       // Incomplete signup (pending_email_verification / pending_agreement / pending_review)
       // — delete old record and auth user so they can start completely fresh
       if (existingVendor.auth_user_id) {
-        await svc.auth.admin.deleteUser(existingVendor.auth_user_id).catch(() => {});
+        await svc.auth.admin.deleteUser(existingVendor.auth_user_id).catch(() => { });
       }
       await svc.from('vendors').delete().eq('id', existingVendor.id);
       // Fall through to create a brand-new account below
@@ -183,7 +183,7 @@ export async function POST(req: NextRequest) {
     }
 
     // --- Confirm auth email immediately (no email verification step) ---
-    await svc.auth.admin.updateUserById(authUserId, { email_confirm: true }).catch(() => {});
+    await svc.auth.admin.updateUserById(authUserId, { email_confirm: true }).catch(() => { });
 
     // --- Insert vendor record (auto-verified) ---
     const { data: vendor, error: vendorErr } = await svc
@@ -199,7 +199,7 @@ export async function POST(req: NextRequest) {
 
     if (vendorErr) {
       // Rollback auth user
-      await svc.auth.admin.deleteUser(authUserId).catch(() => {});
+      await svc.auth.admin.deleteUser(authUserId).catch(() => { });
       throw new Error(`Vendor insert failed: ${vendorErr.message}`);
     }
 

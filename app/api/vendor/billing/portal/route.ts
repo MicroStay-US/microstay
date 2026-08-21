@@ -48,7 +48,7 @@ export async function POST(req: Request) {
 
     const url = await createCustomerPortalSession({
       stripeCustomerId,
-      returnUrl: `${siteUrl}/vendor/billing`,
+      returnUrl: `https://microstay.us/vendor/billing`,
     });
 
     return NextResponse.json({ url });

@@ -19,7 +19,7 @@ export async function POST(req: NextRequest) {
     });
 
     const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || 'https://microstay.us';
-    const resetUrl = `${siteUrl}/admin/login`;
+    const resetUrl = `https://microstay.us/admin/login`;
 
     const resendKey = process.env.RESEND_API_KEY || process.env.Resend_API_KEY;
     if (!resendKey) {

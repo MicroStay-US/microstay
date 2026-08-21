@@ -73,7 +73,7 @@ export async function POST(req: NextRequest) {
       );
       const safeSig = escapeHtml(signature.typed_signature);
       const safeDate = new Date(signature.signed_at).toUTCString();
-      const adminDashboardUrl = `${siteUrl}/admin/dashboard`;
+      const adminDashboardUrl = `https://microstay.us/admin/dashboard`;
       const pdfUrl = emailPdfUrl;
 
       // Email 1: Signed agreement copy to partner

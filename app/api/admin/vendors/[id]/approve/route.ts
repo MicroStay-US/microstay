@@ -111,7 +111,7 @@ export async function PATCH(
                     You now have full access to the MicroStay Vendor Portal.
                   </p>
                   <div style="text-align:center;margin:28px 0">
-                    <a href="${siteUrl}/vendor"
+                    <a href="https://microstay.us/vendor"
                        style="background:#FF5E1A;color:white;padding:14px 28px;border-radius:8px;text-decoration:none;font-size:16px;font-weight:bold;display:inline-block">
                       Go to Vendor Dashboard
                     </a>

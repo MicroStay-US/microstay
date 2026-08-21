@@ -82,7 +82,7 @@ Deno.serve(async (req: Request) => {
     }
 
     const token = resetData.properties.hashed_token;
-    const resetLink = `${siteUrl}/reset-password?token_hash=${encodeURIComponent(token)}&type=recovery`;
+    const resetLink = `https://microstay.us/reset-password?token_hash=${encodeURIComponent(token)}&type=recovery`;
 
     const emailHtml = `
       <div style='font-family:Arial,sans-serif;max-width:600px;margin:0 auto'>

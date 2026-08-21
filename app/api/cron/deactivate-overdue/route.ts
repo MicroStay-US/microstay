@@ -144,7 +144,7 @@ async function runDeactivation(req: Request) {
             <tr style="background:#fef2f2;"><td style="padding:8px;border:1px solid #e5e7eb;font-weight:bold;">Total Required to Reactivate</td><td style="padding:8px;border:1px solid #e5e7eb;text-align:right;font-weight:bold;color:#dc2626;">$${totalToReactivate.toFixed(2)}</td></tr>
           </table>
           <p>Your property is no longer visible to guests. To restore your listing, please pay the total above.</p>
-          <a href="${siteUrl}/vendor/billing" style="background:#FF5E1A;color:white;padding:12px 24px;text-decoration:none;border-radius:6px;display:inline-block;font-weight:bold;margin:8px 0;">Pay to Reactivate</a>
+          <a href="https://microstay.us/vendor/billing" style="background:#FF5E1A;color:white;padding:12px 24px;text-decoration:none;border-radius:6px;display:inline-block;font-weight:bold;margin:8px 0;">Pay to Reactivate</a>
           <p style="font-size:12px;color:#6b7280;margin-top:24px;">
             Per your MicroStay Partner Agreement (§36–§38), properties with unpaid invoices 
             after the 25th of the month following the billing period may be deactivated. 

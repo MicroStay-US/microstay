@@ -101,7 +101,7 @@ async function runReminder(req: Request) {
     if (!vendor) continue;
 
     const amount = Number(invoice.total_due).toFixed(2);
-    const billingUrl = `${siteUrl}/vendor/billing`;
+    const billingUrl = `https://microstay.us/vendor/billing`;
 
     const subject = isSecondReminder
       ? `⚠️ Final Notice: $${amount} Due — Account Deactivates Tomorrow`

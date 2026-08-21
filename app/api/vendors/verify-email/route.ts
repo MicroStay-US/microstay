@@ -12,14 +12,14 @@ export async function GET(req: NextRequest) {
   const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || process.env.NEXTAUTH_URL || 'https://www.microstay.us';
 
   if (!token || !email) {
-    return NextResponse.redirect(`${siteUrl}/partner-signup?error=invalid_link`);
+    return NextResponse.redirect(`https://microstay.us/partner-signup?error=invalid_link`);
   }
 
   try {
     const supabaseUrl = process.env.NEXT_PUBLIC_SUPABASE_URL;
     const serviceKey = process.env.SUPABASE_SERVICE_ROLE_KEY;
     if (!supabaseUrl || !serviceKey) {
-      return NextResponse.redirect(`${siteUrl}/partner-signup?error=server_error`);
+      return NextResponse.redirect(`https://microstay.us/partner-signup?error=server_error`);
     }
 
     const svc = createClient(supabaseUrl, serviceKey);
@@ -33,7 +33,7 @@ export async function GET(req: NextRequest) {
       .single();
 
     if (fetchErr || !vendor) {
-      return NextResponse.redirect(`${siteUrl}/partner-signup?error=invalid_token`);
+      return NextResponse.redirect(`https://microstay.us/partner-signup?error=invalid_token`);
     }
 
     // Already verified
@@ -42,12 +42,12 @@ export async function GET(req: NextRequest) {
       const { data: linkData } = await svc.auth.admin.generateLink({
         type: 'magiclink',
         email: vendor.email,
-        options: { redirectTo: `${siteUrl}/partner-signup?step=2` },
+        options: { redirectTo: `https://microstay.us/partner-signup?step=2` },
       });
       if (linkData?.properties?.action_link) {
         return NextResponse.redirect(linkData.properties.action_link);
       }
-      return NextResponse.redirect(`${siteUrl}/partner-signup?step=2&already_verified=true`);
+      return NextResponse.redirect(`https://microstay.us/partner-signup?step=2&already_verified=true`);
     }
 
     // Check token expiry
@@ -55,7 +55,7 @@ export async function GET(req: NextRequest) {
       const sentAt = new Date(vendor.email_verification_sent_at).getTime();
       const expiryMs = TOKEN_EXPIRY_HOURS * 60 * 60 * 1000;
       if (Date.now() - sentAt > expiryMs) {
-        return NextResponse.redirect(`${siteUrl}/partner-signup?error=token_expired&email=${encodeURIComponent(email)}`);
+        return NextResponse.redirect(`https://microstay.us/partner-signup?error=token_expired&email=${encodeURIComponent(email)}`);
       }
     }
 
@@ -81,7 +81,7 @@ export async function GET(req: NextRequest) {
     const { data: linkData } = await svc.auth.admin.generateLink({
       type: 'magiclink',
       email: vendor.email,
-      options: { redirectTo: `${siteUrl}/partner-signup?step=2` },
+      options: { redirectTo: `https://microstay.us/partner-signup?step=2` },
     });
 
     if (linkData?.properties?.action_link) {
@@ -89,9 +89,9 @@ export async function GET(req: NextRequest) {
     }
 
     // Fallback: redirect to signup with success
-    return NextResponse.redirect(`${siteUrl}/partner-signup?step=2&verified=true`);
+    return NextResponse.redirect(`https://microstay.us/partner-signup?step=2&verified=true`);
   } catch (err: any) {
     console.error('Verify-email error:', err);
-    return NextResponse.redirect(`${siteUrl}/partner-signup?error=server_error`);
+    return NextResponse.redirect(`https://microstay.us/partner-signup?error=server_error`);
   }
 }

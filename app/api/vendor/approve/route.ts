@@ -151,7 +151,7 @@ export async function POST(req: Request) {
     const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || 'https://www.microstay.us';
     if (!vendor.auth_user_id) {
       await supabase.auth.resetPasswordForEmail(vendor.email, {
-        redirectTo: `${siteUrl}/vendor/login`,
+        redirectTo: `https://microstay.us/vendor/login`,
       });
     }
     const resendKey = process.env.RESEND_API_KEY || process.env.Resend_API_KEY;
